@@ -1,1 +1,735 @@
-cc
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RNA Viruses 2 Interactive Reviewer</title>
+<style>
+:root{
+  --bg:#f5f7f6;--panel:#ffffff;--ink:#17211d;--muted:#5c6a64;--line:#d9e1dd;
+  --green:#2f7d4a;--green2:#e9f5ed;--blue:#2d668f;--blue2:#edf5fb;--amber:#9a6a10;
+  --amber2:#fff7df;--red:#a94343;--red2:#fff0f0;--purple:#6e5494;--purple2:#f4effa;
+  --shadow:0 8px 28px rgba(24,53,39,.08);--radius:14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",Arial,Helvetica,sans-serif;line-height:1.55}
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.header-inner{max-width:1180px;margin:auto;padding:10px 16px 8px}
+.title-row{display:flex;align-items:center;gap:12px;justify-content:space-between}
+.title-wrap{min-width:0}.title{font-weight:800;font-size:1.06rem;letter-spacing:.01em}.subtitle{font-size:.78rem;color:var(--muted)}
+.search-wrap{display:flex;gap:8px;align-items:center;min-width:310px;max-width:480px;flex:1;justify-content:flex-end}
+#search{width:100%;max-width:390px;border:1px solid var(--line);border-radius:10px;padding:9px 11px;font:inherit;background:#fff}
+#search:focus{outline:2px solid #b8d6c1;outline-offset:1px}.search-status{font-size:.76rem;color:var(--muted);white-space:nowrap}
+.tabs{display:flex;gap:7px;overflow-x:auto;padding:8px 0 2px;scrollbar-width:thin}
+.tab-btn{border:1px solid var(--line);background:#fff;color:var(--ink);padding:7px 11px;border-radius:999px;font:inherit;font-size:.82rem;font-weight:700;white-space:nowrap;cursor:pointer}
+.tab-btn:hover{border-color:#9fc4ab}.tab-btn.active{background:var(--green);border-color:var(--green);color:#fff}
+main{max-width:1180px;margin:0 auto;padding:18px 16px 80px}.tab-panel{display:none;animation:fade .22s ease}.tab-panel.active{display:block}@keyframes fade{from{opacity:.45;transform:translateY(4px)}to{opacity:1;transform:none}}
+.section-head{margin:4px 0 12px}.section-head h2{margin:0;font-size:1.55rem;line-height:1.25}.section-head p{margin:5px 0 0;color:var(--muted);max-width:900px}.eyebrow{font-size:.74rem;font-weight:800;letter-spacing:.1em;color:var(--green);text-transform:uppercase}
+.stack{display:grid;grid-template-columns:1fr;gap:12px}.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px 17px;box-shadow:var(--shadow)}
+.card h3{font-size:1.12rem;margin:0 0 8px}.card h4{font-size:.98rem;margin:12px 0 6px}.card p{margin:6px 0}.card ul,.card ol{margin:7px 0;padding-left:1.25rem}.card li{margin:4px 0}.card li>ul{margin-top:3px}
+.page-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 8px;border-radius:999px;background:#eef2f0;color:#51625a;font-size:.72rem;font-weight:700;margin-bottom:8px}
+.kicker{display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--blue);margin-bottom:4px}
+.callout{border-radius:12px;padding:13px 14px;border:1px solid;margin:10px 0}.callout .label{display:block;font-weight:900;margin-bottom:6px}.must{background:var(--red2);border-color:#efc9c9}.must .label{color:var(--red)}.key{background:var(--amber2);border-color:#ead9a7}.key .label{color:var(--amber)}.clinical{background:var(--blue2);border-color:#c9deed}.clinical .label{color:var(--blue)}.recap{background:var(--green2);border-color:#c6dfcf}.recap .label{color:var(--green)}.note{background:var(--purple2);border-color:#ddd0ec}.note .label{color:var(--purple)}
+.callout .line{display:block;margin:3px 0}.flow{display:flex;align-items:stretch;gap:8px;flex-wrap:wrap;margin:10px 0}.step{flex:1 1 150px;min-width:140px;padding:10px 11px;border-radius:11px;background:#f8faf9;border:1px solid var(--line);font-size:.88rem}.arrow{align-self:center;font-weight:900;color:var(--green);font-size:1.25rem}.flow.vertical{display:grid;grid-template-columns:1fr;gap:7px}.flow.vertical .arrow{text-align:center;transform:rotate(90deg)}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:#fff;margin:10px 0}.table-wrap table{width:100%;border-collapse:collapse;min-width:720px}.table-wrap caption{text-align:left;padding:12px 13px 8px;font-weight:900;font-size:1rem}.table-wrap th,.table-wrap td{padding:10px 11px;vertical-align:top;border-top:1px solid var(--line);border-right:1px solid var(--line);font-size:.86rem}.table-wrap th:last-child,.table-wrap td:last-child{border-right:none}.table-wrap thead th{background:#eef5f0;border-top:none;text-align:left}.table-wrap td .line{display:block;margin:2px 0}.mini-table table{min-width:560px}
+.two-col-related{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.two-col-related .card{height:100%}@media(max-width:820px){.two-col-related{grid-template-columns:1fr}.search-wrap{min-width:0}.subtitle{display:none}.title-row{align-items:flex-start;flex-direction:column}.search-wrap{width:100%;justify-content:flex-start}#search{max-width:none}}
+.visual{border:1px solid var(--line);background:linear-gradient(180deg,#fbfdfc,#f4f8f5);border-radius:12px;padding:13px;margin:10px 0}.visual-title{font-weight:900;margin-bottom:8px}.virus-shell{max-width:500px;margin:auto}.virus-svg{width:100%;height:auto;display:block;cursor:zoom-in}.visual-note{font-size:.82rem;color:var(--muted);margin-top:8px}.legend{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}.legend span{font-size:.76rem;background:#fff;border:1px solid var(--line);padding:3px 7px;border-radius:999px}
+.chip{display:inline-block;padding:2px 7px;border-radius:999px;font-size:.75rem;font-weight:800;background:#edf2ef;color:#40534a;margin:1px 3px 1px 0}.hl{background:#fff0a8;padding:0 .12em;border-radius:3px}.search-hidden{display:none!important}
+#topBtn{position:fixed;right:18px;bottom:18px;z-index:40;border:none;background:var(--green);color:#fff;width:42px;height:42px;border-radius:50%;font-size:1.1rem;box-shadow:var(--shadow);cursor:pointer;display:none}
+.lightbox{position:fixed;inset:0;background:rgba(10,17,13,.86);display:none;align-items:center;justify-content:center;z-index:100;padding:24px}.lightbox.open{display:flex}.lightbox-content{background:#fff;border-radius:14px;max-width:920px;width:min(94vw,920px);max-height:90vh;padding:15px;overflow:auto;position:relative}.lightbox-close{position:sticky;top:0;float:right;border:none;background:#17211d;color:#fff;border-radius:999px;width:34px;height:34px;cursor:pointer;z-index:2}.lightbox-stage{clear:both}.lightbox-stage svg{width:100%;height:auto}
+details{border-top:1px dashed var(--line);margin-top:10px;padding-top:8px}summary{cursor:pointer;font-weight:800;color:#395b48}
+.cram-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}@media(max-width:820px){.cram-grid{grid-template-columns:1fr}}
+.no-semicolon-note{display:none}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div class="title-row">
+      <div class="title-wrap"><div class="title">RNA Viruses 2 — Interactive Reviewer</div><div class="subtitle">Microbiology 2.04 · lecture-grounded reviewer · stacked study layout</div></div>
+      <div class="search-wrap"><input id="search" type="search" placeholder="Search this tab…" aria-label="Search active tab"><span class="search-status" id="searchStatus"></span></div>
+    </div>
+    <nav class="tabs" id="tabs" aria-label="Reviewer tabs">
+      <button class="tab-btn active" data-tab="overview">OVERVIEW</button>
+      <button class="tab-btn" data-tab="classification">CLASSIFICATION REVIEW</button>
+      <button class="tab-btn" data-tab="rubella">RUBELLA</button>
+      <button class="tab-btn" data-tab="corona">CORONAVIRIDAE & SARS-CoV-2</button>
+      <button class="tab-btn" data-tab="paramyxo-core">PARAMYXOVIRIDAE CORE</button>
+      <button class="tab-btn" data-tab="parainfluenza">PARAINFLUENZA</button>
+      <button class="tab-btn" data-tab="mumps">MUMPS</button>
+      <button class="tab-btn" data-tab="measles">MEASLES</button>
+      <button class="tab-btn" data-tab="henipa">NIPAH & HENDRA</button>
+      <button class="tab-btn" data-tab="rsv">RSV & hMPV</button>
+      <button class="tab-btn" data-tab="influenza-structure">INFLUENZA STRUCTURE</button>
+      <button class="tab-btn" data-tab="influenza-genetics">INFLUENZA GENETICS</button>
+      <button class="tab-btn" data-tab="influenza-clinical">INFLUENZA CLINICAL</button>
+      <button class="tab-btn" data-tab="comparison">COMPARISON SHEET</button>
+      <button class="tab-btn" data-tab="cram">CRAM SHEET</button>
+    </nav>
+  </div>
+</header>
+<main>
+
+<section class="tab-panel active" id="overview">
+  <div class="section-head"><div class="eyebrow">Whole-lesson orientation</div><h2>Overview</h2><p>A rapid map of the lecture before the detailed lesson begins.</p></div>
+  <div class="stack">
+    <article class="card search-block"><span class="page-badge">Pages 1–2</span><h3>Main framework</h3>
+      <div class="flow">
+        <div class="step"><strong>Classify the genome</strong><br>DNA or RNA<br>Single or double stranded</div><div class="arrow">→</div>
+        <div class="step"><strong>For RNA viruses</strong><br>Positive or negative sense<br>Segmented or nonsegmented</div><div class="arrow">→</div>
+        <div class="step"><strong>Add structure</strong><br>Enveloped or nonenveloped<br>Capsid features</div><div class="arrow">→</div>
+        <div class="step"><strong>Predict biology</strong><br>Replication logic<br>Genetic variation<br>Transmission pattern</div>
+      </div>
+      <div class="callout must"><span class="label">Must Know</span><span class="line"><strong>All RNA viruses are single stranded except Reoviridae.</strong></span><span class="line">RNA viruses are further organized by sense, segmentation, and envelope status.</span></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Pages 2–18</span><h3>Major virus anchors in this lecture</h3>
+      <div class="table-wrap"><table><thead><tr><th>Virus or family</th><th>Genome / family anchor</th><th>Major lecture hook</th></tr></thead><tbody>
+        <tr><td><strong>Rubella virus</strong></td><td>Matonaviridae<br>Positive-sense RNA<br>Enveloped</td><td>Postnatal rubella, congenital rubella syndrome, lifelong IgG, infant IgM for congenital diagnosis</td></tr>
+        <tr><td><strong>Coronaviridae</strong></td><td>Positive-sense RNA<br>Enveloped</td><td>Spike-mediated entry, SARS-CoV-2 pathogenesis, cytokine storm, RT-qPCR and antigen testing</td></tr>
+        <tr><td><strong>Paramyxoviridae</strong></td><td>Negative-sense RNA<br>Nonsegmented<br>Enveloped</td><td>Fusion protein, syncytia, respiratory disease, genetically and antigenically stable pattern</td></tr>
+        <tr><td><strong>Orthomyxoviridae</strong></td><td>Negative-sense RNA<br><strong>Segmented</strong><br>Enveloped</td><td>Influenza, HA and NA, antigenic drift, antigenic shift, reassortment, nuclear replication</td></tr>
+      </tbody></table></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Pages 4, 7, 15–17</span><h3>Three mechanisms that organize the lecture</h3>
+      <div class="two-col-related">
+        <div class="callout recap"><span class="label">Positive-sense RNA</span><span class="line">The genome can function immediately as <strong>mRNA</strong>.</span><span class="line">Rubella and coronavirus use this logic in the lecture.</span></div>
+        <div class="callout clinical"><span class="label">Negative-sense RNA</span><span class="line">The genome must first be transcribed into <strong>mRNA</strong> by viral RNA-dependent RNA polymerase.</span><span class="line">Paramyxoviruses and influenza use this logic.</span></div>
+      </div>
+      <div class="callout must"><span class="label">Lecture-Specific Replication Exception</span><span class="line"><strong>RNA viruses replicate in the cytoplasm except influenza virus.</strong></span><span class="line">The lecture also contrasts this with DNA viruses, which replicate in the nucleus except poxvirus.</span></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Pages 15–16</span><h3>High-yield genetics orientation</h3>
+      <div class="flow">
+        <div class="step"><strong>Antigenic drift</strong><br>Gradual change<br>Point mutations</div><div class="arrow">↔</div>
+        <div class="step"><strong>Antigenic shift</strong><br>Abrupt major change<br>Reassortment or other major genome change</div>
+      </div>
+      <div class="callout key"><span class="label">Pattern Recognition</span><span class="line"><strong>Segmented genome</strong> makes reassortment possible.</span><span class="line">This is central to influenza variation and pandemic potential in the lecture.</span></div>
+    </article>
+  </div>
+</section>
+
+<section class="tab-panel" id="classification">
+  <div class="section-head"><div class="eyebrow">Lesson starts here</div><h2>Review: Classification of Viruses</h2><p>Genome type, Baltimore classification, and practical epidemiologic groupings.</p></div>
+  <div class="stack">
+    <article class="card search-block"><span class="page-badge">Page 1</span><h3>Core classification axes</h3>
+      <ul><li><strong>Genetic material</strong><ul><li>DNA or RNA</li><li>Single-stranded or double-stranded genome</li></ul></li><li><strong>Structure</strong><ul><li>Capsid symmetry may be icosahedral, helical, or complex</li><li>Virus may be enveloped or nonenveloped</li></ul></li><li><strong>Baltimore classification</strong> groups viruses by genome type and replication method.</li></ul>
+      <div class="table-wrap mini-table"><table><caption>Baltimore classification</caption><thead><tr><th>Group</th><th>Description</th></tr></thead><tbody>
+        <tr><td><strong>I</strong></td><td>dsDNA viruses</td></tr><tr><td><strong>II</strong></td><td>ssDNA viruses</td></tr><tr><td><strong>III</strong></td><td>dsRNA viruses</td></tr><tr><td><strong>IV</strong></td><td>Positive-sense ssRNA viruses</td></tr><tr><td><strong>V</strong></td><td>Negative-sense ssRNA viruses</td></tr><tr><td><strong>VI</strong></td><td>ss reverse-transcribing RNA viruses</td></tr><tr><td><strong>VII</strong></td><td>ds reverse-transcribing DNA viruses</td></tr>
+      </tbody></table></div>
+      <div class="callout note"><span class="label">Baltimore Framework</span><span class="line">Founded by <strong>David Baltimore</strong>.</span><span class="line">The lecture describes the system as <strong>nonphylogenetic</strong> and comprehensive because every known virus can be assigned to a group.</span></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Pages 1–2</span><h3>DNA versus RNA genome patterns</h3>
+      <div class="two-col-related">
+        <div class="card"><h4>DNA pattern</h4><ul><li>DNA normally appears as a <strong>double-stranded</strong> structure.</li><li><strong>Parvovirus</strong> is the single-stranded exception in Baltimore Group II.</li><li>All single-stranded DNA viruses are described in the lecture as <strong>nonenveloped</strong>.</li><li>DNA viruses are not classified as positive or negative sense.</li></ul></div>
+        <div class="card"><h4>RNA pattern</h4><ul><li>RNA normally exists as a <strong>single-stranded</strong> structure.</li><li><strong>Reoviridae</strong> is the double-stranded RNA exception in Baltimore Group III.</li><li>RNA viruses may be positive or negative sense.</li><li>RNA viruses may be segmented or nonsegmented and enveloped or nonenveloped.</li></ul></div>
+      </div>
+      <div class="callout key"><span class="label">Why Segmentation Matters</span><span class="line">A segmented genome can undergo <strong>genetic reassortment</strong>.</span><span class="line">The lecture links reassortment to increased mutant or variant strains.</span></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Page 2</span><h3>Practical epidemiologic groupings</h3>
+      <p>These are informal categories based mainly on <strong>virus tropism</strong> and <strong>mode of transmission</strong>.</p>
+      <div class="table-wrap"><table><thead><tr><th>Grouping</th><th>Core definition</th><th>Lecture families or examples</th></tr></thead><tbody>
+        <tr><td><strong>Enteric viruses</strong></td><td><span class="line">Usually acquired by ingestion through fecal-oral transmission.</span><span class="line">Replicate primarily in the intestinal tract.</span></td><td>Picornaviridae, Caliciviridae, Astroviridae, Coronaviridae, Reoviridae, Parvoviridae, Adenoviridae</td></tr>
+        <tr><td><strong>Respiratory viruses</strong></td><td><span class="line">Usually acquired by inhalation or fomites.</span><span class="line">Replicate primarily in the respiratory tract.</span></td><td>Rhinovirus, Coronaviridae, Paramyxoviridae genera, Orthomyxoviridae, Adenoviridae</td></tr>
+        <tr><td><strong>Arboviruses</strong></td><td><span class="line">Arthropod-borne viruses.</span><span class="line">Replicate in blood-feeding arthropod hosts before transmission to vertebrates.</span></td><td>Togaviridae, Flaviviridae, Rhabdoviridae, Bunyaviridae, selected Reoviridae</td></tr>
+        <tr><td><strong>Blood-borne viruses</strong></td><td>Typically transmitted through blood, blood products, injecting equipment, or other parenteral transfer of blood or body fluids.</td><td>Hepatitis B, C, D, HIV-1 and -2, HTLV-1 and -2</td></tr>
+        <tr><td><strong>Oncogenic viruses</strong></td><td>Usually cause persistent infection and may transform host cells with progression to malignancy.</td><td>Herpesviridae, Adenoviridae, Papillomaviridae, Polyomaviridae, Retroviridae, Flaviviridae</td></tr>
+      </tbody></table></div>
+      <div class="callout must"><span class="label">Must Know</span><span class="line"><strong>All hepatitis viruses are RNA viruses except Hepatitis B.</strong></span><span class="line">The lecture emphasizes that hepatitis A, B, C, D, and E belong to unrelated taxonomic families.</span></div>
+    </article>
+  </div>
+</section>
+
+<section class="tab-panel" id="rubella">
+  <div class="section-head"><div class="eyebrow">Matonaviridae</div><h2>Rubella Virus</h2><p>Replication, postnatal infection, congenital rubella syndrome, immunity, diagnosis, and prevention.</p></div>
+  <div class="stack">
+    <article class="card search-block"><span class="page-badge">Page 2</span><h3>Former Togaviridae arrangement</h3>
+      <p>The lecture first reviews the older grouping in which rubella was placed under <strong>Togaviridae</strong>.</p>
+      <div class="table-wrap"><table><thead><tr><th>Former genus</th><th>Lecture examples and note</th></tr></thead><tbody>
+        <tr><td><strong>Alphavirus</strong></td><td><span class="line">Arthropod-borne and transmitted using mosquito vectors.</span><span class="line">Chikungunya virus.</span><span class="line">Eastern Equine Encephalitis virus.</span><span class="line">Western Equine Encephalitis virus.</span><span class="line">Venezuelan Equine Encephalitis virus.</span><span class="line">Mayaro virus.</span><span class="line">O'Nyong-nyong virus.</span><span class="line">Ross River virus.</span></td></tr>
+        <tr><td><strong>Rubivirus</strong></td><td><span class="line">Rubella virus.</span><span class="line">The lecture notes that Rubivirus now belongs to a separate family, <strong>Matonaviridae</strong>.</span></td></tr>
+      </tbody></table></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Pages 2–3</span><h3>Identity and replication</h3>
+      <ul><li><strong>Rubella virus</strong> is the sole member of genus <strong>Rubivirus</strong> in Matonaviridae.</li><li>It was formerly grouped under Togaviridae.</li><li>Morphologic and physicochemical properties are similar to togaviruses, but rubella is <strong>not transmitted by arthropods</strong>.</li><li>Only <strong>one serotype</strong> is identified.</li><li>The lecture describes two related clades and nine genotypes.</li></ul>
+      <div class="flow"><div class="step"><strong>Attachment</strong><br>Virus binds host-cell receptors</div><div class="arrow">→</div><div class="step"><strong>Entry</strong><br>Endocytosis</div><div class="arrow">→</div><div class="step"><strong>Genome release</strong><br>Positive-sense RNA</div><div class="arrow">→</div><div class="step"><strong>Immediate translation</strong><br>RNA functions as mRNA</div></div>
+      <div class="callout must"><span class="label">Must Know</span><span class="line"><strong>Rubella is positive sense.</strong></span><span class="line">Its RNA genome can function immediately as mRNA and can be translated into proteins after entry.</span></div>
+      <div class="visual"><div class="visual-title">Recreated structure cue — rubella virion</div><div class="virus-shell"><svg class="virus-svg" viewBox="0 0 540 250" role="img" aria-label="Simplified rubella virion structure" onclick="openSvgLightbox(this)"><defs><radialGradient id="rg1"><stop offset="0" stop-color="#f5d98f"/><stop offset="1" stop-color="#e2a94d"/></radialGradient></defs><circle cx="270" cy="125" r="95" fill="#f8fbf9" stroke="#2f7d4a" stroke-width="8"/><g fill="#d85b5b"> <circle cx="270" cy="24" r="8"/><circle cx="340" cy="48" r="8"/><circle cx="365" cy="113" r="8"/><circle cx="334" cy="190" r="8"/><circle cx="270" cy="226" r="8"/><circle cx="195" cy="197" r="8"/><circle cx="173" cy="128" r="8"/><circle cx="199" cy="55" r="8"/></g><circle cx="270" cy="125" r="60" fill="url(#rg1)" opacity=".8"/><path d="M225 132 C245 85 282 165 318 103 C333 81 340 117 314 144 C285 174 265 96 235 161" fill="none" stroke="#6e5494" stroke-width="6" stroke-linecap="round"/><text x="20" y="35" font-size="16" font-weight="700">Envelope + surface proteins</text><line x1="190" y1="55" x2="132" y2="36" stroke="#555"/><text x="375" y="100" font-size="16" font-weight="700">Capsid</text><line x1="368" y1="104" x2="330" y2="112" stroke="#555"/><text x="373" y="163" font-size="16" font-weight="700">+ssRNA</text><line x1="370" y1="158" x2="314" y2="145" stroke="#555"/></svg></div><div class="visual-note">Relationship recreated from the lecture’s rubella structure figure. Click to enlarge.</div></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Page 3</span><h3>Postnatal rubella — pathogenesis and natural history</h3>
+      <div class="table-wrap"><table><thead><tr><th>Event</th><th>Key points</th></tr></thead><tbody>
+        <tr><td><strong>Transmission</strong></td><td>Direct or droplet contact with respiratory secretions</td></tr>
+        <tr><td><strong>Initial infection</strong></td><td><span class="line">Multiplies in cells of the respiratory system.</span><span class="line">Infections occur throughout the mucosa of the upper respiratory tract.</span></td></tr>
+        <tr><td><strong>Initial replication</strong></td><td><span class="line">Replication first occurs in the respiratory tract.</span><span class="line">Multiplication then occurs in cervical lymph nodes.</span></td></tr>
+        <tr><td><strong>Incubation</strong></td><td>About 12 days or longer</td></tr>
+        <tr><td><strong>Viremia</strong></td><td><span class="line">Develops after 7–9 days.</span><span class="line">Persists until antibody appears around day 13–15.</span></td></tr>
+        <tr><td><strong>Antibody and rash</strong></td><td><span class="line">Antibody development coincides with rash.</span><span class="line">This timing suggests an immunologic basis for the rash.</span><span class="line">After rash appears, virus remains detectable mainly in the nasopharynx and may persist there for several weeks.</span></td></tr>
+        <tr><td><strong>Clinical presentation</strong></td><td><strong>20–50%</strong> of primary infections are subclinical</td></tr>
+      </tbody></table></div>
+      <div class="clinical callout"><span class="label">Clinical Cue</span><span class="line"><strong>Malaise + low-grade fever + morbilliform rash</strong> may appear on the same day.</span><span class="line">Rash begins on the <strong>face</strong>, extends over trunk and extremities, and rarely lasts more than <strong>3 days</strong>.</span></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Page 3</span><h3>Postnatal rubella — immunity and laboratory diagnosis</h3>
+      <div class="two-col-related">
+        <div class="card"><h4>Immunity</h4><ul><li>Rubella antibodies appear as the rash fades.</li><li>Antibody titers rise over <strong>1–3 weeks</strong>.</li><li><strong>IgM</strong> is the initial antibody and does not persist beyond <strong>6 weeks</strong>.</li><li><strong>IgG</strong> persists for life.</li><li>One attack confers lifelong immunity because there is one antigenic type.</li><li>Maternal antibodies protect offspring for about <strong>4–6 months</strong>.</li></ul></div>
+        <div class="card"><h4>Laboratory diagnosis</h4><ul><li>Little antigenic variation allows antigen from one strain to detect antibodies induced by other rubella strains.</li><li>Specimens and tests listed include <strong>nasopharyngeal or throat swab</strong>, <strong>urine</strong>, <strong>IgM serum</strong>, and <strong>IgG serum</strong>.</li><li>Rubella IgM develops shortly after primary infection or vaccination.</li><li>Rubella IgG becomes detectable by day 4 after rash onset and peaks during the next 1–2 weeks.</li></ul></div>
+      </div>
+      <div class="callout note"><span class="label">Lecture-Specific Vaccine Timing Note</span><span class="line">The lecture states that the Pediatric Society of the Philippines recommends rubella vaccination at the <strong>9th month</strong> because maternal antibodies persist until the 6th month.</span></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Pages 3–4</span><h3>Congenital rubella syndrome — pathogenesis</h3>
+      <div class="flow vertical"><div class="step"><strong>Maternal rubella infection during pregnancy</strong><br>Maternal viremia may infect placenta and fetus</div><div class="arrow">→</div><div class="step"><strong>Fetal cells infected</strong><br>Growth rate of infected cells is reduced</div><div class="arrow">→</div><div class="step"><strong>Deranged organ growth</strong><br>Hypoplastic development</div><div class="arrow">→</div><div class="step"><strong>Structural anomalies</strong><br>Extent depends strongly on timing of fetal infection</div></div>
+      <div class="callout must"><span class="label">Timing Is Critical</span><span class="line"><strong>Earlier pregnancy, especially the first trimester, produces greater fetal damage</strong> because organogenesis is occurring.</span><span class="line">After the <strong>20th week</strong> of gestation, birth defects are uncommon.</span></div>
+      <div class="callout key"><span class="label">Classic Triad</span><span class="line"><strong>Congenital heart disease</strong></span><span class="line"><strong>Ocular defects</strong></span><span class="line"><strong>Hearing loss</strong></span></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Pages 3–4</span><h3>Congenital rubella syndrome — abnormalities and diagnosis</h3>
+      <div class="table-wrap"><table><thead><tr><th>System</th><th>Lecture-listed abnormalities</th></tr></thead><tbody>
+        <tr><td><strong>Ocular</strong></td><td>Cataracts<br>Microphthalmia<br>Glaucoma<br>Retinitis</td></tr>
+        <tr><td><strong>Heart</strong></td><td>Patent ductus arteriosus<br>Atrial septal defect<br>Ventricular septal defect<br>Peripheral pulmonary artery stenosis</td></tr>
+        <tr><td><strong>Hearing</strong></td><td>Sensorineural deafness</td></tr>
+        <tr><td><strong>Central nervous system</strong></td><td>Mental retardation<br>Meningoencephalitis<br>Progressive rubella panencephalitis, rare<br>Microcephaly</td></tr>
+        <tr><td><strong>Other</strong></td><td>Miscarriage and stillbirth<br>Growth retardation<br>Radiolucent bone disease<br>Hepatosplenomegaly<br>Thrombocytopenia and purpuric rash<br>Hepatitis<br>Pneumonitis<br>Endocrine dysfunction including insulin-dependent diabetes mellitus and thyroiditis</td></tr>
+      </tbody></table></div>
+      <div class="callout must"><span class="label">Diagnostic Anchor</span><span class="line"><strong>Infant rubella-specific IgM</strong> supports diagnosis of congenital rubella.</span><span class="line">Maternal IgM does not cross the placenta.</span><span class="line">IgM in infant blood therefore indicates antibody synthesized by the infant in utero.</span></div>
+      <div class="callout recap"><span class="label">Prevention</span><span class="line">Rubella vaccine is a <strong>live attenuated strain</strong>.</span><span class="line">A single dose gives more than <strong>95%</strong> long-lasting immunity.</span><span class="line">It is available as monovalent rubella vaccine or in MR, MMR, and MMRV combinations.</span></div>
+    </article>
+  </div>
+</section>
+
+<section class="tab-panel" id="corona">
+  <div class="section-head"><div class="eyebrow">Positive-sense enveloped RNA</div><h2>Coronaviridae and SARS-CoV-2</h2><p>Structural proteins, replication, immune response, severe COVID-19 pathogenesis, diagnosis, and treatment logic.</p></div>
+  <div class="stack">
+    <article class="card search-block"><span class="page-badge">Page 4</span><h3>Human-infecting coronavirus genera and structural proteins</h3>
+      <div class="table-wrap"><table><thead><tr><th>Genus</th><th>Lecture examples</th></tr></thead><tbody><tr><td><strong>Alphacoronavirus</strong></td><td>Canine coronavirus<br>Human coronavirus 229E<br>Human coronavirus NL63</td></tr><tr><td><strong>Betacoronavirus</strong></td><td>Human coronavirus OC43<br>Human coronavirus HKU1<br>SARS-CoV<br>MERS-CoV<br>SARS-CoV-2</td></tr></tbody></table></div>
+      <div class="table-wrap"><table><caption>Structural proteins</caption><thead><tr><th>Protein</th><th>Function</th></tr></thead><tbody>
+        <tr><td><strong>Nucleocapsid N</strong></td><td>Binds the RNA genome to form the nucleocapsid</td></tr>
+        <tr><td><strong>Spike S</strong></td><td><strong>Critical for binding host-cell receptors</strong> and facilitating entry</td></tr>
+        <tr><td><strong>Envelope E</strong></td><td>Interacts with M to form the viral envelope</td></tr>
+        <tr><td><strong>Membrane M</strong></td><td><span class="line">Central organizer of coronavirus assembly.</span><span class="line">Determines the shape of the viral envelope.</span></td></tr>
+      </tbody></table></div>
+      <div class="callout must"><span class="label">Must Know</span><span class="line"><strong>Spike protein is the key host-cell receptor binding protein.</strong></span></div>
+      <div class="visual"><div class="visual-title">Recreated coronavirus structure cue</div><div class="virus-shell"><svg class="virus-svg" viewBox="0 0 560 280" role="img" aria-label="Simplified coronavirus structure" onclick="openSvgLightbox(this)"><circle cx="280" cy="140" r="92" fill="#dceee4" stroke="#346b4d" stroke-width="7"/><g stroke="#a94343" stroke-width="5"><line x1="280" y1="32" x2="280" y2="10"/><line x1="347" y1="53" x2="361" y2="33"/><line x1="382" y1="112" x2="406" y2="105"/><line x1="374" y1="182" x2="398" y2="194"/><line x1="322" y1="226" x2="332" y2="251"/><line x1="238" y1="229" x2="229" y2="253"/><line x1="183" y1="185" x2="159" y2="198"/><line x1="176" y1="111" x2="152" y2="103"/><line x1="215" y1="54" x2="202" y2="33"/></g><g fill="#a94343"><circle cx="280" cy="9" r="7"/><circle cx="362" cy="32" r="7"/><circle cx="407" cy="105" r="7"/><circle cx="399" cy="194" r="7"/><circle cx="332" cy="252" r="7"/><circle cx="229" cy="254" r="7"/><circle cx="158" cy="199" r="7"/><circle cx="151" cy="103" r="7"/><circle cx="201" cy="32" r="7"/></g><path d="M220 135 C240 85 270 205 305 104 C326 54 350 164 325 176 C292 193 288 98 247 173" fill="none" stroke="#6e5494" stroke-width="6"/><text x="18" y="30" font-size="16" font-weight="700">S protein spikes</text><line x1="137" y1="34" x2="194" y2="34" stroke="#555"/><text x="417" y="104" font-size="16" font-weight="700">Envelope</text><line x1="417" y1="109" x2="370" y2="118" stroke="#555"/><text x="414" y="178" font-size="16" font-weight="700">+ssRNA + N</text><line x1="410" y1="182" x2="330" y2="166" stroke="#555"/></svg></div><div class="visual-note">Relationship recreated from the lecture’s coronavirus structure figures. Click to enlarge.</div></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Page 4</span><h3>Coronavirus entry and replication logic</h3>
+      <div class="table-wrap"><table><thead><tr><th>Virus</th><th>Lecture-listed receptor</th></tr></thead><tbody><tr><td>Human coronavirus 229E</td><td><strong>Aminopeptidase N</strong></td></tr><tr><td>SARS-CoV</td><td><strong>ACE2</strong></td></tr><tr><td>MERS-CoV</td><td><strong>Dipeptidyl peptidase 4, CD26</strong></td></tr></tbody></table></div>
+      <div class="flow"><div class="step"><strong>Attachment</strong><br>S or HE glycoprotein binds receptor</div><div class="arrow">→</div><div class="step"><strong>Internalization</strong><br>Probably absorptive endocytosis</div><div class="arrow">→</div><div class="step"><strong>Fusion</strong><br>S may fuse envelope with cell membrane</div><div class="arrow">→</div><div class="step"><strong>Translation</strong><br>Positive-sense genome acts as mRNA</div></div>
+      <div class="callout must"><span class="label">Important to Know</span><span class="line"><strong>RNA viruses replicate in the cytoplasm of the host cell except influenza virus.</strong></span><span class="line">The lecture contrasts this with DNA viruses replicating in the nucleus except poxvirus, which uses cytoplasmic factories.</span></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Page 5</span><h3>Host immune response to SARS-CoV-2</h3>
+      <div class="flow vertical"><div class="step"><strong>Viral entry</strong><br>S protein mediates ACE2-dependent entry</div><div class="arrow">→</div><div class="step"><strong>Rapid coordinated immune response</strong><br>First line of defense against viral infection</div><div class="arrow">→</div><div class="step"><strong>Th1-predominant adaptive response</strong><br>T-cell response depends on APC-mediated cytokine microenvironment</div><div class="arrow">→</div><div class="step"><strong>CD8+ CTLs</strong><br>Kill infected cells using granzymes, perforin, and IFN-γ</div><div class="arrow">→</div><div class="step"><strong>CD4+ helper T cells and B cells</strong><br>Coordinate adaptive response and produce neutralizing antibodies</div></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Page 5</span><h3>Pathogenesis of severe COVID-19 pneumonia</h3>
+      <div class="flow vertical"><div class="step"><strong>Virus enters alveoli</strong><br>Alveolar cells are infected through ACE2</div><div class="arrow">→</div><div class="step"><strong>Alveolar macrophage activation</strong><br>Cytokines and chemokines are released</div><div class="arrow">→</div><div class="step"><strong>Cytokine storm + lymphopenia</strong><br>T-cell necrosis or apoptosis and exhaustion may occur</div><div class="arrow">→</div><div class="step"><strong>Inflammatory lung injury</strong><br>Viral sepsis may be followed by severe lung injury</div><div class="arrow">→</div><div class="step"><strong>Complications</strong><br>ARDS, pneumonitis, respiratory failure, septic shock, organ failure, death</div></div>
+      <div class="callout key"><span class="label">Lecture-Listed Cytokines and Chemokines</span><span class="line">IL-1, IL-2, IL-4, IL-7, IL-10, IL-12, IL-13, IL-17</span><span class="line">IP-10, MCSF, MCP-1, GCSF, HGF, IFN-γ, MIP-1α, TNF-α, and others</span></div>
+      <div class="callout must"><span class="label">Severity Pattern</span><span class="line">Severe disease is associated with a marked decrease in circulating <strong>B cells, CD8+ cells, and CD4+ cells</strong>.</span><span class="line">Fatal cases in the lecture are associated with <strong>increased neutrophils and D-dimer</strong> plus progressively falling lymphocytes.</span></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Pages 5–6</span><h3>Clinical manifestations and laboratory diagnosis</h3>
+      <div class="two-col-related">
+        <div class="card"><h4>Clinical and pathologic pattern</h4><ul><li>Incubation period: <strong>1–14 days</strong>, most often <strong>3–7 days</strong>.</li><li>Common onset symptoms: fever, dry cough, myalgia, fatigue, dyspnea, anorexia.</li><li>Atypical initial symptoms may include diarrhea and nausea.</li><li>Severe and critical disease may progress to acute respiratory failure, ARDS, metabolic acidosis, coagulopathy, septic shock, and multiple organ failure.</li><li>Autopsy findings cited include ARDS-like lung injury with lymphocyte infiltration and liver injury with moderate microvesicular steatosis.</li></ul></div>
+        <div class="card"><h4>Laboratory diagnosis</h4><ul><li><strong>RT-qPCR</strong> remains the foundational nucleic acid amplification test.</li><li>Targets may include ORFab, N, and E genes.</li><li>Rapid antigen tests are immunochromatographic assays used as rapid screening tools.</li><li>Antigen tests are complementary to NAATs rather than standalone replacements.</li></ul></div>
+      </div>
+      <div class="callout clinical"><span class="label">RT-PCR Logic</span><span class="line">PCR amplifies DNA, while SARS-CoV-2 has an RNA genome.</span><span class="line">Viral RNA is first extracted and <strong>reverse transcribed to cDNA</strong>, then amplified.</span><span class="line">A positive amplification curve crosses the detection threshold.</span></div>
+      <div class="callout note"><span class="label">Lateral Flow Interpretation</span><span class="line"><strong>Control line C must be present</strong> for the test to be valid.</span><span class="line">A visible test line T indicates a positive sample in the lecture’s described assay.</span><span class="line">Absence of the test line indicates a negative result or a level below the detection limit.</span></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Page 6</span><h3>Management and treatment principle</h3>
+      <div class="callout recap"><span class="label">Lecturer’s Treatment Logic</span><span class="line">For each process or step in disease pathogenesis, the lecture emphasizes that there can be a corresponding therapy or drug target.</span><span class="line">The treatment figure maps cytokine-storm mechanisms to potential therapeutic targets.</span></div>
+    </article>
+  </div>
+</section>
+
+<section class="tab-panel" id="paramyxo-core">
+  <div class="section-head"><div class="eyebrow">Negative-sense nonsegmented enveloped RNA</div><h2>Paramyxoviridae Core</h2><p>Shared structure, replication, fusion, budding, stability, syncytia, and inclusion bodies.</p></div>
+  <div class="stack">
+    <article class="card search-block"><span class="page-badge">Pages 6–7</span><h3>Family anchors</h3>
+      <ul><li><strong>Single-stranded, negative-sense, nonsegmented, enveloped</strong> RNA viruses.</li><li>Two subfamilies are described.</li><li>Seven genera are noted, with six human pathogens.</li><li>Most members are <strong>monotypic</strong> with a single serotype.</li><li>The lecture emphasizes that members are <strong>antigenically stable</strong>.</li></ul>
+      <div class="table-wrap"><table><caption>Structural proteins</caption><thead><tr><th>Protein</th><th>Lecture function</th></tr></thead><tbody>
+        <tr><td><strong>Fusion protein</strong></td><td><strong>Responsible for cellular attachment and host-cell entry</strong></td></tr>
+        <tr><td><strong>Glycoprotein</strong></td><td>Surface attachment role in the family framework</td></tr>
+        <tr><td><strong>Matrix protein</strong></td><td>Mediates morphogenesis and budding</td></tr>
+        <tr><td><strong>Nucleocapsid, phosphoprotein, long polymerase</strong></td><td>Form the virus ribonucleoprotein complex</td></tr>
+      </tbody></table></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Page 7</span><h3>Viral entry and the fusion protein</h3>
+      <div class="flow vertical"><div class="step"><strong>Attachment</strong><br>HN, H, or G glycoprotein binds host receptor</div><div class="arrow">→</div><div class="step"><strong>F0 precursor cleavage</strong><br>Host-cell protease generates active F1</div><div class="arrow">→</div><div class="step"><strong>Membrane fusion</strong><br>F1 refolds and fuses the viral envelope with the cell membrane at neutral pH</div><div class="arrow">→</div><div class="step"><strong>Nucleocapsid release</strong><br>Virus bypasses endosomal internalization</div><div class="arrow">→</div><div class="step"><strong>Transcription first</strong><br>Negative-sense genome must be transcribed to mRNA before translation</div></div>
+      <div class="callout must"><span class="label">Fusion Protein Rule</span><span class="line"><strong>F0 must be cleaved to F1.</strong></span><span class="line">Without cleavage, there is no fusion activity, no virion penetration, and no infection.</span></div>
+      <div class="callout note"><span class="label">Measles Receptor Note</span><span class="line">The lecture lists <strong>CD46 or CD150</strong> as measles virus receptors.</span></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Page 7</span><h3>Replication, assembly, budding, and neuraminidase activity</h3>
+      <ul><li>Transcription and replication occur in the <strong>cytoplasm</strong> through viral RNA-dependent RNA polymerase.</li><li>Progeny nucleocapsids form in the cytoplasm and migrate to the cell surface.</li><li>Nucleocapsids are attracted to plasma membrane sites containing HN, H, or G plus F0 glycoprotein spikes.</li><li><strong>M protein</strong> is essential for particle formation and links the envelope to the nucleocapsid.</li><li>During budding, most host proteins are excluded from the viral membrane.</li></ul>
+      <div class="callout clinical"><span class="label">Neuraminidase Activity</span><span class="line">The HN protein of <strong>parainfluenza and mumps</strong> has neuraminidase activity.</span><span class="line">The lecture states that this presumably prevents self-aggregation of virus particles.</span><span class="line">Other paramyxoviruses do not possess neuraminidase activity.</span></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Pages 7–8</span><h3>Genetic and antigenic stability</h3>
+      <ul><li>The <strong>nonsegmented genome</strong> prevents gene-segment reshuffling by reassortment.</li><li>HN, H, G, and F surface proteins show minimal antigenic variation over long periods.</li><li>The lecture states that paramyxoviruses do not undergo the antigenic drift pattern emphasized for influenza.</li><li>The lecturer notes that many amino acids in paramyxovirus glycoproteins may have structural or functional roles, leaving less room for viable substitutions.</li></ul>
+      <div class="callout key"><span class="label">Do Not Confuse</span><span class="line"><strong>Paramyxovirus: nonsegmented → no reassortment.</strong></span><span class="line"><strong>Influenza: segmented → reassortment is possible.</strong></span></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Page 8</span><h3>Syncytium formation and inclusion bodies</h3>
+      <div class="flow"><div class="step"><strong>F0 on infected cell membrane</strong></div><div class="arrow">→</div><div class="step"><strong>Host protease cleavage</strong></div><div class="arrow">→</div><div class="step"><strong>Activated fusion protein</strong></div><div class="arrow">→</div><div class="step"><strong>Adjacent membranes fuse</strong></div><div class="arrow">→</div><div class="step"><strong>Multinucleated giant cell</strong><br>Syncytium</div></div>
+      <div class="callout must"><span class="label">Hallmark</span><span class="line"><strong>Syncytium formation is a common response and hallmark of many paramyxovirus infections.</strong></span></div>
+      <div class="callout note"><span class="label">Inclusion Bodies</span><span class="line">Acidophilic <strong>cytoplasmic inclusions</strong> are regularly formed and contain recognizable nucleocapsids and viral proteins.</span><span class="line">The lecture links cytoplasmic inclusions to RNA-virus replication in the cytoplasm.</span><span class="line"><strong>Measles is the exception noted here because it can also produce intranuclear inclusions.</strong></span></div>
+    </article>
+  </div>
+</section>
+
+<section class="tab-panel" id="parainfluenza">
+  <div class="section-head"><div class="eyebrow">Human parainfluenza virus</div><h2>Parainfluenza Virus</h2><p>Respiratory-limited pathogenesis, disease by type, immunity, diagnosis, and epidemiology.</p></div>
+  <div class="stack">
+    <article class="card search-block"><span class="page-badge">Page 8</span><h3>Pathogenesis in the immunocompetent host</h3>
+      <ul><li>Replication is limited to <strong>respiratory epithelia</strong>.</li><li>Viremia is uncommon, if it occurs at all.</li><li>Infection limited to the nose and throat can produce a <strong>common cold syndrome</strong>.</li></ul>
+      <div class="table-wrap"><table><caption>Clinical manifestations by type</caption><thead><tr><th>Type</th><th>Lecture pattern</th></tr></thead><tbody>
+        <tr><td><strong>Types 1 and 2</strong></td><td><span class="line">May involve the larynx and upper trachea.</span><span class="line">Cause <strong>croup, laryngotracheobronchitis</strong>, especially in children <strong>6–18 months</strong>.</span><span class="line">Croup causes respiratory obstruction from swelling of the larynx and related structures.</span><span class="line">Classic cue: <strong>barking cough</strong>, often worse at night.</span></td></tr>
+        <tr><td><strong>Type 3</strong></td><td><span class="line">May spread deeper to lower trachea and bronchi.</span><span class="line">May cause <strong>pneumonia or bronchiolitis</strong>, especially in infants <strong>under 6 months</strong>.</span></td></tr>
+        <tr><td><strong>Type 4</strong></td><td><span class="line">Usually does not cause serious disease even on first infection.</span><span class="line">The lecture identifies <strong>otitis media</strong> as the most common complication of parainfluenza infection.</span></td></tr>
+      </tbody></table></div>
+      <div class="callout clinical"><span class="label">If You See X, Think Y</span><span class="line"><strong>Barking cough + child 6–18 months → think parainfluenza type 1 or 2 croup.</strong></span><span class="line"><strong>Bronchiolitis or pneumonia in an infant under 6 months → type 3 is the stronger lecture association.</strong></span></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Page 8</span><h3>Immunity and reinfection</h3>
+      <ul><li>Types <strong>1, 2, and 3</strong> are distinct serotypes with little significant cross-neutralization.</li><li>Antibody to one type does not reliably protect against another type.</li><li>Maternal serum antibodies do not prevent infection or disease.</li><li>Reinfection occurs even in older children and adults with prior antibodies.</li><li>Antibodies can modify disease, so reinfections often present as nonfebrile upper respiratory infections.</li><li><strong>Secretory IgA</strong> is most important for protection against reinfection, but disappears within a few months.</li><li>Serum antibodies target HN and F surface proteins.</li><li>Successive reinfections can make the antibody response less specific because parainfluenza and mumps share antigens.</li></ul>
+      <div class="callout key"><span class="label">Why Reinfection Is Common</span><span class="line">Mucosal <strong>IgA protection is short-lived</strong>.</span><span class="line">Reinfection can therefore occur even when serum antibody is present.</span></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Page 8</span><h3>Diagnosis and epidemiology</h3>
+      <div class="two-col-related">
+        <div class="card"><h4>Diagnosis</h4><ul><li><strong>RT-PCR</strong> using nasopharyngeal washes.</li><li>Rapid antigen detection through direct or indirect immunofluorescence on exfoliated nasopharyngeal cells.</li><li>Serology uses paired sera with neutralization, hemagglutination-inhibition, or ELISA.</li><li>A <strong>fourfold rise in antibody titer</strong> is the key paired-sera signal emphasized in the lecture.</li></ul></div>
+        <div class="card"><h4>Epidemiology</h4><ul><li><strong>Type 3</strong> is most prevalent and is usually acquired in the first year of life, with antibodies by age 2.</li><li><strong>Types 1 and 2</strong> are less prevalent and are usually acquired by age 5.</li><li>Reinfection occurs through childhood and adulthood, usually as mild upper respiratory disease.</li><li>Transmission is through direct person-to-person contact or large respiratory droplets.</li><li>Common in school children and hospitals.</li></ul></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="tab-panel" id="mumps">
+  <div class="section-head"><div class="eyebrow">Mumps virus</div><h2>Mumps</h2><p>Systemic spread, parotitis, orchitis, immunity, diagnosis, and control.</p></div>
+  <div class="stack">
+    <article class="card search-block"><span class="page-badge">Pages 8–9</span><h3>Pathogenesis and transmission challenge</h3>
+      <div class="flow vertical"><div class="step"><strong>Upper respiratory tract</strong><br>Initial replication in epithelial cells</div><div class="arrow">→</div><div class="step"><strong>Regional lymph nodes</strong><br>Mononuclear-cell infection promotes viremia</div><div class="arrow">→</div><div class="step"><strong>Viremia</strong><br>Disseminates virus systemically</div><div class="arrow">→</div><div class="step"><strong>Target organs</strong><br>Salivary glands, testes, ovaries, pancreas, mammary glands, CNS</div></div>
+      <ul><li>Humans are the <strong>only natural hosts</strong>.</li><li>Parotid-gland involvement is <strong>not obligatory</strong>.</li><li>Incubation period: <strong>14–18 days</strong>.</li><li>Virus is shed in saliva from about <strong>3 days before</strong> to <strong>9 days after</strong> salivary-gland swelling begins.</li><li>About <strong>one third</strong> of infections are inapparent, but infected people can still shed virus.</li></ul>
+      <div class="callout key"><span class="label">Why Transmission Is Hard to Control</span><span class="line">Variable incubation period.</span><span class="line">Virus is present in saliva before symptoms.</span><span class="line">Many infections are asymptomatic but infectious.</span></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Pages 8–9</span><h3>Clinical findings and complications</h3>
+      <ul><li>Mild pain may occur in front of the neck or in front of the ears as salivary or parotid glands become involved.</li><li>Swollen and sore salivary glands may cause trouble chewing.</li><li>Other symptoms include fever, headache, muscle aches, tiredness, loss of appetite, and testicular pain or tenderness.</li><li>About <strong>one third</strong> of infections are subclinical.</li><li>Subclinical disease is common in children under 2 years.</li><li>CNS involvement occurs in about <strong>10–30%</strong>.</li><li>Mumps can cause aseptic meningitis that may resolve spontaneously.</li></ul>
+      <div class="callout must"><span class="label">Postpubertal Complication</span><span class="line">After puberty, testes and ovaries may be affected.</span><span class="line">In males, <strong>orchitis is usually unilateral</strong> and causes marked swelling from inflammatory-cell infiltration.</span><span class="line">Pain is linked to swelling of the inflamed testis within the tunica albuginea.</span></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Page 9</span><h3>Immunity</h3>
+      <ul><li>Immunity is <strong>permanent after a single infection</strong>.</li><li>There is only <strong>one antigenic type</strong>.</li><li>The virus does not exhibit antigenic variation in the lecture framework.</li><li>Antibodies develop against HN, F, and internal NP proteins.</li><li><strong>HN antibody</strong> develops slowly, about 4 weeks after onset, persists for years, and correlates with immunity.</li><li><strong>NP antibody</strong> appears earliest, around 3–7 days after symptom onset, and is gone within about 6 months.</li><li>Subclinical infection can generate lifelong immunity.</li><li>Passive maternal immunity helps explain why mumps is rare in infants under 6 months.</li></ul>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Page 9</span><h3>Laboratory diagnosis and prevention</h3>
+      <div class="two-col-related">
+        <div class="card"><h4>Diagnosis</h4><ul><li><strong>RT-PCR</strong> can detect mumps genome sequences.</li><li>Serology may use ELISA or hemagglutination inhibition.</li><li>Single antibody detection is not enough for diagnosis.</li><li>Paired sera should demonstrate a <strong>fourfold rise in antibody titer</strong>.</li><li>IgM can be present in early illness until about 60 days.</li></ul></div>
+        <div class="card"><h4>Prevention and control</h4><ul><li>Best approach: immunization with <strong>attenuated live mumps virus vaccine</strong>.</li><li>The vaccine produces a subclinical, noncommunicable infection.</li><li>Mumps vaccine is available in the live-virus <strong>MMR</strong> combination.</li></ul></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="tab-panel" id="measles">
+  <div class="section-head"><div class="eyebrow">Measles virus · rubeola</div><h2>Measles</h2><p>Primary and secondary viremia, classic clinical findings, complications, immune effects, diagnosis, and prevention.</p></div>
+  <div class="stack">
+    <article class="card search-block"><span class="page-badge">Pages 9–10</span><h3>Pathogenesis and natural history</h3>
+      <ul><li>Humans are the <strong>only natural host</strong>.</li><li>Virus enters through the respiratory tract and multiplies locally.</li><li>It spreads to regional lymph nodes, where multiplication continues.</li></ul>
+      <div class="table-wrap mini-table"><table><caption>Primary versus secondary viremia</caption><thead><tr><th>Primary viremia</th><th>Secondary viremia</th></tr></thead><tbody><tr><td>Disseminates virus and supports replication in the <strong>reticuloendothelial system</strong></td><td>Seeds <strong>epithelial surfaces, skin, respiratory tract, and conjunctiva</strong>, where focal replication occurs</td></tr></tbody></table></div>
+      <ul><li>Patients are contagious during the <strong>prodrome</strong> and the first <strong>2–5 days of rash</strong>.</li><li>Virus is present in tears, nasal and throat secretions, urine, and blood.</li><li>The maculopapular rash appears around <strong>day 14</strong>, when circulating antibodies become detectable.</li><li><strong>IgM</strong> appears before <strong>IgG</strong>.</li></ul>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Page 10</span><h3>Clinical findings</h3>
+      <div class="callout clinical"><span class="label">Prodrome</span><span class="line">Fever.</span><span class="line">Sneezing.</span><span class="line">Cough and runny nose from intense mucosal inflammation.</span><span class="line">Red eyes and photophobia.</span></div>
+      <div class="callout must"><span class="label">Pathognomonic Finding</span><span class="line"><strong>Koplik spots</strong> are small bluish-white ulcerations on the buccal mucosa opposite the lower molars.</span><span class="line">They appear slightly before the rash.</span><span class="line">They contain giant cells and viral antigens.</span></div>
+      <ul><li><strong>Lymphopenia</strong> is listed.</li><li>The rash starts on the <strong>head</strong>, then progresses to the chest, trunk, and down the limbs.</li><li>Pink discrete maculopapules can coalesce into blotches and become brownish over <strong>5–10 days</strong>.</li></ul>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Page 10</span><h3>Complications</h3>
+      <div class="table-wrap"><table><thead><tr><th>Complication</th><th>Lecture emphasis</th></tr></thead><tbody>
+        <tr><td><strong>Otitis media</strong></td><td>Most common complication</td></tr>
+        <tr><td><strong>Pneumonia</strong></td><td>Most common life-threatening complication, commonly from secondary bacterial infection</td></tr>
+        <tr><td><strong>Giant-cell pneumonia</strong></td><td>Serious complication in children and adults with deficient cell-mediated immunity</td></tr>
+        <tr><td><strong>Acute encephalitis</strong></td><td>About 1 in 1000 cases</td></tr>
+        <tr><td><strong>Acute disseminated encephalomyelitis</strong></td><td>Autoimmune disease associated with an immune response to myelin basic protein</td></tr>
+        <tr><td><strong>Subacute sclerosing panencephalitis, SSPE</strong></td><td><span class="line">Rare complication that develops years after initial measles infection.</span><span class="line">Large amounts of measles antigen may remain in inclusion bodies of infected brain cells.</span></td></tr>
+      </tbody></table></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Page 10</span><h3>Immunity and the dual effect of measles</h3>
+      <ul><li>Only <strong>one antigenic type</strong>.</li><li>Infection confers <strong>lifelong immunity</strong>.</li><li>Protective immunity is attributed to neutralizing antibodies against the <strong>H protein</strong>.</li></ul>
+      <div class="two-col-related">
+        <div class="callout must"><span class="label">Immune Suppression</span><span class="line">Measles suppresses the <strong>cell-mediated immune response</strong>.</span><span class="line">This can cause prolonged susceptibility to serious secondary infections and may persist for months.</span></div>
+        <div class="callout recap"><span class="label">Vigorous Antiviral Immunity</span><span class="line">At the same time, measles induces a strong immune response that produces <strong>lifelong immunity to reinfection</strong>.</span></div>
+      </div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Page 10</span><h3>Laboratory diagnosis and prevention</h3>
+      <ul><li><strong>RT-PCR</strong> detects antigen or nucleic acid in epithelial cells from respiratory secretions, nasopharynx, conjunctiva, and urine.</li><li>Serology uses ELISA and hemagglutination inhibition with a <strong>fourfold increase in antibody titer</strong>.</li><li>Virus can be isolated in monkey or human kidney cells.</li><li>Cytopathic effects include <strong>multinucleated giant cells</strong> with <strong>intranuclear and intracytoplasmic inclusion bodies</strong>.</li><li>Prevention uses a live attenuated vaccine in the <strong>MMR</strong> combination.</li></ul>
+    </article>
+  </div>
+</section>
+
+<section class="tab-panel" id="henipa">
+  <div class="section-head"><div class="eyebrow">Henipavirus-related lecture topics</div><h2>Nipah and Hendra Viruses</h2><p>Zoonotic reservoirs, transmission chains, clinical disease, and prevention cues.</p></div>
+  <div class="stack">
+    <article class="card search-block"><span class="page-badge">Pages 10–11</span><h3>Nipah virus — outbreak, distribution, and disease</h3>
+      <ul><li>The name <strong>Nipah</strong> comes from a Malaysian village.</li><li>First outbreak described in the lecture: <strong>1999</strong> in Malaysia and Singapore.</li><li>About 300 people became ill and more than 100 died in that outbreak.</li><li>Bats initially spread the virus to pigs, then people working closely with infected pigs became infected.</li><li>Outbreaks have been reported from Bangladesh, India, Malaysia, the Philippines, and Singapore.</li><li>Fruit bats carrying Nipah are found throughout Asia, the South Pacific, and Australia.</li></ul>
+      <div class="callout clinical"><span class="label">Clinical Course</span><span class="line">People may have fever, headache, cough, sore throat, and difficulty breathing for about <strong>3–14 days</strong>.</span><span class="line">Later, encephalitis may cause confusion, drowsiness, and seizures.</span><span class="line">Severe patients can fall into coma within <strong>24–48 hours</strong>.</span><span class="line">Symptoms usually begin <strong>4–14 days after infection</strong>.</span></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Page 11</span><h3>Nipah transmission and reservoir</h3>
+      <div class="callout must"><span class="label">Natural Reservoir</span><span class="line"><strong>Fruit bats, genus Pteropus, also called flying foxes.</strong></span></div>
+      <div class="table-wrap"><table><thead><tr><th>Transmission route</th><th>Lecture description</th></tr></thead><tbody>
+        <tr><td><strong>Animal to human</strong></td><td>Direct contact with infected animals such as bats or pigs. The initial jump is described as a <strong>spillover event</strong>.</td></tr>
+        <tr><td><strong>Foodborne</strong></td><td>Food or drink contaminated by infected animals, including fruit or <strong>raw date palm sap</strong>.</td></tr>
+        <tr><td><strong>Human to human</strong></td><td>Close contact with body fluids of an infected person.</td></tr>
+      </tbody></table></div>
+      <details><summary>Lecture-listed risk-reduction measures</summary><ul><li>Wash hands regularly with soap and water.</li><li>Avoid contact with flying fox bats or sick pigs.</li><li>Avoid areas where bats roost and objects soiled by bats.</li><li>Avoid raw date palm sap or fruit that may be contaminated by bats.</li><li>Use protective clothing when handling sick animals or tissues.</li><li>Avoid unprotected physical contact with infected people.</li></ul></details>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Page 11</span><h3>Hendra virus</h3>
+      <ul><li>First identified during a <strong>1994</strong> outbreak of lung and brain disease in horses and people in Hendra, Australia.</li><li>Natural reservoir: <strong>Pteropus bats, flying foxes</strong>.</li><li>The virus has been found in all four species of Australian flying foxes.</li></ul>
+      <div class="flow"><div class="step"><strong>Flying fox bats</strong><br>Virus maintained in nature</div><div class="arrow">→</div><div class="step"><strong>Horse</strong><br>Exposure to bat urine, droppings, saliva, or bites</div><div class="arrow">→</div><div class="step"><strong>Human</strong><br>Exposure while handling infected horses</div></div>
+      <ul><li>Spread from bats to horses is described in coastal and forested regions of Queensland and New South Wales.</li><li>Human infection is rare, with only seven cases reported in the lecture.</li><li>Symptoms usually begin <strong>9–16 days</strong> after contact with an infected horse.</li><li>Hendra may cause severe flu-like lung disease and can progress to <strong>encephalitis</strong>.</li><li>The lecture reports death in more than half of infected people, about <strong>57%</strong>.</li></ul>
+      <div class="callout key"><span class="label">Do Not Confuse</span><span class="line"><strong>Nipah</strong> may be acquired through contaminated fruit or raw date palm sap.</span><span class="line"><strong>Hendra</strong> classically follows a bat → horse → human chain in the lecture.</span></div>
+    </article>
+  </div>
+</section>
+
+<section class="tab-panel" id="rsv">
+  <div class="section-head"><div class="eyebrow">Respiratory syncytial virus and human metapneumovirus</div><h2>RSV and hMPV</h2><p>Lower-airway pathogenesis, bronchiolitis, immune limitations, diagnosis, and hMPV comparison.</p></div>
+  <div class="stack">
+    <article class="card search-block"><span class="page-badge">Pages 11–12</span><h3>RSV pathogenesis in the human lung</h3>
+      <ul><li>Initial replication occurs in epithelial cells of the <strong>nasopharynx</strong>.</li><li>Virus spreads to the <strong>lower respiratory tract</strong>.</li><li>Viremia is rare.</li><li>Incubation period: <strong>3–5 days</strong>.</li><li>Young children may have high viral titers in respiratory secretions.</li></ul>
+      <div class="flow vertical"><div class="step"><strong>Upper respiratory entry</strong><br>Mainly targets ciliated cells of large airways</div><div class="arrow">→</div><div class="step"><strong>Cell rounding and detachment</strong><br>Ciliated epithelium is damaged</div><div class="arrow">→</div><div class="step"><strong>Spread to bronchioles</strong><br>Replication becomes more efficient in lower respiratory tract</div><div class="arrow">→</div><div class="step"><strong>Sloughing of ciliated cells</strong><br>Cell debris accumulates in narrow airways</div><div class="arrow">→</div><div class="step"><strong>Inflammation + hyperreactivity</strong><br>Cytokines and airway smooth muscle contribute to constriction</div><div class="arrow">→</div><div class="step"><strong>Goblet-cell proliferation</strong><br>More mucus plus eosinophils and neutrophils</div><div class="arrow">→</div><div class="step"><strong>NET accumulation</strong><br>Neutrophil extracellular traps add to obstruction</div><div class="arrow">→</div><div class="step"><strong>Final pathology</strong><br>Mucus + debris + NETs → airway obstruction, alveolar collapse, acute inflammation</div></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Page 12</span><h3>RSV clinical findings and pathophysiologic cues</h3>
+      <ul><li>Clinical spectrum ranges from inapparent infection or common cold to <strong>pneumonia in infants</strong> and <strong>bronchiolitis in very young babies</strong>.</li><li>Bronchiolitis can progress rapidly and may be fatal.</li><li>Features include wheezing, dyspnea, tachypnea, fatigue, fever, and cough.</li><li>Reinfection is common.</li></ul>
+      <div class="table-wrap"><table><caption>RSV symptoms by age group</caption><thead><tr><th>Infant</th><th>Children</th><th>Adult</th></tr></thead><tbody><tr><td>Irritability<br>Poor feeding<br>Lethargy<br>Apnea<br>Fever may be absent</td><td>Runny nose<br>Decreased appetite<br>Cough<br>Sneezing<br>Fever</td><td>Runny nose<br>Sore throat<br>Cough<br>Headache<br>Fatigue</td></tr></tbody></table></div>
+      <div class="callout must"><span class="label">Histopathology Cue</span><span class="line"><strong>Giant cells</strong> are plentiful in RSV and fit the paramyxovirus syncytial pattern.</span><span class="line"><strong>Intracytoplasmic inclusions</strong> indicate viral replication.</span></div>
+      <div class="callout clinical"><span class="label">Severe Bronchiolitis Mechanism</span><span class="line">Receptors listed: <strong>CX3 and CR1</strong>.</span><span class="line">Neutrophils release inflammatory mediators, proteolytic enzymes, reactive oxygen species, and NETs.</span><span class="line">These processes drive epithelial injury, mucus hypersecretion, inflammation, and airway obstruction.</span></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Pages 12–13</span><h3>RSV immunity and diagnosis</h3>
+      <div class="two-col-related">
+        <div class="card"><h4>Immunity</h4><ul><li>Maternal neutralizing antibody can protect against lower respiratory tract infection.</li><li>As maternal antibody falls, severe RSV disease can occur around <strong>2–4 months</strong>.</li><li>Primary infection can induce cross-reactive antibodies to other paramyxovirus subgroups.</li><li>RSV does not generate an effective memory response that reliably protects against future exposures.</li><li>During convalescence, RSV IgG-producing memory B cells are present, but IgA-producing memory B cells are deficient in the lecture discussion.</li></ul></div>
+        <div class="card"><h4>Diagnosis</h4><ul><li>Clinical symptoms are nonspecific and overlap with other respiratory infections.</li><li><strong>rRT-PCR</strong> is more sensitive than culture and antigen testing.</li><li>Antigen tests are sensitive in children but less sensitive in adults.</li><li>Viral culture is less commonly used.</li><li>Serology is generally reserved for research and surveillance.</li></ul></div>
+      </div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Page 13</span><h3>Human metapneumovirus</h3>
+      <ul><li>Human metapneumovirus infects <strong>only humans</strong>.</li><li>Incubation period: about <strong>4–9 days</strong>.</li><li>Viral shedding: about 5 days in children and several weeks in immunocompromised hosts.</li><li>Replication is limited to respiratory epithelial cells.</li><li>Cell-surface receptor listed: <strong>αvβ1 integrin</strong>.</li><li>Cytopathic effects in cultured cells resemble those of RSV.</li><li>Symptoms cannot be distinguished clinically from RSV.</li><li>Children may have rhinorrhea, cough, fever, otitis media, bronchiolitis, pneumonia, croup, or asthma exacerbation.</li><li>Severe disease can occur in immunocompromised patients and institutionalized elderly persons.</li><li>Healthy adults tend to develop cold or flu-like symptoms.</li></ul>
+      <div class="table-wrap"><table><caption>hMPV versus RSV lower respiratory tract infection</caption><thead><tr><th>Feature</th><th>hMPV</th><th>RSV</th></tr></thead><tbody>
+        <tr><td><strong>Peak age</strong></td><td>Older infant, 6–12 months</td><td>Young infant, under 6 months</td></tr>
+        <tr><td><strong>Sex</strong></td><td>Slight male predominance</td><td>Slight male predominance</td></tr>
+        <tr><td><strong>Seasonality</strong></td><td>February–April</td><td>November–January</td></tr>
+        <tr><td><strong>Symptoms</strong></td><td>Fever, rhinorrhea, cough, wheezing, vomiting, diarrhea</td><td>Fever, rhinorrhea, cough, wheezing, vomiting, diarrhea</td></tr>
+        <tr><td><strong>Radiographic findings</strong></td><td>Consolidation, perihilar infiltrates, atelectasis, hyperinflation</td><td>Peribronchial thickening, consolidation, atelectasis, hyperinflation</td></tr>
+        <tr><td><strong>Diagnosis pattern</strong></td><td>Pneumonia, bronchiolitis, asthma exacerbation</td><td>Bronchiolitis, pneumonia, asthma exacerbation</td></tr>
+      </tbody></table></div>
+      <div class="callout clinical"><span class="label">Diagnosis</span><span class="line">Specimen: <strong>nasopharyngeal aspirates</strong>.</span><span class="line">Main method: <strong>RT-PCR</strong>.</span><span class="line">Direct immunofluorescence antigen detection is more sensitive in children and poorer in adults.</span></div>
+    </article>
+  </div>
+</section>
+
+<section class="tab-panel" id="influenza-structure">
+  <div class="section-head"><div class="eyebrow">Orthomyxoviridae</div><h2>Influenza — Genome, Structure, Classification, and Naming</h2><p>Why the segmented negative-sense genome matters and how HA and NA organize influenza biology.</p></div>
+  <div class="stack">
+    <article class="card search-block"><span class="page-badge">Pages 13–14</span><h3>Orthomyxoviridae and segmented genome</h3>
+      <ul><li>Orthomyxoviridae is a <strong>single-stranded, segmented, enveloped RNA virus</strong> family.</li><li>Influenza viruses are <strong>negative-sense RNA viruses</strong>.</li><li>The lecture states that influenza encodes its genome across <strong>eight genomic segments</strong>.</li><li>Segment exchange during coinfection can generate new viral variants.</li><li>Reassortment can produce progeny containing genes from more than one parent.</li><li>Reassortment also requires genetic compatibility, including conserved packaging signals and maintained RNA-protein interactions.</li></ul>
+      <div class="callout must"><span class="label">Why Segmentation Matters</span><span class="line"><strong>Segmented genome → reassortment during coinfection.</strong></span><span class="line">The lecture links reassortment between human and avian or swine influenza strains to the ability to generate pandemic viruses.</span></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Pages 14–15</span><h3>Influenza virion structure</h3>
+      <ul><li>Virions are usually spherical, although the electron micrograph demonstrates pleomorphism.</li><li>The envelope is a host-derived lipid membrane.</li><li>Surface spikes are about 10 nm long.</li><li>The major surface glycoproteins are <strong>HA, hemagglutinin</strong>, and <strong>NA, neuraminidase</strong>.</li><li>NA is identified as a target of <strong>Tamiflu</strong> in the lecture.</li><li>HA and NA determine antigenic variation, host immunity, subtypes, and strains such as A/H1N1.</li><li>Protection against reinfection is mainly due to antibodies to <strong>HA</strong>, with antibodies to NA also protective.</li></ul>
+      <div class="visual"><div class="visual-title">Recreated influenza A structure cue</div><div class="virus-shell"><svg class="virus-svg" viewBox="0 0 620 320" role="img" aria-label="Simplified influenza A structure" onclick="openSvgLightbox(this)"><ellipse cx="305" cy="160" rx="118" ry="95" fill="#e5eef6" stroke="#2d668f" stroke-width="8"/><g fill="#a94343"><rect x="300" y="28" width="10" height="34" rx="5"/><rect x="392" y="62" width="10" height="34" rx="5" transform="rotate(35 397 79)"/><rect x="426" y="144" width="10" height="34" rx="5" transform="rotate(82 431 161)"/><rect x="381" y="227" width="10" height="34" rx="5" transform="rotate(140 386 244)"/><rect x="211" y="226" width="10" height="34" rx="5" transform="rotate(40 216 243)"/><rect x="173" y="140" width="10" height="34" rx="5" transform="rotate(96 178 157)"/><rect x="208" y="59" width="10" height="34" rx="5" transform="rotate(145 213 76)"/></g><g stroke="#6e5494" stroke-width="5" fill="none"><path d="M241 104 q35 30 0 60 q-25 22 5 55"/><path d="M276 95 q30 34 3 66 q-23 27 0 60"/><path d="M310 94 q26 30 0 63 q-22 27 1 63"/><path d="M345 95 q25 35 -2 66 q-20 25 1 59"/><path d="M379 105 q21 30 -4 57 q-18 22 3 50"/></g><text x="19" y="42" font-size="16" font-weight="700">HA / NA surface spikes</text><line x1="167" y1="45" x2="212" y2="66" stroke="#555"/><text x="444" y="105" font-size="16" font-weight="700">Lipid envelope</text><line x1="445" y1="110" x2="407" y2="125" stroke="#555"/><text x="444" y="196" font-size="16" font-weight="700">8 vRNP segments</text><line x1="445" y1="201" x2="377" y2="184" stroke="#555"/></svg></div><div class="visual-note">Relationship recreated from the lecture’s influenza anatomy and genomic-structure figures. Click to enlarge.</div></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Page 15</span><h3>HA, NA, M1, M2, and vRNP components</h3>
+      <div class="table-wrap"><table><thead><tr><th>Component</th><th>Lecture role or feature</th></tr></thead><tbody>
+        <tr><td><strong>HA</strong></td><td><span class="line">Binds susceptible cells.</span><span class="line">Major antigen for neutralizing protective antibodies.</span><span class="line">Variability drives continual evolution of new strains and epidemics.</span></td></tr>
+        <tr><td><strong>NA</strong></td><td><span class="line">Sialidase that removes sialic acid from glycoconjugates.</span><span class="line">Facilitates release during budding.</span><span class="line">Prevents self-aggregation of virions.</span><span class="line">May help the virus move through respiratory mucin.</span></td></tr>
+        <tr><td><strong>M2</strong></td><td>Proton channel transmembrane protein</td></tr>
+        <tr><td><strong>M1</strong></td><td>Matrix protein underlying the inner envelope surface and associated with NEP and vRNP complexes</td></tr>
+        <tr><td><strong>Each vRNP</strong></td><td>One negative-strand RNA segment + NP + three RdRp subunits, PA, PB1, PB2</td></tr>
+      </tbody></table></div>
+      <div class="callout must"><span class="label">HA Cleavage Rule</span><span class="line"><strong>HA must be cleaved into HA1 and HA2 for the virus to be infectious.</strong></span><span class="line">Cellular proteases mediate cleavage.</span><span class="line">HA2 generated by cleavage is required for viral-envelope fusion with the cell membrane.</span></div>
+      <div class="callout note"><span class="label">Respiratory Tropism Link</span><span class="line">The lecture states that influenza normally remains confined to the respiratory tract because the proteases that cleave HA are expressed at those sites.</span></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Page 14</span><h3>Classification and nomenclature</h3>
+      <div class="table-wrap"><table><caption>Influenza virus genus</caption><thead><tr><th>Genus</th><th>Lecture component</th></tr></thead><tbody><tr><td><strong>Influenza A</strong></td><td>Human and animal strains</td></tr><tr><td><strong>Influenza B</strong></td><td>Human strains</td></tr><tr><td><strong>Influenza C</strong></td><td>Human and swine influenza C viruses</td></tr></tbody></table></div>
+      <ul><li>Antigenic differences in internal <strong>NP and M proteins</strong> divide influenza into types A, B, and C.</li><li>These internal proteins have no cross-reactivity among the three types.</li><li>Surface <strong>HA and NA</strong> variation is used to subtype influenza A.</li></ul>
+      <div class="flow"><div class="step"><strong>Antigenic type</strong><br>A, B, or C</div><div class="arrow">→</div><div class="step"><strong>Host of origin</strong><br>Omitted for human isolates</div><div class="arrow">→</div><div class="step"><strong>Geographic origin</strong></div><div class="arrow">→</div><div class="step"><strong>Strain number</strong></div><div class="arrow">→</div><div class="step"><strong>Year</strong></div><div class="arrow">→</div><div class="step"><strong>Subtype</strong><br>HA and NA</div></div>
+      <div class="callout key"><span class="label">Subtype Numbers</span><span class="line">The lecture lists <strong>18 HA subtypes, H1–H18</strong>.</span><span class="line">It lists <strong>11 NA subtypes, N1–N11</strong>.</span></div>
+    </article>
+  </div>
+</section>
+
+<section class="tab-panel" id="influenza-genetics">
+  <div class="section-head"><div class="eyebrow">Antigenic variation and viral genetics</div><h2>Influenza — Drift, Shift, Adaptation, and Reassortment</h2><p>The lecture’s central comparison for influenza evolution and pandemic emergence.</p></div>
+  <div class="stack">
+    <article class="card search-block"><span class="page-badge">Pages 15–16</span><h3>Antigenic drift versus antigenic shift</h3>
+      <div class="table-wrap"><table><thead><tr><th>Feature</th><th>Antigenic drift</th><th>Antigenic shift</th></tr></thead><tbody>
+        <tr><td><strong>Definition</strong></td><td>Gradual change in antigenicity</td><td>Abrupt or major change in antigenicity</td></tr>
+        <tr><td><strong>Mechanism</strong></td><td>Point mutations affecting major antigenic sites on glycoproteins</td><td>Genetic reassortment with an unrelated strain or another major genomic change described in the lecture</td></tr>
+        <tr><td><strong>Affected proteins</strong></td><td>Primarily antigenic regions of HA. HA and NA changes may occur independently.</td><td>Can produce a substantially different HA and NA antigenic profile</td></tr>
+        <tr><td><strong>Development</strong></td><td>Repeated person-to-person passage under differing antibody pressure selects escape mutants</td><td>Major genome change through direct transmission and adaptation, genetic reassortment, or reintroduction of old strains</td></tr>
+        <tr><td><strong>Result</strong></td><td>Mutants survive, multiply, and continue circulating</td><td>Sudden antigenic change that can create a novel strain</td></tr>
+      </tbody></table></div>
+      <div class="callout must"><span class="label">Do Not Confuse</span><span class="line"><strong>Drift = point mutation + gradual antigenic change.</strong></span><span class="line"><strong>Shift = major abrupt change + reassortment or other major genomic mechanism.</strong></span><span class="line">Internal proteins such as NP do not undergo the antigenic changes emphasized for surface HA and NA.</span></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Page 16</span><h3>How immune selection drives drift</h3>
+      <div class="flow vertical"><div class="step"><strong>Person A has antibodies</strong><br>Antibody attack focuses on an antigenic region</div><div class="arrow">→</div><div class="step"><strong>Mutation arises</strong><br>One critical amino acid in the antigenic region changes</div><div class="arrow">→</div><div class="step"><strong>Escape mutant survives</strong><br>Multiplies despite antibody pressure</div><div class="arrow">→</div><div class="step"><strong>Transmission to person B</strong><br>Selection process repeats</div></div>
+      <ul><li>Adults exposed to many influenza strains may have broad antibody responses.</li><li>Immune pressure can drive increased receptor affinity as the virus escapes antibody neutralization.</li><li>When high-affinity mutants infect immunologically naive people, such as children with little prior exposure and no vaccination, receptor affinity can decrease.</li><li>The lecture defines people without exposure to multiple strains or vaccination as <strong>immunologically naive</strong>.</li></ul>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Page 16</span><h3>Direct transmission and adaptation</h3>
+      <div class="flow"><div class="step"><strong>Avian influenza A</strong></div><div class="arrow">→</div><div class="step"><strong>Direct bird-to-human transmission</strong></div><div class="arrow">→</div><div class="step"><strong>HA receptor-binding adaptation</strong><br>α2,3 → α2,6 sialic-acid preference</div><div class="arrow">→</div><div class="step"><strong>Human transmission potential</strong></div><div class="arrow">→</div><div class="step"><strong>Pandemic risk</strong></div></div>
+      <div class="callout note"><span class="label">Lecture Example</span><span class="line">The <strong>1918/1919 Spanish flu</strong> is presented as a pandemic thought to have followed direct avian-to-human transmission based on genetic material from victims.</span></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Page 16</span><h3>Genetic reassortment</h3>
+      <div class="flow vertical"><div class="step"><strong>Two influenza A strains infect one host cell</strong><br>Example: human seasonal strain + swine or avian-associated strain</div><div class="arrow">→</div><div class="step"><strong>RNA genome segments mix during assembly</strong></div><div class="arrow">→</div><div class="step"><strong>Reassortant progeny emerges</strong><br>Combined genes from both parental strains</div><div class="arrow">→</div><div class="step"><strong>New antigenic combination</strong><br>HA and or NA may differ from previously circulating strains</div></div>
+      <div class="callout must"><span class="label">Mixing Host Cue</span><span class="line"><strong>Pigs and humans possess receptors for both human and avian influenza strains</strong> in the lecture discussion.</span><span class="line">This allows coinfection and supports emergence of mixed-gene strains.</span></div>
+      <div class="callout recap"><span class="label">Lecture Examples of Reassortment-Linked Pandemics</span><span class="line">Asian flu, 1957/1958.</span><span class="line">Hong Kong flu, 1968/1969.</span><span class="line">Pandemic H1N1, 2009–2010.</span></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Page 17</span><h3>Re-emergence of old strains</h3>
+      <ul><li>When population immunity to a specific strain becomes weak, that strain may <strong>re-emerge</strong> and produce a pandemic outbreak.</li><li>The lecture cites Russian flu episodes in <strong>1950 and 1977</strong> as probable re-emergence of the same H1N1 subtype.</li></ul>
+    </article>
+  </div>
+</section>
+
+<section class="tab-panel" id="influenza-clinical">
+  <div class="section-head"><div class="eyebrow">Replication, pathogenesis, clinical disease, immunity, diagnosis, control</div><h2>Influenza — Clinical and Laboratory Review</h2><p>From nuclear replication to respiratory injury, complications, immune response, diagnosis, and vaccination.</p></div>
+  <div class="stack">
+    <article class="card search-block"><span class="page-badge">Page 17</span><h3>Influenza replication cycle</h3>
+      <div class="flow vertical"><div class="step"><strong>Receptor-mediated endocytosis</strong></div><div class="arrow">→</div><div class="step"><strong>vRNP release into cytoplasm</strong></div><div class="arrow">→</div><div class="step"><strong>Transport to nucleus</strong><br>Replication and transcription occur here</div><div class="arrow">→</div><div class="step"><strong>mRNA export</strong><br>Translation occurs in the cytoplasm</div><div class="arrow">→</div><div class="step"><strong>Early proteins return to nucleus</strong><br>NP and PB1 support replication and transcription</div><div class="arrow">→</div><div class="step"><strong>PB1 polymerase activity</strong><br>Produces +ssRNA from genomic −ssRNA</div></div>
+      <div class="callout must"><span class="label">Replication Exception</span><span class="line"><strong>Influenza is the RNA-virus exception emphasized in the lecture because replication and transcription occur in the nucleus.</strong></span></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Page 17</span><h3>Respiratory injury and T-cell pathogenesis</h3>
+      <ul><li>Transmission occurs through airborne droplets or contact with contaminated hands or surfaces.</li><li>Influenza destroys the <strong>superficial respiratory mucosa</strong> but does not affect the basal epithelial layer.</li><li>Complete repair of damage may take up to <strong>1 month</strong>.</li><li>Damage lowers resistance to <strong>secondary bacterial pathogens</strong>.</li></ul>
+      <div class="flow"><div class="step"><strong>Infected respiratory epithelial cell or APC</strong></div><div class="arrow">→</div><div class="step"><strong>Viral peptide on MHC-I</strong></div><div class="arrow">→</div><div class="step"><strong>CD8+ T-cell recognition</strong></div><div class="arrow">→</div><div class="step"><strong>Granzymes + perforin</strong></div><div class="arrow">→</div><div class="step"><strong>Death of infected cell</strong></div></div>
+      <div class="callout note"><span class="label">T-Cell Cytokines</span><span class="line">Activated T cells also produce <strong>interferons, TNF, and IL-2</strong>.</span></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Pages 17–18</span><h3>Clinical findings and complications</h3>
+      <div class="table-wrap"><table><thead><tr><th>Clinical category</th><th>Lecture features</th></tr></thead><tbody>
+        <tr><td><strong>Uncomplicated influenza</strong></td><td><span class="line">Abrupt onset.</span><span class="line">Chills, headache, dry cough, high fever for about 3–5 days, generalized myalgias, malaise, anorexia.</span><span class="line">Mild or asymptomatic infection may occur.</span></td></tr>
+        <tr><td><strong>Pneumonia</strong></td><td><span class="line">Serious complications are especially associated with elderly or debilitated patients and chronic disease.</span><span class="line">May be viral, secondary bacterial, or mixed.</span><span class="line">Lower respiratory spread is facilitated by loss of ciliary clearance, phagocytic-cell dysfunction, and alveolar exudate as a bacterial growth medium.</span></td></tr>
+        <tr><td><strong>Reye syndrome</strong></td><td><span class="line">Acute encephalopathy in children and adolescents, usually 2–16 years.</span><span class="line">Most harmful to brain and liver.</span><span class="line">Causes increased intracranial pressure and massive fat accumulation in liver and other organs.</span></td></tr>
+      </tbody></table></div>
+      <div class="callout must"><span class="label">Secondary Bacterial Pneumonia Pathogens</span><span class="line"><strong>Staphylococcus aureus</strong></span><span class="line"><strong>Streptococcus pneumoniae</strong></span><span class="line"><strong>Haemophilus influenzae</strong></span></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Page 18</span><h3>Innate and humoral immune responses</h3>
+      <div class="two-col-related">
+        <div class="card"><h4>Innate response</h4><ul><li>Macrophages, NK cells, and dendritic cells are highlighted.</li><li><strong>NK cells</strong> are cytotoxic lymphocytes important for eliminating influenza virus.</li><li>Early infection activates alveolar macrophages and monocytes.</li><li>Alveolar macrophages help limit spread through phagocytic and opsonophagocytic mechanisms described in the lecture.</li></ul></div>
+        <div class="card"><h4>Humoral response</h4><ul><li>Antibodies are produced against multiple influenza antigens.</li><li><strong>HA-specific antibody</strong> is most important for neutralization and prevention of illness.</li><li>HA antibody blocks attachment to host cells.</li><li>HA antibodies may also support phagocytosis of virus particles through Fc-receptor pathways.</li><li><strong>IgA</strong> and some IgM act at mucosal surfaces to neutralize pathogens and prevent entry and replication.</li></ul></div>
+      </div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Page 18</span><h3>Immunity and original antigenic sin</h3>
+      <ul><li>Influenza A, B, and C are antigenically unrelated and induce <strong>no cross-protection</strong>.</li><li>After antigenic drift, preexisting antibody may still make infection with a new strain milder.</li><li>Repeated infection or immunization can reinforce the antibody response to the first influenza subtype experienced. The lecture calls this <strong>original antigenic sin</strong>.</li><li>The major role of cell-mediated immunity is clearance of established infection.</li><li>Cytotoxic T cells lyse infected cells.</li><li>CTL responses can be cross-reactive across subtypes and target internal proteins NP and M as well as surface glycoproteins.</li></ul>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Page 18</span><h3>Effect of aging on influenza immune response</h3>
+      <div class="table-wrap"><table><thead><tr><th>Immune cell</th><th>Age-related changes listed in the lecture</th></tr></thead><tbody>
+        <tr><td><strong>Macrophage</strong></td><td>Lower TLR expression<br>Lower IL-6, TNF-α, IL-12, and IFN-α production</td></tr>
+        <tr><td><strong>NK cell</strong></td><td>Reduced cell number in weakened health states</td></tr>
+        <tr><td><strong>Dendritic cell</strong></td><td>Reduced antigen capture<br>Reduced migration<br>Reduced T-cell activation capacity</td></tr>
+        <tr><td><strong>B cell</strong></td><td>Reduced high-affinity antibody production<br>Reduced diversity of antibody reactions<br>Reduced support for survival of antibody-producing plasma cells</td></tr>
+        <tr><td><strong>T cell</strong></td><td>Reduced TCR diversity<br>Reduced granzyme B production in CD8+ cells<br>Reduced IFN-γ production in CD8+ cells<br>Lower CD28 expression on CD8+ T cells</td></tr>
+      </tbody></table></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Pages 18–19</span><h3>Laboratory diagnosis</h3>
+      <div class="table-wrap"><table><thead><tr><th>Method</th><th>Lecture details</th></tr></thead><tbody>
+        <tr><td><strong>RT-PCR and molecular assays</strong></td><td>Detect influenza viral RNA or nucleic acids in respiratory specimens with very high sensitivity and specificity</td></tr>
+        <tr><td><strong>Isolation and identification</strong></td><td><span class="line">Classically uses embryonated eggs and primary monkey kidney cells.</span><span class="line">Cell culture can be assessed by hemadsorption after 3–5 days.</span><span class="line">Culture fluid can be examined after 5–7 days by hemagglutination or immunofluorescence.</span></td></tr>
+        <tr><td><strong>Serology</strong></td><td><span class="line">Antibodies form against HA, NA, NP, and matrix proteins.</span><span class="line">Routine tests include hemagglutination inhibition and ELISA.</span><span class="line">Paired acute and convalescent sera are required because normal individuals often already have influenza antibodies.</span></td></tr>
+      </tbody></table></div>
+    </article>
+
+    <article class="card search-block"><span class="page-badge">Page 19</span><h3>Prevention and control</h3>
+      <ul><li>Inactivated influenza vaccine, parenteral.</li><li>Inactivated quadrivalent influenza vaccine, intradermal.</li><li>Live attenuated quadrivalent influenza vaccine, nasal.</li><li>For children, influenza vaccination may begin at <strong>6 months of age</strong> and continue yearly thereafter.</li><li>The lecture emphasizes <strong>yearly flu vaccination</strong>.</li></ul>
+    </article>
+  </div>
+</section>
+
+<section class="tab-panel" id="comparison">
+  <div class="table-wrap search-block"><table><caption>RNA-virus genome and replication comparisons</caption><thead><tr><th>Feature</th><th>Rubella</th><th>Coronavirus</th><th>Paramyxoviridae</th><th>Influenza</th></tr></thead><tbody>
+    <tr><td><strong>Sense</strong></td><td>Positive</td><td>Positive</td><td>Negative</td><td>Negative</td></tr>
+    <tr><td><strong>Segmentation</strong></td><td>Nonsegmented in lecture framework</td><td>Nonsegmented</td><td><strong>Nonsegmented</strong></td><td><strong>Segmented</strong></td></tr>
+    <tr><td><strong>Envelope</strong></td><td>Enveloped</td><td>Enveloped</td><td>Enveloped</td><td>Enveloped</td></tr>
+    <tr><td><strong>Immediate mRNA function</strong></td><td><strong>Yes</strong></td><td><strong>Yes</strong></td><td>No. Must first transcribe negative-sense genome.</td><td>No. Must first transcribe negative-sense genome.</td></tr>
+    <tr><td><strong>Main replication location emphasized</strong></td><td>Cytoplasm</td><td>Cytoplasm</td><td>Cytoplasm</td><td><strong>Nucleus</strong></td></tr>
+    <tr><td><strong>Reassortment</strong></td><td>Not emphasized</td><td>Not emphasized</td><td><strong>No segment reshuffling</strong></td><td><strong>Yes, central genetic mechanism</strong></td></tr>
+  </tbody></table></div>
+
+  <div class="table-wrap search-block"><table><caption>Rubella versus measles</caption><thead><tr><th>Feature</th><th>Rubella</th><th>Measles</th></tr></thead><tbody>
+    <tr><td><strong>Family</strong></td><td>Matonaviridae</td><td>Paramyxoviridae</td></tr>
+    <tr><td><strong>Antigenic type</strong></td><td><strong>One</strong></td><td><strong>One</strong></td></tr>
+    <tr><td><strong>Immunity after infection</strong></td><td>Lifelong</td><td>Lifelong</td></tr>
+    <tr><td><strong>Rash direction</strong></td><td>Face → trunk → extremities</td><td>Head → chest and trunk → limbs</td></tr>
+    <tr><td><strong>Pathognomonic oral lesion</strong></td><td>Not listed</td><td><strong>Koplik spots</strong></td></tr>
+    <tr><td><strong>Major special syndrome</strong></td><td><strong>Congenital rubella syndrome</strong></td><td>SSPE and major respiratory or CNS complications</td></tr>
+    <tr><td><strong>Vaccine</strong></td><td>Live attenuated. Included in MMR.</td><td>Live attenuated. Included in MMR.</td></tr>
+  </tbody></table></div>
+
+  <div class="table-wrap search-block"><table><caption>Congenital rubella — high-yield differentiation</caption><thead><tr><th>Item</th><th>High-yield lecture point</th></tr></thead><tbody>
+    <tr><td><strong>Classic triad</strong></td><td><strong>Congenital heart disease + ocular defects + hearing loss</strong></td></tr>
+    <tr><td><strong>Most damaging timing</strong></td><td><strong>First trimester</strong> because organogenesis is occurring</td></tr>
+    <tr><td><strong>After 20 weeks</strong></td><td>Birth defects are uncommon</td></tr>
+    <tr><td><strong>Diagnostic antibody</strong></td><td><strong>Infant rubella-specific IgM</strong></td></tr>
+    <tr><td><strong>Why infant IgM matters</strong></td><td>Maternal IgM does not cross the placenta, so infant IgM was synthesized in utero</td></tr>
+  </tbody></table></div>
+
+  <div class="table-wrap search-block"><table><caption>Parainfluenza types</caption><thead><tr><th>Type</th><th>Age emphasis</th><th>Disease emphasis</th></tr></thead><tbody>
+    <tr><td><strong>1 and 2</strong></td><td>Children 6–18 months</td><td><strong>Croup, laryngotracheobronchitis</strong><br>Barking cough</td></tr>
+    <tr><td><strong>3</strong></td><td>Infants under 6 months</td><td><strong>Pneumonia or bronchiolitis</strong></td></tr>
+    <tr><td><strong>4</strong></td><td>No special age anchor emphasized</td><td>Usually not serious on first infection</td></tr>
+  </tbody></table></div>
+
+  <div class="table-wrap search-block"><table><caption>Selected paramyxovirus clinical distinctions</caption><thead><tr><th>Virus</th><th>Key disease cue</th><th>Immunity or diagnostic cue</th></tr></thead><tbody>
+    <tr><td><strong>Mumps</strong></td><td>Parotid swelling may occur but is not obligatory<br>Postpubertal orchitis can occur</td><td>One antigenic type<br>Lifelong immunity<br>Paired sera with fourfold rise</td></tr>
+    <tr><td><strong>Measles</strong></td><td>Koplik spots + descending maculopapular rash<br>Immune suppression</td><td>One antigenic type<br>Lifelong immunity<br>RT-PCR, ELISA, HI</td></tr>
+    <tr><td><strong>RSV</strong></td><td>Bronchiolitis in very young infants<br>Giant cells and intracytoplasmic inclusions</td><td>Reinfection common<br>rRT-PCR more sensitive than culture and antigen</td></tr>
+    <tr><td><strong>hMPV</strong></td><td>Clinically resembles RSV<br>Peak age 6–12 months</td><td>αvβ1 integrin receptor<br>RT-PCR</td></tr>
+  </tbody></table></div>
+
+  <div class="table-wrap search-block"><table><caption>Nipah versus Hendra</caption><thead><tr><th>Feature</th><th>Nipah</th><th>Hendra</th></tr></thead><tbody>
+    <tr><td><strong>Natural reservoir</strong></td><td>Pteropus fruit bats</td><td>Pteropus flying fox bats</td></tr>
+    <tr><td><strong>Major bridge or exposure</strong></td><td>Pigs, contaminated fruit or raw date palm sap, and person-to-person body-fluid contact</td><td><strong>Horse</strong> exposure after bat-to-horse transmission</td></tr>
+    <tr><td><strong>Human clinical emphasis</strong></td><td>Respiratory illness with possible encephalitis and coma</td><td>Severe flu-like lung illness with possible encephalitis</td></tr>
+    <tr><td><strong>Lecture timing</strong></td><td>Symptoms usually begin 4–14 days after infection</td><td>Symptoms usually begin 9–16 days after contact with an infected horse</td></tr>
+  </tbody></table></div>
+
+  <div class="table-wrap search-block"><table><caption>hMPV versus RSV</caption><thead><tr><th>Feature</th><th>hMPV</th><th>RSV</th></tr></thead><tbody>
+    <tr><td><strong>Peak age</strong></td><td><strong>Older infant, 6–12 months</strong></td><td><strong>Younger infant, under 6 months</strong></td></tr>
+    <tr><td><strong>Seasonality</strong></td><td>February–April</td><td>November–January</td></tr>
+    <tr><td><strong>Clinical symptoms</strong></td><td>Fever, rhinorrhea, cough, wheezing, vomiting, diarrhea</td><td>Fever, rhinorrhea, cough, wheezing, vomiting, diarrhea</td></tr>
+    <tr><td><strong>Radiographic clue</strong></td><td>Perihilar infiltrates may be listed</td><td>Peribronchial thickening may be listed</td></tr>
+    <tr><td><strong>Diagnosis</strong></td><td>RT-PCR<br>Direct immunofluorescence better in children</td><td>rRT-PCR<br>Antigen testing better in children than adults</td></tr>
+  </tbody></table></div>
+
+  <div class="table-wrap search-block"><table><caption>Influenza antigenic drift versus antigenic shift</caption><thead><tr><th>Feature</th><th>Drift</th><th>Shift</th></tr></thead><tbody>
+    <tr><td><strong>Change</strong></td><td><strong>Gradual</strong></td><td><strong>Abrupt and major</strong></td></tr>
+    <tr><td><strong>Mechanism</strong></td><td>Point mutations</td><td>Reassortment or other major genomic change described in the lecture</td></tr>
+    <tr><td><strong>Selection</strong></td><td>Repeated antibody pressure selects escape mutants</td><td>Creates a substantially different antigenic profile</td></tr>
+    <tr><td><strong>Pandemic relevance</strong></td><td>Not the main lecture mechanism for a new pandemic subtype</td><td><strong>Strong pandemic relevance</strong></td></tr>
+  </tbody></table></div>
+
+  <div class="table-wrap search-block"><table><caption>Influenza HA versus NA</caption><thead><tr><th>Protein</th><th>Main lecture function</th><th>High-yield consequence</th></tr></thead><tbody>
+    <tr><td><strong>HA</strong></td><td>Binds susceptible cells<br>Major neutralizing-antibody target</td><td><strong>HA1 and HA2 cleavage is required for infectivity</strong></td></tr>
+    <tr><td><strong>NA</strong></td><td>Sialidase removes sialic acid<br>Facilitates budding release<br>Prevents virion self-aggregation<br>Helps movement through mucin</td><td>Target of <strong>Tamiflu</strong> in the lecture</td></tr>
+  </tbody></table></div>
+</section>
+
+<section class="tab-panel" id="cram">
+  <div class="section-head"><div class="eyebrow">Final rapid review</div><h2>Cram Sheet</h2><p>Fast recall of the lecture’s highest-yield distinctions, mechanisms, values, and must-know cues.</p></div>
+  <div class="cram-grid">
+    <article class="card search-block"><h3>Genome rules</h3><ul><li><strong>All RNA viruses are single stranded except Reoviridae.</strong></li><li><strong>Positive sense</strong> can act as mRNA immediately.</li><li><strong>Negative sense</strong> must first be transcribed to mRNA.</li><li><strong>Segmented genome → reassortment.</strong></li><li><strong>Influenza is the RNA-virus nuclear-replication exception.</strong></li></ul></article>
+
+    <article class="card search-block"><h3>Rubella</h3><ul><li>One serotype and lifelong immunity after infection.</li><li>Postnatal rash: <strong>face → trunk → extremities</strong>, usually under 3 days.</li><li><strong>IgM</strong> fades by about 6 weeks.</li><li><strong>IgG</strong> persists for life.</li><li>Congenital triad: <strong>heart disease + ocular defects + hearing loss</strong>.</li><li><strong>First trimester = greatest fetal damage.</strong></li><li><strong>Infant rubella IgM = congenital infection cue.</strong></li></ul></article>
+
+    <article class="card search-block"><h3>SARS-CoV-2</h3><ul><li><strong>S protein</strong> is the most potent entry determinant.</li><li>ACE2-dependent alveolar infection is central to severe pneumonia pathogenesis.</li><li><strong>Lymphopenia + cytokine storm</strong> are major severe-disease patterns.</li><li>Fatal cases in the lecture show <strong>neutrophilia + increased D-dimer + falling lymphocytes</strong>.</li><li><strong>RT-qPCR</strong> is the foundational NAAT.</li><li>Antigen testing is a rapid complementary screening method.</li></ul></article>
+
+    <article class="card search-block"><h3>Paramyxovirus core</h3><ul><li><strong>Negative-sense, nonsegmented, enveloped.</strong></li><li><strong>F0 cleavage → active F1 → fusion.</strong></li><li>No F0 cleavage means no fusion and no infection.</li><li><strong>Syncytia</strong> are a hallmark.</li><li>Acidophilic <strong>cytoplasmic inclusions</strong> are common.</li><li><strong>Measles can also produce intranuclear inclusions.</strong></li><li>Nonsegmented genome means no gene-segment reassortment.</li></ul></article>
+
+    <article class="card search-block"><h3>Parainfluenza</h3><ul><li><strong>Types 1 and 2 → croup</strong>, especially 6–18 months.</li><li><strong>Barking cough</strong> often worsens at night.</li><li><strong>Type 3 → bronchiolitis or pneumonia</strong>, especially under 6 months.</li><li>Replication is limited to respiratory epithelia in immunocompetent hosts.</li><li>Secretory <strong>IgA</strong> is the most important protection against reinfection but fades quickly.</li></ul></article>
+
+    <article class="card search-block"><h3>Mumps</h3><ul><li>Humans are the only natural host.</li><li>Parotitis is <strong>not obligatory</strong>.</li><li>Virus may disseminate to salivary glands, testes, ovaries, pancreas, mammary glands, and CNS.</li><li><strong>Orchitis</strong> is an important postpubertal complication.</li><li>One antigenic type and lifelong immunity.</li><li>Best control: <strong>live attenuated vaccine in MMR</strong>.</li></ul></article>
+
+    <article class="card search-block"><h3>Measles</h3><ul><li><strong>Koplik spots are pathognomonic.</strong></li><li>Rash begins on the <strong>head</strong> and descends.</li><li>Most common complication: <strong>otitis media</strong>.</li><li>Most common life-threatening complication: <strong>secondary bacterial pneumonia</strong>.</li><li>Rare delayed complication: <strong>SSPE</strong>.</li><li>Dual immune effect: <strong>immune suppression</strong> plus lifelong immunity to measles reinfection.</li></ul></article>
+
+    <article class="card search-block"><h3>Nipah and Hendra</h3><ul><li>Both use <strong>Pteropus fruit bats or flying foxes</strong> as natural reservoirs.</li><li><strong>Nipah</strong>: animal contact, contaminated fruit or raw date palm sap, and person-to-person body-fluid spread.</li><li>Nipah can progress to <strong>encephalitis and coma</strong>.</li><li><strong>Hendra</strong>: bat → horse → human transmission chain.</li><li>Hendra can cause severe flu-like lung disease and encephalitis.</li></ul></article>
+
+    <article class="card search-block"><h3>RSV and hMPV</h3><ul><li><strong>RSV targets ciliated airway cells.</strong></li><li>Mucus + sloughed cells + NETs drive bronchiolar obstruction.</li><li>Severe RSV disease can occur around <strong>2–4 months</strong> as maternal antibody falls.</li><li>RSV reinfection is common because protective memory is limited.</li><li><strong>hMPV peak age: 6–12 months.</strong></li><li><strong>RSV peak age: under 6 months.</strong></li><li>hMPV symptoms can be clinically indistinguishable from RSV.</li></ul></article>
+
+    <article class="card search-block"><h3>Influenza structure</h3><ul><li><strong>Negative-sense, segmented, enveloped.</strong></li><li><strong>8 genomic segments</strong> in the lecture.</li><li><strong>HA</strong> binds cells and is the major neutralizing-antibody target.</li><li><strong>HA cleavage to HA1 + HA2 is required for infectivity.</strong></li><li><strong>NA</strong> removes sialic acid and facilitates release.</li><li>NA also prevents self-aggregation and may help passage through mucin.</li><li>Influenza A subtypes are defined by HA and NA.</li></ul></article>
+
+    <article class="card search-block"><h3>Drift versus shift</h3><div class="callout key"><span class="label">Memory Aid</span><span class="line"><strong>Drift = gradual point mutation.</strong></span><span class="line"><strong>Shift = sudden major change.</strong></span></div><ul><li>Shift can occur through <strong>genetic reassortment</strong>.</li><li>Direct avian-to-human adaptation can involve receptor preference change from <strong>α2,3 to α2,6 sialic acid</strong>.</li><li>Pigs and humans can support mixing of human and avian strains in the lecture discussion.</li><li>Reassortment examples: Asian flu, Hong Kong flu, pandemic H1N1.</li></ul></article>
+
+    <article class="card search-block"><h3>Influenza clinical and lab</h3><ul><li>Classic influenza is <strong>abrupt</strong>.</li><li>High fever commonly lasts <strong>3–5 days</strong>.</li><li>Secondary bacterial pneumonia pathogens: <strong>S. aureus, S. pneumoniae, H. influenzae</strong>.</li><li><strong>HA antibody</strong> is the most important humoral neutralizing response.</li><li><strong>RT-PCR</strong> is highly sensitive and specific.</li><li>Serology uses HI or ELISA with <strong>paired acute and convalescent sera</strong>.</li><li>Lecture prevention anchor: <strong>yearly influenza vaccination</strong>.</li></ul></article>
+  </div>
+</section>
+
+</main>
+<button id="topBtn" aria-label="Scroll to top">↑</button>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged figure"><div class="lightbox-content"><button class="lightbox-close" id="lightboxClose" aria-label="Close">×</button><div class="lightbox-stage" id="lightboxStage"></div></div></div>
+<script>
+const buttons=[...document.querySelectorAll('.tab-btn')];
+const panels=[...document.querySelectorAll('.tab-panel')];
+const search=document.getElementById('search');
+const searchStatus=document.getElementById('searchStatus');
+let current=0;
+function setTab(i){
+  current=(i+buttons.length)%buttons.length;
+  buttons.forEach((b,j)=>b.classList.toggle('active',j===current));
+  panels.forEach((p,j)=>p.classList.toggle('active',j===current));
+  buttons[current].scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
+  search.value=''; searchStatus.textContent=''; clearSearch();
+  window.scrollTo({top:0,behavior:'smooth'});
+  history.replaceState(null,'','#'+panels[current].id);
+}
+buttons.forEach((b,i)=>b.addEventListener('click',()=>setTab(i)));
+function clearSearch(){
+  const active=panels[current];
+  active.querySelectorAll('.search-block').forEach(el=>el.classList.remove('search-hidden'));
+  active.querySelectorAll('mark[data-search-mark]').forEach(m=>m.replaceWith(document.createTextNode(m.textContent)));
+}
+function runSearch(){
+  clearSearch();
+  const q=search.value.trim().toLowerCase();
+  if(!q){searchStatus.textContent='';return;}
+  const active=panels[current];
+  const blocks=[...active.querySelectorAll('.search-block')];
+  let hits=0;
+  blocks.forEach(el=>{
+    const ok=el.textContent.toLowerCase().includes(q);
+    el.classList.toggle('search-hidden',!ok);
+    if(ok) hits++;
+  });
+  searchStatus.textContent=hits+' match'+(hits===1?'':'es');
+}
+search.addEventListener('input',runSearch);
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    if(document.getElementById('lightbox').classList.contains('open')) closeLightbox();
+    else {search.value='';searchStatus.textContent='';clearSearch();search.blur();}
+    return;
+  }
+  if(document.activeElement===search) return;
+  if(e.key==='ArrowRight') setTab(current+1);
+  if(e.key==='ArrowLeft') setTab(current-1);
+});
+const topBtn=document.getElementById('topBtn');
+window.addEventListener('scroll',()=>{topBtn.style.display=window.scrollY>420?'block':'none'});
+topBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+const lightbox=document.getElementById('lightbox');
+const stage=document.getElementById('lightboxStage');
+function openSvgLightbox(svg){stage.innerHTML='';stage.appendChild(svg.cloneNode(true));lightbox.classList.add('open');document.body.style.overflow='hidden'}
+function closeLightbox(){lightbox.classList.remove('open');stage.innerHTML='';document.body.style.overflow=''}
+document.getElementById('lightboxClose').addEventListener('click',closeLightbox);
+lightbox.addEventListener('click',e=>{if(e.target===lightbox) closeLightbox()});
+const hash=location.hash.replace('#','');
+if(hash){const idx=panels.findIndex(p=>p.id===hash);if(idx>=0)setTab(idx)}
+</script>
+</body>
+</html>
