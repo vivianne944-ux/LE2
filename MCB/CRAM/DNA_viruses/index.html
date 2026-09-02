@@ -1,1 +1,516 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DNA Viruses — Cramming Mode Reviewer</title>
+<style>
+:root{--bg:#f7f9fc;--card:#fff;--ink:#1d2733;--muted:#64748b;--line:#d9e2ec;--nav:#0f3557;--blue:#e9f4ff;--blueb:#72aee6;--green:#eaf8ef;--greenb:#67ad7a;--amber:#fff7df;--amberb:#e0ad42;--red:#fff0f0;--redb:#d96666;--purple:#f3efff;--purpleb:#8c72d8;--shadow:0 5px 20px rgba(15,53,87,.08);--radius:14px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.48}
+a{color:#135c96;text-decoration:none}a:hover{text-decoration:underline}
+button,input{font:inherit}
+.top{background:var(--card);border-bottom:1px solid var(--line);padding:14px 18px 12px}
+.top-inner{max-width:1180px;margin:auto;display:flex;gap:18px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
+.title-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.title-row h1{font-size:1.55rem;margin:0;color:var(--nav)}
+.badge{display:inline-flex;align-items:center;border-radius:999px;padding:4px 9px;font-weight:700;font-size:.78rem;background:var(--red);border:1px solid var(--redb);color:#8d2626}
+.scope{color:var(--muted);font-size:.9rem;margin-top:4px}.author{font-size:.86rem;color:#526274;margin-top:2px}
+.controls{display:flex;gap:7px;flex-wrap:wrap;align-items:center}.controls button{border:1px solid #b9c7d6;background:#fff;border-radius:9px;padding:7px 10px;cursor:pointer;color:#26394c}.controls button:hover{background:#f0f5fa}.controls button.active{background:var(--nav);color:#fff;border-color:var(--nav)}
+.progress-wrap{min-width:210px}.progress-label{font-size:.82rem;color:var(--muted);display:flex;justify-content:space-between;gap:10px}.progress{height:8px;background:#e5ebf1;border-radius:999px;overflow:hidden;margin-top:5px}.progress>span{display:block;height:100%;background:#2f7d4a;width:0;transition:width .2s}
+.toolbar{position:sticky;top:0;z-index:50;background:rgba(247,249,252,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.toolbar-inner{max-width:1180px;margin:auto;padding:8px 18px;display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.search{flex:1;min-width:220px;border:1px solid #b8c6d4;border-radius:10px;padding:8px 11px;background:white}
+.navlinks{display:flex;gap:7px;flex-wrap:wrap}.navlinks a{font-size:.8rem;border:1px solid #c6d1dc;padding:5px 8px;border-radius:999px;background:#fff;color:#385069}
+main{max-width:1180px;margin:18px auto 70px;padding:0 18px}
+section.card,details.major{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);margin:14px 0}
+section.card{padding:18px}
+details.major>summary{cursor:pointer;list-style:none;padding:16px 18px;font-weight:800;color:var(--nav);font-size:1.2rem;border-bottom:1px solid transparent;display:flex;align-items:center;justify-content:space-between;gap:10px}
+details.major[open]>summary{border-bottom-color:var(--line)}details.major>summary::-webkit-details-marker{display:none}.summary-meta{font-weight:500;font-size:.8rem;color:var(--muted)}
+.major-body{padding:18px}.subtopic{border-top:1px dashed #cbd5df;padding-top:17px;margin-top:17px}.subtopic:first-child{border-top:0;padding-top:0;margin-top:0}
+h2{font-size:1.28rem;color:var(--nav);margin:0 0 10px}h3{font-size:1.05rem;color:#1f4f78;margin:16px 0 7px}h4{font-size:.96rem;margin:12px 0 6px}
+p{margin:7px 0 10px}ul,ol{margin:7px 0 10px;padding-left:1.3rem}li{margin:4px 0}.tight li{margin:2px 0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.box{border:1px solid var(--line);border-left:5px solid #7aa4c8;border-radius:11px;padding:11px 13px;background:#fbfdff}.must{background:var(--blue);border-color:#bddbf6;border-left-color:var(--blueb)}.clinical{background:var(--green);border-color:#bfdfc8;border-left-color:var(--greenb)}.trap{background:var(--amber);border-color:#ead39a;border-left-color:var(--amberb)}.danger{background:var(--red);border-color:#efc0c0;border-left-color:var(--redb)}.nice{background:var(--purple);border-color:#d8cdf8;border-left-color:var(--purpleb)}
+.label{display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:.02em;text-transform:uppercase;border-radius:999px;padding:3px 7px;margin-bottom:5px;background:#e8eef5;color:#41566c}.must .label{background:#cfe9ff;color:#174c73}.clinical .label{background:#cfead7;color:#275f38}.trap .label{background:#ffe6a5;color:#795710}.danger .label{background:#ffd3d3;color:#852c2c}.nice .label{background:#e2d9ff;color:#5b449d}
+.source{display:inline-block;color:#718096;font-size:.76rem;margin-left:6px;font-weight:500}.recall{font-weight:700;color:#315a3b}.small{font-size:.88rem;color:#526274}.muted{color:var(--muted)}
+.check{display:flex;gap:8px;align-items:flex-start;margin:5px 0}.check input{margin-top:4px;transform:scale(1.05)}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin:10px 0}.step{flex:1 1 135px;min-width:120px;position:relative;background:#f8fbfe;border:1px solid #cbd8e4;border-radius:11px;padding:10px 11px;text-align:center;font-weight:650}.step:not(:last-child)::after{content:"→";position:absolute;right:-13px;top:50%;transform:translateY(-50%);color:#5a7895;font-size:1.25rem;font-weight:800;z-index:2}.flow.vertical{display:grid;grid-template-columns:1fr;max-width:680px}.flow.vertical .step:not(:last-child)::after{content:"↓";right:auto;left:50%;top:auto;bottom:-22px;transform:translateX(-50%);background:var(--card);padding:0 3px}.flow.vertical .step{margin-bottom:9px}
+.branch{border-left:3px solid #91abc3;margin:8px 0 8px 12px;padding-left:12px}.branch div{margin:5px 0}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:11px;margin:9px 0 13px}table{width:100%;border-collapse:collapse;min-width:620px;background:#fff}th,td{padding:9px 10px;border-bottom:1px solid #e2e8ef;vertical-align:top;text-align:left;font-size:.88rem}th{background:#eef4f8;color:#294a66;font-weight:800}tr:last-child td{border-bottom:0}.keyrow td{background:#f5fbff}
+.roadmap{display:grid;grid-template-columns:repeat(7,minmax(120px,1fr));gap:8px;overflow-x:auto;padding-bottom:4px}.road{border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px;text-align:center;font-size:.82rem;min-width:120px}.road b{display:block;color:var(--nav);margin-bottom:3px}
+.recall-block{margin:11px 0;border:1px solid #d9e2ec;border-radius:10px;background:#fbfcfe;padding:9px 11px}.recall-block>summary{cursor:pointer;font-weight:750;color:#374f67}.answer{padding:7px 0 1px;color:#2f4d3a}
+.pills{display:flex;gap:6px;flex-wrap:wrap}.pill{border:1px solid #c7d4df;background:#f5f8fb;border-radius:999px;padding:4px 8px;font-size:.8rem;font-weight:650}.pill.red{background:#fff0f0;border-color:#efbaba;color:#8b2929}.pill.green{background:#edf9f0;border-color:#b9dec2;color:#256037}.pill.amber{background:#fff7df;border-color:#ead39a;color:#775713}.pill.blue{background:#eaf5ff;border-color:#b9daf5;color:#20587e}
+.kicker{font-weight:800;color:#6a7e91;text-transform:uppercase;letter-spacing:.07em;font-size:.74rem}.survival{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.survival .check{background:#fbfdff;border:1px solid #e0e7ee;border-radius:9px;padding:7px 9px;margin:0}
+.diagram{border:1px solid #d8e3ec;border-radius:12px;background:linear-gradient(180deg,#fbfdff,#f5f9fc);padding:12px;margin:10px 0}.diagram-title{font-weight:800;color:#345b7b;margin-bottom:8px}.genome-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.gcard{text-align:center;border-radius:10px;padding:10px;border:1px solid #ccd8e3;background:#fff}.gcard strong{display:block;color:#153f61}.lesion-stages{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.lesion{border:1px solid #cbd6e0;border-radius:999px;padding:7px 11px;background:#fff;font-weight:700}.arrow{color:#607d96;font-weight:900}
+.callout-title{font-weight:850;color:#6e5311}.mono-compare{display:grid;grid-template-columns:1fr 1fr;gap:10px}.mono{border-radius:12px;padding:12px;border:1px solid #cedae4;background:#fff}.mono strong{color:#204d70}
+mark{background:#fff0a6;padding:0 2px}.hidden-by-search{display:none!important}.must-only [data-priority="detail"]{display:none!important}.must-only .nice{display:none!important}.must-only .summary-meta::after{content:" · must-know view";color:#9a6113}
+.backtop{position:fixed;right:18px;bottom:18px;border:1px solid #aebdca;background:#fff;color:#274b68;border-radius:999px;width:42px;height:42px;box-shadow:var(--shadow);cursor:pointer;font-size:1.15rem}
+.footer-note{font-size:.8rem;color:#718096;text-align:center;margin:25px 0}
+@media(max-width:850px){.grid,.grid3,.grid4,.survival,.mono-compare{grid-template-columns:1fr}.step:not(:last-child)::after{display:none}.roadmap{grid-template-columns:repeat(7,150px)}.top-inner{display:block}.controls{margin-top:10px}.progress-wrap{margin-top:10px}.genome-strip{grid-template-columns:1fr 1fr}.toolbar-inner{padding:7px 10px}main{padding:0 10px}.major-body,section.card{padding:14px}details.major>summary{padding:14px}}
+@media print{body{background:#fff;font-size:10.5pt}.toolbar,.controls,.backtop,.progress-wrap{display:none!important}.top{border:0;padding:0 0 8px}main{max-width:none;margin:0;padding:0}section.card,details.major{box-shadow:none;break-inside:avoid;border-color:#aaa}.recall-block .answer{display:block}.source{color:#555}.must-only [data-priority="detail"]{display:block!important}}
+</style>
+</head>
+<body>
+<header class="top" id="top">
+  <div class="top-inner">
+    <div>
+      <div class="title-row"><h1>DNA Viruses</h1><span class="badge">Cramming Mode</span></div>
+      <div class="scope">Estimated scope: 18 lecture pages covering naked DNA viruses, herpesviruses, poxviruses, hepatitis B, and review questions</div>
+      <div class="author">Dr. Januario E. Sia-Cunco · Microbiology Trans 2.02 · August 20, 2026 · Version 2</div>
+    </div>
+    <div>
+      <div class="controls" aria-label="Reviewer controls">
+        <button id="expandAll" type="button">Expand all</button>
+        <button id="collapseAll" type="button">Collapse all</button>
+        <button id="mustToggle" type="button" aria-pressed="false">Must-know only</button>
+        <button id="resetProgress" type="button">Reset progress</button>
+        <button id="printBtn" type="button">Print</button>
+      </div>
+      <div class="progress-wrap" aria-label="Study progress">
+        <div class="progress-label"><span>Checklist progress</span><span id="progressText">0 / 0</span></div>
+        <div class="progress"><span id="progressBar"></span></div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <input id="search" class="search" type="search" placeholder="Search reviewer: virus, disease, serotype, drug, marker..." aria-label="Search reviewer">
+    <nav class="navlinks" aria-label="Jump to section">
+      <a href="#survival">Survival</a><a href="#roadmap">Roadmap</a><a href="#naked">Naked DNA</a><a href="#herpes">Herpes</a><a href="#pox">Pox</a><a href="#hbv">HBV</a><a href="#confusions">Confusions</a><a href="#rapid">Rapid fire</a><a href="#cram">Cram sheet</a>
+    </nav>
+  </div>
+</div>
+<main>
+<section class="card" id="survival" data-searchable>
+  <div class="kicker">Exam survival summary</div>
+  <h2>If You Only Remember These</h2>
+  <div class="survival">
+    <label class="check"><input class="progress-check" data-key="s1" type="checkbox"><span><b>Parvovirus B19</b> is naked, icosahedral, linear ssDNA and targets erythroid progenitor cells through the P antigen.</span></label>
+    <label class="check"><input class="progress-check" data-key="s2" type="checkbox"><span>B19 <b>waits for the host cell to enter S phase</b>. It cannot force S phase on its own.</span></label>
+    <label class="check"><input class="progress-check" data-key="s3" type="checkbox"><span>Fifth disease is <b>most infectious during viremia before the rash</b>. Once the rash appears, an immunocompetent patient is no longer infectious.</span></label>
+    <label class="check"><input class="progress-check" data-key="s4" type="checkbox"><span>Adenovirus is naked ds linear DNA. It can <b>force the host cell into S phase</b>, unlike parvovirus.</span></label>
+    <label class="check"><input class="progress-check" data-key="s5" type="checkbox"><span>Adenovirus immune evasion: <b>VA RNA protects from interferon</b> and E3 gp19 kDa blocks MHC I movement to the cell surface.</span></label>
+    <label class="check"><input class="progress-check" data-key="s6" type="checkbox"><span>HPV <b>6 and 11</b> are low-risk wart types. HPV <b>16 and 18</b> are the major high-risk cancer types in the lecture.</span></label>
+    <label class="check"><input class="progress-check" data-key="s7" type="checkbox"><span>High-risk HPV uses <b>E6 and E7</b> to inactivate <b>p53 and pRb</b>, disrupting cell-cycle control and apoptosis.</span></label>
+    <label class="check"><input class="progress-check" data-key="s8" type="checkbox"><span><b>JC virus → PML</b> in CNS white matter. <b>BK virus → hemorrhagic cystitis</b>. Merkel cell virus → Merkel cell carcinoma.</span></label>
+    <label class="check"><input class="progress-check" data-key="s9" type="checkbox"><span>Herpesviruses are enveloped dsDNA viruses that acquire their envelope by <b>budding through the nuclear membrane</b> and establish lifelong latency.</span></label>
+    <label class="check"><input class="progress-check" data-key="s10" type="checkbox"><span><b>HSV-1</b> is classically oropharyngeal with trigeminal latency. <b>HSV-2</b> is classically genital with sacral latency.</span></label>
+    <label class="check"><input class="progress-check" data-key="s11" type="checkbox"><span>VZV: <b>primary infection = chickenpox</b>. Reactivation from sensory ganglia = <b>zoster</b>.</span></label>
+    <label class="check"><input class="progress-check" data-key="s12" type="checkbox"><span>EBV targets <b>B lymphocytes through the complement C3d receptor</b> and can cause infectious mononucleosis plus several malignancies.</span></label>
+    <label class="check"><input class="progress-check" data-key="s13" type="checkbox"><span>CMV mononucleosis-like illness is a key contrast with EBV because CMV has <b>absent heterophile antibodies</b>.</span></label>
+    <label class="check"><input class="progress-check" data-key="s14" type="checkbox"><span><b>HHV-6B</b> is the major cause of roseola infantum and is associated with febrile seizures. HHV-7 can also cause roseola.</span></label>
+    <label class="check"><input class="progress-check" data-key="s15" type="checkbox"><span><b>Poxviruses replicate entirely in the cytoplasm</b> and carry the enzymes needed for replication and gene expression.</span></label>
+    <label class="check"><input class="progress-check" data-key="s16" type="checkbox"><span>Smallpox lesions are described as being in the <b>same stage</b>. Chickenpox lesions occur in <b>crops with mixed stages</b>.</span></label>
+    <label class="check"><input class="progress-check" data-key="s17" type="checkbox"><span>Mpox clue in the lecture: <b>cervical and submandibular lymphadenopathy</b>, a feature not seen in smallpox or chickenpox.</span></label>
+    <label class="check"><input class="progress-check" data-key="s18" type="checkbox"><span>HBV has a <b>partially double-stranded circular DNA genome</b> and uses a pregenomic RNA plus reverse transcriptase during replication.</span></label>
+    <label class="check"><input class="progress-check" data-key="s19" type="checkbox"><span>HBV serology anchors: <b>HBeAg = active replication and high infectivity</b>, HBsAg beyond 6 months with no anti-HBs = chronic infection.</span></label>
+    <label class="check"><input class="progress-check" data-key="s20" type="checkbox"><span><b>Vaccinated HBV profile = anti-HBs only</b>. Postexposure prophylaxis in the lecture uses HBIg plus hepatitis B vaccine at different sites.</span></label>
+  </div>
+  <span class="source">Source: pp. 1–18</span>
+</section>
 
+<section class="card" id="roadmap" data-searchable>
+  <div class="kicker">Lecture flow</div>
+  <h2>Lesson Roadmap</h2>
+  <div class="roadmap">
+    <div class="road"><b>1. Parvoviridae</b>Structure → S-phase dependence → fifth disease → high-risk groups<br><span class="source">pp. 1–2</span></div>
+    <div class="road"><b>2. Adenoviridae</b>Structure → serotypes → replication → respiratory, eye, GI disease<br><span class="source">pp. 2–3</span></div>
+    <div class="road"><b>3. Papovavirus topics</b>HPV → malignancy → Polyomavirus diseases<br><span class="source">pp. 3–5</span></div>
+    <div class="road"><b>4. Herpesviridae</b>Latency → HSV → VZV → EBV → CMV → HHV-6, 7, 8<br><span class="source">pp. 5–12</span></div>
+    <div class="road"><b>5. Poxviridae</b>Cytoplasmic replication → smallpox → mpox → cowpox → molluscum<br><span class="source">pp. 12–14</span></div>
+    <div class="road"><b>6. Hepatitis B</b>Virion → reverse transcription → pathology → serology → therapy → prevention<br><span class="source">pp. 14–18</span></div>
+    <div class="road"><b>7. Review</b>Eight end-of-lecture recall questions<br><span class="source">p. 18</span></div>
+  </div>
+</section>
+
+<details class="major" id="naked" open data-searchable data-state-key="naked">
+<summary><span>I. Non-Enveloped DNA Viruses</span><span class="summary-meta">Parvovirus · Adenovirus · Papillomavirus · Polyomavirus</span></summary>
+<div class="major-body">
+
+<div class="subtopic" id="parvo">
+  <h2>A. Parvoviridae — Parvovirus B19 <span class="source">pp. 1–2</span></h2>
+  <div class="grid">
+    <div class="box must" data-priority="must"><div class="label">★ Must Know</div><p><b>Genome:</b> single-stranded linear DNA. <b>Capsid:</b> icosahedral. <b>Envelope:</b> none. <b>Tropism:</b> erythroid progenitor cells.</p><p class="recall">Recall cue: B19 = blood-lineage target.</p></div>
+    <div class="box clinical" data-priority="must"><div class="label">Clinical Pearl</div><p>B19 binds the <b>blood group P antigen</b>, found on mature erythrocytes, erythroid progenitors, megakaryocytes, endothelial cells, placenta, and fetal liver and heart.</p></div>
+  </div>
+  <h3>Core mechanism: why B19 loves rapidly dividing erythroid cells</h3>
+  <div class="diagram" data-priority="must"><div class="diagram-title">Parvovirus replication</div><div class="flow"><div class="step">Endocytosis</div><div class="step">Uncoating in nucleus</div><div class="step">Wait for natural host S phase</div><div class="step">Host synthesizes viral DNA</div><div class="step">Capsid proteins accumulate in nucleus</div><div class="step">Genome packaging</div><div class="step">Cell lysis</div></div></div>
+  <div class="box trap" data-priority="must"><div class="label">⚠ Exam Trap</div><p><b>Parvovirus cannot drive the host into S phase.</b> It waits for the host cell to enter S phase naturally. This is a clean contrast with adenovirus.</p></div>
+  <div data-priority="detail">
+    <h3>Stability and culture</h3>
+    <ul><li>No lipid envelope means marked environmental resistance.</li><li>Lecture values: stable from pH 3–9 and can withstand 56°C for 60 minutes.</li><li>Can be inactivated by formalin, beta-propiolactone, and strong oxidizing agents including hydrogen peroxide and chlorine.</li><li>B19 is difficult to culture because only primary erythroid progenitors are permissive.</li></ul>
+  </div>
+  <h3>Pathogenesis and fifth disease</h3>
+  <div class="flow vertical" data-priority="must"><div class="step">Respiratory entry or blood / vertical transmission</div><div class="step">Viremia around days 7–10 after exposure → highly infectious</div><div class="step">Direct killing of erythroid precursors → temporary interruption of erythropoiesis</div><div class="step">Antibody response begins</div><div class="step">“Slapped cheek” rash → fine lacy rash on trunk and limbs</div><div class="step">Once rash appears, immunocompetent patient is no longer infectious</div></div>
+  <div class="grid3">
+    <div class="box danger" data-priority="must"><div class="label">High Risk</div><b>Hematologic disease</b><p>Sickle cell disease or thalassemia → abrupt transient interruption of erythropoiesis → <b>aplastic crisis</b>.</p></div>
+    <div class="box danger" data-priority="must"><div class="label">High Risk</div><b>Pregnancy</b><p>Fetal infection → severe anemia → non-immune hydrops and fetal loss.</p></div>
+    <div class="box danger" data-priority="must"><div class="label">High Risk</div><b>Immunocompromised</b><p>Persistent infection → pure red cell aplasia and chronic anemia. Infectiousness can persist for months or years.</p></div>
+  </div>
+  <div class="table-wrap" data-priority="detail"><table><thead><tr><th>Timeline / feature</th><th>Lecture detail</th><th>Fast recall</th></tr></thead><tbody><tr><td>Incubation</td><td>1–2 weeks</td><td>Silent build-up</td></tr><tr><td>Viremia</td><td>About 7–10 days post-exposure</td><td><b>Most infectious phase</b></td></tr><tr><td>Prodrome</td><td>Mild fever, malaise, coryza, nausea, headache, diarrhea, myalgia</td><td>Before rash</td></tr><tr><td>Rash phase 1</td><td>Intense malar erythema</td><td>“Slapped cheek”</td></tr><tr><td>Rash phase 2</td><td>Fine lacy maculopapular rash on trunk and limbs</td><td>Fades in 2–4 days</td></tr><tr><td>Arthralgia</td><td>More common in adults, especially women, often symmetric small joints</td><td>Can last weeks to months</td></tr></tbody></table></div>
+  <h3>Diagnosis, treatment, prevention</h3>
+  <div class="grid">
+    <div class="box must" data-priority="must"><div class="label">★ Must Know</div><ul><li><b>PCR</b> detects viral DNA in serum, blood cells, tissues, and respiratory secretions.</li><li><b>IgM</b> turns positive around 7–10 days and suggests recent infection.</li><li><b>IgG</b> appears around 15+ days and suggests past exposure and immunity.</li><li>Chronically infected immunodeficient patients may be antibody-negative.</li></ul></div>
+    <div class="box clinical" data-priority="detail"><div class="label">Management</div><ul><li>Usually supportive.</li><li>Severe anemia may require transfusion.</li><li>Persistent infection in immunocompromised patients may be treated with commercial immunoglobulin preparations containing neutralizing antibodies.</li><li>Lecture states no vaccine and no antiviral drug are available.</li></ul></div>
+  </div>
+  <details class="recall-block"><summary>Active recall: When is a child with fifth disease most infectious?</summary><div class="answer">During the viremic prodromal period before the rash. Once the rash appears, antibody production has begun and an immunocompetent patient is no longer infectious.</div></details>
+  <details class="recall-block"><summary>Active recall: Why can B19 trigger aplastic crisis?</summary><div class="answer">It directly infects and kills erythroid precursors, abruptly interrupting red cell production.</div></details>
+</div>
+
+<div class="subtopic" id="adeno">
+  <h2>B. Adenoviridae <span class="source">pp. 2–3</span></h2>
+  <div class="grid">
+    <div class="box must" data-priority="must"><div class="label">★ Must Know</div><p><b>ds linear DNA · icosahedral · non-enveloped.</b> Fibers project from the 12 vertices and mediate attachment and hemagglutinating activity.</p></div>
+    <div class="box must" data-priority="must"><div class="label">★ Must Know</div><p>The <b>penton base</b> has toxin-like activity that promotes rapid cytopathic effects and cell detachment. Adenovirus can force a cell into <b>S phase</b>.</p></div>
+  </div>
+  <h3>Replication</h3>
+  <div class="diagram" data-priority="must"><div class="diagram-title">Adenovirus replication sequence</div><div class="flow"><div class="step">Fiber attachment</div><div class="step">Endosome entry</div><div class="step">Uncoating begins in cytoplasm, completes in nucleus</div><div class="step">Early genes force S phase and block defenses</div><div class="step">DNA synthesis in nucleus</div><div class="step">Late structural proteins made in cytoplasm</div><div class="step">Capsid assembly and DNA packaging in nucleus</div><div class="step">Cell lysis</div></div><p class="small">Lecture note: a cell can produce roughly 100,000 virus particles.</p></div>
+  <div class="box trap" data-priority="must"><div class="label">⚠ Exam Trap</div><p><b>Parvovirus waits for S phase. Adenovirus pushes the host into S phase.</b></p></div>
+  <h3>Immune evasion</h3>
+  <div class="grid3">
+    <div class="box must" data-priority="must"><b>VA RNA</b><p>Non-coding viral-associated RNA that protects adenovirus from interferon.</p></div>
+    <div class="box must" data-priority="must"><b>E3 proteins</b><p>Inhibit cytolysis of infected cells.</p></div>
+    <div class="box must" data-priority="must"><b>E3 gp19 kDa</b><p>Blocks MHC I movement to the surface, helping infected cells evade cytotoxic T lymphocytes.</p></div>
+  </div>
+  <h3>Serotypes and clinical patterns</h3>
+  <div class="table-wrap" data-priority="must"><table><thead><tr><th>Clinical target</th><th>Serotypes in lecture</th><th>Recall clue</th></tr></thead><tbody><tr><td>General respiratory illness</td><td>1, 2, 3, 5, 7</td><td>Most common adenovirus illnesses</td></tr><tr><td>Military / institutions</td><td>3, 4, 7</td><td>Crowding and stress, vaccine available for this population</td></tr><tr><td>Viral pneumonia in very young</td><td>3, 7, 21</td><td>Severe pediatric disease</td></tr><tr><td>Gastroenteritis</td><td>40, 41</td><td>Fecal-oral</td></tr></tbody></table></div>
+  <div class="table-wrap" data-priority="must"><table><thead><tr><th>Feature</th><th>Pharyngoconjunctival fever</th><th>Epidemic keratoconjunctivitis</th></tr></thead><tbody><tr><td>Classic label</td><td>“Swimming pool conjunctivitis”</td><td>Serious, highly contagious keratitis syndrome</td></tr><tr><td>Typical group</td><td>School-aged children</td><td>Primarily adults</td></tr><tr><td>Serotypes</td><td>3, 7</td><td>8, 19, 37</td></tr><tr><td>Transmission</td><td>Often outbreaks in poorly chlorinated pools</td><td>Fomites, towels, sinks, ophthalmic solutions, poorly sterilized instruments</td></tr><tr><td>Outcome</td><td>Usually resolves in 1–2 weeks</td><td>Acute phase about 2 weeks, corneal opacities may persist up to 2 years</td></tr></tbody></table></div>
+  <div class="grid" data-priority="detail">
+    <div class="box clinical"><div class="label">Other disease</div><ul><li>Infantile gastroenteritis: types 40 and 41.</li><li>Acute self-limited hemorrhagic cystitis: primarily boys with hematuria.</li><li>Transplant and AIDS patients can develop severe pneumonia, hepatitis, myocardial infection, GI disease, or disseminated infection.</li></ul></div>
+    <div class="box clinical"><div class="label">Diagnosis and prevention</div><ul><li><b>PCR is the test of choice</b> for viral DNA.</li><li>Immunofluorescence can use antihexon antibody. Hexon is the largest and most abundant capsid protein.</li><li>Stool assays can include EM, ELISA, or latex agglutination.</li><li>Prevention: hand hygiene, sodium hypochlorite, single-use paper towels during outbreaks, proper pool chlorination.</li></ul></div>
+  </div>
+  <details class="recall-block"><summary>Active recall: What non-coding adenovirus RNA protects against interferon?</summary><div class="answer">VA RNA, or viral-associated RNA.</div></details>
+  <details class="recall-block"><summary>Active recall: Which adenovirus serotypes are tied to gastroenteritis?</summary><div class="answer">Types 40 and 41.</div></details>
+</div>
+
+<div class="subtopic" id="hpv">
+  <h2>C. Papillomavirus and Polyomavirus Topics <span class="source">pp. 3–5</span></h2>
+  <div class="box nice" data-priority="detail"><div class="label">Lecture framing</div><p>The lecture presents papillomaviruses and polyomaviruses under the older Papovaviridae framework while also noting that the family name is obsolete.</p></div>
+  <h3>Human Papillomavirus</h3>
+  <div class="grid">
+    <div class="box must" data-priority="must"><div class="label">★ Must Know</div><p><b>Supercoiled double-stranded circular DNA · icosahedral · non-enveloped.</b> HPV is highly specific for surface epithelia of skin and mucous membranes.</p></div>
+    <div class="box must" data-priority="must"><div class="label">★ Must Know</div><p><b>Low-risk 6 and 11 → genital warts and laryngeal papillomas.</b><br><b>High-risk 16 and 18 → strong cervical and other anogenital cancer association.</b></p></div>
+  </div>
+  <h3>Replication follows keratinocyte maturation</h3>
+  <div class="diagram" data-priority="must"><div class="diagram-title">HPV epithelial life cycle</div><div class="flow"><div class="step">Infect basal stem cells</div><div class="step">Host keratinocyte divides and moves upward</div><div class="step">Early viral genes expressed</div><div class="step">Viral genome multiplies</div><div class="step">Capsid proteins appear in differentiated upper cells</div><div class="step">Virions assemble and are shed at superficial layers</div></div></div>
+  <h3>Why high-risk HPV can cause malignancy</h3>
+  <div class="diagram" data-priority="must"><div class="flow"><div class="step">Persistent high-risk HPV infection</div><div class="step">E6 and E7 expression</div><div class="step">Binding / inactivation of p53 and pRb</div><div class="step">Loss of cell-cycle control + blocked apoptosis + chromosomal abnormalities</div><div class="step">Slow progression toward malignancy over years to decades</div></div></div>
+  <div class="box trap" data-priority="must"><div class="label">⚠ Exam Trap</div><p>Removing a visible wart does not guarantee eradication because HPV can remain in basal cells of the surrounding tissue. Recurrence is common.</p></div>
+  <div class="table-wrap" data-priority="must"><table><thead><tr><th>HPV type group</th><th>Association in lecture</th><th>Fast clue</th></tr></thead><tbody><tr><td>1–4</td><td>Common cutaneous warts</td><td>Hands, feet, face, knees depending on wart type</td></tr><tr><td>5, 8</td><td>Epidermodysplasia verruciformis</td><td>May progress to squamous cell carcinoma, especially sun-exposed skin</td></tr><tr><td>6, 11</td><td>About 90% of anogenital warts, laryngeal papillomas</td><td><b>Low risk</b></td></tr><tr><td>13, 32</td><td>Oral and nasopharyngeal benign papillomas</td><td>Oral types</td></tr><tr><td>16, 18</td><td>Major cervical, vulvar, penile, anal cancer association</td><td><b>High risk</b></td></tr></tbody></table></div>
+  <div class="grid" data-priority="detail">
+    <div class="box clinical"><div class="label">Diagnosis</div><ul><li>Usually visual inspection.</li><li>Biopsy if uncertain, immunocompromised, or lesion is pigmented or ulcerated.</li><li>No tissue culture system for HPV recovery.</li><li>Typing by DNA amplification such as PCR.</li><li>Pap smear screens for HPV-associated dysplasia and cancer.</li></ul></div>
+    <div class="box clinical"><div class="label">Treatment and prevention</div><ul><li>Patient-applied: imiquimod, podofilox, sinecatechins.</li><li>Provider options: cryotherapy, surgical removal, laser, TCA or BCA.</li><li>Lecture lists quadrivalent Gardasil types 6, 11, 16, 18 and recommends vaccination for young males and females.</li></ul></div>
+  </div>
+  <h3>Polyomaviruses</h3>
+  <div class="table-wrap" data-priority="must"><table><thead><tr><th>Virus</th><th>Main disease</th><th>Target / clue</th><th>Risk population</th></tr></thead><tbody><tr><td><b>JC virus</b></td><td>Progressive multifocal leukoencephalopathy</td><td>CNS <b>white matter</b>, cytocidal oligodendrocyte infection, demyelination</td><td>Immunocompromised, especially AIDS</td></tr><tr><td><b>BK virus</b></td><td>Hemorrhagic cystitis</td><td>Urinary tract, virus sheds in urine</td><td>Immunocompromised</td></tr><tr><td><b>Merkel cell virus</b></td><td>Merkel cell carcinoma</td><td>Aggressive skin cancer</td><td>Older adults and immunocompromised</td></tr></tbody></table></div>
+  <div class="box danger" data-priority="must"><div class="label">PML high yield</div><p>JCV reactivation enters the CNS via blood and kills oligodendrocytes. Lesions are restricted to white matter. Speech and mental changes can progress quickly to paralysis and sensory abnormalities. The lecture notes death commonly within 3–6 months after symptom onset.</p></div>
+  <details class="recall-block"><summary>Active recall: Which HPV proteins target p53 and pRb?</summary><div class="answer">E6 and E7.</div></details>
+  <details class="recall-block"><summary>Active recall: JC vs BK in one line?</summary><div class="answer">JC → PML in CNS white matter. BK → hemorrhagic cystitis in the urinary tract.</div></details>
+</div>
+</div>
+</details>
+
+<details class="major" id="herpes" open data-searchable data-state-key="herpes">
+<summary><span>II-A. Herpesviridae</span><span class="summary-meta">General replication · HSV · VZV · EBV · CMV · HHV-6/7/8</span></summary>
+<div class="major-body">
+<div class="subtopic">
+  <h2>Herpesvirus Core Framework <span class="source">pp. 5–6</span></h2>
+  <div class="grid">
+    <div class="box must" data-priority="must"><div class="label">★ Must Know</div><p>Single molecule of <b>linear dsDNA</b>, icosahedral capsid, lipid envelope derived from the <b>host nuclear membrane</b>, plus a protein-rich tegument between capsid and envelope.</p></div>
+    <div class="box must" data-priority="must"><div class="label">★ Must Know</div><p>Defining infection pattern: <b>acute infection → lifelong latency → periodic reactivation</b>.</p></div>
+  </div>
+  <div class="table-wrap" data-priority="must"><table><thead><tr><th>Subfamily</th><th>Members in lecture</th><th>Biologic pattern</th><th>Latency clue</th></tr></thead><tbody><tr><td><b>Alpha</b></td><td>HSV-1, HSV-2, VZV</td><td>Rapid cytocidal lytic growth</td><td><b>Nerve ganglia</b></td></tr><tr><td><b>Beta</b></td><td>CMV, HHV-6, HHV-7</td><td>Slow replication, multinucleated giant cells</td><td>Non-neural, lymphoreticular and glandular tissues</td></tr><tr><td><b>Gamma</b></td><td>EBV, HHV-8</td><td>Lymphoproliferative pattern</td><td>Primarily B cells. Lecture notes HHV-8 particularly involves endothelial cells</td></tr></tbody></table></div>
+  <div class="diagram" data-priority="must"><div class="diagram-title">General herpesvirus productive cycle</div><div class="flow"><div class="step">Envelope glycoprotein binds receptor</div><div class="step">Fusion with host membrane</div><div class="step">Capsid travels to nuclear pore</div><div class="step">DNA enters nucleus and circularizes</div><div class="step">New DNA packaged into preformed nucleocapsids in nucleus</div><div class="step">Budding through nuclear membrane gives envelope</div><div class="step">Vacuolar transport → release</div></div></div>
+</div>
+
+<div class="subtopic" id="hsv">
+  <h2>HSV-1 and HSV-2 <span class="source">pp. 6–7</span></h2>
+  <div class="table-wrap" data-priority="must"><table><thead><tr><th>Feature</th><th>HSV-1</th><th>HSV-2</th></tr></thead><tbody><tr><td>Classic primary site</td><td>Oropharyngeal region</td><td>Genital tract</td></tr><tr><td>Transmission emphasized</td><td>Saliva, kissing, contaminated fingers</td><td>Sexual intercourse, passage through infected birth canal</td></tr><tr><td>Classic latency</td><td><b>Trigeminal ganglia</b></td><td><b>Sacral ganglia</b></td></tr></tbody></table></div>
+  <div class="box must" data-priority="must"><div class="label">★ Must Know</div><p>Reactivation triggers listed in the lecture include axonal injury, fever, physical or emotional stress, and UV light. Reactivated virus travels back down axons to skin or mucosa.</p></div>
+  <div class="grid" data-priority="detail">
+    <div class="box clinical"><div class="label">Clinical spectrum</div><ul><li>Recurrent mucocutaneous lesions can progress through pustular and crusting stages and heal without scarring.</li><li>Eye infection can cause dendritic keratitis, corneal ulcers, and recurrent stromal opacity with risk of blindness.</li><li>Genital herpes is more often HSV-2 but HSV-1 can also cause it. Painful vesicoulcerative lesions may accompany fever, malaise, dysuria, and inguinal lymphadenopathy.</li><li>Skin infections: herpetic whitlow in dentists and hospital personnel, herpes gladiatorum in wrestlers, severe eczema herpeticum in chronic eczema.</li><li>HSV-1 is described as the most common cause of sporadic fatal encephalitis in the US.</li></ul></div>
+    <div class="box danger"><div class="label">Neonatal herpes</div><ul><li>Can be acquired in utero, during birth, or after birth.</li><li>Most common route is exposure to herpetic lesions during passage through the birth canal.</li><li>Most neonatal infections in the lecture are attributed to HSV-2.</li><li>Patterns: skin-eye-mouth disease, encephalitis, or disseminated multi-organ disease.</li><li>Disseminated disease has the worst prognosis.</li></ul></div>
+  </div>
+  <h3>Diagnosis and treatment</h3>
+  <div class="grid">
+    <div class="box must" data-priority="must"><div class="label">Diagnosis</div><ul><li><b>PCR / NAAT is the gold standard</b> in the lecture.</li><li>PCR can be performed on vesicle swabs, blood, and CSF.</li><li>CSF PCR is the test of choice for herpes meningitis and encephalitis.</li><li>Giemsa staining from vesicle base can show multinucleated giant cells but is not type-specific among HSV-1, HSV-2, and VZV.</li></ul></div>
+    <div class="box clinical" data-priority="must"><div class="label">Treatment</div><p>Acyclovir, valacyclovir, and vidarabine are listed as inhibitors of viral DNA synthesis. They suppress manifestations, shorten healing, and reduce recurrences of genital herpes. Antibodies do not prevent reactivation.</p></div>
+  </div>
+  <details class="recall-block"><summary>Active recall: HSV-1 vs HSV-2 latency?</summary><div class="answer">HSV-1 → trigeminal ganglia. HSV-2 → sacral ganglia.</div></details>
+</div>
+
+<div class="subtopic" id="vzv">
+  <h2>Varicella-Zoster Virus — HHV-3 <span class="source">pp. 7–9</span></h2>
+  <div class="grid">
+    <div class="box must" data-priority="must"><div class="label">★ Must Know</div><p><b>Primary infection = varicella / chickenpox.</b> Reactivation of latent virus in sensory ganglia = <b>herpes zoster / shingles</b>.</p></div>
+    <div class="box trap" data-priority="must"><div class="label">⚠ Exam Trap</div><p>Chickenpox shows lesions in <b>successive crops</b>, so macules, papules, vesicles, and crusts can coexist. This becomes useful later when contrasting smallpox.</p></div>
+  </div>
+  <div class="diagram" data-priority="must"><div class="diagram-title">Varicella pathogenesis</div><div class="flow"><div class="step">Upper respiratory mucosa or conjunctiva</div><div class="step">Regional lymph nodes</div><div class="step">Primary viremia</div><div class="step">Liver and spleen replication</div><div class="step">Secondary viremia</div><div class="step">Infected mononuclear cells carry virus to skin</div><div class="step">Generalized vesicular rash</div></div></div>
+  <div class="grid" data-priority="detail">
+    <div class="box clinical"><div class="label">Varicella</div><ul><li>Incubation 10–21 days.</li><li>Malaise and fever precede rash.</li><li>Rash starts on trunk, then face, limbs, and oral mucosa according to the lecture.</li><li>Potential severe complications in neonates, adults, immunocompromised patients, and pediatric leukemia patients include pneumonia and disseminated disease.</li><li>Rare encephalitis may be life-threatening.</li></ul></div>
+    <div class="box clinical"><div class="label">Zoster</div><p>Painful vesicular eruption limited to the skin innervated by a sensory ganglion, often dermatomal. The lecture emphasizes older and immunocompromised patients.</p></div>
+  </div>
+  <div class="box clinical" data-priority="detail"><div class="label">Treatment and prevention</div><p>Acyclovir, valacyclovir, famciclovir, and foscarnet are listed. A live attenuated varicella vaccine is described as about 95% effective in preventing severe disease. The lecture also describes a zoster vaccine for older adults and those with chronic medical conditions.</p></div>
+  <details class="recall-block"><summary>Active recall: Same virus, two diseases?</summary><div class="answer">VZV causes chickenpox on primary infection and shingles after reactivation from sensory ganglia.</div></details>
+</div>
+
+<div class="subtopic" id="ebv">
+  <h2>Epstein-Barr Virus — HHV-4 <span class="source">pp. 9–10</span></h2>
+  <div class="grid">
+    <div class="box must" data-priority="must"><div class="label">★ Must Know</div><p>EBV spreads mainly through <b>saliva</b>. Initial replication occurs in oropharyngeal epithelium and virus then infects <b>B lymphocytes</b> through the <b>complement C3d receptor</b>.</p></div>
+    <div class="box must" data-priority="must"><div class="label">★ Must Know</div><p>EBV early gene expression can drive <b>B-cell proliferation and immortalization</b> rather than killing the cell. A small number of infected lymphocytes persist for life.</p></div>
+  </div>
+  <div class="diagram" data-priority="must"><div class="flow"><div class="step">Saliva</div><div class="step">Oropharyngeal epithelium / surface B cells</div><div class="step">B-cell infection through C3d receptor</div><div class="step">Polyclonal B-cell proliferation</div><div class="step">Infected B cells disseminate</div><div class="step">Most infected cells eliminated</div><div class="step">Small latent pool persists lifelong</div></div></div>
+  <div class="table-wrap" data-priority="must"><table><thead><tr><th>EBV association in lecture</th><th>High-yield link</th></tr></thead><tbody><tr><td>Infectious mononucleosis</td><td>Common symptomatic primary infection in adults, children often subclinical</td></tr><tr><td>Nasopharyngeal carcinoma</td><td>EBV DNA regularly found in tumor cells</td></tr><tr><td>Burkitt lymphoma</td><td>Major EBV-associated malignancy</td></tr><tr><td>Hodgkin / non-Hodgkin lymphoma</td><td>EBV genome can be detected in Reed-Sternberg cells in classic Hodgkin disease</td></tr><tr><td>Gastric carcinoma</td><td>Listed malignancy</td></tr><tr><td>Immunodeficiency / transplant lymphoproliferative disease</td><td>Risk rises with immunosuppression</td></tr><tr><td>Oral hairy leukoplakia</td><td>Listed in AIDS patients</td></tr></tbody></table></div>
+  <div class="grid" data-priority="detail">
+    <div class="box clinical"><div class="label">Diagnosis</div><ul><li>EBV-specific serology is the lecture method of choice for most cases.</li><li>Heterophile antibody detection uses RBCs or latex agglutination.</li><li>Serologic markers listed: anti-VCA IgG/IgM, anti-EA IgG, anti-EBNA IgG.</li><li>Tissue gold standard in the lecture: in situ hybridization for EBER.</li><li>Quantitative NAAT is useful for viral load and post-transplant lymphoproliferative risk.</li></ul></div>
+    <div class="box nice"><div class="label">Treatment note</div><p>The lecture describes acyclovir plus prednisolone but explicitly notes no significant benefit on duration of general illness and no proven benefit for EBV-associated lymphomas. Acyclovir can reduce oropharyngeal shedding while the drug is being taken.</p></div>
+  </div>
+  <details class="recall-block"><summary>Active recall: What receptor does EBV use on B cells?</summary><div class="answer">The complement component C3d receptor.</div></details>
+</div>
+
+<div class="subtopic" id="cmv">
+  <h2>Cytomegalovirus — HHV-5 <span class="source">pp. 10–11</span></h2>
+  <div class="grid">
+    <div class="box must" data-priority="must"><div class="label">★ Must Know</div><p>CMV is a betaherpesvirus with the largest genetic content among the human herpesviruses in the lecture. Histopathology can show large cells with <b>“owl’s eye” nuclear inclusions</b>.</p></div>
+    <div class="box trap" data-priority="must"><div class="label">⚠ Exam Trap</div><p>CMV can cause an EBV-like mononucleosis syndrome, but the lecture’s major distinction is <b>absence of heterophile antibodies</b> in CMV.</p></div>
+  </div>
+  <div class="mono-compare" data-priority="must"><div class="mono"><strong>EBV mononucleosis</strong><p>Heterophile antibodies are part of the diagnostic framework described in the lecture.</p></div><div class="mono"><strong>CMV mononucleosis-like syndrome</strong><p>Persistent fever, myalgia, lymphadenopathy, blood count and liver test abnormalities with <b>heterophile antibodies absent</b>.</p></div></div>
+  <h3>Congenital CMV</h3>
+  <div class="box danger" data-priority="must"><div class="label">Congenital disease</div><p>CMV can cross the placenta during primary or reactivated maternal infection. Severity is emphasized when infection occurs in the first trimester. Lecture manifestations include jaundice, petechiae, hepatosplenomegaly, CNS defects, deafness, myocarditis, pneumonitis, chorioretinitis, microcephaly, mental and motor retardation, and periventricular calcifications.</p></div>
+  <h3>Immunocompromised host</h3>
+  <div class="grid" data-priority="detail"><div class="box clinical"><div class="label">Opportunistic disease</div><p>High-risk groups include HIV patients, solid-organ and bone-marrow transplant patients, and patients receiving chemotherapy. Listed diseases include retinitis with “pizza pie” appearance, esophagitis, colitis, pneumonitis, hepatitis, polyradiculopathy, transverse myelitis, and subacute encephalitis.</p></div><div class="box clinical"><div class="label">Diagnosis and treatment</div><ul><li><b>NAAT / PCR</b> is the standard test in the lecture and can provide quantitative viral load.</li><li>Higher viral loads favor systemic disease.</li><li>Serology may use IgM or a fourfold IgG rise.</li><li>Ganciclovir is listed for life-threatening CMV in immunosuppressed patients.</li><li>Cidofovir and foscarnet are listed for retinitis and ganciclovir-resistant strains.</li></ul></div></div>
+  <details class="recall-block"><summary>Active recall: EBV-like mono but heterophile-negative?</summary><div class="answer">CMV.</div></details>
+</div>
+
+<div class="subtopic" id="hhv678">
+  <h2>HHV-6, HHV-7, HHV-8 <span class="source">p. 12</span></h2>
+  <div class="table-wrap" data-priority="must"><table><thead><tr><th>Virus</th><th>Main lecture association</th><th>Other high-yield points</th></tr></thead><tbody><tr><td><b>HHV-6A</b></td><td>Lecture links it with acceleration of HIV progression in coinfected cells</td><td>Transactivates HIV transcription</td></tr><tr><td><b>HHV-6B</b></td><td><b>Major cause of roseola infantum / exanthem subitum</b></td><td>Ubiquitous, associated with febrile seizures, uses human CD46 receptor</td></tr><tr><td><b>HHV-7</b></td><td>Can also cause roseola infantum</td><td>Often asymptomatic, childhood infection later than HHV-6, persists in salivary glands</td></tr><tr><td><b>HHV-8 / KSHV</b></td><td><b>Kaposi sarcoma</b></td><td>Highly vascular purplish plaques, papules, and nodules, also involved in body-cavity based lymphomas in AIDS patients</td></tr></tbody></table></div>
+  <div class="grid" data-priority="detail"><div class="box clinical"><div class="label">HHV-6</div><p>Transmission is via oral secretions. Reactivation is common in transplant patients and pregnancy. NAAT in plasma or serum suggests active infection or chromosomally integrated virus according to the lecture. Treatments listed are ganciclovir, cidofovir, and foscarnet.</p></div><div class="box clinical"><div class="label">HHV-8</div><p>Lecture transmission routes include oral secretions, sexual transmission, transplacental transmission, blood, organ transplantation, and breast milk. Diagnosis can use PCR or serology. Treatments listed include foscarnet, famciclovir, ganciclovir, and cidofovir.</p></div></div>
+  <details class="recall-block"><summary>Active recall: Major roseola virus in the lecture?</summary><div class="answer">HHV-6B. HHV-7 can also cause roseola but is often asymptomatic.</div></details>
+</div>
+</div>
+</details>
+
+<details class="major" id="pox" open data-searchable data-state-key="pox">
+<summary><span>II-B. Poxviridae</span><span class="summary-meta">Cytoplasmic replication · smallpox · mpox · cowpox · molluscum</span></summary>
+<div class="major-body">
+<div class="subtopic">
+  <h2>Poxvirus Core Features <span class="source">pp. 12–13</span></h2>
+  <div class="grid">
+    <div class="box must" data-priority="must"><div class="label">★ Must Know</div><p>Oval or brick-shaped, complex virions with a core and lateral bodies. Genome is a single linear dsDNA molecule.</p></div>
+    <div class="box must" data-priority="must"><div class="label">★ Must Know</div><p><b>Entire multiplication cycle occurs in the cytoplasm.</b> Poxvirus supplies its own enzymes, including viral DNA-dependent RNA polymerase. DNA polymerase and thymidine kinase are also needed.</p></div>
+  </div>
+  <div class="diagram" data-priority="must"><div class="diagram-title">Poxvirus replication</div><div class="flow"><div class="step">Attach to cell surface</div><div class="step">Fusion → viral cores released into cytoplasm</div><div class="step">Uncoating liberates viral DNA</div><div class="step">Virus-encoded machinery drives DNA replication and gene expression</div><div class="step">Late mRNA → structural proteins and enzymes</div><div class="step">Maturation + lipoprotein envelope during budding</div><div class="step">Rapid host macromolecular shutoff → cell death</div></div></div>
+  <div class="box trap" data-priority="must"><div class="label">⚠ Exam Trap</div><p>Poxvirus is the standout DNA-virus replication exception here because it does not depend on nuclear replication machinery in the way the other DNA viruses in this lecture do.</p></div>
+  <div data-priority="detail"><h3>Immune evasion</h3><p>The lecture describes poxvirus proteins resembling host defense regulators and countering TNF, interferon gamma, IL-1, and complement networks.</p></div>
+</div>
+
+<div class="subtopic" id="smallpox">
+  <h2>Smallpox — Variola Virus <span class="source">pp. 13–14</span></h2>
+  <div class="grid">
+    <div class="box must" data-priority="must"><div class="label">★ Must Know</div><p>First viral disease eradicated worldwide. The lecture gives <b>1980</b> as the eradication year.</p></div>
+    <div class="box clinical" data-priority="must"><div class="label">Transmission</div><p>Most efficient by inhalation. Direct contact with scars or pustular material and fomites are less efficient. Patients are highly infectious in the first week after rash appears following fever.</p></div>
+  </div>
+  <div class="diagram" data-priority="must"><div class="diagram-title">Lesion progression described in the lecture</div><div class="lesion-stages"><span class="lesion">1–5 days fever + malaise</span><span class="arrow">→</span><span class="lesion">Macules</span><span class="arrow">→</span><span class="lesion">Papules</span><span class="arrow">→</span><span class="lesion">Vesicles</span><span class="arrow">→</span><span class="lesion">Pustules</span></div><p class="small">Incubation: approximately 10–14 days.</p></div>
+  <div class="table-wrap" data-priority="must"><table><thead><tr><th>Feature</th><th>Smallpox</th><th>Chickenpox</th></tr></thead><tbody><tr><td>Lesion stage</td><td><b>Same stage of development</b></td><td><b>Occurs in crops with mixed stages</b></td></tr><tr><td>Lecture distribution clue</td><td>Noted by lesion-stage uniformity</td><td>Lecture smallpox table says most abundant on face and less on trunk, while the VZV section describes a trunk-first course. For exam recall, prioritize the lecture’s explicit lesion-stage contrast.</td></tr></tbody></table></div>
+  <div class="table-wrap" data-priority="detail"><table><thead><tr><th>Type</th><th>Lecture description</th></tr></thead><tbody><tr><td>Variola minor</td><td>Common but less fatal</td></tr><tr><td>Variola major</td><td>More common and deadly</td></tr><tr><td>Hemorrhagic smallpox</td><td>Rare and deadly, with bleeding into mucous membranes and skin</td></tr><tr><td>Malignant smallpox</td><td>Rare and deadly, lesions remain soft and flat and do not become pustular</td></tr></tbody></table></div>
+  <div class="grid" data-priority="detail"><div class="box clinical"><div class="label">Diagnosis</div><ul><li>Specimen of choice: skin lesions.</li><li><b>PCR is the primary detection and identification method</b> in the lecture.</li><li>Other approaches: antigen detection, direct microscopy, virus isolation, serology.</li></ul></div><div class="box clinical"><div class="label">Treatment / prevention</div><ul><li>Supportive care.</li><li>Lecture says no treatment proven effective and lists experimental cidofovir.</li><li>Vaccinia is the smallpox vaccination agent.</li><li>Lecture states vaccination can be protective if given within 3 days of exposure.</li></ul></div></div>
+</div>
+
+<div class="subtopic" id="mpox">
+  <h2>Mpox, Cowpox, Molluscum Contagiosum <span class="source">pp. 14–15</span></h2>
+  <div class="grid3">
+    <div class="box must" data-priority="must"><div class="label">Mpox</div><p>Zoonotic orthopoxvirus. Similar to smallpox but usually less severe. The lecture’s distinguishing clue is <b>pronounced cervical and submandibular lymphadenopathy</b>.</p><p>Person-to-person routes listed: skin-to-skin, mouth-to-skin, and close breathing. Diagnosis: PCR.</p></div>
+    <div class="box clinical" data-priority="detail"><div class="label">Cowpox</div><p>Natural reservoir: rodents. Cattle and humans are accidental hosts. Milking exposure can cause hand lesions. Lecture clue: deep red hemorrhagic lesions distinguish cowpox from vaccinia.</p></div>
+    <div class="box clinical" data-priority="must"><div class="label">Molluscum</div><p>Benign epidermal tumor with <b>rounded dome-shaped pink waxy umbilicated papules containing caseous plugs</b>. Spread by direct contact, fomites, swimming pools, and sexual contact. Can be seen in AIDS patients.</p></div>
+  </div>
+  <div class="box nice" data-priority="detail"><div class="label">Molluscum details</div><p>Lesions are uncommon on palms, soles, or mucous membranes. Scratching can cause autoinoculation. Lesions may persist up to two years but can regress spontaneously. Diagnosis is usually clinical, with PCR or electron microscopy available. The lecture lists imiquimod cream as treatment.</p></div>
+  <details class="recall-block"><summary>Active recall: Which poxvirus clue separates mpox from smallpox and chickenpox in the lecture?</summary><div class="answer">Pronounced cervical and submandibular lymphadenopathy.</div></details>
+  <details class="recall-block"><summary>Active recall: Which DNA virus family in this lecture replicates entirely in cytoplasm?</summary><div class="answer">Poxviridae.</div></details>
+</div>
+</div>
+</details>
+
+<details class="major" id="hbv" open data-searchable data-state-key="hbv">
+<summary><span>II-C. Hepatitis B Virus — Hepadnaviridae</span><span class="summary-meta">Genome · reverse transcription · serology · treatment · prevention</span></summary>
+<div class="major-body">
+<div class="subtopic">
+  <h2>Virion and Genome <span class="source">pp. 14–15</span></h2>
+  <div class="grid">
+    <div class="box must" data-priority="must"><div class="label">★ Must Know</div><p>Enveloped virion with an icosahedral nucleocapsid. Envelope carries <b>HBsAg</b>. Core carries <b>HBcAg</b>. <b>HBeAg</b> is associated with the nucleocapsid and indicates active replication and high infectivity.</p></div>
+    <div class="box must" data-priority="must"><div class="label">★ Must Know</div><p>HBV DNA is <b>circular and partially double-stranded</b>. One DNA strand is incomplete and is associated with a viral DNA polymerase.</p></div>
+  </div>
+  <div class="diagram" data-priority="must"><div class="diagram-title">HBV replication — the key reason Group 7 “goes back” through RNA</div><div class="flow"><div class="step">Attach + uncoat</div><div class="step">rcDNA enters nucleus</div><div class="step">rcDNA → cccDNA</div><div class="step">cccDNA transcribed → viral RNAs including pregenomic RNA</div><div class="step">Pregenomic RNA encapsidated with core antigen</div><div class="step">Reverse transcriptase makes negative DNA strand</div><div class="step">Positive DNA strand begins but remains incomplete</div><div class="step">Core acquires HBsAg envelope at pre-Golgi membranes → release or nuclear recycling</div></div></div>
+  <div class="box trap" data-priority="must"><div class="label">⚠ Exam Trap</div><p>HBV is a DNA virus, but replication includes an <b>RNA intermediate and reverse transcription</b>. Do not confuse this with a classic dsDNA-only replication pathway.</p></div>
+  <div data-priority="detail"><h3>Stability</h3><ul><li>Lecture values: stable at 37°C for 60 minutes and remains viable after drying at 25°C for at least one week.</li><li>Higher temperature conditions listed as inactivating include 100°C for one minute or 60°C for 10 hours.</li><li>0.5% sodium hypochlorite is described as destroying HBV antigenicity within three minutes.</li></ul></div>
+</div>
+
+<div class="subtopic">
+  <h2>Transmission, Pathology, and Chronic Disease <span class="source">pp. 15–16</span></h2>
+  <div class="box clinical" data-priority="must"><div class="label">Transmission</div><p>Infectious HBV can be present in body fluids. The lecture emphasizes blood, semen, saliva, and breast milk, plus perinatal transmission, contaminated needles and instruments, tattooing, ear piercing, and sexual transmission.</p></div>
+  <div class="pills" data-priority="detail"><span class="pill red">Parenteral drug users</span><span class="pill red">Healthcare personnel</span><span class="pill red">Hemodialysis patients and staff</span><span class="pill red">Multiple transfusions</span><span class="pill red">Organ transplants</span><span class="pill red">Infants of HBV-positive mothers</span><span class="pill red">High sexual exposure</span><span class="pill red">Institutionalized persons</span></div>
+  <div class="grid" data-priority="detail">
+    <div class="box clinical"><div class="label">Acute tissue injury</div><p>Lecture microscopy includes spotty hepatocyte degeneration and necrosis, diffuse lobular inflammation, Kupffer / reticuloendothelial hyperplasia, periportal mononuclear infiltration, and local necrosis. The preserved reticulum framework can allow hepatic regeneration over 8–12 weeks.</p></div>
+    <div class="box danger"><div class="label">Chronic and fulminant</div><p><b>HBsAg persisting beyond 6 months with absent anti-HBs indicates chronic infection.</b> Severe chronic disease can progress to cirrhosis and hepatocellular carcinoma. Fulminant hepatitis can produce extensive necrosis with high fever, abdominal pain, renal dysfunction, coma, and seizures.</p></div>
+  </div>
+  <div class="box must" data-priority="must"><div class="label">HCC clue</div><p>Ongoing viral replication, especially failure to clear HBeAg, is associated in the lecture with greater risk of cirrhosis. HCC can appear years after primary infection and may present with weight loss, right upper quadrant pain, fever, and intestinal bleeding.</p></div>
+</div>
+
+<div class="subtopic" id="hbv-serology">
+  <h2>HBV Serology — Memorize the Patterns <span class="source">pp. 16–17</span></h2>
+  <div class="grid4">
+    <div class="box must" data-priority="must"><div class="label">HBsAg</div><p>First serum marker detected after infection. Persistent beyond 6 months supports chronic infection.</p></div>
+    <div class="box must" data-priority="must"><div class="label">Anti-HBs</div><p>Indicates immunity. Lecture states it can remain for life. <b>Vaccination produces anti-HBs only.</b></p></div>
+    <div class="box must" data-priority="must"><div class="label">Anti-HBc</div><p><b>IgM = recent infection within about 6 months.</b> IgG / total anti-HBc persists in resolved and chronic natural infection.</p></div>
+    <div class="box must" data-priority="must"><div class="label">HBeAg / anti-HBe</div><p><b>HBeAg = active replication and high infectivity.</b> Anti-HBe points toward lower replicative activity in the lecture.</p></div>
+  </div>
+  <div class="table-wrap" data-priority="must"><table><thead><tr><th>Pattern</th><th>HBsAg</th><th>Anti-HBs</th><th>Anti-HBc</th><th>HBe marker</th><th>Interpretation</th></tr></thead><tbody><tr class="keyrow"><td>Early incubation</td><td>+</td><td>−</td><td>− / not yet</td><td>Variable</td><td>Lecture table says HBsAg alone can be the early marker</td></tr><tr><td>Acute, high infectivity</td><td>+</td><td>−</td><td><b>IgM +</b></td><td><b>HBeAg +</b></td><td><b>Acute HBV</b></td></tr><tr><td>Chronic replicating</td><td>+</td><td>−</td><td>+</td><td><b>HBeAg +</b></td><td>Active chronic infection, high infectivity</td></tr><tr><td>Chronic non-replicating</td><td>+</td><td>−</td><td>+</td><td><b>Anti-HBe +</b></td><td>Inactive / lower replicative chronic pattern in lecture</td></tr><tr><td>Window period</td><td>−</td><td>−</td><td><b>+</b></td><td>Anti-HBe + in lecture table</td><td>HBsAg has fallen before anti-HBs appears</td></tr><tr><td>Recovered / convalescent</td><td>−</td><td><b>+</b></td><td><b>+</b></td><td>Anti-HBe +</td><td>Natural recovery and immunity</td></tr><tr class="keyrow"><td>Vaccinated</td><td>−</td><td><b>+ only</b></td><td>−</td><td>−</td><td><b>Vaccine response</b></td></tr><tr><td>Susceptible</td><td>−</td><td>−</td><td>−</td><td>−</td><td>No past or present infection and not immune</td></tr></tbody></table></div>
+  <div class="box trap" data-priority="must"><div class="label">⚠ Exam Trap</div><p><b>Anti-HBc proves natural exposure.</b> A vaccinated person should not have anti-HBc. If the only positive marker is anti-HBs, think vaccination.</p></div>
+  <div class="box trap" data-priority="must"><div class="label">⚠ Exam Trap</div><p>The lecture’s window-period shorthand is anti-HBc positive with anti-HBe positive while HBsAg has fallen and anti-HBs has not yet appeared.</p></div>
+  <details class="recall-block"><summary>Active recall: HBsAg +, IgM anti-HBc +, HBeAg +?</summary><div class="answer">Acute hepatitis B with high infectivity.</div></details>
+  <details class="recall-block"><summary>Active recall: HBsAg +, anti-HBc IgG +, anti-HBe +?</summary><div class="answer">Chronic non-replicating hepatitis B in the lecture’s review framework.</div></details>
+  <details class="recall-block"><summary>Active recall: Only anti-HBs positive?</summary><div class="answer">Vaccinated.</div></details>
+</div>
+
+<div class="subtopic">
+  <h2>Laboratory Testing, Treatment, and Prevention <span class="source">pp. 17–18</span></h2>
+  <div class="grid">
+    <div class="box clinical" data-priority="must"><div class="label">Testing</div><ul><li>Elevated ALT, AST, and bilirubin support the clinical and serologic picture.</li><li>Most useful detection methods listed: <b>ELISA for HBV antigens / antibodies</b> and <b>PCR for viral DNA</b>.</li><li>High HBV DNA viral load is associated with active chronic infection and increased cirrhosis / HCC risk.</li></ul></div>
+    <div class="box clinical" data-priority="must"><div class="label">Chronic treatment</div><ul><li>Lecture first-line: pegylated interferon alfa-2a, entecavir, tenofovir.</li><li>Entecavir inhibits HBV polymerase.</li><li>Tenofovir is a nucleotide analog inhibitor of HBV reverse transcriptase and polymerase.</li><li>Telbivudine is listed second-line.</li><li>Lamivudine, also called 3TC, and adefovir are listed third-line polymerase inhibitors.</li></ul></div>
+  </div>
+  <div class="diagram" data-priority="must"><div class="diagram-title">Postexposure prevention in the lecture</div><div class="flow"><div class="step">Potential exposure such as needlestick or mucosal contamination</div><div class="step">Hepatitis B immune globulin gives immediate passive protection</div><div class="step">Hepatitis B vaccine given simultaneously at a different site</div><div class="step">Active immunity develops</div></div></div>
+  <div class="box must" data-priority="must"><div class="label">★ Must Know</div><p>Recombinant hepatitis B vaccination is described as the <b>most effective measure</b> to prevent HBV and its consequences. Universal precautions are emphasized for blood and body fluids.</p></div>
+</div>
+</div>
+</details>
+
+<section class="card" id="confusions" data-searchable>
+  <div class="kicker">Commonly confused</div><h2>Do Not Mix These Up</h2>
+  <div class="table-wrap"><table><thead><tr><th>Confusion</th><th>Concept A</th><th>Concept B</th><th>Fast distinction</th></tr></thead><tbody>
+    <tr><td>Parvo vs Adeno S phase</td><td>Parvo waits for natural S phase</td><td>Adeno forces S phase</td><td><b>Wait vs push</b></td></tr>
+    <tr><td>HPV low vs high risk</td><td>6, 11 → warts</td><td>16, 18 → cancer association</td><td><b>6/11 benign, 16/18 malignant risk</b></td></tr>
+    <tr><td>JC vs BK</td><td>JC → PML, white matter</td><td>BK → hemorrhagic cystitis</td><td><b>JC = CNS, BK = bladder</b></td></tr>
+    <tr><td>HSV-1 vs HSV-2</td><td>Oropharyngeal, trigeminal</td><td>Genital, sacral</td><td>Classic site + ganglion pair</td></tr>
+    <tr><td>Varicella vs Zoster</td><td>Primary VZV infection</td><td>Reactivation from sensory ganglion</td><td>Chickenpox first, shingles later</td></tr>
+    <tr><td>EBV mono vs CMV mono-like</td><td>Heterophile antibody testing is part of EBV workup</td><td>CMV mono-like illness is heterophile-negative</td><td><b>Heterophile status</b></td></tr>
+    <tr><td>HHV-6 vs HHV-7</td><td>HHV-6B is major roseola cause, febrile seizures</td><td>HHV-7 can also cause roseola, often asymptomatic</td><td>HHV-6B is the bigger exam anchor</td></tr>
+    <tr><td>Smallpox vs Chickenpox lesions</td><td>Smallpox same-stage lesions</td><td>Chickenpox crops, mixed stages</td><td><b>Uniform vs crops</b></td></tr>
+    <tr><td>HBV HBeAg vs anti-HBe</td><td>HBeAg → active replication, high infectivity</td><td>Anti-HBe → lower replicative / inactive carrier transition in lecture</td><td><b>Ag active, anti less active</b></td></tr>
+    <tr><td>Vaccinated vs recovered HBV</td><td>Vaccinated → anti-HBs only</td><td>Recovered → anti-HBs + anti-HBc + anti-HBe, HBsAg negative</td><td><b>Core antibody means natural exposure</b></td></tr>
+  </tbody></table></div>
+</section>
+
+<section class="card" id="traps" data-searchable>
+  <div class="kicker">Warning box</div><h2>Exam Traps</h2>
+  <div class="grid">
+    <div class="box trap"><div class="callout-title">B19 rash = late</div><p>The rash is an antibody-phase finding. High infectivity was earlier during viremia.</p></div>
+    <div class="box trap"><div class="callout-title">Adenovirus is not just respiratory</div><p>Eye, GI, urinary tract, and severe transplant disease are all in the lecture.</p></div>
+    <div class="box trap"><div class="callout-title">HPV treatment is not eradication</div><p>Wart removal does not guarantee viral clearance from basal cells.</p></div>
+    <div class="box trap"><div class="callout-title">Herpes envelope source</div><p>The lecture’s key exception is budding through the nuclear membrane.</p></div>
+    <div class="box trap"><div class="callout-title">HSV culture vs CSF PCR</div><p>PCR is the gold standard and CSF PCR is the test of choice for CNS HSV disease.</p></div>
+    <div class="box trap"><div class="callout-title">Chickenpox crops</div><p>Mixed lesion stages are a high-yield VZV pattern and help distinguish smallpox.</p></div>
+    <div class="box trap"><div class="callout-title">CMV can look like EBV</div><p>CMV mononucleosis-like illness has absent heterophile antibodies.</p></div>
+    <div class="box trap"><div class="callout-title">Pox is a DNA-virus cytoplasm exception</div><p>It carries the transcription and replication machinery needed to work in the cytoplasm.</p></div>
+    <div class="box trap"><div class="callout-title">Mpox clue</div><p>Pronounced cervical and submandibular lymphadenopathy is emphasized as a discriminator.</p></div>
+    <div class="box trap"><div class="callout-title">HBV is a DNA virus that reverse transcribes</div><p>Its pregenomic RNA is converted back to DNA inside the core.</p></div>
+    <div class="box trap"><div class="callout-title">HBV chronicity</div><p>HBsAg beyond six months with absent anti-HBs = chronic infection.</p></div>
+    <div class="box trap"><div class="callout-title">Vaccine profile</div><p>Anti-HBs only. Anti-HBc means the host saw natural core antigen.</p></div>
+  </div>
+</section>
+
+<section class="card" id="rapid" data-searchable>
+  <div class="kicker">Final retrieval practice</div><h2>Rapid-Fire Final Recall</h2>
+  <p class="small">Try each answer before opening it.</p>
+  <div id="rapidList">
+    <details class="recall-block"><summary>1. Smallest DNA animal virus family in this lecture?</summary><div class="answer">Parvoviridae.</div></details>
+    <details class="recall-block"><summary>2. B19 cellular receptor?</summary><div class="answer">Blood group P antigen, also called globocyte P antigen.</div></details>
+    <details class="recall-block"><summary>3. B19 target cell?</summary><div class="answer">Erythroid progenitor cells.</div></details>
+    <details class="recall-block"><summary>4. B19 high-risk hematologic complication?</summary><div class="answer">Aplastic crisis.</div></details>
+    <details class="recall-block"><summary>5. B19 pregnancy complication?</summary><div class="answer">Severe fetal anemia leading to non-immune hydrops or fetal loss.</div></details>
+    <details class="recall-block"><summary>6. When is fifth disease most infectious?</summary><div class="answer">During viremia before the rash.</div></details>
+    <details class="recall-block"><summary>7. Adenovirus genome and envelope?</summary><div class="answer">Linear dsDNA, non-enveloped.</div></details>
+    <details class="recall-block"><summary>8. Adenovirus non-coding interferon-evasion RNA?</summary><div class="answer">VA RNA.</div></details>
+    <details class="recall-block"><summary>9. Adenovirus E3 gp19 kDa blocks what?</summary><div class="answer">Movement of MHC I to the host cell surface.</div></details>
+    <details class="recall-block"><summary>10. Adenovirus gastroenteritis serotypes?</summary><div class="answer">40 and 41.</div></details>
+    <details class="recall-block"><summary>11. HPV 6 and 11?</summary><div class="answer">Low-risk types strongly associated with anogenital warts and laryngeal papillomas.</div></details>
+    <details class="recall-block"><summary>12. HPV 16 and 18?</summary><div class="answer">High-risk types strongly associated with cervical and other anogenital cancers.</div></details>
+    <details class="recall-block"><summary>13. HPV E6 and E7 target?</summary><div class="answer">p53 and pRb.</div></details>
+    <details class="recall-block"><summary>14. JCV disease?</summary><div class="answer">Progressive multifocal leukoencephalopathy.</div></details>
+    <details class="recall-block"><summary>15. BKV disease?</summary><div class="answer">Hemorrhagic cystitis.</div></details>
+    <details class="recall-block"><summary>16. Three herpes subfamilies in the lecture?</summary><div class="answer">Alpha, beta, gamma herpesvirinae.</div></details>
+    <details class="recall-block"><summary>17. Alpha herpes latency site?</summary><div class="answer">Nerve ganglia.</div></details>
+    <details class="recall-block"><summary>18. HSV-1 classic ganglion?</summary><div class="answer">Trigeminal ganglion.</div></details>
+    <details class="recall-block"><summary>19. HSV-2 classic ganglion?</summary><div class="answer">Sacral ganglion.</div></details>
+    <details class="recall-block"><summary>20. HSV test of choice for CNS disease?</summary><div class="answer">CSF PCR.</div></details>
+    <details class="recall-block"><summary>21. Primary VZV disease?</summary><div class="answer">Chickenpox / varicella.</div></details>
+    <details class="recall-block"><summary>22. Reactivated VZV disease?</summary><div class="answer">Herpes zoster / shingles.</div></details>
+    <details class="recall-block"><summary>23. EBV major target and receptor?</summary><div class="answer">B lymphocytes through the complement C3d receptor.</div></details>
+    <details class="recall-block"><summary>24. EBV tissue detection gold standard in the lecture?</summary><div class="answer">In situ hybridization for EBER.</div></details>
+    <details class="recall-block"><summary>25. CMV histology clue?</summary><div class="answer">Owl’s eye nuclear inclusions.</div></details>
+    <details class="recall-block"><summary>26. CMV mono-like illness versus EBV?</summary><div class="answer">CMV is heterophile antibody negative.</div></details>
+    <details class="recall-block"><summary>27. Major roseola virus?</summary><div class="answer">HHV-6B.</div></details>
+    <details class="recall-block"><summary>28. HHV-8 disease?</summary><div class="answer">Kaposi sarcoma.</div></details>
+    <details class="recall-block"><summary>29. Poxvirus replication site?</summary><div class="answer">Cytoplasm.</div></details>
+    <details class="recall-block"><summary>30. Smallpox lesion-stage pattern?</summary><div class="answer">Lesions are in the same stage of development.</div></details>
+    <details class="recall-block"><summary>31. Mpox clue not seen in smallpox or chickenpox?</summary><div class="answer">Pronounced cervical and submandibular lymphadenopathy.</div></details>
+    <details class="recall-block"><summary>32. Molluscum lesion description?</summary><div class="answer">Rounded dome-shaped pink waxy umbilicated papules with caseous plugs.</div></details>
+    <details class="recall-block"><summary>33. HBV surface antigen?</summary><div class="answer">HBsAg.</div></details>
+    <details class="recall-block"><summary>34. HBV marker of active replication and high infectivity?</summary><div class="answer">HBeAg.</div></details>
+    <details class="recall-block"><summary>35. HBV recent infection core antibody?</summary><div class="answer">IgM anti-HBc.</div></details>
+    <details class="recall-block"><summary>36. HBV chronicity threshold in lecture?</summary><div class="answer">HBsAg persisting beyond six months with absent anti-HBs.</div></details>
+    <details class="recall-block"><summary>37. HBV vaccine-only serology pattern?</summary><div class="answer">Anti-HBs positive only.</div></details>
+    <details class="recall-block"><summary>38. HBV replication intermediate?</summary><div class="answer">Pregenomic RNA, which is reverse transcribed back into DNA.</div></details>
+    <details class="recall-block"><summary>39. Lecture first-line chronic HBV drugs?</summary><div class="answer">Pegylated interferon alfa-2a, entecavir, and tenofovir.</div></details>
+    <details class="recall-block"><summary>40. HBV postexposure pair?</summary><div class="answer">Hepatitis B immune globulin plus hepatitis B vaccine at different sites.</div></details>
+  </div>
+  <span class="source">Source: whole lecture with emphasis on reviewable facts from pp. 1–18</span>
+</section>
+
+<section class="card" id="cram" data-searchable>
+  <div class="kicker">Last-minute sheet</div><h2>Last-Minute Cram Sheet</h2>
+  <div class="grid3">
+    <div class="box must"><div class="label">Naked DNA</div><p><b>Parvo B19:</b> ssDNA, P antigen, erythroid progenitors, waits for S phase, fifth disease, aplastic crisis, hydrops.</p><p><b>Adeno:</b> dsDNA, fibers and penton, pushes S phase, VA RNA, respiratory + eye + GI, 40/41 gastroenteritis.</p><p><b>HPV:</b> circular dsDNA, 6/11 warts, 16/18 cancer, E6/E7 → p53/pRb.</p><p><b>Polyoma:</b> JC=PML, BK=hemorrhagic cystitis, Merkel=carcinoma.</p></div>
+    <div class="box must"><div class="label">Herpes</div><p><b>General:</b> dsDNA, nuclear membrane envelope, latency.</p><p><b>HSV:</b> 1 trigeminal, 2 sacral, PCR for CNS.</p><p><b>VZV:</b> chickenpox primary, zoster reactivation, crops of lesions.</p><p><b>EBV:</b> saliva, B cell C3d, mono + malignancy.</p><p><b>CMV:</b> owl eye, heterophile-negative mono-like, congenital disease, retinitis.</p><p><b>HHV-6B:</b> roseola. <b>HHV-8:</b> Kaposi.</p></div>
+    <div class="box must"><div class="label">Pox + HBV</div><p><b>Pox:</b> cytoplasm, own polymerases. Smallpox same-stage lesions, mpox lymphadenopathy, molluscum umbilicated papules.</p><p><b>HBV:</b> partial circular dsDNA, cccDNA → pregenomic RNA → reverse transcription.</p><p><b>Serology:</b> HBeAg active/high infectivity, IgM anti-HBc recent, HBsAg >6 months chronic, anti-HBs only vaccinated.</p><p><b>Prevention:</b> vaccine, universal precautions, HBIg + vaccine postexposure.</p></div>
+  </div>
+  <div class="box trap" style="margin-top:12px"><div class="label">Do not leave the room without these</div><p><b>Wait vs push:</b> Parvo waits for S phase, Adeno pushes S phase. <b>Uniform vs crops:</b> Smallpox uniform lesion stage, Chickenpox crops. <b>Ag active:</b> HBeAg means active replication. <b>Only anti-HBs:</b> vaccinated.</p></div>
+</section>
+
+<p class="footer-note">This reviewer is intentionally lecture-faithful and prioritizes the exact details presented in the DNA Viruses PDF. Source labels refer to the lecture’s page numbering.</p>
+</main>
+<button class="backtop" id="backTop" type="button" aria-label="Back to top">↑</button>
+<script>
+(function(){
+  const body=document.body;
+  const majors=[...document.querySelectorAll('details.major')];
+  const checks=[...document.querySelectorAll('.progress-check')];
+  const pText=document.getElementById('progressText');
+  const pBar=document.getElementById('progressBar');
+  const search=document.getElementById('search');
+  const mustBtn=document.getElementById('mustToggle');
+  function updateProgress(){const done=checks.filter(c=>c.checked).length;pText.textContent=done+' / '+checks.length;pBar.style.width=(checks.length?done/checks.length*100:0)+'%'}
+  checks.forEach(c=>{const k='dna-review-check-'+c.dataset.key;c.checked=localStorage.getItem(k)==='1';c.addEventListener('change',()=>{localStorage.setItem(k,c.checked?'1':'0');updateProgress()})});
+  majors.forEach(d=>{const k='dna-review-open-'+d.dataset.stateKey;const saved=localStorage.getItem(k);if(saved!==null)d.open=saved==='1';d.addEventListener('toggle',()=>localStorage.setItem(k,d.open?'1':'0'))});
+  document.getElementById('expandAll').addEventListener('click',()=>majors.forEach(d=>d.open=true));
+  document.getElementById('collapseAll').addEventListener('click',()=>majors.forEach(d=>d.open=false));
+  mustBtn.addEventListener('click',()=>{const on=body.classList.toggle('must-only');mustBtn.classList.toggle('active',on);mustBtn.setAttribute('aria-pressed',on?'true':'false');mustBtn.textContent=on?'Show all content':'Must-know only'});
+  document.getElementById('resetProgress').addEventListener('click',()=>{if(!confirm('Reset all study checkboxes?'))return;checks.forEach(c=>{c.checked=false;localStorage.removeItem('dna-review-check-'+c.dataset.key)});updateProgress()});
+  document.getElementById('printBtn').addEventListener('click',()=>window.print());
+  document.getElementById('backTop').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+  function clearHighlights(){document.querySelectorAll('mark[data-search-mark]').forEach(m=>m.replaceWith(document.createTextNode(m.textContent)))}
+  search.addEventListener('input',()=>{
+    const q=search.value.trim().toLowerCase();clearHighlights();
+    document.querySelectorAll('[data-searchable]').forEach(el=>{el.classList.remove('hidden-by-search');if(q && !el.textContent.toLowerCase().includes(q))el.classList.add('hidden-by-search')});
+    if(q){majors.forEach(d=>{if(!d.classList.contains('hidden-by-search'))d.open=true})}
+  });
+  const beforePrint=[];
+  window.addEventListener('beforeprint',()=>{majors.forEach((d,i)=>{beforePrint[i]=d.open;d.open=true})});
+  window.addEventListener('afterprint',()=>majors.forEach((d,i)=>d.open=beforePrint[i]));
+  updateProgress();
+})();
+</script>
+</body>
+</html>
