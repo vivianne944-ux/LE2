@@ -1,1 +1,869 @@
-cc
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RNA Viruses 1 — Cramming Mode Reviewer</title>
+<style>
+:root{
+  --bg:#f5f7fb;
+  --paper:#ffffff;
+  --ink:#172033;
+  --muted:#5b6578;
+  --line:#dfe5ef;
+  --accent:#2367d1;
+  --accent2:#0b8f77;
+  --must:#b42318;
+  --mustbg:#fff1ef;
+  --should:#8a5b00;
+  --shouldbg:#fff8e6;
+  --nice:#45606f;
+  --nicebg:#edf5f8;
+  --good:#16794b;
+  --shadow:0 10px 28px rgba(24,39,75,.08)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",SegoeUI,Arial,sans-serif;line-height:1.48}
+a{color:var(--accent)}
+button,input{font:inherit}
+.topbar{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.topbar-inner{max-width:1180px;margin:auto;padding:10px 18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.brand{font-weight:800;letter-spacing:-.02em;white-space:nowrap}
+.brand small{display:block;font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.search{flex:1;min-width:230px;position:relative}
+.search input{width:100%;border:1px solid #ccd5e2;border-radius:10px;padding:10px 12px 10px 36px;background:#fbfcfe;color:var(--ink);outline:none}
+.search input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(35,103,209,.12)}
+.search:before{content:"⌕";position:absolute;left:12px;top:7px;font-size:20px;color:var(--muted)}
+.controls{display:flex;gap:7px;flex-wrap:wrap}
+.btn{border:1px solid #cfd7e4;background:#fff;color:#293246;border-radius:9px;padding:8px 10px;cursor:pointer;font-weight:650;font-size:13px}
+.btn:hover{border-color:#9fb0c8;background:#f7f9fc}
+.btn.active{background:#eaf2ff;border-color:#8bb1ef;color:#174d9b}
+.progress-wrap{min-width:120px}
+.progress-label{font-size:12px;color:var(--muted);display:flex;justify-content:space-between}
+.progress-track{height:7px;background:#e7ebf2;border-radius:99px;overflow:hidden;margin-top:3px}
+.progress-bar{height:100%;width:0;background:var(--accent2);transition:width .2s}
+.hero{max-width:1180px;margin:22px auto 14px;padding:0 18px}
+.hero-card{background:linear-gradient(135deg,#133b72,#235eab 60%,#198a78);color:white;border-radius:18px;padding:26px 28px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.hero-card:after{content:"+ssRNA  •  dsRNA  •  gastroenteritis  •  neurotropism";position:absolute;right:18px;bottom:12px;font-weight:800;font-size:14px;opacity:.18;transform:rotate(-4deg)}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.78}
+h1{margin:4px 0 7px;font-size:clamp(27px,4vw,45px);line-height:1.06;letter-spacing:-.04em}
+.hero p{max-width:760px;margin:0;color:#e7effc}
+.hero-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.hero-meta span{font-size:12px;border:1px solid rgba(255,255,255,.25);padding:5px 8px;border-radius:999px;background:rgba(255,255,255,.08)}
+main{max-width:1180px;margin:auto;padding:0 18px 70px}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;box-shadow:0 5px 16px rgba(24,39,75,.035);padding:18px}
+.span-12{grid-column:span 12}.span-8{grid-column:span 8}.span-6{grid-column:span 6}.span-4{grid-column:span 4}
+@media(max-width:850px){.span-8,.span-6,.span-4{grid-column:span 12}.hero-card{padding:22px}.topbar-inner{align-items:stretch}.progress-wrap{flex:1}}
+h2{font-size:21px;margin:0 0 11px;letter-spacing:-.02em}
+h3{font-size:16px;margin:18px 0 8px}
+p{margin:8px 0}
+ul,ol{margin:7px 0 7px 22px;padding:0}
+li{margin:4px 0}
+.muted{color:var(--muted)}
+.source{font-size:11px;color:#657085;background:#f0f3f8;border:1px solid #e0e5ed;padding:3px 7px;border-radius:99px;white-space:nowrap}
+.badge{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:4px 8px;font-size:11px;font-weight:800;letter-spacing:.03em;text-transform:uppercase}
+.badge.must{background:var(--mustbg);color:var(--must);border:1px solid #f6c7c1}
+.badge.should{background:var(--shouldbg);color:var(--should);border:1px solid #efd89e}
+.badge.nice{background:var(--nicebg);color:var(--nice);border:1px solid #cfe1e7}
+.priority-should,.priority-nice{transition:opacity .15s}
+body.must-only .priority-should,body.must-only .priority-nice{display:none!important}
+.remember-list{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;list-style:none;margin:0;padding:0}
+.remember-list li{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:9px;padding:9px 10px;background:#fbfcff;margin:0}
+@media(max-width:700px){.remember-list{grid-template-columns:1fr}}
+.roadmap{display:flex;gap:8px;align-items:stretch;overflow-x:auto;padding-bottom:3px}
+.roadstep{min-width:150px;flex:1;background:#f7f9fc;border:1px solid var(--line);border-radius:11px;padding:11px;text-align:center;font-weight:750;font-size:13px;position:relative}
+.roadstep:not(:last-child):after{content:"→";position:absolute;right:-9px;top:50%;transform:translateY(-50%);color:#8d98a9;background:white;border-radius:99px;width:18px;height:18px;line-height:17px;z-index:2}
+.topic{background:var(--paper);border:1px solid var(--line);border-radius:14px;box-shadow:0 5px 16px rgba(24,39,75,.035);overflow:hidden;margin:14px 0}
+.topic>summary{list-style:none;cursor:pointer;padding:16px 18px;display:flex;align-items:center;gap:10px;background:#fff;font-weight:800;font-size:18px;position:sticky;top:70px;z-index:4;border-bottom:1px solid transparent}
+.topic[open]>summary{border-bottom-color:var(--line)}
+.topic>summary::-webkit-details-marker{display:none}
+.topic>summary:before{content:"＋";width:24px;height:24px;display:grid;place-items:center;border-radius:7px;background:#edf2f8;color:#526076;font-size:16px;flex:0 0 auto}
+.topic[open]>summary:before{content:"−"}
+.topic-title{flex:1}
+.topic-check{width:20px;height:20px;accent-color:var(--accent2);cursor:pointer}
+.topic-body{padding:18px}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:10px 0 14px}
+.kpi{border:1px solid var(--line);border-radius:10px;padding:10px;background:#fafbfd}
+.kpi b{display:block;font-size:14px}.kpi span{font-size:12px;color:var(--muted)}
+@media(max-width:720px){.kpi-row{grid-template-columns:repeat(2,1fr)}}
+.callout{border-radius:11px;padding:11px 13px;margin:10px 0;border:1px solid}
+.callout.must{background:var(--mustbg);border-color:#f2c7c0}.callout.exam{background:#eef5ff;border-color:#c8daf6}.callout.lecture{background:#f3fbf8;border-color:#cce9df}.callout.warning{background:#fff8e8;border-color:#efd89c}
+.callout strong{display:block;margin-bottom:2px}
+.arrowflow{display:flex;gap:7px;align-items:center;overflow-x:auto;padding:10px 2px}
+.flowbox{min-width:120px;text-align:center;border:1px solid #cfd8e6;background:#f9fbfe;border-radius:10px;padding:9px;font-size:12px;font-weight:700}
+.arrow{font-size:18px;color:#7b8798;flex:0 0 auto}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:760px){.two-col,.three-col{grid-template-columns:1fr}}
+.mini{border:1px solid var(--line);border-radius:11px;padding:12px;background:#fbfcfe}
+.mini h3{margin:0 0 6px}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:11px;margin:10px 0}
+table{width:100%;border-collapse:collapse;min-width:690px;background:#fff;font-size:13px}
+th,td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
+th{background:#f3f6fa;font-size:12px;color:#4b586d;position:sticky;top:0}
+tr:last-child td{border-bottom:0}
+tr:hover td{background:#fbfcff}
+.qa{border:1px solid var(--line);border-radius:10px;margin:7px 0;background:#fff}
+.qa summary{cursor:pointer;padding:9px 11px;font-weight:700;font-size:13px;list-style:none}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary:before{content:"Q";display:inline-grid;place-items:center;width:21px;height:21px;margin-right:8px;border-radius:6px;background:#eaf2ff;color:#1f5eae;font-size:11px;font-weight:900}
+.qa[open] summary{border-bottom:1px solid var(--line)}
+.answer{padding:10px 12px;background:#fbfcfe;font-size:13px}
+.answer b{color:var(--good)}
+.trap{border-left:4px solid #d94a3e;padding:8px 11px;background:#fff5f4;border-radius:6px;margin:8px 0}
+.confused{border-left:4px solid #d2a327;padding:8px 11px;background:#fffbef;border-radius:6px;margin:8px 0}
+.recall-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+@media(max-width:700px){.recall-grid{grid-template-columns:1fr}}
+.cram{background:#111c2f;color:#ecf3ff;border-radius:16px;padding:20px;border:1px solid #223351}
+.cram h2,.cram h3{color:white}.cram .mini{background:#17253d;border-color:#2b3d5d}.cram .muted{color:#b7c4d8}
+.cram code{background:#223754;color:#fff;padding:2px 5px;border-radius:5px}
+.no-results{display:none;text-align:center;padding:28px;color:var(--muted)}
+#backTop{position:fixed;right:18px;bottom:18px;z-index:40;width:42px;height:42px;border-radius:50%;border:1px solid #cbd5e2;background:#fff;box-shadow:var(--shadow);cursor:pointer;display:none;font-weight:900}
+.hidden-search{display:none!important}
+small.note{display:block;color:var(--muted);font-size:11px;margin-top:6px}
+.section-label{font-size:11px;font-weight:850;text-transform:uppercase;letter-spacing:.11em;color:#647084;margin-bottom:5px}
+.legend{display:flex;gap:7px;flex-wrap:wrap;margin:8px 0}
+.figure{border:1px dashed #bfc9d8;background:#f8fafc;border-radius:12px;padding:14px;margin:10px 0}
+.figure figcaption{font-size:11px;color:var(--muted);margin-top:8px}
+.polio-map{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:8px;align-items:center;text-align:center}
+.polio-map div{padding:10px;border:1px solid var(--line);background:white;border-radius:9px;font-size:12px;font-weight:700}
+@media(max-width:700px){.polio-map{grid-template-columns:1fr}.polio-map .arrow{transform:rotate(90deg)}}
+@media print{
+  .topbar,#backTop,.topic-check{display:none!important}
+  body{background:#fff;font-size:10.5pt}
+  .hero{margin-top:0}.hero-card{box-shadow:none}
+  main,.hero{max-width:none;padding-left:0;padding-right:0}
+  .topic,.card{box-shadow:none;break-inside:avoid}
+  .topic>summary{position:static}
+  .qa .answer{display:block!important}
+  a{text-decoration:none;color:inherit}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">RNA Viruses 1 <small>Cramming Mode</small></div>
+    <label class="search"><input id="searchInput" type="search" placeholder="Search virus, disease, receptor, diagnostic test…" aria-label="Search reviewer"></label>
+    <div class="controls">
+      <button class="btn" id="mustBtn" type="button">Must-know only</button>
+      <button class="btn" id="expandBtn" type="button">Expand all</button>
+      <button class="btn" id="collapseBtn" type="button">Collapse all</button>
+      <button class="btn" id="printBtn" type="button">Print</button>
+      <button class="btn" id="resetBtn" type="button">Reset progress</button>
+    </div>
+    <div class="progress-wrap" aria-label="Study progress">
+      <div class="progress-label"><span>Progress</span><b id="progressText">0%</b></div>
+      <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-card">
+    <div class="eyebrow">Microbiology · LE 2 · High-yield reviewer</div>
+    <h1>RNA Viruses 1</h1>
+    <p>Source-faithful cramming guide for Picornaviridae, Reoviridae and Caliciviridae. Built for fast recall of structure, replication, syndromes, diagnostics, prevention and classic exam traps.</p>
+    <div class="hero-meta">
+      <span>Lecture scope: 16 pages</span>
+      <span>Segoe UI compact layout</span>
+      <span>Interactive recall + saved progress</span>
+      <span>Visual mechanisms recreated in HTML/CSS</span>
+    </div>
+  </div>
+</section>
+
+<main id="content">
+  <div class="grid">
+    <section class="card span-8 searchable static-card" id="only-remember">
+      <div class="section-label">Start here</div>
+      <h2>If You Only Remember These</h2>
+      <ul class="remember-list">
+        <li class="priority-must"><span class="badge must">Must know</span> Picornaviruses are <b>naked, icosahedral, nonsegmented +ssRNA</b>. Their genome can act directly as mRNA. <span class="source">p. 1–2</span></li>
+        <li class="priority-must"><span class="badge must">Must know</span> Picornavirus replication is in the <b>cytoplasm</b>: +RNA → polyprotein → protease cleavage → −RNA template → new +RNA. <span class="source">p. 2</span></li>
+        <li class="priority-must"><span class="badge must">Must know</span> Poliovirus targets <b>anterior horn lower motor neurons</b> → asymmetric flaccid paralysis with <b>no sensory deficit</b>. <span class="source">p. 3–4</span></li>
+        <li class="priority-must"><span class="badge must">Must know</span> Polio <b>does not multiply in muscle</b>. Muscle atrophy is secondary to denervation. <span class="source">p. 3</span></li>
+        <li class="priority-must"><span class="badge must">Must know</span> Nonparalytic polio = <b>aseptic meningitis</b>. Paralytic polio = destruction of anterior horn motor neurons. <span class="source">p. 4</span></li>
+        <li class="priority-must"><span class="badge must">Must know</span> <b>Salk IPV</b> prevents CNS disease but does not create strong gut immunity. <b>Sabin OPV</b> gives mucosal IgA and interrupts transmission but can rarely cause vaccine-associated paralysis. <span class="source">p. 5</span></li>
+        <li class="priority-must"><span class="badge must">Must know</span> Coxsackie <b>A = Above the neck</b> clues like herpangina and HFMD. Coxsackie <b>B = Below the neck/body organs</b> like pleurodynia and myocarditis. <span class="source">p. 6–7</span></li>
+        <li class="priority-must"><span class="badge must">Must know</span> HAV is <b>not directly cytopathic</b>. Liver injury is mainly immune-mediated by CD8+ T cells and NK cells. <span class="source">p. 8</span></li>
+        <li class="priority-must"><span class="badge must">Must know</span> Acute HAV: <b>IgM anti-HAV</b>. Prior infection or vaccination: <b>IgG anti-HAV</b> when IgM is negative. <span class="source">p. 8</span></li>
+        <li class="priority-must"><span class="badge must">Must know</span> Rhinovirus likes the cooler upper airway: <b>33°C</b>, acid labile, common cold, highest rates in children. <span class="source">p. 1, 9–10</span></li>
+        <li class="priority-must"><span class="badge must">Must know</span> Parechovirus = former <b>Echovirus 22/23</b>. Neonate + high fever + irritability + diffuse red rash + sepsis-like illness = “Red, Angry Baby.” <span class="source">p. 10</span></li>
+        <li class="priority-must"><span class="badge must">Must know</span> Reoviridae are <b>naked, segmented dsRNA</b>. Rotavirus has <b>11 segments</b> and a triple-layered capsid. <span class="source">p. 10–11</span></li>
+        <li class="priority-must"><span class="badge must">Must know</span> Rotavirus infects <b>small-intestinal villus cells</b>. NSP4 acts as a viral enterotoxin and inhibits SGLT1 → secretory diarrhea plus malabsorption. <span class="source">p. 11</span></li>
+        <li class="priority-must"><span class="badge must">Must know</span> Rotavirus <b>VP6</b> is the group-specific antigen detected by ELISA. VP4 = P type. VP7 = G type. <span class="source">p. 11</span></li>
+        <li class="priority-must"><span class="badge must">Must know</span> Norovirus = sudden vomiting + watery diarrhea + outbreaks in contained settings. <b>RT-PCR is gold standard</b>. <span class="source">p. 12</span></li>
+        <li class="priority-must"><span class="badge must">Must know</span> Caliciviruses are <b>naked, nonsegmented +ssRNA</b> with cup-shaped capsid depressions and major capsid protein VP1. <span class="source">p. 12</span></li>
+      </ul>
+    </section>
+
+    <section class="card span-4 searchable static-card">
+      <div class="section-label">Priority legend</div>
+      <h2>How to Use This</h2>
+      <div class="legend"><span class="badge must">Must know</span><span class="badge should">Should know</span><span class="badge nice">Nice to know</span></div>
+      <p><b>1.</b> Read the 16 facts at left.</p>
+      <p><b>2.</b> Work through each lecture topic in order.</p>
+      <p><b>3.</b> Open the active recall questions only after attempting an answer.</p>
+      <p><b>4.</b> Tick each topic when you can explain it without notes.</p>
+      <p><b>5.</b> Finish with the 5-minute cram sheet.</p>
+      <small class="note">Progress is stored in your browser on this device.</small>
+    </section>
+
+    <section class="card span-12 searchable static-card">
+      <div class="section-label">Lecture roadmap</div>
+      <h2>One-Pass Mental Map</h2>
+      <div class="roadmap">
+        <div class="roadstep">Picornavirus<br>framework</div>
+        <div class="roadstep">Enterovirus<br>pathogenesis</div>
+        <div class="roadstep">Poliovirus</div>
+        <div class="roadstep">Coxsackie A/B</div>
+        <div class="roadstep">Hepatitis A</div>
+        <div class="roadstep">Echo · Rhino · Parecho</div>
+        <div class="roadstep">Reoviridae<br>Rotavirus</div>
+        <div class="roadstep">Caliciviridae<br>Noro · Sapo</div>
+      </div>
+    </section>
+  </div>
+
+  <div id="topics">
+    <details class="topic searchable" open data-topic="picorna">
+      <summary><input class="topic-check" type="checkbox" data-progress="picorna" aria-label="Mark Picornavirus Foundations complete"><span class="topic-title">1. Picornavirus Foundations</span><span class="source">p. 1–2</span></summary>
+      <div class="topic-body">
+        <div class="kpi-row">
+          <div class="kpi priority-must"><b>Genome</b><span>+ssRNA, nonsegmented, ~7–8 kb</span></div>
+          <div class="kpi priority-must"><b>Envelope</b><span>Naked</span></div>
+          <div class="kpi priority-must"><b>Capsid</b><span>Icosahedral, VP1–VP4</span></div>
+          <div class="kpi priority-must"><b>Replication</b><span>Cytoplasm, rapid 5–10 h</span></div>
+        </div>
+        <div class="two-col">
+          <div>
+            <h3>Core structure</h3>
+            <ul>
+              <li class="priority-must">Capsid shell has 60 subunits, each built from four proteins VP1–VP4.</li>
+              <li class="priority-must">The genome is directly infectious because positive-sense RNA can be translated immediately.</li>
+              <li class="priority-should">5′ end carries <b>VPg</b>, used as a primer or starting point for RNA synthesis.</li>
+              <li class="priority-should">3′ end has a <b>poly-A tail</b> that contributes to RNA stability.</li>
+              <li class="priority-should">VP1, VP2 and VP3 form a surface “canyon.” The receptor-binding site lies deep within it, helping shield it from antibodies.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Major human groups</h3>
+            <div class="mini priority-must"><b>Enteroviruses</b><br><span class="muted">Gut + throat, 37°C, acid stable. Includes poliovirus, Coxsackie viruses, echoviruses and EV71.</span></div>
+            <div class="mini priority-must" style="margin-top:7px"><b>Rhinoviruses</b><br><span class="muted">Nose + throat, best at 33°C, acid labile. Taxonomically within Enterovirus, still separated clinically/traditionally.</span></div>
+            <div class="mini priority-must" style="margin-top:7px"><b>Hepatovirus</b><br><span class="muted">Hepatitis A virus, major replication in liver after intestinal entry.</span></div>
+            <div class="mini priority-should" style="margin-top:7px"><b>Parechovirus</b><br><span class="muted">Former Echovirus 22/23, distinct group.</span></div>
+          </div>
+        </div>
+        <figure class="figure priority-must">
+          <div class="section-label">Mechanism visual</div>
+          <div class="arrowflow">
+            <div class="flowbox">1 Attachment<br><span class="muted">receptor → tropism</span></div><span class="arrow">→</span>
+            <div class="flowbox">2 Uncoating<br><span class="muted">+RNA into cytosol</span></div><span class="arrow">→</span>
+            <div class="flowbox">3 Translation<br><span class="muted">one polyprotein</span></div><span class="arrow">→</span>
+            <div class="flowbox">4 Cleavage<br><span class="muted">viral proteases</span></div><span class="arrow">→</span>
+            <div class="flowbox">5 Replication<br><span class="muted">+RNA → −RNA → +RNA</span></div><span class="arrow">→</span>
+            <div class="flowbox">6 Assembly<br><span class="muted">VP0 → VP2 + VP4</span></div><span class="arrow">→</span>
+            <div class="flowbox">7 Release<br><span class="muted">cell lysis</span></div>
+          </div>
+          <figcaption>Recreated from the lecture’s Picornavirus replication cycle on page 2.</figcaption>
+        </figure>
+        <div class="callout exam priority-must"><strong>Receptor = tropism = organ = syndrome</strong>Examples in the lecture: PVR for poliovirus, CAR for Coxsackie B and DAF for echoviruses.</div>
+        <details class="qa priority-must"><summary>Why can a +ssRNA picornavirus begin protein production immediately after uncoating?</summary><div class="answer"><b>Answer:</b> Its positive-sense RNA genome can function directly as messenger RNA and can be translated by host ribosomes.</div></details>
+        <details class="qa priority-must"><summary>What is the purpose of the temporary negative-sense RNA made during replication?</summary><div class="answer"><b>Answer:</b> It is the template from which the viral RNA-dependent RNA polymerase makes many new positive-sense genomes.</div></details>
+      </div>
+    </details>
+
+    <details class="topic searchable" open data-topic="enterovirus">
+      <summary><input class="topic-check" type="checkbox" data-progress="enterovirus" aria-label="Mark Enterovirus Framework complete"><span class="topic-title">2. Enterovirus Framework</span><span class="source">p. 3</span></summary>
+      <div class="topic-body">
+        <div class="two-col">
+          <div>
+            <h3>Physical behavior</h3>
+            <ul>
+              <li class="priority-must">Stable over a wide pH range, approximately pH 3–10, so it can survive gastric conditions.</li>
+              <li class="priority-must">No lipid envelope → resistant to ether, chloroform and alcohol.</li>
+              <li class="priority-should">Inactivated by radiation, formaldehyde and phenol.</li>
+              <li class="priority-nice">MgCl₂ reduces thermolability, a point linked in the lecture to vaccine stability.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Pathogenesis pattern</h3>
+            <div class="arrowflow" style="flex-wrap:wrap">
+              <div class="flowbox">Fecal–oral or respiratory entry</div><span class="arrow">→</span>
+              <div class="flowbox">Pharynx + distal small bowel<br>Peyer patches</div><span class="arrow">→</span>
+              <div class="flowbox">Lymph nodes</div><span class="arrow">→</span>
+              <div class="flowbox">Minor viremia</div><span class="arrow">→</span>
+              <div class="flowbox">Major viremia</div><span class="arrow">→</span>
+              <div class="flowbox">CNS · heart · skin</div>
+            </div>
+          </div>
+        </div>
+        <div class="callout warning priority-should"><strong>RNA evolution matters</strong>High replication error rate leads to mutation and genetic drift. If different strains coinfect the same cell, recombination can occur when the polymerase jumps between RNA templates.</div>
+        <div class="callout lecture priority-should"><strong>Immunity</strong>Serotype-specific neutralizing IgG can persist for life. IgM appears early. IgA protects mucosa. Maternal antibodies give early infant protection.</div>
+        <details class="qa priority-must"><summary>Where do enteroviruses initially replicate before systemic spread?</summary><div class="answer"><b>Answer:</b> In the pharynx and distal small bowel, especially Peyer patches, before spread through lymph nodes and viremia.</div></details>
+      </div>
+    </details>
+
+    <details class="topic searchable" open data-topic="polio">
+      <summary><input class="topic-check" type="checkbox" data-progress="polio" aria-label="Mark Poliovirus complete"><span class="topic-title">3. Poliovirus</span><span class="source">p. 3–6</span></summary>
+      <div class="topic-body">
+        <div class="kpi-row">
+          <div class="kpi priority-must"><b>Reservoir</b><span>Humans only</span></div>
+          <div class="kpi priority-must"><b>Receptor</b><span>PVR / CD155</span></div>
+          <div class="kpi priority-must"><b>Main target</b><span>Anterior horn LMNs</span></div>
+          <div class="kpi priority-must"><b>Incubation</b><span>7–14 days</span></div>
+        </div>
+        <figure class="figure priority-must">
+          <div class="section-label">Pathogenesis visual</div>
+          <div class="polio-map">
+            <div>Mouth<br><span class="muted">fecal–oral exposure</span></div><span class="arrow">→</span>
+            <div>Oropharynx + Peyer patches<br><span class="muted">initial multiplication</span></div><span class="arrow">→</span>
+            <div>Blood / peripheral nerves<br><span class="muted">CNS access</span></div><span class="arrow">→</span>
+            <div>Anterior horn / brainstem<br><span class="muted">motor neuron cytolysis</span></div><span class="arrow">→</span>
+            <div>Flaccid paralysis<br><span class="muted">denervation, atrophy</span></div>
+          </div>
+          <figcaption>The lecture emphasizes that poliovirus does not multiply in muscle. Muscle injury is secondary to lower motor neuron damage.</figcaption>
+        </figure>
+        <div class="callout must priority-must"><strong>Classic neurologic picture</strong>Asymmetric flaccid paralysis, hypotonia and reduced or absent reflexes from lower motor neuron destruction. Sensory function is spared.</div>
+        <h3>Clinical spectrum</h3>
+        <div class="three-col">
+          <div class="mini priority-should"><b>≈95%: no illness</b><br><span class="muted">Subclinical or asymptomatic infection.</span></div>
+          <div class="mini priority-should"><b>Minor illness</b><br><span class="muted">Nonspecific fever, sore throat, headache, malaise, GI symptoms with full recovery.</span></div>
+          <div class="mini priority-must"><b>Major illness</b><br><span class="muted">Nonparalytic aseptic meningitis or paralytic myelitis.</span></div>
+        </div>
+        <div class="two-col">
+          <div>
+            <h3>Nonparalytic myelitis</h3>
+            <ul>
+              <li class="priority-must">Meningeal invasion without major anterior horn destruction.</li>
+              <li class="priority-must">Nuchal rigidity, headache and possible mental status changes.</li>
+              <li class="priority-should">Usually complete recovery in about 2–10 days.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Paralytic / bulbar disease</h3>
+            <ul>
+              <li class="priority-must">Asymmetric weakness and flaccid paralysis, often lower limbs.</li>
+              <li class="priority-must">Bulbar myelitis involves medulla and can impair breathing, swallowing and airway protection.</li>
+              <li class="priority-should">Lecture highlights phrenic and intercostal motor pathways plus CN IX, X and XII.</li>
+              <li class="priority-must">No sensory deficits.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="callout warning priority-must"><strong>Post-polio syndrome is NOT reactivation</strong>Decades later, new weakness, pain, atrophy and fatigue reflect late failure of compensatory motor-neuron sprouts after the original injury.</div>
+        <h3>Diagnosis</h3>
+        <div class="table-wrap priority-should">
+          <table><thead><tr><th>Item</th><th>High-yield point</th></tr></thead><tbody>
+            <tr><td>Best specimen timing</td><td>Throat swab early. Stool gives the longest yield. Virus is rarely recovered from CSF.</td></tr>
+            <tr><td>RT-PCR</td><td>Rapid, sensitive and specific.</td></tr>
+            <tr><td>Cell culture</td><td>Observe cytopathic effect, then neutralization with specific antiserum can confirm.</td></tr>
+            <tr><td>CSF</td><td>Viral meningitis pattern: lymphocytic pleocytosis, normal glucose, normal or increased protein.</td></tr>
+            <tr><td>MRI</td><td>Can show anterior horn involvement.</td></tr>
+          </tbody></table>
+        </div>
+        <h3>Salk vs Sabin</h3>
+        <div class="table-wrap priority-must">
+          <table><thead><tr><th>Feature</th><th>IPV — Salk</th><th>OPV — Sabin</th></tr></thead><tbody>
+            <tr><td>Form</td><td>Inactivated, injected</td><td>Live attenuated, oral</td></tr>
+            <tr><td>Immunity</td><td>Strong humoral protection</td><td>Systemic + mucosal immunity, including gut IgA</td></tr>
+            <tr><td>Gut infection</td><td>Does not fully block intestinal multiplication or stool shedding</td><td>Gut becomes resistant and transmission is interrupted</td></tr>
+            <tr><td>Community effect</td><td>Does not immunize unvaccinated contacts</td><td>Vaccine virus progeny can disseminate in the community</td></tr>
+            <tr><td>Main risk</td><td>No live-virus reversion</td><td>Rare vaccine-associated paralysis and vaccine-derived virus emergence</td></tr>
+          </tbody></table>
+        </div>
+        <div class="callout lecture priority-nice"><strong>Lecture epidemiology snapshot</strong>The lecture notes the Philippines was declared polio-free in 2000, followed by a circulating vaccine-derived poliovirus outbreak in 2019, with no new confirmed cases since 2020 in the lecture’s summary.</div>
+        <details class="qa priority-must"><summary>Polio patient has fever and nuchal rigidity but no weakness. What syndrome is this?</summary><div class="answer"><b>Answer:</b> Nonparalytic poliomyelitis presenting as aseptic meningitis, which usually resolves without permanent paralysis.</div></details>
+        <details class="qa priority-must"><summary>Why can an IPV-vaccinated person still shed poliovirus in stool?</summary><div class="answer"><b>Answer:</b> IPV produces systemic humoral protection against CNS disease but does not generate the same strong local intestinal immunity as oral live vaccine.</div></details>
+      </div>
+    </details>
+
+    <details class="topic searchable" open data-topic="coxsackie">
+      <summary><input class="topic-check" type="checkbox" data-progress="coxsackie" aria-label="Mark Coxsackieviruses complete"><span class="topic-title">4. Coxsackieviruses A & B</span><span class="source">p. 6–7</span></summary>
+      <div class="topic-body">
+        <div class="callout exam priority-must"><strong>Fast divider: A = Above, B = Below</strong>Coxsackie A points you toward oral, pharyngeal, eye and skin findings. Coxsackie B points you toward chest, heart and severe systemic organ disease.</div>
+        <div class="two-col">
+          <div class="mini">
+            <h3>Coxsackie A</h3>
+            <ul>
+              <li class="priority-must"><b>Herpangina:</b> abrupt fever + sore throat + vesicles/ulcers on posterior palate, pharynx, tonsils or tongue.</li>
+              <li class="priority-must"><b>HFMD:</b> oral ulcers + vesicular rash on palms and soles. CVA16 is common.</li>
+              <li class="priority-should"><b>Acute hemorrhagic conjunctivitis:</b> Coxsackie A24 variant. Lecture notes Enterovirus 70 as the classic cause.</li>
+            </ul>
+          </div>
+          <div class="mini">
+            <h3>Coxsackie B</h3>
+            <ul>
+              <li class="priority-must"><b>Pleurodynia / Bornholm disease:</b> abrupt fever + stabbing chest or abdominal pain.</li>
+              <li class="priority-must"><b>Acute myocarditis/pericarditis:</b> major viral heart-disease association in the lecture, may be fatal in neonates.</li>
+              <li class="priority-should"><b>Generalized neonatal disease:</b> simultaneous involvement of heart, liver and brain.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="callout warning priority-must"><strong>Herpangina vs strep pharyngitis</strong>Herpangina gives discrete vesicles and ulcers. The lecture contrasts this with streptococcal exudative tonsillitis, which gives white/yellow tonsillar exudate rather than ulcers.</div>
+        <div class="callout warning priority-must"><strong>HFMD vesicles</strong>They heal without crusting, unlike the vesicular lesions emphasized for herpesviruses and poxviruses.</div>
+        <p class="priority-should"><b>Transmission and shedding:</b> fecal–oral and respiratory routes, direct or indirect contact with infected fluids. Virus may be in blood early, throat for days and stool for 5–6 weeks.</p>
+        <p class="priority-should"><b>Diagnosis:</b> collect from the involved site. The lecture calls RT-PCR the method of choice. Cell culture and type-specific serology are alternatives.</p>
+        <details class="qa priority-must"><summary>Child with fever, sore throat and vesicles on posterior pharynx. Coxsackie A or B?</summary><div class="answer"><b>Answer:</b> Coxsackie A, classically herpangina.</div></details>
+        <details class="qa priority-must"><summary>Neonate with myocarditis and systemic heart-liver-brain disease. Which Coxsackie group is the stronger clue?</summary><div class="answer"><b>Answer:</b> Coxsackie B.</div></details>
+      </div>
+    </details>
+
+    <details class="topic searchable" open data-topic="hav">
+      <summary><input class="topic-check" type="checkbox" data-progress="hav" aria-label="Mark Hepatitis A complete"><span class="topic-title">5. Hepatitis A Virus</span><span class="source">p. 7–8</span></summary>
+      <div class="topic-body">
+        <div class="kpi-row">
+          <div class="kpi priority-must"><b>Genus</b><span>Hepatovirus</span></div>
+          <div class="kpi priority-must"><b>Genome</b><span>+ssRNA, naked</span></div>
+          <div class="kpi priority-must"><b>Transmission</b><span>Fecal–oral</span></div>
+          <div class="kpi priority-must"><b>Chronicity</b><span>No chronic infection</span></div>
+        </div>
+        <figure class="figure priority-must">
+          <div class="section-label">Pathogenesis visual</div>
+          <div class="arrowflow">
+            <div class="flowbox">Acid-resistant virus survives stomach</div><span class="arrow">→</span>
+            <div class="flowbox">Lower intestine</div><span class="arrow">→</span>
+            <div class="flowbox">Liver<br><span class="muted">major replication site</span></div><span class="arrow">→</span>
+            <div class="flowbox">Sinusoids + canaliculi</div><span class="arrow">→</span>
+            <div class="flowbox">Intestine</div><span class="arrow">→</span>
+            <div class="flowbox">Fecal excretion</div>
+          </div>
+          <figcaption>Lecture’s enterohepatic path summarized from page 8.</figcaption>
+        </figure>
+        <div class="callout must priority-must"><strong>Main mechanism of liver injury</strong>HAV is not directly cytopathic. Hepatocyte injury appears as the adaptive immune response develops. CD8+ T cells and NK cells lyse infected cells, while antibodies mainly limit spread.</div>
+        <div class="two-col">
+          <div>
+            <h3>Clinical clues</h3>
+            <ul>
+              <li class="priority-must">Incubation approximately 4 weeks.</li>
+              <li class="priority-must">Fever, malaise, nausea, vomiting and jaundice.</li>
+              <li class="priority-should">Loss of appetite and weight loss.</li>
+              <li class="priority-must">Dark urine can be the first sign that prompts consultation. Pale or clay-colored stool can occur.</li>
+              <li class="priority-must">Children under 5 are often asymptomatic. Symptomatic infection and jaundice become more likely with age.</li>
+              <li class="priority-must">No chronic infection and no cirrhosis from HAV.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Exposure clues</h3>
+            <ul>
+              <li class="priority-must">Raw or undercooked shellfish and contaminated food or water.</li>
+              <li class="priority-should">Outbreak settings include daycares, camps, schools, military settings and nursing homes.</li>
+              <li class="priority-should">Risk groups in the lecture include travelers, MSM, drug users, clotting-factor disorders and chronic liver disease.</li>
+            </ul>
+          </div>
+        </div>
+        <h3>Serology + diagnosis</h3>
+        <div class="table-wrap priority-must">
+          <table><thead><tr><th>Finding</th><th>Interpretation</th><th>Timing / note</th></tr></thead><tbody>
+            <tr><td><b>IgM anti-HAV</b></td><td>Acute infection</td><td>Appears early and lasts about 3–6 months.</td></tr>
+            <tr><td><b>IgG anti-HAV</b> with IgM negative</td><td>Prior infection or vaccination</td><td>Long-term immunity marker.</td></tr>
+            <tr><td>HAV in stool</td><td>Direct detection window</td><td>About 2 weeks before through 2 weeks after jaundice.</td></tr>
+            <tr><td>ELISA</td><td>Test of choice in lecture</td><td>Used for anti-HAV testing.</td></tr>
+            <tr><td>AST / ALT elevation</td><td>Liver injury</td><td>Nonspecific.</td></tr>
+          </tbody></table>
+        </div>
+        <h3>Complications</h3>
+        <div class="three-col">
+          <div class="mini priority-should"><b>Cholestatic</b><br><span class="muted">Fever, pruritus, prolonged jaundice.</span></div>
+          <div class="mini priority-should"><b>Relapsing HAV</b><br><span class="muted">Improvement followed by a usually milder relapse.</span></div>
+          <div class="mini priority-must"><b>Fulminant hepatitis</b><br><span class="muted">Very rare severe liver failure with encephalopathy and coagulopathy.</span></div>
+        </div>
+        <p class="priority-should"><b>Prevention:</b> inactivated HAV vaccine, hygiene and safe food/water. Immune globulin can be used for post-exposure prophylaxis within 2 weeks. The lecture notes HAV vaccine is recommended from age 1 year but is not part of the Philippine National Immunization Program in its lecture snapshot.</p>
+        <p class="priority-must"><b>Treatment:</b> supportive only. No specific antiviral therapy. Rare fulminant cases may require liver transplantation.</p>
+        <details class="qa priority-must"><summary>Patient returns from a shellfish exposure with jaundice, IgM anti-HAV positive. What actually damages the liver?</summary><div class="answer"><b>Answer:</b> Immune-mediated killing of HAV-infected hepatocytes, especially by CD8+ T cells and NK cells, rather than direct viral cytolysis.</div></details>
+        <details class="qa priority-must"><summary>IgG anti-HAV positive, IgM anti-HAV negative. What does this suggest?</summary><div class="answer"><b>Answer:</b> Prior infection or vaccination rather than acute HAV.</div></details>
+      </div>
+    </details>
+
+    <details class="topic searchable" open data-topic="echo-rhino-parecho">
+      <summary><input class="topic-check" type="checkbox" data-progress="erp" aria-label="Mark Echo Rhino Parecho complete"><span class="topic-title">6. Echovirus · Rhinovirus · Parechovirus</span><span class="source">p. 8–10</span></summary>
+      <div class="topic-body">
+        <div class="three-col">
+          <div class="mini">
+            <h3>Echovirus</h3>
+            <p class="priority-should"><b>ECHO</b> historically means Enteric Cytopathogenic Human Orphan.</p>
+            <p class="priority-must">Picornaviridae, Enterovirus genus, +ssRNA.</p>
+            <p class="priority-must">Clinical associations in the lecture include aseptic meningitis, encephalitis/febrile illness, infantile diarrhea and acute hemorrhagic conjunctivitis.</p>
+            <p class="priority-should">The summary table lists throat swab, stool and CSF specimens, with PCR as a key diagnostic method.</p>
+          </div>
+          <div class="mini">
+            <h3>Rhinovirus</h3>
+            <p class="priority-must"><b>33°C + acid labile + nasal mucosa = common cold.</b></p>
+            <p class="priority-must">Highest rates in children, who often introduce infection into families.</p>
+            <p class="priority-should">Transmission is mainly direct contact, hand-to-eye inoculation and contaminated objects. Self-inoculation is emphasized over airborne spread.</p>
+            <p class="priority-must">No vaccine because of many serotypes and short-lived type-specific protection. No specific antiviral.</p>
+            <p class="priority-should">PCR gives specific diagnosis but is rarely needed for routine management.</p>
+          </div>
+          <div class="mini">
+            <h3>Parechovirus</h3>
+            <p class="priority-must">Former <b>Echovirus 22 and 23</b>. Types 1 and 2 correspond to those former classifications.</p>
+            <p class="priority-should">Divergent from enteroviruses with less than 30% protein sequence identity in the lecture.</p>
+            <p class="priority-should">Capsid has 3 proteins because VP0 is not cleaved.</p>
+            <p class="priority-must"><b>Red, Angry Baby:</b> high fever + irritability + diffuse red rash + sepsis-like presentation.</p>
+            <p class="priority-must">Can cause meningitis and neonatal sepsis-like illness.</p>
+            <p class="priority-should">Routine enterovirus PCR can miss it if primers are not specific for parechovirus.</p>
+          </div>
+        </div>
+        <div class="callout exam priority-must"><strong>Exam phrase recognition</strong>“Former Echovirus 22/23” is practically a direct arrow to <b>Parechovirus</b>.</div>
+        <details class="qa priority-must"><summary>Why can routine enterovirus PCR be negative in a neonate with parechovirus?</summary><div class="answer"><b>Answer:</b> PCR requires primers that match the target. Routine enterovirus primers may not amplify parechovirus.</div></details>
+      </div>
+    </details>
+
+    <details class="topic searchable" open data-topic="reo-rota">
+      <summary><input class="topic-check" type="checkbox" data-progress="rotavirus" aria-label="Mark Reoviridae and Rotavirus complete"><span class="topic-title">7. Reoviridae & Rotavirus</span><span class="source">p. 10–12</span></summary>
+      <div class="topic-body">
+        <div class="kpi-row">
+          <div class="kpi priority-must"><b>Genome</b><span>Segmented dsRNA</span></div>
+          <div class="kpi priority-must"><b>Envelope</b><span>Naked</span></div>
+          <div class="kpi priority-must"><b>Rotavirus</b><span>11 segments</span></div>
+          <div class="kpi priority-must"><b>Capsid</b><span>Triple-layered</span></div>
+        </div>
+        <div class="callout exam priority-must"><strong>Segmented genome → reassortment</strong>Coinfection can mix whole genome segments and create new hybrids. The lecture links this to genetic shift and increased diversity.</div>
+        <p class="priority-should"><b>Segment counts:</b> Rotavirus 11, Orthoreovirus and Orbivirus 10, Coltivirus 12. The virion core contains enzymes for transcription and RNA capping.</p>
+        <p class="priority-should"><b>Subfamilies:</b> Spinareovirinae has a spiked inner capsid and includes Orthoreovirus. Sedoreovirinae has a smooth inner capsid and includes Rotavirus.</p>
+        <h3>Rotavirus antigens</h3>
+        <div class="table-wrap priority-must">
+          <table><thead><tr><th>Protein</th><th>What to remember</th></tr></thead><tbody>
+            <tr><td><b>VP4</b></td><td>Spike/attachment protein. Defines P type. Neutralizing, type-specific antigen.</td></tr>
+            <tr><td><b>VP7</b></td><td>Outer capsid antigen. Defines G type. Neutralizing, type-specific antigen.</td></tr>
+            <tr><td><b>VP6</b></td><td>Group-specific antigen. Detected by ELISA and IEM.</td></tr>
+            <tr><td><b>VP1</b></td><td>Polymerase involved in transcription and genome replication.</td></tr>
+            <tr><td><b>NSP4</b></td><td>Viral enterotoxin linked to secretory diarrhea.</td></tr>
+          </tbody></table>
+        </div>
+        <figure class="figure priority-must">
+          <div class="section-label">Replication visual</div>
+          <div class="arrowflow">
+            <div class="flowbox">VP4 attachment</div><span class="arrow">→</span>
+            <div class="flowbox">Partial uncoating<br><span class="muted">VP4 + VP7 removed</span></div><span class="arrow">→</span>
+            <div class="flowbox">VP1 transcription<br><span class="muted">capped mRNAs inside core</span></div><span class="arrow">→</span>
+            <div class="flowbox">mRNA export + proteins</div><span class="arrow">→</span>
+            <div class="flowbox">Viroplasm<br><span class="muted">mRNA → dsRNA genome</span></div><span class="arrow">→</span>
+            <div class="flowbox">ER budding<br><span class="muted">temporary membrane</span></div><span class="arrow">→</span>
+            <div class="flowbox">Membrane lost<br>VP4 + VP7 added</div><span class="arrow">→</span>
+            <div class="flowbox">Cell lysis</div>
+          </div>
+          <figcaption>Recreated from Table 14, Rotavirus Replication.</figcaption>
+        </figure>
+        <figure class="figure priority-must">
+          <div class="section-label">Why diarrhea happens</div>
+          <div class="arrowflow">
+            <div class="flowbox">Rotavirus infects small-intestinal villus cells</div><span class="arrow">→</span>
+            <div class="flowbox">Villus destruction</div><span class="arrow">→</span>
+            <div class="flowbox">Immature crypt cells replace villi</div><span class="arrow">→</span>
+            <div class="flowbox">Poor absorption<br><b>malabsorption</b></div>
+          </div>
+          <div class="arrowflow">
+            <div class="flowbox">NSP4 enterotoxin</div><span class="arrow">→</span>
+            <div class="flowbox">Inhibits SGLT1</div><span class="arrow">→</span>
+            <div class="flowbox">Na⁺ + glucose stay in lumen</div><span class="arrow">→</span>
+            <div class="flowbox">Water follows<br><b>secretory diarrhea</b></div>
+          </div>
+          <figcaption>Two parallel mechanisms explain the watery diarrhea: reduced absorption plus NSP4-driven secretion.</figcaption>
+        </figure>
+        <div class="two-col">
+          <div>
+            <h3>Clinical</h3>
+            <ul>
+              <li class="priority-must">Major cause of diarrheal illness in infants and young children.</li>
+              <li class="priority-must">Incubation 1–3 days.</li>
+              <li class="priority-must">Watery diarrhea, vomiting, fever, abdominal pain → dehydration.</li>
+              <li class="priority-should">Severe/prolonged in immunodeficient children. Often mild or asymptomatic in adults.</li>
+              <li class="priority-should">Group B rotavirus is linked to adult outbreaks.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Diagnosis</h3>
+            <ul>
+              <li class="priority-must">Stool sample early in illness.</li>
+              <li class="priority-must"><b>EIA/ELISA detects VP6 antigen.</b></li>
+              <li class="priority-should">PCR is most sensitive and specific and enables genotyping, but is not routinely done in the lecture because of cost.</li>
+              <li class="priority-should">Rapid immunochromatographic lateral-flow tests are point-of-care antigen tests.</li>
+            </ul>
+          </div>
+        </div>
+        <h3>Prevention</h3>
+        <p class="priority-must">Treatment is supportive rehydration and electrolyte replacement. Vaccines are the best control strategy in the lecture.</p>
+        <div class="table-wrap priority-must">
+          <table><thead><tr><th>Vaccine</th><th>High-yield description</th></tr></thead><tbody>
+            <tr><td>RotaTeq</td><td>Live attenuated, oral, pentavalent human-bovine reassortant.</td></tr>
+            <tr><td>Rotarix</td><td>Live attenuated, oral, monovalent human vaccine.</td></tr>
+            <tr><td>RotaShield</td><td>Older rhesus-based vaccine withdrawn because of intussusception risk.</td></tr>
+          </tbody></table>
+        </div>
+        <div class="callout exam priority-must"><strong>ROTA mnemonic from lecture</strong><b>R</b> = RNA, Reoviridae, dsRNA segmented. <b>O</b> = oral-fecal spread + oral vaccine. <b>T</b> = toxin NSP4 + tiny people. <b>A</b> = acute diarrhea in infants.</div>
+        <details class="qa priority-must"><summary>Which rotavirus protein is the group-specific antigen detected by ELISA?</summary><div class="answer"><b>Answer:</b> VP6.</div></details>
+        <details class="qa priority-must"><summary>Why is oral rehydration still mechanistically sensible if rotavirus inhibits SGLT1 in the lecture?</summary><div class="answer"><b>Answer:</b> The lecture’s treatment recommendation remains rehydration and electrolyte replacement. For exam purposes, separate the NSP4/SGLT1 pathogenesis fact from the supportive treatment fact rather than overextending the mechanism.</div></details>
+      </div>
+    </details>
+
+    <details class="topic searchable" open data-topic="calici">
+      <summary><input class="topic-check" type="checkbox" data-progress="calici" aria-label="Mark Caliciviruses complete"><span class="topic-title">8. Caliciviruses: Norovirus & Sapovirus</span><span class="source">p. 12–13, 16</span></summary>
+      <div class="topic-body">
+        <div class="kpi-row">
+          <div class="kpi priority-must"><b>Genome</b><span>+ssRNA, nonsegmented</span></div>
+          <div class="kpi priority-must"><b>Envelope</b><span>Naked</span></div>
+          <div class="kpi priority-must"><b>Capsid</b><span>Icosahedral, cup-like</span></div>
+          <div class="kpi priority-must"><b>Major protein</b><span>VP1</span></div>
+        </div>
+        <div class="callout lecture priority-should"><strong>Calyx = cup</strong>Caliciviruses show distinctive cup-shaped capsid depressions under electron microscopy.</div>
+        <div class="two-col">
+          <div class="mini">
+            <h3>Norovirus</h3>
+            <ul>
+              <li class="priority-must">Prototype: Norwalk virus.</li>
+              <li class="priority-must">Incubation 24–48 h. Illness is short and self-limited.</li>
+              <li class="priority-must">Sudden-onset vomiting, watery diarrhea, low-grade fever, cramps and malaise.</li>
+              <li class="priority-must">Dehydration is the major complication, especially in young and elderly patients.</li>
+              <li class="priority-must">Highly infectious, as few as about 10 particles in the lecture.</li>
+              <li class="priority-must">Outbreak settings: cruise ships, nursing homes, schools and disaster shelters.</li>
+              <li class="priority-should">Transmission also includes food, water, fomites, person-to-person spread and aerosolized vomitus.</li>
+              <li class="priority-must"><b>RT-PCR = gold standard.</b></li>
+              <li class="priority-must">Supportive fluids and electrolytes. No vaccine in the lecture.</li>
+            </ul>
+          </div>
+          <div class="mini">
+            <h3>Sapovirus</h3>
+            <ul>
+              <li class="priority-must">Sapporo-like viruses.</li>
+              <li class="priority-must">Caliciviridae, +ssRNA, naked, nonsegmented.</li>
+              <li class="priority-must">Associated with childhood gastroenteritis and diarrheal illness in infants and young children. The lecture summary also includes elderly adults.</li>
+              <li class="priority-should">Fecal–oral transmission.</li>
+              <li class="priority-should">Stool and vomitus are listed specimens in the summary.</li>
+              <li class="priority-must">RT-PCR is the most used technique for detecting human caliciviruses in the lecture summary.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="callout exam priority-must"><strong>NORO mnemonic from lecture</strong><b>N</b> nausea/vomiting, <b>O</b> outbreaks, <b>R</b> rapid onset and recovery, <b>O</b> oral-fecal transmission.</div>
+        <details class="qa priority-must"><summary>Sudden vomiting outbreak on a cruise ship. Most likely virus and best test?</summary><div class="answer"><b>Answer:</b> Norovirus. RT-PCR is the gold-standard diagnostic test in the lecture.</div></details>
+      </div>
+    </details>
+  </div>
+
+  <section class="card searchable static-card" id="master-comparison" style="margin-top:14px">
+    <div class="section-label">Compression table</div>
+    <h2>Master Comparison: What the Examiner Is Trying to Make You Distinguish</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Virus</th><th>Genome / envelope</th><th>Signature clue</th><th>Transmission / setting</th><th>Best remembered diagnostic</th></tr></thead>
+        <tbody>
+          <tr class="priority-must"><td><b>Poliovirus</b></td><td>+ssRNA, naked</td><td>Anterior horn LMN → asymmetric flaccid paralysis, no sensory loss</td><td>Fecal–oral</td><td>RT-PCR, stool has longest yield</td></tr>
+          <tr class="priority-must"><td><b>Coxsackie A</b></td><td>+ssRNA, naked</td><td>Herpangina, HFMD, hemorrhagic conjunctivitis</td><td>Fecal–oral + respiratory</td><td>RT-PCR from involved site</td></tr>
+          <tr class="priority-must"><td><b>Coxsackie B</b></td><td>+ssRNA, naked</td><td>Pleurodynia, myocarditis, neonatal systemic disease</td><td>Fecal–oral + respiratory</td><td>RT-PCR</td></tr>
+          <tr class="priority-must"><td><b>HAV</b></td><td>+ssRNA, naked</td><td>Acute hepatitis, immune-mediated liver injury, no chronicity</td><td>Fecal–oral, shellfish</td><td>IgM anti-HAV / ELISA</td></tr>
+          <tr class="priority-must"><td><b>Rhinovirus</b></td><td>+ssRNA, naked</td><td>33°C, acid labile, common cold</td><td>Direct contact, upper airway</td><td>PCR if specific diagnosis needed</td></tr>
+          <tr class="priority-must"><td><b>Parechovirus</b></td><td>+ssRNA, naked</td><td>Former ECHO22/23, Red Angry Baby</td><td>Respiratory + GI</td><td>PCR with specific primers</td></tr>
+          <tr class="priority-must"><td><b>Rotavirus</b></td><td>dsRNA segmented, naked</td><td>Infant watery diarrhea, villus damage + NSP4</td><td>Fecal–oral, daycare</td><td>Stool EIA/ELISA for VP6, PCR most sensitive</td></tr>
+          <tr class="priority-must"><td><b>Norovirus</b></td><td>+ssRNA, naked</td><td>Sudden vomiting outbreaks</td><td>Fecal–oral, food/water, fomites, aerosolized vomit</td><td>RT-PCR gold standard</td></tr>
+          <tr class="priority-should"><td><b>Sapovirus</b></td><td>+ssRNA, naked</td><td>Childhood gastroenteritis</td><td>Fecal–oral</td><td>RT-PCR for human caliciviruses</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="grid" style="margin-top:14px">
+    <section class="card span-6 searchable static-card">
+      <div class="section-label">Commonly confused</div>
+      <h2>Do Not Mix These Up</h2>
+      <div class="confused priority-must"><b>Polio nonparalytic vs paralytic:</b> meninges only → nuchal rigidity and recovery. Anterior horn LMN destruction → flaccid paralysis.</div>
+      <div class="confused priority-must"><b>Salk vs Sabin:</b> Salk = injected inactivated systemic protection. Sabin = oral live, gut IgA + community transmission interruption, rare reversion risk.</div>
+      <div class="confused priority-must"><b>Coxsackie A vs B:</b> A = herpangina/HFMD/eye. B = pleurodynia/heart/neonatal organs.</div>
+      <div class="confused priority-must"><b>Herpangina vs strep:</b> herpangina = vesicles/ulcers. Strep clue in lecture = tonsillar exudate.</div>
+      <div class="confused priority-must"><b>HAV IgM vs IgG:</b> IgM = acute. IgG without IgM = prior infection or vaccination.</div>
+      <div class="confused priority-must"><b>Rotavirus vs Norovirus:</b> Rotavirus = infants, 11-segment dsRNA, VP6, NSP4. Norovirus = explosive outbreaks, +ssRNA, RT-PCR.</div>
+    </section>
+    <section class="card span-6 searchable static-card">
+      <div class="section-label">Exam traps</div>
+      <h2>Trap Radar</h2>
+      <div class="trap priority-must"><b>“Flaccid paralysis” does not mean muscle infection.</b> In polio, the primary lesion is the lower motor neuron.</div>
+      <div class="trap priority-must"><b>“Aseptic meningitis” does not automatically mean paralysis.</b> Nonparalytic polio can invade meninges without destroying anterior horn neurons.</div>
+      <div class="trap priority-must"><b>HAV injury is not direct cytolysis.</b> Pick immune-mediated hepatocyte destruction when that option appears.</div>
+      <div class="trap priority-must"><b>Positive-sense does not mean every RNA virus has the same replication shortcut.</b> Here, the direct-mRNA rule is being used specifically for the +ssRNA viruses discussed.</div>
+      <div class="trap priority-must"><b>Rotavirus briefly buds into ER but ends mature and non-enveloped.</b> The temporary membrane is lost during maturation.</div>
+      <div class="trap priority-must"><b>Parechovirus can be missed by routine enterovirus PCR.</b> “Former ECHO22/23” is the clue that you need a specific primer set.</div>
+    </section>
+  </div>
+
+  <section class="card searchable static-card" style="margin-top:14px">
+    <div class="section-label">Active recall</div>
+    <h2>Rapid-Fire Final Recall</h2>
+    <p class="muted">Answer aloud before opening each card.</p>
+    <div class="recall-grid">
+      <details class="qa"><summary>1. Picornavirus genome?</summary><div class="answer"><b>+ssRNA, nonsegmented.</b></div></details>
+      <details class="qa"><summary>2. Picornavirus envelope?</summary><div class="answer"><b>Naked / non-enveloped.</b></div></details>
+      <details class="qa"><summary>3. Picornavirus replication site?</summary><div class="answer"><b>Cytoplasm.</b></div></details>
+      <details class="qa"><summary>4. Picornavirus 5′ protein?</summary><div class="answer"><b>VPg.</b></div></details>
+      <details class="qa"><summary>5. What does receptor choice determine?</summary><div class="answer"><b>Tropism, which determines affected organs and clinical syndrome.</b></div></details>
+      <details class="qa"><summary>6. Enterovirus initial replication sites?</summary><div class="answer"><b>Pharynx and distal small bowel, especially Peyer patches.</b></div></details>
+      <details class="qa"><summary>7. Poliovirus receptor?</summary><div class="answer"><b>PVR / CD155.</b></div></details>
+      <details class="qa"><summary>8. Poliovirus main CNS target?</summary><div class="answer"><b>Anterior horn lower motor neurons and motor neurons in brainstem.</b></div></details>
+      <details class="qa"><summary>9. Polio paralysis pattern?</summary><div class="answer"><b>Asymmetric flaccid paralysis with reduced reflexes and no sensory deficit.</b></div></details>
+      <details class="qa"><summary>10. Longest-yield polio specimen?</summary><div class="answer"><b>Stool.</b></div></details>
+      <details class="qa"><summary>11. Post-polio syndrome mechanism?</summary><div class="answer"><b>Late effect of original motor-neuron loss and failure of compensatory axonal sprouts, not viral reactivation.</b></div></details>
+      <details class="qa"><summary>12. IPV major limitation?</summary><div class="answer"><b>Does not produce strong local intestinal immunity, so gut infection and shedding can still occur.</b></div></details>
+      <details class="qa"><summary>13. OPV major advantage?</summary><div class="answer"><b>Mucosal gut immunity and interruption of transmission.</b></div></details>
+      <details class="qa"><summary>14. Coxsackie A signature diseases?</summary><div class="answer"><b>Herpangina, HFMD and acute hemorrhagic conjunctivitis.</b></div></details>
+      <details class="qa"><summary>15. Coxsackie B signature diseases?</summary><div class="answer"><b>Pleurodynia, myocarditis/pericarditis and severe neonatal systemic disease.</b></div></details>
+      <details class="qa"><summary>16. HFMD common Coxsackie A type?</summary><div class="answer"><b>CVA16 is common in the lecture.</b></div></details>
+      <details class="qa"><summary>17. Main HAV transmission?</summary><div class="answer"><b>Fecal–oral.</b></div></details>
+      <details class="qa"><summary>18. Main HAV liver injury mechanism?</summary><div class="answer"><b>Immune-mediated killing by CD8+ T cells and NK cells.</b></div></details>
+      <details class="qa"><summary>19. Acute HAV antibody?</summary><div class="answer"><b>IgM anti-HAV.</b></div></details>
+      <details class="qa"><summary>20. HAV chronic carrier state?</summary><div class="answer"><b>None.</b></div></details>
+      <details class="qa"><summary>21. Rhinovirus ideal temperature?</summary><div class="answer"><b>33°C.</b></div></details>
+      <details class="qa"><summary>22. Rhinovirus acid stability?</summary><div class="answer"><b>Acid labile.</b></div></details>
+      <details class="qa"><summary>23. Former ECHO22/23?</summary><div class="answer"><b>Parechovirus.</b></div></details>
+      <details class="qa"><summary>24. Parechovirus classic neonatal pearl?</summary><div class="answer"><b>Red, Angry Baby: high fever, irritability, diffuse red rash and sepsis-like illness.</b></div></details>
+      <details class="qa"><summary>25. Reoviridae genome?</summary><div class="answer"><b>Segmented dsRNA.</b></div></details>
+      <details class="qa"><summary>26. Rotavirus number of genome segments?</summary><div class="answer"><b>11.</b></div></details>
+      <details class="qa"><summary>27. Rotavirus P type and G type proteins?</summary><div class="answer"><b>P type = VP4. G type = VP7.</b></div></details>
+      <details class="qa"><summary>28. Rotavirus ELISA target?</summary><div class="answer"><b>VP6 group-specific antigen.</b></div></details>
+      <details class="qa"><summary>29. Rotavirus enterotoxin?</summary><div class="answer"><b>NSP4.</b></div></details>
+      <details class="qa"><summary>30. Rotavirus main target tissue?</summary><div class="answer"><b>Villus cells of the small intestine.</b></div></details>
+      <details class="qa"><summary>31. Calicivirus capsid clue?</summary><div class="answer"><b>Cup-shaped depressions, with VP1 as major structural protein.</b></div></details>
+      <details class="qa"><summary>32. Norovirus incubation?</summary><div class="answer"><b>24–48 hours.</b></div></details>
+      <details class="qa"><summary>33. Norovirus gold-standard test?</summary><div class="answer"><b>RT-PCR.</b></div></details>
+      <details class="qa"><summary>34. Norovirus classic settings?</summary><div class="answer"><b>Cruise ships, nursing homes, schools and disaster shelters.</b></div></details>
+      <details class="qa"><summary>35. Sapovirus broad clinical association?</summary><div class="answer"><b>Childhood gastroenteritis / diarrheal illness.</b></div></details>
+      <details class="qa"><summary>36. Which viruses here are naked?</summary><div class="answer"><b>Picornaviruses, Reoviridae and Caliciviridae in this lecture are all non-enveloped.</b></div></details>
+    </div>
+  </section>
+
+  <section class="cram searchable static-card" id="five-minute" style="margin-top:14px">
+    <div class="section-label" style="color:#9fb0c9">Last minute</div>
+    <h2>5-Minute Cram Sheet</h2>
+    <div class="three-col">
+      <div class="mini">
+        <h3>Picorna skeleton</h3>
+        <p><code>+ssRNA · naked · icosahedral · cytoplasm</code></p>
+        <p class="muted">+RNA → polyprotein → cleavage → −RNA template → new +RNA → lysis.</p>
+        <p><b>Entero</b> acid stable, gut/throat. <b>Rhino</b> acid labile, 33°C, nose.</p>
+      </div>
+      <div class="mini">
+        <h3>Neuro + heart</h3>
+        <p><b>Polio:</b> anterior horn LMN → asymmetric flaccid, no sensory loss.</p>
+        <p><b>Cox A:</b> Above — herpangina, HFMD, conjunctivitis.</p>
+        <p><b>Cox B:</b> Below — pleurodynia, myocarditis, neonatal organs.</p>
+      </div>
+      <div class="mini">
+        <h3>Hepatitis A</h3>
+        <p>Fecal–oral, shellfish, acute only.</p>
+        <p><b>Not directly cytopathic.</b> CD8/NK injury.</p>
+        <p><b>IgM = acute. IgG = past/vaccine.</b></p>
+      </div>
+      <div class="mini">
+        <h3>Parecho clue</h3>
+        <p><b>Former ECHO22/23.</b></p>
+        <p>Neonate + high fever + irritable + red rash + sepsis-like = <b>Red Angry Baby</b>.</p>
+      </div>
+      <div class="mini">
+        <h3>Rotavirus</h3>
+        <p><code>dsRNA · 11 segments · triple capsid</code></p>
+        <p><b>VP4=P, VP7=G, VP6=ELISA, NSP4=toxin.</b></p>
+        <p>Small-intestinal villi → malabsorption + secretory diarrhea.</p>
+      </div>
+      <div class="mini">
+        <h3>Norovirus</h3>
+        <p><code>+ssRNA · naked · cup-shaped VP1</code></p>
+        <p>Sudden vomiting + watery diarrhea + contained-setting outbreak.</p>
+        <p><b>RT-PCR gold standard.</b></p>
+      </div>
+    </div>
+  </section>
+
+  <div id="noResults" class="no-results">No matching reviewer sections. Try a broader search term.</div>
+</main>
+<button id="backTop" type="button" aria-label="Back to top">↑</button>
+
+<script>
+(() => {
+  const checks = [...document.querySelectorAll('.topic-check')]
+  const progressBar = document.getElementById('progressBar')
+  const progressText = document.getElementById('progressText')
+  const storageKey = 'rnaViruses1CramProgressV1'
+  const mustKey = 'rnaViruses1MustOnlyV1'
+
+  function loadProgress(){
+    let saved = {}
+    try{ saved = JSON.parse(localStorage.getItem(storageKey) || '{}') }catch(e){ saved = {} }
+    checks.forEach(c => c.checked = Boolean(saved[c.dataset.progress]))
+    updateProgress()
+  }
+
+  function saveProgress(){
+    const saved = {}
+    checks.forEach(c => saved[c.dataset.progress] = c.checked)
+    localStorage.setItem(storageKey, JSON.stringify(saved))
+    updateProgress()
+  }
+
+  function updateProgress(){
+    const done = checks.filter(c => c.checked).length
+    const pct = checks.length ? Math.round(done / checks.length * 100) : 0
+    progressBar.style.width = pct + '%'
+    progressText.textContent = pct + '%'
+  }
+
+  checks.forEach(c => {
+    c.addEventListener('click', e => e.stopPropagation())
+    c.addEventListener('change', saveProgress)
+  })
+
+  const mustBtn = document.getElementById('mustBtn')
+  function setMust(on){
+    document.body.classList.toggle('must-only', on)
+    mustBtn.classList.toggle('active', on)
+    mustBtn.textContent = on ? 'Showing must-know' : 'Must-know only'
+    localStorage.setItem(mustKey, on ? '1' : '0')
+  }
+  setMust(localStorage.getItem(mustKey) === '1')
+  mustBtn.addEventListener('click', () => setMust(!document.body.classList.contains('must-only')))
+
+  document.getElementById('expandBtn').addEventListener('click', () => {
+    document.querySelectorAll('details.topic, details.qa').forEach(d => d.open = true)
+  })
+  document.getElementById('collapseBtn').addEventListener('click', () => {
+    document.querySelectorAll('details.topic, details.qa').forEach(d => d.open = false)
+  })
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    if(!confirm('Reset all topic progress?')) return
+    checks.forEach(c => c.checked = false)
+    localStorage.removeItem(storageKey)
+    updateProgress()
+  })
+  document.getElementById('printBtn').addEventListener('click', () => window.print())
+
+  const input = document.getElementById('searchInput')
+  const searchable = [...document.querySelectorAll('.searchable')]
+  const noResults = document.getElementById('noResults')
+  input.addEventListener('input', () => {
+    const q = input.value.trim().toLowerCase()
+    let shown = 0
+    searchable.forEach(el => {
+      const match = !q || el.textContent.toLowerCase().includes(q)
+      el.classList.toggle('hidden-search', !match)
+      if(match) shown++
+      if(q && match && el.tagName === 'DETAILS') el.open = true
+    })
+    noResults.style.display = shown ? 'none' : 'block'
+  })
+
+  const back = document.getElementById('backTop')
+  window.addEventListener('scroll', () => back.style.display = window.scrollY > 700 ? 'block' : 'none')
+  back.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}))
+
+  let printState = []
+  window.addEventListener('beforeprint', () => {
+    printState = [...document.querySelectorAll('details')].map(d => d.open)
+    document.querySelectorAll('details').forEach(d => d.open = true)
+  })
+  window.addEventListener('afterprint', () => {
+    document.querySelectorAll('details').forEach((d,i) => d.open = printState[i])
+  })
+
+  loadProgress()
+})()
+</script>
+</body>
+</html>
