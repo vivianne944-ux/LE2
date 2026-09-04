@@ -249,8 +249,11 @@ caption{text-align:left;font-weight:800;color:var(--navy);padding:9px 4px;font-s
 th,td{border:1px solid var(--line);padding:9px 10px;vertical-align:top;text-align:left;min-width:120px}
 th{background:#eaf4fb;color:#153e5a}
 tr:nth-child(even) td{background:#fbfdff}
-.comparison table{display:block;overflow-x:auto;margin:0 0 18px;border-radius:12px}
-.comparison table tbody,.comparison table thead{display:table;width:100%;table-layout:auto}
+.comparison .comparison-scroll{overflow-x:auto;margin:0 0 18px;border-radius:12px}
+.comparison .comparison-scroll table{display:table;width:100%;margin:0;table-layout:auto}
+.comparison .comparison-scroll table tbody,.comparison .comparison-scroll table thead{display:table-row-group;width:auto}
+.comparison .comparison-scroll table thead{display:table-header-group}
+.comparison caption{caption-side:top;display:table-caption;text-align:left;font-weight:800;color:var(--navy);padding:10px 10px 9px;font-size:15px;line-height:1.35;white-space:normal;overflow-wrap:anywhere;word-break:normal;background:#f4f8fb;border:1px solid var(--line);border-bottom:0;border-radius:12px 12px 0 0}
 .figure-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:12px;margin:0 0 14px;box-shadow:var(--shadow)}
 .figure-card img{display:block;max-width:100%;height:auto;margin:0 auto;border-radius:8px;cursor:zoom-in}
 .figure-card figcaption{font-size:12px;color:var(--muted);margin-top:9px;line-height:1.45}
@@ -472,7 +475,7 @@ mark.search-hit.current{outline:2px solid #f59e0b}
         <tr><td>Selective α2</td><td>Clonidine, Methyldopa, Guanfacine, Guanabenz, Apraclonidine, Brimonidine, Tizanidine</td></tr>
         <tr><td>Selective β1</td><td>Dobutamine, Prenalterol</td></tr>
         <tr><td>Selective β2</td><td>Terbutaline, Salbutamol or Albuterol, Salmeterol, Formoterol, Indacaterol, Olodaterol, Vilanterol, Clenbuterol, Ritodrine, Isoxsuprine</td></tr>
-        <tr><td>Selective β3 and dopamine receptors</td><td>Mirabegron, Vibegron, Solabegron, Ritobegron. Dopamine, Fenoldopam, Dopexamine</td></tr>
+        <tr><td>Selective β3 receptors<br>Dopamine receptors</td><td>Mirabegron, Vibegron, Solabegron, Ritobegron<br>Dopamine, Fenoldopam, Dopexamine</td></tr>
         <tr><td><strong>Mixed acting</strong></td><td>Direct receptor action plus NE release</td><td>Ephedrine, Pseudoephedrine, Phenylpropanolamine, Mephentermine, Metaraminol</td></tr>
         <tr><td rowspan="4"><strong>Indirect acting</strong></td><td>Releases NE</td><td>Amphetamine, Methamphetamine, Phenmetrazine, Pemoline, Methylphenidate, Modafinil, Tyramine</td></tr>
         <tr><td>Reuptake inhibition</td><td>Atomoxetine, Reboxetine, Cocaine, Sibutramine, Duloxetine, Milnacipran, TCAs</td></tr>
@@ -826,7 +829,7 @@ mark.search-hit.current{outline:2px solid #f59e0b}
       <caption>Classification of β2-selective agonists <span class="page-badge">p. 5</span></caption>
       <thead><tr><th>Class</th><th>Drug</th><th>Lecture feature</th></tr></thead>
       <tbody>
-        <tr><td rowspan="8"><strong>SABA</strong></td><td><strong>Terbutaline</strong></td><td>Prototype. Tocolytic and bronchodilator.</td></tr>
+        <tr><td rowspan="8"><strong>SABA</strong></td><td><strong>Terbutaline</strong></td><td>Prototype.<br>Tocolytic and bronchodilator.</td></tr>
         <tr><td><strong>Salbutamol or Albuterol</strong></td><td>Prototype bronchodilator.</td></tr>
         <tr><td>Pirbuterol</td><td>Listed SABA.</td></tr>
         <tr><td>Levalbuterol</td><td>Listed SABA.</td></tr>
@@ -834,13 +837,13 @@ mark.search-hit.current{outline:2px solid #f59e0b}
         <tr><td>Bitolterol</td><td>Listed SABA.</td></tr>
         <tr><td>Procaterol</td><td>Listed SABA.</td></tr>
         <tr><td><strong>Clenbuterol</strong></td><td><strong>📌 Has anabolic action.</strong></td></tr>
-        <tr><td rowspan="8"><strong>LABA and ultra-LABA</strong></td><td><strong>Salmeterol</strong></td><td>Prototype. Long acting and slower onset. With fluticasone as symptomatic controller.</td></tr>
-        <tr><td><strong>Formoterol</strong></td><td>Prototype. Long acting with <strong>📌 rapid onset</strong>. With budesonide as symptomatic controller.</td></tr>
+        <tr><td rowspan="8"><strong>LABA and ultra-LABA</strong></td><td><strong>Salmeterol</strong></td><td>Prototype.<br>Long acting and slower onset.<br>With fluticasone as symptomatic controller.</td></tr>
+        <tr><td><strong>Formoterol</strong></td><td>Prototype.<br>Long acting with <strong>📌 rapid onset</strong>.<br>With budesonide as symptomatic controller.</td></tr>
         <tr><td>Carmoterol</td><td>Rapid onset for asthma and COPD.</td></tr>
         <tr><td>Arformoterol</td><td>For COPD in the lecture table.</td></tr>
         <tr><td>Bambuterol</td><td>Approved in Europe.</td></tr>
-        <tr><td>Indacaterol</td><td>Ultra long acting. For asthma and COPD in the lecture table.</td></tr>
-        <tr><td>Olodaterol</td><td>Ultra long acting. For COPD.</td></tr>
+        <tr><td>Indacaterol</td><td>Ultra long acting.<br>For asthma and COPD in the lecture table.</td></tr>
+        <tr><td>Olodaterol</td><td>Ultra long acting.<br>For COPD.</td></tr>
         <tr><td>Vilanterol</td><td>Ultra-long-acting agent listed in the lecture.</td></tr>
         <tr><td rowspan="2"><strong>Other</strong></td><td><strong>Ritodrine</strong></td><td>Tocolytic to arrest premature labor.</td></tr>
         <tr><td><strong>Isoxsuprine</strong></td><td>Peripheral vasodilator in peripheral vasospastic disease, although the lecture notes that better drugs with fewer adverse effects are now used.</td></tr>
@@ -1089,9 +1092,9 @@ mark.search-hit.current{outline:2px solid #f59e0b}
         <tr><td><strong>Oral preparation</strong></td><td>No oral preparation</td><td>High oral bioavailability</td></tr>
         <tr><td><strong>Acute bronchospasm and anaphylaxis</strong></td><td>More efficacious</td><td>Less efficacious</td></tr>
         <tr><td><strong>Duration</strong></td><td>Shorter</td><td>Longer</td></tr>
-        <tr><td><strong>BBB</strong></td><td>Polar. Limited BBB and GI membrane passage.</td><td>Lipid soluble. Can cross BBB and stimulate CNS.</td></tr>
+        <tr><td><strong>BBB</strong></td><td>Polar.<br>Limited BBB and GI membrane passage.</td><td>Lipid soluble.<br>Can cross BBB and stimulate CNS.</td></tr>
         <tr><td><strong>Tachyphylaxis</strong></td><td>No</td><td>May occur</td></tr>
-        <tr><td><strong>Structure</strong></td><td>Catecholamine. Metabolized by MAO and COMT.</td><td>Noncatecholamine phenylisopropylamine. Not metabolized by COMT.</td></tr>
+        <tr><td><strong>Structure</strong></td><td>Catecholamine.<br>Metabolized by MAO and COMT.</td><td>Noncatecholamine phenylisopropylamine.<br>Not metabolized by COMT.</td></tr>
       </tbody>
     </table>
   </div>
@@ -1251,13 +1254,13 @@ mark.search-hit.current{outline:2px solid #f59e0b}
       <caption>Catecholamine reuptake and metabolism modifiers <span class="page-badge">pp. 8–9</span></caption>
       <thead><tr><th>Agent or class</th><th>Lecture mechanism</th><th>Lecture use or note</th></tr></thead>
       <tbody>
-        <tr><td><strong>Atomoxetine</strong></td><td>Selectively inhibits NET → ↑ NE in noradrenergic synapses. Peripherally potentiates NE.</td><td>ADHD. Lecture says CVS effects are limited by clonidine-like central reduction of sympathetic outflow.</td></tr>
-        <tr><td><strong>Reboxetine</strong></td><td>Similar to atomoxetine.</td><td>Mainly major depressive disorder. May be used for narcolepsy and panic disorder.</td></tr>
-        <tr><td><strong>Cocaine</strong></td><td>Inhibits transmitter reuptake at adrenergic synapses and inhibits dopamine reuptake in CNS pleasure centers.</td><td>Local anesthetic with peripheral sympathomimetic action. Rapid onset. Heavily abused.</td></tr>
-        <tr><td><strong>Sibutramine</strong></td><td>Serotonin and NE reuptake inhibition.</td><td>Appetite suppressant. Withdrawn from US market because of increased cardiovascular and cerebrovascular events.</td></tr>
+        <tr><td><strong>Atomoxetine</strong></td><td>Selectively inhibits NET → ↑ NE in noradrenergic synapses.<br>Peripherally potentiates NE.</td><td>ADHD.<br>Lecture says CVS effects are limited by clonidine-like central reduction of sympathetic outflow.</td></tr>
+        <tr><td><strong>Reboxetine</strong></td><td>Similar to atomoxetine.</td><td>Mainly major depressive disorder.<br>May be used for narcolepsy and panic disorder.</td></tr>
+        <tr><td><strong>Cocaine</strong></td><td>Inhibits transmitter reuptake at adrenergic synapses and inhibits dopamine reuptake in CNS pleasure centers.</td><td>Local anesthetic with peripheral sympathomimetic action.<br>Rapid onset.<br>Heavily abused.</td></tr>
+        <tr><td><strong>Sibutramine</strong></td><td>Serotonin and NE reuptake inhibition.</td><td>Appetite suppressant.<br>Withdrawn from US market because of increased cardiovascular and cerebrovascular events.</td></tr>
         <tr><td><strong>Duloxetine</strong></td><td>Serotonin and NE reuptake inhibition.</td><td>Antidepressant and fibromyalgia pain.</td></tr>
         <tr><td><strong>Milnacipran</strong></td><td>Serotonin and NE reuptake inhibition.</td><td>Fibromyalgia pain.</td></tr>
-        <tr><td><strong>TCAs</strong></td><td>Reuptake inhibition.</td><td>Lecture example imipramine. Used as antidepressants.</td></tr>
+        <tr><td><strong>TCAs</strong></td><td>Reuptake inhibition.</td><td>Lecture example imipramine.<br>Used as antidepressants.</td></tr>
         <tr><td><strong>Pargyline, Selegiline</strong></td><td>MAO inhibition.</td><td>Increase sympathomimetic-like effects by decreasing catecholamine metabolism.</td></tr>
         <tr><td><strong>Entacapone</strong></td><td>COMT inhibition.</td><td>Increase sympathomimetic-like effects by decreasing catecholamine metabolism.</td></tr>
       </tbody>
@@ -1392,7 +1395,8 @@ mark.search-hit.current{outline:2px solid #f59e0b}
 </section>
 
 <section class="tab-panel comparison" id="comparison" data-title="Comparison Sheet">
-  <table>
+  <div class="table-scroll comparison-scroll">
+    <table>
     <caption>Receptor affinity patterns</caption>
     <thead><tr><th>Drug</th><th>Lecture affinity pattern</th><th>Memorization anchor</th></tr></thead>
     <tbody>
@@ -1406,9 +1410,11 @@ mark.search-hit.current{outline:2px solid #f59e0b}
       <tr><td><strong>Dopamine</strong></td><td>D1 = D2 &gt;&gt; β &gt;&gt; α</td><td>Dose-dependent transition from D to β to α</td></tr>
       <tr><td><strong>Fenoldopam</strong></td><td>D1 &gt;&gt; D2</td><td>Peripheral <strong>D1</strong> vasodilator</td></tr>
     </tbody>
-  </table>
+    </table>
+  </div>
 
-  <table>
+  <div class="table-scroll comparison-scroll">
+    <table>
     <caption>Catecholamine cardiovascular effects</caption>
     <thead><tr><th>Function</th><th>Epinephrine</th><th>Norepinephrine</th><th>Isoproterenol</th></tr></thead>
     <tbody>
@@ -1420,19 +1426,23 @@ mark.search-hit.current{outline:2px solid #f59e0b}
       <tr><td><strong>Stroke output</strong></td><td>++</td><td>+</td><td>++</td></tr>
       <tr><td><strong>CO</strong></td><td>+++</td><td>−0</td><td>+++</td></tr>
     </tbody>
-  </table>
+    </table>
+  </div>
 
-  <table>
+  <div class="table-scroll comparison-scroll">
+    <table>
     <caption>Dopamine dose ladder</caption>
     <thead><tr><th>Dose</th><th>Dominant receptor</th><th>Major lecture effect</th></tr></thead>
     <tbody>
-      <tr><td><strong>Low</strong></td><td><strong>D1</strong></td><td>Renal, splanchnic, coronary, cerebral vasodilation. Natriuresis.</td></tr>
+      <tr><td><strong>Low</strong></td><td><strong>D1</strong></td><td>Renal, splanchnic, coronary, cerebral vasodilation.<br>Natriuresis.</td></tr>
       <tr><td><strong>Intermediate</strong></td><td><strong>β1</strong></td><td>↑ myocardial contraction → ↑ CO and systolic pressure with minimal tachycardia.</td></tr>
       <tr><td><strong>High</strong></td><td><strong>α1</strong></td><td>Peripheral vasoconstriction → ↑ BP.</td></tr>
     </tbody>
-  </table>
+    </table>
+  </div>
 
-  <table>
+  <div class="table-scroll comparison-scroll">
+    <table>
     <caption>Isoproterenol versus dobutamine</caption>
     <thead><tr><th>Feature</th><th>Isoproterenol</th><th>Dobutamine</th></tr></thead>
     <tbody>
@@ -1441,9 +1451,11 @@ mark.search-hit.current{outline:2px solid #f59e0b}
       <tr><td><strong>PVR</strong></td><td>Marked decrease through β2</td><td>Does not decrease significantly</td></tr>
       <tr><td><strong>Main lecture use</strong></td><td>Limited emergency use for bradycardia, heart block, selected ventricular arrhythmias</td><td><strong>Short-term cardiac decompensation</strong>, increased CO, pharmacologic stress test</td></tr>
     </tbody>
-  </table>
+    </table>
+  </div>
 
-  <table>
+  <div class="table-scroll comparison-scroll">
+    <table>
     <caption>Formoterol versus salmeterol</caption>
     <thead><tr><th>Feature</th><th>Formoterol</th><th>Salmeterol</th></tr></thead>
     <tbody>
@@ -1453,9 +1465,11 @@ mark.search-hit.current{outline:2px solid #f59e0b}
       <tr><td><strong>Acute breakthrough monotherapy</strong></td><td>Lecture uses with ICS for acute relief and maintenance</td><td><strong>Not suitable</strong> because of slow onset and no anti-inflammatory action</td></tr>
       <tr><td><strong>Nocturnal asthma</strong></td><td>Agent or drug of choice in lecture</td><td>Agent of choice in lecture</td></tr>
     </tbody>
-  </table>
+    </table>
+  </div>
 
-  <table>
+  <div class="table-scroll comparison-scroll">
+    <table>
     <caption>Mirabegron versus vibegron</caption>
     <thead><tr><th>Feature</th><th>Mirabegron</th><th>Vibegron</th></tr></thead>
     <tbody>
@@ -1464,33 +1478,39 @@ mark.search-hit.current{outline:2px solid #f59e0b}
       <tr><td><strong>Lecture dose</strong></td><td>Initial 25 mg once daily</td><td>75 mg once daily</td></tr>
       <tr><td><strong>Half-life</strong></td><td>About 50 h</td><td>About 60–70 h</td></tr>
       <tr><td><strong>Adverse effect note</strong></td><td>Possible hypertension</td><td>AE incidence generally comparable with mirabegron</td></tr>
-      <tr><td><strong>Metabolism note</strong></td><td>Not expanded in lecture table</td><td>Independent of CYP3A4, 2D6, 2C9. Predominantly oxidation and glucuronidation.</td></tr>
+      <tr><td><strong>Metabolism note</strong></td><td>Not expanded in lecture table</td><td>Independent of CYP3A4, 2D6, 2C9.<br>Predominantly oxidation and glucuronidation.</td></tr>
     </tbody>
-  </table>
+    </table>
+  </div>
 
-  <table>
+  <div class="table-scroll comparison-scroll">
+    <table>
     <caption>Phenylephrine versus midodrine</caption>
     <thead><tr><th>Feature</th><th>Phenylephrine</th><th>Midodrine</th></tr></thead>
     <tbody>
       <tr><td><strong>Receptor</strong></td><td>Selective α1</td><td>Selective α1</td></tr>
       <tr><td><strong>Characteristic use</strong></td><td>Nasal decongestant, mydriatic, topical hemostatic, local-anesthetic adjunct, vasopressor</td><td><strong>Chronic postural hypotension</strong> from autonomic insufficiency</td></tr>
-      <tr><td><strong>High-yield warning</strong></td><td><strong>📌 Can raise BP</strong>. Topical overuse &gt;3–5 days can cause rebound congestion.</td><td><strong>Supine hypertension</strong>. Avoid dosing before bedtime and elevate head of bed.</td></tr>
-      <tr><td><strong>PK anchor</strong></td><td>Noncatecholamine. Oral bioavailability and longer duration than catecholamines.</td><td>Prodrug → desglymidodrine. Peak about 1 h. Duration 4–6 h.</td></tr>
+      <tr><td><strong>High-yield warning</strong></td><td><strong>📌 Can raise BP</strong>.<br>Topical overuse &gt;3–5 days can cause rebound congestion.</td><td><strong>Supine hypertension</strong>.<br>Avoid dosing before bedtime and elevate head of bed.</td></tr>
+      <tr><td><strong>PK anchor</strong></td><td>Noncatecholamine.<br>Oral bioavailability and longer duration than catecholamines.</td><td>Prodrug → desglymidodrine.<br>Peak about 1 h.<br>Duration 4–6 h.</td></tr>
     </tbody>
-  </table>
+    </table>
+  </div>
 
-  <table>
+  <div class="table-scroll comparison-scroll">
+    <table>
     <caption>Topical versus oral nasal decongestants</caption>
     <thead><tr><th>Feature</th><th>Topical</th><th>Oral</th></tr></thead>
     <tbody>
       <tr><td><strong>Local concentration</strong></td><td>Higher local exposure</td><td>Lower local concentration</td></tr>
-      <tr><td><strong>Duration</strong></td><td>Depends on agent. Short and long acting preparations exist.</td><td>Longer duration in lecture discussion</td></tr>
+      <tr><td><strong>Duration</strong></td><td>Depends on agent.<br>Short and long acting preparations exist.</td><td>Longer duration in lecture discussion</td></tr>
       <tr><td><strong>Key risk</strong></td><td><strong>📌 Rebound congestion</strong> with repeated high-concentration use &gt;3–5 days</td><td>Greater potential for <strong>cardiac and CNS effects</strong></td></tr>
       <tr><td><strong>Examples</strong></td><td>Phenylephrine, tetrahydrozoline, naphazoline, oxymetazoline, xylometazoline</td><td>Phenylephrine, phenylpropanolamine, pseudoephedrine, ephedrine</td></tr>
     </tbody>
-  </table>
+    </table>
+  </div>
 
-  <table>
+  <div class="table-scroll comparison-scroll">
+    <table>
     <caption>Epinephrine versus ephedrine</caption>
     <thead><tr><th>Feature</th><th>Epinephrine</th><th>Ephedrine</th></tr></thead>
     <tbody>
@@ -1502,7 +1522,8 @@ mark.search-hit.current{outline:2px solid #f59e0b}
       <tr><td><strong>Tachyphylaxis</strong></td><td>No</td><td><strong>May occur</strong></td></tr>
       <tr><td><strong>Acute anaphylaxis or bronchospasm</strong></td><td><strong>More efficacious</strong></td><td>Less efficacious</td></tr>
     </tbody>
-  </table>
+    </table>
+  </div>
 </section>
 
 <section class="tab-panel" id="cram" data-title="Cram Sheet">
@@ -1578,16 +1599,16 @@ mark.search-hit.current{outline:2px solid #f59e0b}
       <caption>Fast drug → use grid</caption>
       <thead><tr><th>Drug</th><th>Fast association</th></tr></thead>
       <tbody>
-        <tr><td><strong>Norepinephrine</strong></td><td>Shock vasopressor. α1, α2, β1. Reflex bradycardia possible.</td></tr>
-        <tr><td><strong>Fenoldopam</strong></td><td>Peripheral D1 agonist. Rapid IV vasodilator for severe hypertension.</td></tr>
+        <tr><td><strong>Norepinephrine</strong></td><td>Shock vasopressor.<br>α1, α2, β1.<br>Reflex bradycardia possible.</td></tr>
+        <tr><td><strong>Fenoldopam</strong></td><td>Peripheral D1 agonist.<br>Rapid IV vasodilator for severe hypertension.</td></tr>
         <tr><td><strong>Dobutamine</strong></td><td>↑ CO, short-term cardiac decompensation, cardiogenic shock, cardiac stress test.</td></tr>
         <tr><td><strong>Terbutaline</strong></td><td>SABA bronchodilator and tocolytic.</td></tr>
-        <tr><td><strong>Salbutamol</strong></td><td>SABA for acute breakthrough asthma symptoms. 15-minute onset by inhalation, 4–6 h effect.</td></tr>
-        <tr><td><strong>Formoterol</strong></td><td>LABA with rapid onset. With ICS for MART. Nocturnal asthma.</td></tr>
-        <tr><td><strong>Salmeterol</strong></td><td>LABA with slow onset. Not acute monotherapy.</td></tr>
+        <tr><td><strong>Salbutamol</strong></td><td>SABA for acute breakthrough asthma symptoms.<br>15-minute onset by inhalation, 4–6 h effect.</td></tr>
+        <tr><td><strong>Formoterol</strong></td><td>LABA with rapid onset.<br>With ICS for MART.<br>Nocturnal asthma.</td></tr>
+        <tr><td><strong>Salmeterol</strong></td><td>LABA with slow onset.<br>Not acute monotherapy.</td></tr>
         <tr><td><strong>Mirabegron, Vibegron</strong></td><td>β3 agonists for overactive bladder.</td></tr>
-        <tr><td><strong>Phenylephrine</strong></td><td>α1. Nasal decongestant, mydriasis without cycloplegia, topical hemostasis, vasoconstrictor adjunct.</td></tr>
-        <tr><td><strong>Midodrine</strong></td><td>Chronic postural hypotension. Watch supine hypertension.</td></tr>
+        <tr><td><strong>Phenylephrine</strong></td><td>α1.<br>Nasal decongestant, mydriasis without cycloplegia, topical hemostasis, vasoconstrictor adjunct.</td></tr>
+        <tr><td><strong>Midodrine</strong></td><td>Chronic postural hypotension.<br>Watch supine hypertension.</td></tr>
         <tr><td><strong>Ephedrine</strong></td><td>Mixed acting, oral, CNS stimulant, tachyphylaxis possible.</td></tr>
         <tr><td><strong>Atomoxetine</strong></td><td>NET inhibition for ADHD.</td></tr>
         <tr><td><strong>Modafinil</strong></td><td>Narcolepsy, OSAHS, shift-work sleep disorder.</td></tr>
