@@ -1,1 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Clear and Fluffy — Ultra-Detailed GQ Reviewer</title>
+<style>
+:root{
+  --navy:#0b3558; --blue:#1d648f; --pale:#edf7fc; --ink:#18232d; --muted:#61707d;
+  --line:#cad9e5; --yellow:#fff4be; --green:#e9f8ee; --purple:#f1ecfb; --red:#ffe9e6;
+  --cream:#fff9ec; --white:#fff; --bg:#f4f7fa; --gray:#f7f9fb;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,"Helvetica Neue",sans-serif;line-height:1.55}
+a{color:var(--blue)}
+.hero{background:linear-gradient(135deg,var(--navy),#16537e);color:#fff;padding:34px 22px 28px}
+.hero .wrap, .nav-inner, main{max-width:1180px;margin:auto}
+.eyebrow{font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;font-weight:800;opacity:.83}
+h1{font-size:clamp(2.05rem,5vw,3.55rem);line-height:1.06;margin:.3rem 0 .55rem}
+.subtitle{max-width:970px;font-size:1rem;opacity:.95}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}.chip{padding:7px 10px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);border-radius:999px;font-size:.86rem}
+.bookmarks{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 2px 9px rgba(14,48,73,.08)}
+.nav-inner{display:flex;gap:7px;overflow-x:auto;padding:10px 14px;scrollbar-width:thin}.nav-inner a{white-space:nowrap;text-decoration:none;font-weight:800;font-size:.82rem;border:1px solid var(--line);border-radius:8px;padding:7px 9px;color:var(--navy)}.nav-inner a:hover{background:var(--pale)}
+main{padding:0 15px 66px}section{scroll-margin-top:74px;margin:22px 0}.card{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 3px 12px rgba(19,48,72,.06);padding:22px}
+.title{display:flex;gap:11px;align-items:flex-start;margin-bottom:8px}.badge{flex:0 0 auto;background:var(--navy);color:#fff;border-radius:9px;padding:5px 9px;font-weight:900}.title h2{margin:0;color:var(--navy);font-size:1.52rem;line-height:1.24}
+h3{color:var(--blue);font-size:1.13rem;margin:22px 0 8px}h4{color:#294256;margin:15px 0 6px}.lead{font-weight:800;color:var(--navy);font-size:1.02rem}
+/* TRANS / NEXT-LINE RULE */
+ul,ol{padding-left:1.45rem;margin:.35rem 0 .8rem}li{margin:.25rem 0}li::marker{color:var(--blue)}
+.trans>li{margin:.48rem 0}.trans li>ul{margin:.18rem 0 .3rem}.trans li>ul>li{margin:.16rem 0}.trans li>ul>li>ul{margin:.12rem 0 .22rem}
+.arrow{list-style:none;padding-left:1rem}.arrow>li{position:relative;padding-left:.95rem;margin:.35rem 0}.arrow>li::before{content:"→";position:absolute;left:-.1rem;color:var(--blue);font-weight:900}
+.cut{display:block;margin:.12rem 0}.cut::before{content:"↳ ";color:var(--blue);font-weight:900}.cut2{display:block;margin:.08rem 0 0 1rem}.cut2::before{content:"• ";color:#4c7897;font-weight:900}
+.lines span{display:block;margin:.13rem 0}.lines span+span{padding-top:.11rem;border-top:1px dotted #e2e9ee}
+.callout{border-left:5px solid var(--blue);background:var(--pale);padding:12px 14px;border-radius:8px;margin:14px 0}.must{background:var(--yellow);border-left-color:#c89300}.pearl{background:var(--green);border-left-color:#2b8b50}.katz{background:var(--purple);border-left-color:#7956aa}.warn{background:var(--red);border-left-color:#b64a3d}.source{background:var(--cream);border-left-color:#b77913}.label{display:block;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;font-weight:900;margin-bottom:4px}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.mini{border:1px solid var(--line);border-radius:11px;padding:14px;background:#fff}.mini h4{margin-top:0}
+.table-wrap{overflow-x:auto;margin:10px 0 16px}table{border-collapse:collapse;width:100%;font-size:.91rem}th{background:var(--navy);color:#fff;text-align:left;padding:10px;border:1px solid #315a79;vertical-align:top}td{border:1px solid var(--line);padding:10px;vertical-align:top}tr:nth-child(even) td{background:#fafcfe}.good{font-weight:900;color:#167044}.mid{font-weight:900;color:#986712}.low{font-weight:900;color:#a6443b}
+.rx,.calc{font-family:"Courier New",monospace;white-space:pre-wrap;border-radius:10px;padding:15px;line-height:1.53}.rx{background:#f8fafc;border:1px dashed #7d9bb2}.calc{background:#eef4f8;border:1px solid #d4e0e8}.tag{display:inline-block;font-size:.74rem;background:#edf1f4;color:#45535f;padding:3px 7px;border-radius:6px;margin:2px 4px 2px 0}.small{font-size:.87rem;color:var(--muted)}
+.scorebox{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}.scorebox div{border:1px solid var(--line);border-radius:9px;padding:9px;text-align:center}.scorebox strong{display:block;color:var(--navy)}
+details{border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:10px 0;background:#fff}summary{cursor:pointer;font-weight:900;color:var(--navy)}
+#topBtn{position:fixed;right:18px;bottom:18px;background:var(--navy);color:#fff;text-decoration:none;font-weight:900;border-radius:999px;padding:10px 14px;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.footer{text-align:center;color:var(--muted);font-size:.84rem;padding:18px 10px 42px}
+@media(max-width:780px){.grid2,.grid3,.scorebox{grid-template-columns:1fr}.card{padding:17px}table{font-size:.84rem}.hero{padding-top:27px}}
+@media print{.bookmarks,#topBtn{display:none}.card{box-shadow:none;break-inside:auto}body{background:#fff}.hero{background:#fff;color:#000;border-bottom:2px solid #000}.hero h1{color:#000}main{max-width:none}}
+</style>
+</head>
+<body id="top">
+<header class="hero"><div class="wrap">
+<div class="eyebrow">PHARMACOLOGY • CASE NO. 2 • ULTRA-DETAILED TRANS-STYLE REVIEWER</div>
+<h1>Clear and Fluffy</h1>
+<div class="subtitle">All guide questions answered in a <strong>bullet-heavy, next-line-cut format</strong> for fast review. Primary basis: the uploaded case packet + Anti-infectious Trans 7 + Antimicrobial Groups/Resistance Trans 8. Katzung points are limited to concepts explicitly carried into the uploaded lectures or clearly marked as pharmacology expansion.</div>
+<div class="chips"><span class="chip">4 y/o male</span><span class="chip">15 kg</span><span class="chip">Moderate bullous impetigo</span><span class="chip">Right posterior thigh & leg</span><span class="chip">Gram-positive clusters</span><span class="chip">Afebrile + active</span><span class="chip">No known drug allergy</span></div>
+</div></header>
+<nav class="bookmarks" aria-label="Bookmarks"><div class="nav-inner">
+<a href="#case">Case</a><a href="#framework">Rational Framework</a><a href="#gq1">GQ1 Goals</a><a href="#gq2">GQ2 Non-drug</a><a href="#gq3">GQ3 Organisms</a><a href="#gq3a">GQ3a MSSA/MRSA</a><a href="#gq3b">GQ3b ESSC</a><a href="#pdrug">P-drug Logic</a><a href="#gq4">GQ4 Rx</a><a href="#gq5">GQ5 Alternatives</a><a href="#followup">Follow-up/Referral</a><a href="#pearls">Pearls</a><a href="#sources">Sources</a>
+</div></nav>
+<main>
 
+<section id="case" class="card">
+<div class="title"><span class="badge">CASE</span><h2>Case Snapshot → What matters pharmacologically?</h2></div>
+<ul class="trans">
+<li><strong>Patient</strong>
+  <ul><li>Makateo S. Obra.</li><li>4-year-old male.</li><li>Weight = <strong>15 kg</strong>.</li><li>No history of food or drug allergy.</li></ul>
+</li>
+<li><strong>Course of illness</strong>
+  <ul><li>Started as an <strong>itchy patch</strong>.</li><li>Persistent scratching → abrasions.</li><li>Then developed multiple <strong>vesicular lesions</strong>.</li><li>Vesicles enlarged → became bullae → ruptured.</li><li>Discharge described as clear to yellowish fluid.</li><li>Two new larger fluid-filled lesions appeared on the day of consultation.</li></ul>
+</li>
+<li><strong>Skin findings</strong>
+  <ul><li>Right posterior thigh and leg.</li><li>Several 3-cm and some 5-cm lesions.</li><li>Crusted borders / collarette around ruptured bullae.</li><li>Reddish center with superficial erosions.</li><li>Two intact bullae about 3 cm in diameter.</li></ul>
+</li>
+<li><strong>Systemic status</strong>
+  <ul><li>Temperature = 37°C.</li><li>No fever by history.</li><li>Child remains active.</li><li>Chest/heart examination essentially normal.</li><li>No description of toxicity, dehydration, hemodynamic instability, or deep-tissue involvement.</li></ul>
+</li>
+<li><strong>Microbiologic clue</strong>
+  <ul><li>Gram stain of bulla fluid = <strong>gram-positive clusters</strong>.</li><li>Clusters strongly support a <strong>Staphylococcus</strong> morphology.</li><li>In the context of bullous impetigo → strongly supports <strong>S. aureus</strong>.</li></ul>
+</li>
+<li><strong>Working diagnosis in packet</strong>
+  <ul><li><strong>Bullous impetigo, moderate infection.</strong></li><li>Location: right posterior thigh and leg.</li></ul>
+</li>
+</ul>
+<div class="callout must"><span class="label">📌 Important source point</span>
+<ul class="trans"><li><strong>Impetigo is mainly a clinical diagnosis.</strong><ul><li>History + physical examination are essential.</li><li>The packet notes that routine laboratory confirmation is generally not required.</li><li>Testing is especially considered for treatment failure, suspected community-acquired MRSA, outbreaks, or severe disease.</li></ul></li></ul>
+</div>
+</section>
+
+<section id="framework" class="card">
+<div class="title"><span class="badge">FX</span><h2>How Trans 7 says to think before choosing the antibiotic</h2></div>
+<p class="lead">Do not jump from “skin infection” → “antibiotic.” Build the choice from organism + epidemiology + host + drug properties.</p>
+<ul class="trans">
+<li><strong>1. Establish the working diagnosis from history and PE</strong>
+  <ul><li>Bullae + superficial erosions + collarette → bullous impetigo.</li><li>Localized lesion pattern + active, afebrile child → outpatient management is plausible.</li></ul>
+</li>
+<li><strong>2. Identify the most likely etiologic organism</strong>
+  <ul><li>Bullous disease → exfoliative toxin-producing <strong>S. aureus</strong>.</li><li>Gram-positive clusters reinforce this.</li></ul>
+</li>
+<li><strong>3. Use epidemiologic information</strong>
+  <ul><li>Ask whether this behaves like routine community disease or whether MRSA risk is meaningful.</li><li>Local resistance patterns matter.</li><li>The antimicrobial lecture emphasizes that a drug with high local resistance should not remain a routine first-line choice.</li></ul>
+</li>
+<li><strong>4. Apply host factors</strong>
+  <ul><li>Age = 4 years → pediatric formulation and safety matter.</li><li>Weight = 15 kg → dose must be weight-based.</li><li>No known drug allergy → β-lactams remain available.</li><li>Stable, active, afebrile → oral outpatient therapy is suitable unless disease worsens.</li><li>Social/caregiver factors matter because frequent doses can reduce adherence.</li></ul>
+</li>
+<li><strong>5. Match drug to the site and organism</strong>
+  <ul><li>Skin/soft-tissue infection requires adequate tissue exposure.</li><li>For likely MSSA → choose a narrow, effective anti-staphylococcal β-lactam when possible.</li></ul>
+</li>
+<li><strong>6. Use rational-spectrum / stewardship logic</strong>
+  <ul><li>Do not use broad MRSA coverage simply because it exists.</li><li>Use the narrowest effective agent once organism probability or susceptibility is sufficiently clear.</li><li>Trans 8 gives a directly analogous MSSA case in which clindamycin is de-escalated to oxacillin once MSSA is confirmed.</li></ul>
+</li>
+<li><strong>7. Tailor dose + route + interval</strong>
+  <ul><li>Correct mg/kg/day.</li><li>Correct number of divided doses.</li><li>Correct formulation concentration.</li><li>Correct total quantity to dispense.</li><li>Correct meal instructions if absorption is food-sensitive.</li></ul>
+</li>
+<li><strong>8. Monitor response</strong>
+  <ul><li>Follow-up is part of therapy.</li><li>Failure may reflect wrong spectrum, inadequate blood levels, poor adherence, resistance, superinfection, or incorrect diagnosis.</li></ul>
+</li>
+</ul>
+<div class="callout katz"><span class="label">📖 Katzung-linked lecture principle</span>
+<ul class="trans"><li>The uploaded Trans 8 specifically cites Katzung for the use of semisynthetic penicillinase-resistant penicillins in <strong>β-lactamase-producing staphylococcal infections</strong>.<ul><li>Cloxacillin belongs to this group.</li><li>MRSA remains resistant to these conventional anti-staphylococcal penicillins.</li></ul></li></ul>
+</div>
+</section>
+
+<section id="gq1" class="card">
+<div class="title"><span class="badge">GQ1</span><h2>What are the goals of therapy for this patient?</h2></div>
+<p class="lead">A good answer should state both the <em>clinical outcome</em> and the <em>pharmacologic strategy</em>.</p>
+<h3>A. Immediate disease-control goals</h3>
+<ul class="trans">
+<li><strong>Eradicate the causative bacterial infection</strong>
+  <ul><li>Most likely organism = toxin-producing <strong>S. aureus</strong>.</li><li>Choose an agent active against likely MSSA unless MRSA risk changes the probability.</li><li>Use an adequate dose, interval, and duration.</li></ul>
+</li>
+<li><strong>Stop formation of new bullae and vesicles</strong>
+  <ul><li>Successful antimicrobial therapy should stop ongoing bacterial proliferation.</li><li>Clinically, the child should stop developing fresh fluid-filled lesions.</li></ul>
+</li>
+<li><strong>Promote healing of existing erosions</strong>
+  <ul><li>Ruptured bullae should dry and re-epithelialize.</li><li>Crusting and erythema should progressively lessen.</li><li>Discharge should stop.</li></ul>
+</li>
+<li><strong>Reduce pruritus-related trauma and autoinoculation</strong>
+  <ul><li>Scratching produced abrasions in the original history.</li><li>More scratching → more skin-barrier disruption → more bacterial spread to adjacent skin.</li></ul>
+</li>
+</ul>
+<h3>B. Complication-prevention goals</h3>
+<ul class="trans">
+<li><strong>Prevent local extension</strong>
+  <ul><li>Avoid spread to wider areas of the same limb.</li><li>Avoid progression to deeper skin/soft-tissue infection.</li></ul>
+</li>
+<li><strong>Prevent systemic illness</strong>
+  <ul><li>Maintain current afebrile, active state.</li><li>Watch for fever, malaise, lethargy, dehydration, or rapidly progressive inflammation.</li></ul>
+</li>
+<li><strong>Prevent toxin-related progression</strong>
+  <ul><li>Bullous impetigo is toxin mediated.</li><li>Worsening or widespread superficial exfoliation would require escalation and evaluation for more extensive toxin-mediated disease.</li></ul>
+</li>
+<li><strong>Prevent secondary bacterial contamination of open lesions</strong>
+  <ul><li>Ruptured bullae leave superficial erosions.</li><li>Clean wound care reduces additional contamination.</li></ul>
+</li>
+</ul>
+<h3>C. Transmission-control goals</h3>
+<ul class="trans">
+<li><strong>Prevent spread to household contacts</strong>
+  <ul><li>Hand hygiene.</li><li>Avoid sharing towels/clothes/linens.</li><li>Keep draining lesions clean and covered when practical.</li></ul>
+</li>
+<li><strong>Prevent self-spread to other body sites</strong>
+  <ul><li>Reduce scratching.</li><li>Keep nails short and clean.</li><li>Wash hands after touching lesions or dressings.</li></ul>
+</li>
+</ul>
+<h3>D. Rational-drug-use goals (ESSC)</h3>
+<ul class="trans">
+<li><strong>Efficacy</strong>
+  <ul><li>Active against likely pathogen.</li><li>Appropriate for skin infection.</li><li>Produces adequate exposure at correct dose and frequency.</li></ul>
+</li>
+<li><strong>Safety</strong>
+  <ul><li>Appropriate for a 4-year-old.</li><li>Avoid unnecessary toxicity.</li><li>Use allergy history to exclude unsafe β-lactam choices if needed.</li></ul>
+</li>
+<li><strong>Suitability</strong>
+  <ul><li>Oral pediatric formulation.</li><li>Feasible dose volume.</li><li>Caregiver can follow the schedule.</li><li>Route matches stable outpatient status.</li></ul>
+</li>
+<li><strong>Cost</strong>
+  <ul><li>Affordable enough to complete the entire course.</li><li>Do not sacrifice efficacy/safety for the lowest price.</li></ul>
+</li>
+</ul>
+<h3>E. Measurable follow-up goals</h3>
+<ul class="trans">
+<li>No new bullae / vesicles.</li>
+<li>Decreasing drainage.</li>
+<li>Less erythema and crusting.</li>
+<li>Healing superficial erosions.</li>
+<li>Child remains active and afebrile.</li>
+<li>Medication completed as instructed.</li>
+<li>No treatment-limiting adverse effects.</li>
+<li>No spread among household members.</li>
+</ul>
+<div class="callout pearl"><span class="label">⚪ Oral recitation version</span>
+<ul class="trans"><li>“The goals are to eradicate the likely <strong>S. aureus</strong>, stop new lesion formation, heal the erosions, reduce scratching and autoinoculation, prevent transmission and complications, and use an ESSC-appropriate antibiotic that the caregiver can administer and complete.”</li></ul>
+</div>
+</section>
+
+<section id="gq2" class="card">
+<div class="title"><span class="badge">GQ2</span><h2>List non-drug measures applicable to Makateo</h2></div>
+<p class="lead">The packet itself highlights wound cleaning, hygiene, preventing scratching, and isolating the child’s belongings. Expand these into practical caregiver instructions.</p>
+<h3>A. Local wound care</h3>
+<ul class="trans">
+<li><strong>Gently clean the involved skin</strong>
+  <ul><li>Remove surface discharge and debris.</li><li>Avoid aggressive scrubbing that creates additional erosions.</li><li>Use clean water and gentle cleansing as appropriate.</li></ul>
+</li>
+<li><strong>Keep ruptured lesions clean and dry</strong>
+  <ul><li>Ruptured bullae expose superficial skin.</li><li>Excess moisture and repeated handling may facilitate spread.</li></ul>
+</li>
+<li><strong>Cover draining / exposed lesions when feasible</strong>
+  <ul><li>Reduces direct contact with secretions.</li><li>Protects erosions from further friction and scratching.</li><li>Dispose of or wash dressings appropriately.</li></ul>
+</li>
+</ul>
+<h3>B. Stop the scratch → abrasion → spread cycle</h3>
+<ul class="trans">
+<li><strong>Trim fingernails short</strong>
+  <ul><li>Less mechanical skin injury.</li><li>Less bacterial material trapped under nails.</li></ul>
+</li>
+<li><strong>Keep nails and hands clean</strong>
+  <ul><li>Important because the history shows incessant scratching.</li></ul>
+</li>
+<li><strong>Discourage picking, scratching, or popping intact bullae</strong>
+  <ul><li>Reduces autoinoculation.</li><li>Reduces trauma and secondary contamination.</li></ul>
+</li>
+</ul>
+<h3>C. Hand hygiene</h3>
+<ul class="trans">
+<li>Caregiver washes hands before and after wound care.</li>
+<li>Child washes hands after touching the affected area.</li>
+<li>Use separate clean cloths / supplies for lesion care.</li>
+</ul>
+<h3>D. Prevent household transmission</h3>
+<ul class="trans">
+<li><strong>Do not share personal items</strong>
+  <ul><li>Towels.</li><li>Washcloths.</li><li>Clothing.</li><li>Bedding.</li><li>Razors or grooming items where applicable.</li></ul>
+</li>
+<li><strong>Separate / clean contaminated belongings</strong>
+  <ul><li>The packet specifically mentions isolating the patient’s belongings to prevent spread.</li><li>Wash items that contact draining lesions before reuse.</li></ul>
+</li>
+<li><strong>Limit direct skin-to-skin contact with the lesions</strong>
+  <ul><li>Especially while lesions are actively draining.</li></ul>
+</li>
+</ul>
+<h3>E. Environment and behavior</h3>
+<ul class="trans">
+<li>Keep commonly touched surfaces reasonably clean.</li>
+<li>Avoid sharing bathing implements.</li>
+<li>Use loose clothing over the affected area to minimize friction.</li>
+<li>Maintain adequate hydration and nutrition to support recovery.</li>
+</ul>
+<h3>F. Caregiver education</h3>
+<ul class="trans">
+<li><strong>Explain that “looks better” does not automatically mean “stop the antibiotic.”</strong></li>
+<li><strong>Teach exact dose volume and schedule.</strong></li>
+<li><strong>Demonstrate shaking of suspension before each dose.</strong></li>
+<li><strong>Explain meal timing if cloxacillin is used.</strong></li>
+<li><strong>Teach red flags requiring reassessment.</strong></li>
+</ul>
+<div class="callout must"><span class="label">📌 Why non-drug care is not optional</span>
+<ul class="trans"><li>Antibiotics treat the bacterial infection.<ul><li>They do not automatically stop scratching.</li><li>They do not clean discharge.</li><li>They do not prevent sharing contaminated towels.</li><li>Therefore, behavioral + hygiene measures directly support the therapeutic goals.</li></ul></li></ul>
+</div>
+</section>
+
+<section id="gq3" class="card">
+<div class="title"><span class="badge">GQ3</span><h2>Common causative organisms of non-bullous vs bullous impetigo</h2></div>
+<div class="grid2">
+<div class="mini">
+<h4>Bullous impetigo</h4>
+<ul class="trans">
+<li><strong>Primary organism</strong><ul><li><strong>Exfoliative toxin-producing Staphylococcus aureus.</strong></li></ul></li>
+<li><strong>Toxin effect in packet</strong><ul><li>Cleaves <strong>desmoglein-1</strong>.</li><li>Disrupts superficial epidermal cell adhesion.</li><li>Produces fragile, fluid-filled bullae.</li><li>Bullae rupture → superficial erythematous erosions + collarette/crusted border.</li></ul></li>
+<li><strong>Case correlation</strong><ul><li>Gram-positive clusters.</li><li>Large fluid-filled lesions.</li><li>Superficial erosions after rupture.</li></ul></li>
+</ul>
+</div>
+<div class="mini">
+<h4>Non-bullous impetigo</h4>
+<ul class="trans">
+<li><strong>Possible organisms</strong><ul><li>β-hemolytic streptococci, especially <strong>S. pyogenes / Group A Streptococcus</strong>.</li><li><strong>S. aureus</strong>.</li><li>Combination of both.</li></ul></li>
+<li><strong>Packet morphology</strong><ul><li>Erythematous papules.</li><li>Lesions rupture.</li><li>Characteristic honey-colored crust over an erythematous base.</li></ul></li>
+</ul>
+</div>
+</div>
+<h3>Why gram-positive “clusters” matter</h3>
+<ul class="trans">
+<li><strong>Staphylococci</strong>
+  <ul><li>Classically arrange in grape-like clusters.</li><li>This is consistent with the case Gram stain.</li></ul>
+</li>
+<li><strong>Streptococci</strong>
+  <ul><li>More commonly appear in chains/pairs.</li><li>The case morphology therefore leans further toward Staphylococcus.</li></ul>
+</li>
+</ul>
+<h3>Bullous vs SSSS — important conceptual distinction</h3>
+<ul class="trans">
+<li><strong>Bullous impetigo</strong>
+  <ul><li>Localized superficial toxin-mediated infection.</li><li>Organisms are present in the local lesion.</li></ul>
+</li>
+<li><strong>Staphylococcal scalded skin syndrome (SSSS)</strong>
+  <ul><li>More widespread toxin-mediated exfoliative disease.</li><li>Trans 8 discusses SSSS as another S. aureus toxin-related condition.</li><li>Widespread tenderness/exfoliation or systemic illness should trigger escalation.</li></ul>
+</li>
+</ul>
+<div class="callout pearl"><span class="label">⚪ One-line memory aid</span><strong>Bullous = Staph toxin → desmoglein-1 → bullae. Non-bullous = GAS and/or Staph → honey-colored crust.</strong></div>
+</section>
+
+<section id="gq3a" class="card">
+<div class="title"><span class="badge">GQ3a</span><h2>What antimicrobial groups are appropriate for possible MSSA and MRSA?</h2></div>
+<h3>A. MSSA → β-lactams are the core source-based choices</h3>
+<div class="grid2">
+<div class="mini">
+<h4>1) Anti-staphylococcal penicillin → Cloxacillin</h4>
+<ul class="trans">
+<li><strong>Class</strong><ul><li>Semisynthetic penicillinase-resistant penicillin.</li></ul></li>
+<li><strong>Target</strong><ul><li>Penicillinase-producing <strong>MSSA</strong>.</li></ul></li>
+<li><strong>MOA</strong><ul><li>β-lactam resembles bacterial cell-wall substrate.</li><li>Binds penicillin-binding proteins (PBPs).</li><li>Inhibits transpeptidase activity.</li><li>Prevents peptidoglycan cross-linking.</li><li>Cell-wall integrity fails → bactericidal effect in susceptible growing bacteria.</li></ul></li>
+<li><strong>PK points from Trans 8</strong><ul><li>Penicillin absorption varies by compound.</li><li>Food interferes with many oral penicillins → lecture advises separation from meals.</li><li>Penicillins distribute widely into serum/tissues.</li><li>Cloxacillin has both biliary and renal elimination.</li></ul></li>
+<li><strong>Important resistance point</strong><ul><li>Penicillinase resistance ≠ MRSA activity.</li><li>MRSA is resistant to conventional anti-staphylococcal penicillins.</li></ul></li>
+</ul>
+</div>
+<div class="mini">
+<h4>2) First-generation cephalosporin → Cephalexin</h4>
+<ul class="trans">
+<li><strong>Class</strong><ul><li>1st-generation cephalosporin.</li></ul></li>
+<li><strong>Spectrum</strong><ul><li>Strong Gram-positive coccal activity.</li><li>Good MSSA / streptococcal skin coverage.</li></ul></li>
+<li><strong>MOA</strong><ul><li>β-lactam.</li><li>Binds PBPs.</li><li>Inhibits bacterial cell-wall synthesis.</li><li>Bactericidal.</li></ul></li>
+<li><strong>PK points</strong><ul><li>Useful oral agent.</li><li>Cephalosporins are generally primarily renally excreted.</li></ul></li>
+<li><strong>Role</strong><ul><li>Strong practical alternative to anti-staphylococcal penicillins for MSSA skin infection.</li></ul></li>
+</ul>
+</div>
+</div>
+<h3>B. MRSA options listed in the case packet</h3>
+<div class="grid3">
+<div class="mini"><h4>Clindamycin</h4><ul class="trans"><li><strong>Group</strong><ul><li>Lincosamide.</li></ul></li><li><strong>MOA</strong><ul><li>Binds 50S ribosomal subunit.</li><li>Inhibits protein synthesis.</li><li>Primarily bacteriostatic in the lecture classification.</li></ul></li><li><strong>Useful properties</strong><ul><li>Good soft-tissue penetration.</li><li>Can cover susceptible MSSA and MRSA.</li><li>Trans 8 notes toxin-suppression value in some serious staphylococcal infections.</li></ul></li><li><strong>Major drawback</strong><ul><li>Antibiotic-associated diarrhea.</li><li><strong>C. difficile / pseudomembranous colitis</strong> risk.</li></ul></li></ul></div>
+<div class="mini"><h4>Co-trimoxazole (TMP-SMX)</h4><ul class="trans"><li><strong>Group</strong><ul><li>Sulfonamide + diaminopyrimidine antimetabolite combination.</li></ul></li><li><strong>Sequential folate blockade</strong><ul><li>Sulfamethoxazole → inhibits dihydropteroate synthase.</li><li>Trimethoprim → inhibits dihydrofolate reductase.</li><li>↓ tetrahydrofolate availability → impaired nucleic-acid synthesis.</li></ul></li><li><strong>Role</strong><ul><li>Can be used for susceptible CA-MRSA.</li></ul></li><li><strong>Limitations</strong><ul><li>Packet notes streptococcal coverage is less dependable than β-lactams.</li><li>Renal caution.</li><li>Serious skin reactions / hematologic toxicity are rare but important.</li></ul></li></ul></div>
+<div class="mini"><h4>Doxycycline</h4><ul class="trans"><li><strong>Group</strong><ul><li>Tetracycline.</li></ul></li><li><strong>MOA</strong><ul><li>Reversibly binds 30S.</li><li>Prevents aminoacyl-tRNA attachment.</li><li>Inhibits protein synthesis.</li><li>Bacteriostatic.</li></ul></li><li><strong>Role</strong><ul><li>Can cover some CA-MRSA strains.</li></ul></li><li><strong>Why poor fit here</strong><ul><li>Patient is 4 years old.</li><li>Packet ranks it least favorable when safer pediatric alternatives exist.</li><li>Food/cation chelation complicates absorption.</li></ul></li></ul></div>
+</div>
+<h3>C. Why NOT automatically cover MRSA in this particular child?</h3>
+<ul class="trans">
+<li>No severe systemic illness.</li>
+<li>No treatment failure yet.</li>
+<li>No stated prior MRSA history.</li>
+<li>No stated outbreak.</li>
+<li>No stated strong MRSA exposure.</li>
+<li>Clinical picture + Gram morphology already strongly point to staphylococcal bullous impetigo.</li>
+<li>Trans 7 emphasizes rational, narrow therapy and avoidance of unnecessarily broad antibiotic use.</li>
+</ul>
+<div class="callout source"><span class="label">Source nuance</span>
+<ul class="trans"><li>Trans 8 also presents an MSSA/MRSA skin-infection example in which empiric clindamycin is reasonable when MRSA is genuinely a concern, then treatment is <strong>de-escalated to a narrower β-lactam</strong> after MSSA confirmation.<ul><li>That example supports the principle—not a rule that every mild/moderate impetigo case requires clindamycin.</li></ul></li></ul>
+</div>
+</section>
+
+<section id="gq3b" class="card">
+<div class="title"><span class="badge">GQ3b</span><h2>Compare the drug groups using ESSC and choose a P-drug</h2></div>
+<p class="lead">ESSC = Efficacy • Safety • Suitability • Cost. The best drug is the best fit for <em>this patient</em>, not the drug with the widest spectrum.</p>
+<h3>1. EFFICACY — detailed comparison</h3>
+<div class="table-wrap"><table>
+<thead><tr><th>Drug</th><th>Efficacy facts — one point per line</th><th>Case interpretation</th></tr></thead>
+<tbody>
+<tr><td><strong>Cloxacillin</strong></td><td class="lines"><span>Anti-staphylococcal penicillin.</span><span>β-lactam → PBP binding → transpeptidation/cross-linking inhibited.</span><span>Bactericidal.</span><span>Very effective for penicillinase-producing MSSA.</span><span>Widely distributed into tissues.</span><span>Cloxacillin: biliary + renal elimination in Trans 8.</span><span>Food may reduce absorption of oral penicillins.</span><span>Does not cover MRSA.</span></td><td class="lines"><span class="good">Excellent pathogen match.</span><span>Narrow spectrum is a stewardship advantage.</span><span>Strongest “targeted MSSA” answer.</span></td></tr>
+<tr><td><strong>Cephalexin</strong></td><td class="lines"><span>1st-generation cephalosporin.</span><span>β-lactam → PBP binding → cell-wall synthesis inhibited.</span><span>Bactericidal.</span><span>Strong Gram-positive coccal activity.</span><span>Useful for MSSA and streptococci.</span><span>Oral absorption is clinically useful.</span><span>Mostly renal elimination as a class.</span><span>Does not reliably treat MRSA.</span></td><td class="lines"><span class="good">Excellent.</span><span>Especially attractive when convenient pediatric dosing/formulation matters.</span></td></tr>
+<tr><td><strong>Clindamycin</strong></td><td class="lines"><span>50S inhibitor.</span><span>Primarily bacteriostatic.</span><span>~90% oral bioavailability stated in packet.</span><span>Excellent soft-tissue penetration.</span><span>Activity vs streptococci and susceptible staphylococci.</span><span>Can cover susceptible CA-MRSA.</span><span>Resistance may involve 23S rRNA target methylation.</span></td><td class="lines"><span class="mid">Effective but broader than needed.</span><span>Best reserved for MRSA concern or serious β-lactam allergy.</span></td></tr>
+<tr><td><strong>TMP-SMX</strong></td><td class="lines"><span>Well absorbed orally; packet says bioavailability &gt;90%.</span><span>Sequential folate-pathway inhibition.</span><span>Broad activity against selected Gram-positive and Gram-negative bacteria.</span><span>Often useful for susceptible CA-MRSA.</span><span>Resistance common through altered targets/pathways.</span></td><td class="lines"><span class="mid">MRSA-directed option.</span><span>Less ideal when streptococcal coverage is desired and MSSA is more likely.</span></td></tr>
+<tr><td><strong>Doxycycline</strong></td><td class="lines"><span>30S inhibitor.</span><span>Bacteriostatic.</span><span>Long half-life.</span><span>Good tissue distribution.</span><span>Can cover some CA-MRSA.</span><span>Cation chelation reduces absorption.</span></td><td class="lines"><span class="low">Not preferred for this 4-year-old when better options exist.</span></td></tr>
+</tbody></table></div>
+
+<h3>2. SAFETY — detailed comparison</h3>
+<div class="table-wrap"><table>
+<thead><tr><th>Drug</th><th>Common / important adverse effects</th><th>Pediatric relevance</th></tr></thead>
+<tbody>
+<tr><td><strong>Cloxacillin</strong></td><td class="lines"><span>Nausea / vomiting / diarrhea.</span><span>Rash.</span><span>Hypersensitivity is the major concern.</span></td><td class="lines"><span class="good">Favorable.</span><span>Patient has no reported drug allergy.</span><span>Still verify previous immediate β-lactam reactions.</span></td></tr>
+<tr><td><strong>Cephalexin</strong></td><td class="lines"><span>GI upset.</span><span>Rash / hypersensitivity.</span><span>Cephalosporins generally have low toxicity in Trans 8.</span><span>Cross-allergenicity with penicillin is not absolute.</span><span>Lecture advises avoiding cephalosporins in a history of penicillin anaphylaxis.</span></td><td class="lines"><span class="good">Very favorable.</span><span>Commonly practical in children.</span></td></tr>
+<tr><td><strong>Clindamycin</strong></td><td class="lines"><span>Nausea / vomiting / abdominal pain / diarrhea.</span><span><strong>C. difficile overgrowth.</strong></span><span>Pseudomembranous colitis is the major exam-worthy toxicity.</span></td><td class="lines"><span class="mid">Usable, but risk is less attractive when a safer narrow β-lactam works.</span></td></tr>
+<tr><td><strong>TMP-SMX</strong></td><td class="lines"><span>GI upset.</span><span>Rash.</span><span>Rare serious cutaneous reactions.</span><span>Hematologic toxicity possible.</span><span>Renal caution.</span><span>Trans 8 lists sulfonamides among drugs that may cause hemolysis in G6PD deficiency.</span></td><td class="lines"><span class="mid">Acceptable &gt;2 months, but more precautions than β-lactams.</span></td></tr>
+<tr><td><strong>Doxycycline</strong></td><td class="lines"><span>GI upset.</span><span>Esophageal irritation.</span><span>Photosensitivity.</span><span>Traditional tooth/bone concerns noted in packet.</span></td><td class="lines"><span class="low">Packet ranks least favorable for this 4-year-old.</span></td></tr>
+</tbody></table></div>
+
+<h3>3. SUITABILITY — detailed comparison</h3>
+<div class="table-wrap"><table>
+<thead><tr><th>Drug</th><th>Practical suitability</th><th>Case fit</th></tr></thead>
+<tbody>
+<tr><td><strong>Cloxacillin</strong></td><td class="lines"><span>Oral pediatric formulation available.</span><span>Narrow spectrum.</span><span>Usually frequent q6h dosing.</span><span>Preferably separated from meals because food reduces absorption of many oral penicillins.</span></td><td class="lines"><span class="good">Good.</span><span>Main drawback = adherence complexity.</span></td></tr>
+<tr><td><strong>Cephalexin</strong></td><td class="lines"><span>Oral suspension.</span><span>Easy volume measurement.</span><span>Food timing generally less restrictive.</span><span>Outpatient-friendly.</span></td><td class="lines"><span class="good">Excellent practical fit.</span><span>May outperform cloxacillin in real-world adherence.</span></td></tr>
+<tr><td><strong>Clindamycin</strong></td><td class="lines"><span>Oral pediatric preparations possible.</span><span>Often multiple daily doses.</span><span>GI intolerance can impair completion.</span></td><td class="lines"><span class="mid">Best only if there is a specific reason.</span></td></tr>
+<tr><td><strong>TMP-SMX</strong></td><td class="lines"><span>Oral suspension available.</span><span>Longer half-life can allow convenient dosing.</span></td><td class="lines"><span class="mid">Convenient but spectrum is not the best MSSA-first fit.</span></td></tr>
+<tr><td><strong>Doxycycline</strong></td><td class="lines"><span>Long half-life.</span><span>Tablets/capsules less ideal for a 4-year-old.</span><span>Cation/food interactions complicate administration.</span></td><td class="lines"><span class="low">Least suitable.</span></td></tr>
+</tbody></table></div>
+
+<h3>4. COST — values listed in the case packet</h3>
+<div class="callout source"><span class="label">Important</span>
+<ul class="trans"><li>These are <strong>packet-listed prices</strong> from named pharmacies/brands.<ul><li>They are useful for the SGD ESSC exercise.</li><li>They are not being presented as verified current 2026 retail prices.</li></ul></li></ul>
+</div>
+<div class="table-wrap"><table>
+<thead><tr><th>Drug</th><th>Packet-listed examples</th><th>Interpretation</th></tr></thead>
+<tbody>
+<tr><td><strong>Cephalexin</strong></td><td class="lines"><span>Generic 250 mg capsule: ₱14.50/pc.</span><span>Generic 500 mg: ₱21.25/pc.</span><span>Packet lists suspension examples including 250 mg/5 mL, 60 mL: ₱152.75.</span><span>Branded Cefalin 250 mg/5 mL, 60 mL: ₱413.25.</span></td><td>Generic suspension is reasonably accessible; brand price may be much higher.</td></tr>
+<tr><td><strong>Cloxacillin</strong></td><td class="lines"><span>500 mg capsule: ₱17/pc.</span><span>125 mg/5 mL suspension entry: ₱85.</span><span>Cloxane 500 mg capsule: ₱10/pc.</span><span>Cloxipen 250 mg/5 mL, 60 mL: ₱181.</span></td><td>Relatively inexpensive and narrow-spectrum.</td></tr>
+<tr><td><strong>Clindamycin</strong></td><td class="lines"><span>150 mg capsule: ₱21/pc.</span><span>300 mg capsule: ₱37.75/pc.</span><span>Kylezine 300 mg: ₱20/pc.</span></td><td>Packet suggests a higher per-unit cost than some β-lactams.</td></tr>
+<tr><td><strong>TMP-SMX</strong></td><td class="lines"><span>800/160 mg tablet: ₱9.50/pc.</span><span>400/80 mg per 5 mL suspension, 60 mL: ₱139.</span><span>Jenetrol 800/160: ₱5/pc.</span></td><td>Low acquisition cost, but indication still matters more than price.</td></tr>
+<tr><td><strong>Doxycycline</strong></td><td class="lines"><span>100 mg generic capsule: ₱5/pc.</span><span>Doxin 100 mg: ₱113/pc.</span></td><td>Cheap generic does not overcome poor age/suitability fit.</td></tr>
+</tbody></table></div>
+</section>
+
+<section id="pdrug" class="card">
+<div class="title"><span class="badge">P</span><h2>P-drug choice: why cloxacillin can win — and why cephalexin is still very defensible</h2></div>
+<div class="scorebox"><div><strong>Efficacy</strong>Cloxacillin ★★★★</div><div><strong>Safety</strong>Cloxacillin ★★★★</div><div><strong>Suitability</strong>Cloxacillin ★★★☆</div><div><strong>Cost / stewardship</strong>Cloxacillin ★★★★</div></div>
+<ul class="trans">
+<li><strong>Why choose cloxacillin as the P-drug?</strong>
+  <ul><li>Likely pathogen = MSSA.</li><li>Cloxacillin is specifically anti-staphylococcal.</li><li>Bactericidal β-lactam.</li><li>Narrower than MRSA-directed agents.</li><li>No known penicillin allergy.</li><li>Pediatric oral formulation exists.</li><li>Packet cost is relatively low.</li><li>Supports antimicrobial stewardship.</li></ul>
+</li>
+<li><strong>What is its main weakness?</strong>
+  <ul><li>Frequent dosing.</li><li>Meal-timing restrictions.</li><li>These may lower adherence in a 4-year-old.</li></ul>
+</li>
+<li><strong>Why can cephalexin also be a very strong P-drug?</strong>
+  <ul><li>Excellent MSSA + streptococcal coverage.</li><li>Good pediatric suspension.</li><li>Usually simpler administration around meals.</li><li>Very good safety profile.</li><li>Reasonable cost.</li></ul>
+</li>
+<li><strong>Decision rule for an SGD discussion</strong>
+  <ul><li>If your group emphasizes <strong>narrow pathogen targeting + stewardship</strong> → cloxacillin wins.</li><li>If your group emphasizes <strong>caregiver convenience + adherence</strong> → cephalexin may score higher on suitability.</li></ul>
+</li>
+</ul>
+<div class="callout katz"><span class="label">📖 Mechanistic distinction you should say aloud</span>
+<ul class="trans"><li><strong>“Penicillinase-resistant” does not mean “MRSA-active.”</strong><ul><li>Cloxacillin resists many staphylococcal β-lactamases.</li><li>MRSA resistance is due to an altered β-lactam target PBP; conventional cloxacillin/oxacillin therefore fail.</li><li>Trans 8 explicitly states that methicillin-resistant staphylococci are resistant to this semisynthetic group.</li></ul></li></ul>
+</div>
+</section>
+
+<section id="gq4" class="card">
+<div class="title"><span class="badge">GQ4</span><h2>Write the prescription for Maky using the P-drug</h2></div>
+<div class="callout warn"><span class="label">⚠ Source-boundary note</span>
+<ul class="trans"><li>The case packet <strong>asks</strong> for a cloxacillin P-drug prescription and lists available cloxacillin formulations/costs, but the text extraction does <strong>not provide a finalized cloxacillin dose regimen</strong> under GQ4.<ul><li>Therefore, the worked prescription below is an <strong>academic dosing expansion</strong> used to complete the requested GQ.</li><li>Do not represent the exact dose as a direct quotation from the packet or Katzung.</li></ul></li></ul>
+</div>
+<h3>A. Worked pediatric calculation used in this reviewer</h3>
+<div class="calc">Patient weight = 15 kg
+Worked daily dose = 25 mg/kg/day
+
+15 kg × 25 mg/kg/day = 375 mg/day
+q6h = 4 doses/day
+375 mg/day ÷ 4 = 93.75 mg/dose
+
+If suspension = 125 mg/5 mL:
+125 mg / 5 mL = 25 mg/mL
+93.75 mg ÷ 25 mg/mL = 3.75 mL/dose
+
+If given q6h for 7 days:
+3.75 mL × 4 doses/day × 7 days = 105 mL total
+→ One 60-mL bottle is insufficient.
+→ Dispense enough reconstituted product to complete the course.</div>
+<h3>B. Academic sample prescription</h3>
+<div class="rx">Patient: Makateo S. Obra
+Age: 4 years old        Weight: 15 kg
+Date: __________
+
+Rx
+Cloxacillin powder for oral suspension 125 mg/5 mL
+Dispense: sufficient quantity for 7 days (at least 105 mL after reconstitution)
+
+Sig:
+Reconstitute according to product instructions.
+Shake well before each dose.
+Give 3.75 mL by mouth every 6 hours for 7 days.
+Preferably administer on an empty stomach / separated from meals.
+Complete the full prescribed course.
+
+Prescriber: ____________________
+License no.: ___________________</div>
+<h3>C. Why every part matters</h3>
+<ul class="trans">
+<li><strong>Generic name</strong><ul><li>Reduces ambiguity.</li><li>Supports rational prescribing.</li></ul></li>
+<li><strong>Strength and dosage form</strong><ul><li>Essential because mg/mL differs between products.</li><li>Suspension is appropriate for age.</li></ul></li>
+<li><strong>Exact mL per dose</strong><ul><li>Caregiver administers volume, not “mg.”</li><li>Avoid vague “teaspoon” instructions when possible.</li></ul></li>
+<li><strong>Frequency</strong><ul><li>β-lactams are classically most effective when adequate exposure is maintained across the dosing interval.</li><li>Missed doses reduce time above the organism’s inhibitory concentration.</li></ul></li>
+<li><strong>Duration</strong><ul><li>Must be long enough to achieve clinical cure.</li><li>Must match the prescriber’s selected guideline regimen.</li></ul></li>
+<li><strong>Dispense quantity</strong><ul><li>Prescription must provide enough total suspension to finish therapy.</li></ul></li>
+<li><strong>Meal instruction</strong><ul><li>Trans 8 notes food interference for most oral penicillins.</li></ul></li>
+<li><strong>Shake well</strong><ul><li>Suspensions settle.</li><li>Inadequate mixing may produce inconsistent dosing.</li></ul></li>
+</ul>
+<div class="callout must"><span class="label">📌 Prescription math checklist</span><strong>kg → mg/kg/day → mg/day → doses/day → mg/dose → mg/mL → mL/dose → total mL/course.</strong></div>
+</section>
+
+<section id="gq5" class="card">
+<div class="title"><span class="badge">GQ5</span><h2>Aside from cloxacillin, what other MSSA antibiotic may be given? Give dose + available preparation.</h2></div>
+<p class="lead">The packet’s preferred alternative is <strong>cephalexin</strong>. It also lists cefuroxime and co-amoxiclav as alternatives.</p>
+<h3>A. Cephalexin — preferred alternative</h3>
+<ul class="trans">
+<li><strong>Why rational?</strong>
+  <ul><li>First-generation cephalosporin.</li><li>Strong Gram-positive coccal activity.</li><li>Good MSSA and streptococcal skin coverage.</li><li>Oral pediatric suspension is practical.</li><li>Trans 8 frames first-generation cephalosporins as useful alternatives to anti-staphylococcal penicillins.</li></ul>
+</li>
+</ul>
+<h3>B. The case packet contains TWO cephalexin dosing statements</h3>
+<div class="table-wrap"><table>
+<thead><tr><th>Packet statement</th><th>Dose</th><th>Frequency / duration</th><th>Preparation stated</th></tr></thead>
+<tbody>
+<tr><td>Earlier GQ5 paragraph</td><td>25–100 mg/kg/day</td><td>Divided q6–8h for 10 days</td><td class="lines"><span>Packet says “250 mg/mL, 60 mL bottle.”</span><span class="low">This is likely an internal concentration typo.</span></td></tr>
+<tr><td>Later “appropriate alternative” paragraph</td><td>25–50 mg/kg/day</td><td>2–4 equal doses, usually q6–12h, for 7 days</td><td class="lines"><span>125 mg/5 mL suspension.</span><span>250 mg/5 mL suspension.</span></td></tr>
+</tbody></table></div>
+<div class="callout source"><span class="label">Do not silently reconcile this</span>
+<ul class="trans"><li>The source is internally inconsistent on cephalexin dose range, duration, and one suspension concentration.<ul><li>For exam review → use the regimen your lecturer expects.</li><li>For clinical prescribing → verify the current local guideline and actual bottle concentration.</li></ul></li></ul>
+</div>
+<h3>C. Calculation shown in the packet for Makateo (15 kg)</h3>
+<ul class="trans">
+<li><strong>Using the packet’s later 25–50 mg/kg/day range</strong>
+  <ul><li>15 kg × 25 mg/kg/day = <strong>375 mg/day</strong>.</li><li>15 kg × 50 mg/kg/day = <strong>750 mg/day</strong>.</li></ul>
+</li>
+<li><strong>Packet sample with 250 mg/5 mL suspension</strong>
+  <ul><li>Concentration = 50 mg/mL.</li><li>Packet gives a sample regimen of <strong>2.5–5 mL every 8 hours</strong>.</li><li>2.5 mL = 125 mg/dose → 375 mg/day if TID.</li><li>5 mL = 250 mg/dose → 750 mg/day if TID.</li></ul>
+</li>
+</ul>
+<h3>D. Cefuroxime — packet-listed alternative</h3>
+<ul class="trans">
+<li><strong>Class</strong><ul><li>2nd-generation cephalosporin.</li></ul></li>
+<li><strong>Packet pediatric suspension regimen</strong><ul><li>30 mg/kg/day.</li><li>Maximum 1 g/day.</li><li>Divided q12h.</li><li>10 days.</li></ul></li>
+<li><strong>Packet preparations</strong><ul><li>250 mg/5 mL, 50 mL granules for suspension.</li><li>125 mg/5 mL, 50 mL powder for suspension.</li></ul></li>
+<li><strong>Packet tablet regimen</strong><ul><li>250 mg q12h for 10 days.</li><li>Not the most age-convenient form for this 4-year-old.</li></ul></li>
+</ul>
+<h3>E. Co-amoxiclav — broader packet-listed alternative</h3>
+<ul class="trans">
+<li><strong>Packet pediatric regimen</strong><ul><li>Age ≥3 months and weight &lt;40 kg.</li><li>30–90 mg/kg/day PO.</li><li>Divided q8–12h.</li><li>10 days.</li></ul></li>
+<li><strong>Packet-listed preparations</strong><ul><li>200 mg/28.5 mg, 70 mL oral suspension.</li><li>457 mg/5 mL, 35 mL powder for suspension.</li><li>312.5 mg/5 mL, 60 mL powder for suspension.</li></ul></li>
+<li><strong>ESSC comment</strong><ul><li>Broader spectrum than needed for straightforward MSSA.</li><li>Therefore less attractive if cloxacillin/cephalexin are effective and available.</li></ul></li>
+</ul>
+<h3>F. Why macrolides / clindamycin are not first choice here</h3>
+<ul class="trans">
+<li>Packet mentions macrolides as systemic options in some contexts.</li>
+<li>However, Makateo has no β-lactam allergy.</li>
+<li>Clindamycin carries more GI/C. difficile risk.</li>
+<li>Broader therapy should have a reason.</li>
+</ul>
+<div class="callout pearl"><span class="label">⚪ GQ5 recitation answer</span>
+<ul class="trans"><li>“Aside from cloxacillin, I would use <strong>cephalexin</strong>, a first-generation cephalosporin active against MSSA. The packet gives pediatric ranges of 25–50 mg/kg/day in divided doses in one section and 25–100 mg/kg/day q6–8h in another; it lists suspensions of 125 mg/5 mL and 250 mg/5 mL. For Makateo at 15 kg, the packet’s later range corresponds to 375–750 mg/day.”</li></ul>
+</div>
+</section>
+
+<section id="followup" class="card">
+<div class="title"><span class="badge">FU</span><h2>Follow-up, treatment failure, culture, and referral</h2></div>
+<h3>A. What to reassess</h3>
+<ul class="trans">
+<li>Are new bullae still appearing?</li>
+<li>Are old lesions drying / healing?</li>
+<li>Is erythema spreading?</li>
+<li>Any new fever or lethargy?</li>
+<li>Can the child eat/drink and take medication?</li>
+<li>Was every dose actually given?</li>
+<li>Was the suspension reconstituted and measured correctly?</li>
+<li>Was cloxacillin separated from food as instructed?</li>
+<li>Any rash, diarrhea, vomiting, or other adverse effect?</li>
+</ul>
+<h3>B. Reasons for apparent antimicrobial failure — mapped to Trans 7</h3>
+<ul class="trans">
+<li><strong>Incorrect spectrum</strong><ul><li>Example: true MRSA treated with cloxacillin/cephalexin.</li></ul></li>
+<li><strong>Inadequate drug levels</strong><ul><li>Underdosing.</li><li>Missed doses.</li><li>Wrong formulation concentration.</li><li>Vomiting doses.</li><li>Food-related absorption issue with penicillin.</li></ul></li>
+<li><strong>Resistance</strong><ul><li>Need culture/susceptibility if treatment fails.</li></ul></li>
+<li><strong>Superinfection</strong><ul><li>Broader antibiotic exposure can disrupt normal flora.</li></ul></li>
+<li><strong>Wrong diagnosis</strong><ul><li>Consider another blistering or inflammatory disorder if the clinical course is atypical.</li></ul></li>
+<li><strong>Ongoing trauma / contamination</strong><ul><li>Persistent scratching.</li><li>Poor wound care.</li><li>Repeated exposure from contaminated personal items.</li></ul></li>
+</ul>
+<h3>C. When the packet says testing is especially reasonable</h3>
+<ul class="trans"><li>Treatment failure.</li><li>Suspected community-acquired MRSA.</li><li>Outbreaks.</li><li>Severe cases.</li></ul>
+<h3>D. When to refer / escalate</h3>
+<div class="grid2">
+<div class="mini"><h4>Urgent assessment</h4><ul class="trans"><li>Fever + toxic appearance.</li><li>Lethargy or poor perfusion.</li><li>Dehydration / inability to take PO.</li><li>Rapidly spreading erythema/swelling.</li><li>Severe pain disproportionate to superficial lesions.</li><li>Concern for deeper soft-tissue infection.</li><li>Widespread exfoliation / possible SSSS.</li><li>Periorbital/facial involvement with concerning symptoms.</li></ul></div>
+<div class="mini"><h4>Non-urgent but important reassessment</h4><ul class="trans"><li>No meaningful improvement after an appropriate treatment interval.</li><li>New lesions despite adherence.</li><li>Recurrent impetigo.</li><li>Household / school cluster.</li><li>Known prior MRSA.</li><li>Immunocompromised patient.</li><li>Significant drug reaction.</li></ul></div>
+</div>
+</section>
+
+<section id="pearls" class="card">
+<div class="title"><span class="badge">HY</span><h2>High-yield recall: one fact per line</h2></div>
+<div class="grid3">
+<div class="mini"><h4>Diagnosis</h4><ul class="trans"><li>Bullous impetigo = toxin-producing <strong>S. aureus</strong>.</li><li>Desmoglein-1 cleavage.</li><li>Fragile bullae → erosions + collarette.</li><li>Gram-positive clusters → Staphylococcus.</li></ul></div>
+<div class="mini"><h4>MSSA</h4><ul class="trans"><li>Cloxacillin = anti-staph penicillin.</li><li>Cephalexin = 1st-gen cephalosporin.</li><li>Both = β-lactams.</li><li>Both = PBP / cell-wall inhibitors.</li><li>Both = bactericidal.</li></ul></div>
+<div class="mini"><h4>MRSA</h4><ul class="trans"><li>Clindamycin → 50S.</li><li>TMP-SMX → sequential folate blockade.</li><li>Doxycycline → 30S.</li><li>MRSA coverage is not automatically required for every mild/moderate case.</li></ul></div>
+<div class="mini"><h4>Toxicity traps</h4><ul class="trans"><li>Clindamycin → <strong>C. difficile / pseudomembranous colitis</strong>.</li><li>TMP-SMX → rash / serious skin reactions / hematologic issues / renal caution.</li><li>Doxycycline → not preferred in this 4-year-old when alternatives exist.</li><li>β-lactams → hypersensitivity.</li></ul></div>
+<div class="mini"><h4>Stewardship</h4><ul class="trans"><li>Use narrowest effective drug.</li><li>Do not treat resistance anxiety with unnecessary broad spectrum.</li><li>De-escalate when susceptibility permits.</li><li>Correct dose + frequency + duration prevents failure.</li></ul></div>
+<div class="mini"><h4>Prescription</h4><ul class="trans"><li>Convert kg → mg → mL.</li><li>Verify concentration.</li><li>Shake suspension.</li><li>Give enough total volume.</li><li>Follow meal instruction for cloxacillin.</li></ul></div>
+</div>
+<details open><summary>Fast oral-recitation answer — full case</summary>
+<ul class="trans">
+<li>“Makateo is a 4-year-old, 15-kg child with moderate bullous impetigo. The most likely pathogen is exfoliative toxin-producing <strong>S. aureus</strong>, supported by the bullae and Gram-positive clusters. The goals are eradication, lesion healing, prevention of spread/autoinoculation and complications, and rational ESSC drug selection.”</li>
+<li>“Non-drug care includes gentle wound cleansing, covering draining lesions, hand hygiene, short clean nails, preventing scratching, and separating contaminated towels/clothes/linens.”</li>
+<li>“For likely MSSA, first-line source-based β-lactam options are <strong>cloxacillin</strong> or <strong>cephalexin</strong>. Cloxacillin is a penicillinase-resistant anti-staphylococcal penicillin; cephalexin is a first-generation cephalosporin. Both inhibit PBPs and peptidoglycan cross-linking.”</li>
+<li>“MRSA options in the packet include clindamycin, TMP-SMX, and doxycycline, but these are not automatically preferable in this stable child without a stated MRSA risk.”</li>
+<li>“Using ESSC, cloxacillin is highly effective, safe in a child without allergy, narrow-spectrum and inexpensive, but its q6h/meal-timing schedule lowers suitability. Cephalexin has excellent efficacy and may be easier for the caregiver.”</li>
+</ul>
+</details>
+</section>
+
+<section id="sources" class="card">
+<div class="title"><span class="badge">SRC</span><h2>Source map and limits</h2></div>
+<ul class="trans">
+<li><strong>Uploaded case packet: “CASE No. 2 — Clear and Fluffy”</strong>
+  <ul><li>Case facts.</li><li>GQ wording.</li><li>Organism discussion.</li><li>MSSA/MRSA candidate groups.</li><li>ESSC details.</li><li>Packet-listed prices.</li><li>GQ5 dose ranges and preparations.</li></ul>
+</li>
+<li><strong>Uploaded Trans 7: Anti-infectious Disease Agents — Introduction to Antimicrobial Agents</strong>
+  <ul><li>Rational antimicrobial selection.</li><li>Organism / epidemiologic / host factors.</li><li>Narrow-vs-broad spectrum logic.</li><li>Antimicrobial failure.</li><li>Monitoring.</li><li>Resistance prevention / stewardship.</li></ul>
+</li>
+<li><strong>Uploaded Trans 8: Antimicrobial Groups & Antimicrobial Resistance I & II</strong>
+  <ul><li>β-lactam/PBP mechanism.</li><li>Penicillin/cephalosporin PK and spectrum.</li><li>Anti-staphylococcal penicillins.</li><li>MRSA resistance distinction.</li><li>Clindamycin, TMP-SMX, tetracycline pharmacology.</li><li>Mupirocin / topical antimicrobial discussion.</li><li>Analogous MSSA de-escalation case.</li></ul>
+</li>
+<li><strong>Katzung use in this reviewer</strong>
+  <ul><li>The uploaded Trans 8 itself cites Katzung for semisynthetic penicillinase-resistant penicillins and resistant organisms.</li><li>Mechanistic explanations here are paraphrased study explanations.</li><li>No page-specific Katzung quotations were invented.</li></ul>
+</li>
+</ul>
+<div class="callout warn"><span class="label">Two source inconsistencies you should remember</span>
+<ul class="trans">
+<li><strong>Cephalexin dosing in GQ5 is internally inconsistent.</strong><ul><li>One part: 25–100 mg/kg/day q6–8h × 10 days.</li><li>Another: 25–50 mg/kg/day divided 2–4 times × 7 days.</li></ul></li>
+<li><strong>One cephalexin concentration appears as “250 mg/mL.”</strong><ul><li>Later in the same packet, conventional 125 mg/5 mL and 250 mg/5 mL preparations are listed.</li><li>This reviewer flags the mismatch rather than silently correcting the source.</li></ul></li>
+</ul>
+</div>
+</section>
+
+</main>
+<a id="topBtn" href="#top">↑ Top</a>
+<div class="footer">Single-page bookmark reviewer • Bullet/next-line format • Academic review only</div>
+</body>
+</html>
