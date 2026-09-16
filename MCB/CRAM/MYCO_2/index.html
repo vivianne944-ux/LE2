@@ -1,1 +1,2658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mycology 2 Cram Reviewer — Systemic, Endemic &amp; Opportunistic Mycoses</title>
+<style>
+:root{
+  --font: "Segoe UI", Arial, Helvetica, sans-serif;
+  --bg: #f6f7f9;
+  --panel: #ffffff;
+  --ink: #1c2430;
+  --ink-soft: #4b5563;
+  --border: #e2e5ea;
+  --border-strong: #cfd4dc;
+  --accent: #2a5db0;
+  --accent-soft: #eaf1fc;
+  --must-bg: #fdecec;
+  --must-border: #f3b6b6;
+  --must-ink: #9a1f1f;
+  --should-bg: #fff4e0;
+  --should-border: #f0cf8f;
+  --should-ink: #8a5b06;
+  --nice-bg: #eaf1fc;
+  --nice-border: #b9cdee;
+  --nice-ink: #1e4a8a;
+  --trap-bg: #fff0f0;
+  --trap-border: #eab3b3;
+  --trap-ink: #a01c1c;
+  --confuse-bg: #f4edfb;
+  --confuse-border: #d6bdec;
+  --confuse-ink: #6a2fa0;
+  --mech-bg: #e9f7f1;
+  --mech-border: #b3e2cb;
+  --mech-ink: #14704a;
+  --summary-bg: #eef1fd;
+  --summary-border: #c3cdf5;
+  --summary-ink: #33409e;
+  --pearl-bg: #fefbe8;
+  --pearl-border: #eee0a0;
+  --pearl-ink: #7a6205;
+  --radius: 10px;
+}
 
+*{box-sizing:border-box;}
+
+html{scroll-behavior:smooth;}
+
+body{
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--ink);
+  margin:0;
+  padding:0;
+  line-height:1.45;
+  font-size:15px;
+}
+
+.wrap{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 14px 60px;
+}
+
+/* ---------- HEADER ---------- */
+.sticky-wrap{
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+header.top{
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 14px 12px;
+}
+.header-inner{
+  max-width: 980px;
+  margin:0 auto;
+}
+.title-row{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.title-row h1{
+  font-size: 1.25rem;
+  margin:0;
+  font-weight:700;
+  letter-spacing:-0.01em;
+}
+.cram-label{
+  display:inline-block;
+  background: var(--accent);
+  color:#fff;
+  font-size:0.62rem;
+  font-weight:700;
+  letter-spacing:0.06em;
+  padding:2px 8px;
+  border-radius:999px;
+  vertical-align:middle;
+  margin-left:8px;
+}
+.scope-line{
+  color: var(--ink-soft);
+  font-size:0.78rem;
+  margin:3px 0 8px;
+}
+.controls-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  align-items:center;
+}
+button.ctrl{
+  font-family: var(--font);
+  background: var(--panel);
+  border: 1px solid var(--border-strong);
+  color: var(--ink);
+  padding: 6px 10px;
+  border-radius: 7px;
+  font-size: 0.76rem;
+  font-weight:600;
+  cursor:pointer;
+  transition: background .15s, border-color .15s;
+}
+button.ctrl:hover{ background: var(--accent-soft); border-color: var(--accent); }
+button.ctrl.active{ background: var(--accent); color:#fff; border-color:var(--accent); }
+#searchBox{
+  font-family: var(--font);
+  border:1px solid var(--border-strong);
+  border-radius:7px;
+  padding:6px 10px;
+  font-size:0.8rem;
+  flex:1 1 160px;
+  min-width:120px;
+  background:var(--panel);
+  color:var(--ink);
+}
+.progress-wrap{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:8px;
+  font-size:0.75rem;
+  color:var(--ink-soft);
+}
+.progress-bar{
+  flex:1;
+  height:7px;
+  background: var(--border);
+  border-radius:999px;
+  overflow:hidden;
+}
+.progress-fill{
+  height:100%;
+  width:0%;
+  background: var(--accent);
+  transition: width .25s ease;
+}
+#progressPct{ min-width:34px; text-align:right; font-weight:700; color:var(--accent); }
+
+/* ---------- STICKY NAV ---------- */
+nav.jump{
+  background: var(--panel);
+  border-bottom:1px solid var(--border);
+  overflow-x:auto;
+  white-space:nowrap;
+  padding: 6px 14px;
+  scrollbar-width: thin;
+}
+nav.jump a{
+  display:inline-block;
+  font-size:0.72rem;
+  color: var(--accent);
+  text-decoration:none;
+  padding:4px 9px;
+  border-radius:6px;
+  font-weight:600;
+}
+nav.jump a:hover{ background: var(--accent-soft); }
+
+/* ---------- SECTION CARDS ---------- */
+main{ padding-top: 14px; }
+
+.roman{
+  font-size:1.02rem;
+  font-weight:700;
+  margin: 30px 0 10px;
+  padding-bottom:5px;
+  border-bottom: 2px solid var(--ink);
+  letter-spacing:0.01em;
+}
+.roman:first-of-type{ margin-top:14px; }
+
+details.card{
+  background: var(--panel);
+  border:1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom:10px;
+  overflow:hidden;
+}
+details.card > summary{
+  list-style:none;
+  cursor:pointer;
+  padding:10px 12px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-weight:700;
+  font-size:0.92rem;
+  background: var(--panel);
+}
+details.card > summary::-webkit-details-marker{ display:none; }
+details.card > summary::before{
+  content: "▸";
+  display:inline-block;
+  color: var(--accent);
+  transition: transform .15s;
+  flex:0 0 auto;
+  font-size:0.8rem;
+}
+details.card[open] > summary::before{ transform: rotate(90deg); }
+.summary-text{ flex:1; }
+.page-ref{
+  font-size:0.68rem;
+  font-weight:600;
+  color: var(--ink-soft);
+  background: var(--bg);
+  border:1px solid var(--border);
+  padding:2px 7px;
+  border-radius:999px;
+  white-space:nowrap;
+}
+.done-check{
+  width:16px; height:16px;
+  accent-color: var(--accent);
+  cursor:pointer;
+  flex:0 0 auto;
+}
+.card-body{
+  padding: 4px 14px 14px;
+  border-top:1px solid var(--border);
+}
+.card-body > *:first-child{ margin-top:10px; }
+
+h3.sub{
+  font-size:0.86rem;
+  font-weight:700;
+  margin:16px 0 6px;
+  color: var(--ink);
+}
+h4.subsub{
+  font-size:0.8rem;
+  font-weight:700;
+  margin:12px 0 4px;
+  color: var(--ink-soft);
+  text-transform:uppercase;
+  letter-spacing:0.03em;
+}
+
+p{ margin:6px 0; }
+ul, ol{ margin:6px 0; padding-left:20px; }
+li{ margin:2px 0; }
+li ul, li ol{ margin:2px 0; }
+
+/* ---------- BADGES ---------- */
+.badge{
+  display:inline-block;
+  font-size:0.62rem;
+  font-weight:800;
+  letter-spacing:0.04em;
+  padding:2px 7px;
+  border-radius:5px;
+  margin:0 4px 4px 0;
+  vertical-align:middle;
+  border:1px solid transparent;
+}
+.badge-must{ background:var(--must-bg); color:var(--must-ink); border-color:var(--must-border); }
+.badge-should{ background:var(--should-bg); color:var(--should-ink); border-color:var(--should-border); }
+.badge-nice{ background:var(--nice-bg); color:var(--nice-ink); border-color:var(--nice-border); }
+.badge-trap{ background:var(--trap-bg); color:var(--trap-ink); border-color:var(--trap-border); }
+.badge-confuse{ background:var(--confuse-bg); color:var(--confuse-ink); border-color:var(--confuse-border); }
+.badge-mech{ background:var(--mech-bg); color:var(--mech-ink); border-color:var(--mech-border); }
+.badge-summary{ background:var(--summary-bg); color:var(--summary-ink); border-color:var(--summary-border); }
+.badge-pearl{ background:var(--pearl-bg); color:var(--pearl-ink); border-color:var(--pearl-border); }
+
+/* ---------- PRIORITY BLOCKS ---------- */
+.blk{
+  border-left:3px solid var(--border-strong);
+  padding:7px 10px;
+  margin:8px 0;
+  border-radius:6px;
+  background: var(--bg);
+}
+.blk-must{ border-left-color:var(--must-ink); background:var(--must-bg); }
+.blk-should{ border-left-color:var(--should-ink); background:var(--should-bg); }
+.blk-nice{ border-left-color:var(--nice-ink); background:var(--nice-bg); }
+.blk p, .blk ul{ margin:3px 0; }
+
+/* ---------- RECALL CUE ---------- */
+.recall{
+  background: var(--accent-soft);
+  border:1px dashed var(--accent);
+  border-radius:8px;
+  padding:7px 10px;
+  margin:8px 0;
+  font-size:0.85rem;
+}
+.recall b{ color:var(--accent); }
+
+/* ---------- EXAM TRAP BOX ---------- */
+.trapbox{
+  background: var(--trap-bg);
+  border:1px solid var(--trap-border);
+  border-left:4px solid var(--trap-ink);
+  border-radius:8px;
+  padding:8px 11px;
+  margin:9px 0;
+  font-size:0.85rem;
+}
+.trapbox .badge-trap{ margin-bottom:4px; }
+
+/* ---------- CLINICAL PEARL ---------- */
+.pearlbox{
+  background: var(--pearl-bg);
+  border:1px solid var(--pearl-border);
+  border-left:4px solid var(--pearl-ink);
+  border-radius:8px;
+  padding:8px 11px;
+  margin:9px 0;
+  font-size:0.85rem;
+}
+
+/* ---------- HIGH-YIELD SUMMARY BLOCK ---------- */
+.hysummary{
+  background: var(--summary-bg);
+  border:1px solid var(--summary-border);
+  border-radius:8px;
+  padding:9px 12px;
+  margin:14px 0 6px;
+}
+.hysummary ul{ margin:5px 0 0; padding-left:18px; }
+.hysummary li{ margin:3px 0; }
+
+/* ---------- MECHANISM / ARROW DIAGRAM ---------- */
+.mech{
+  background: var(--mech-bg);
+  border:1px solid var(--mech-border);
+  border-radius:8px;
+  padding:12px 14px;
+  margin:10px 0;
+}
+.mech-chain{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:0;
+}
+.mech-step{
+  background: var(--panel);
+  border:1px solid var(--mech-border);
+  border-radius:7px;
+  padding:6px 11px;
+  font-size:0.82rem;
+  font-weight:600;
+  max-width:100%;
+}
+.mech-arrow{
+  color: var(--mech-ink);
+  font-weight:800;
+  font-size:1.05rem;
+  padding:1px 0 1px 16px;
+  line-height:1;
+}
+.mech-branch{
+  margin: 4px 0 4px 10px;
+  border-left: 2px solid var(--mech-border);
+  padding-left:14px;
+}
+.mech-branch-item{
+  position:relative;
+  padding:4px 0;
+  font-size:0.82rem;
+}
+.mech-branch-item::before{
+  content:"→";
+  color:var(--mech-ink);
+  font-weight:800;
+  margin-right:6px;
+}
+.mech-note{
+  font-size:0.78rem;
+  color:var(--ink-soft);
+  font-style:italic;
+  margin-top:6px;
+}
+
+/* ---------- CLASSIFICATION TREE ---------- */
+.classtree{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin:10px 0;
+}
+.class-branch{
+  flex:1 1 200px;
+  background: var(--panel);
+  border:1px solid var(--border-strong);
+  border-radius:8px;
+  padding:9px 11px;
+  min-width:180px;
+}
+.class-branch h5{
+  margin:0 0 5px;
+  font-size:0.82rem;
+  font-weight:800;
+  color:var(--accent);
+}
+.class-branch ul{ margin:0; padding-left:16px; font-size:0.8rem; }
+.class-branch .moa{
+  font-size:0.72rem;
+  color:var(--ink-soft);
+  font-style:italic;
+  margin-top:4px;
+}
+
+/* ---------- TABLES ---------- */
+.tbl-wrap{
+  overflow-x:auto;
+  margin:10px 0;
+  border:1px solid var(--border);
+  border-radius:8px;
+}
+table{
+  border-collapse:collapse;
+  width:100%;
+  font-size:0.78rem;
+  min-width:480px;
+}
+table caption{
+  text-align:left;
+  font-size:0.78rem;
+  font-weight:700;
+  padding:7px 10px;
+  background: var(--bg);
+  border-bottom:1px solid var(--border);
+  caption-side:top;
+}
+th, td{
+  border:1px solid var(--border);
+  padding:6px 9px;
+  text-align:left;
+  vertical-align:top;
+}
+th{
+  background: var(--bg);
+  font-weight:700;
+  font-size:0.72rem;
+  text-transform:uppercase;
+  letter-spacing:0.02em;
+  color: var(--ink-soft);
+}
+td ul{ margin:0; padding-left:14px; }
+tr:nth-child(even) td{ background: color-mix(in srgb, var(--bg) 55%, transparent); }
+
+/* ---------- CONFUSION PAIR ---------- */
+.confuse-pair{
+  border:1px solid var(--confuse-border);
+  background: var(--confuse-bg);
+  border-radius:9px;
+  padding:10px 12px;
+  margin:10px 0;
+}
+.confuse-title{
+  font-weight:800;
+  font-size:0.86rem;
+  color: var(--confuse-ink);
+  margin-bottom:6px;
+}
+.confuse-cols{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.confuse-col{
+  flex:1 1 200px;
+  background: var(--panel);
+  border:1px solid var(--border);
+  border-radius:7px;
+  padding:8px 10px;
+  min-width:180px;
+}
+.confuse-col h6{
+  margin:0 0 4px;
+  font-size:0.8rem;
+  font-weight:800;
+}
+.confuse-col ul{ margin:0; padding-left:16px; font-size:0.78rem; }
+.fast-distinction{
+  margin-top:8px;
+  padding-top:8px;
+  border-top:1px dashed var(--confuse-border);
+  font-size:0.8rem;
+}
+
+/* ---------- CRAM SHEET ---------- */
+#cramsheet{
+  background: linear-gradient(180deg, var(--accent-soft), var(--panel));
+  border:2px solid var(--accent);
+  border-radius:12px;
+  padding:16px 18px 6px;
+  margin: 26px 0;
+}
+#cramsheet h2{
+  margin-top:0;
+  font-size:1.1rem;
+}
+.cram-item{
+  border-bottom:1px solid var(--border);
+  padding:9px 0;
+}
+.cram-item:last-child{ border-bottom:none; }
+.cram-num{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:20px; height:20px;
+  background: var(--accent);
+  color:#fff;
+  font-size:0.68rem;
+  font-weight:800;
+  border-radius:50%;
+  margin-right:7px;
+  flex:0 0 auto;
+}
+.cram-item-head{
+  display:flex;
+  align-items:flex-start;
+  gap:3px;
+  font-weight:700;
+  font-size:0.86rem;
+}
+.cram-item p{ margin:4px 0 0 27px; font-size:0.83rem; color:var(--ink-soft); }
+.cram-item ul{ margin:4px 0 0 27px; font-size:0.83rem; padding-left:16px; color:var(--ink-soft);}
+
+/* ---------- RAPID FIRE ---------- */
+#rapidfire{
+  background: var(--panel);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:16px 18px;
+  margin: 26px 0 10px;
+}
+#rapidfire h2{ margin-top:0; font-size:1.1rem; }
+.rf-grid{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap:6px;
+}
+@media(min-width:700px){
+  .rf-grid{ grid-template-columns: 1fr 1fr; }
+}
+details.rf{
+  border:1px solid var(--border);
+  border-radius:7px;
+  background: var(--bg);
+}
+details.rf > summary{
+  list-style:none;
+  cursor:pointer;
+  padding:8px 10px;
+  font-size:0.82rem;
+  font-weight:600;
+  display:flex;
+  gap:6px;
+}
+details.rf > summary::-webkit-details-marker{ display:none; }
+details.rf > summary::before{ content:"Q"; color:#fff; background:var(--accent); font-size:0.62rem; font-weight:800; border-radius:4px; padding:1px 5px; flex:0 0 auto; height:fit-content;}
+details.rf .rf-answer{
+  padding:2px 10px 9px 32px;
+  font-size:0.8rem;
+  color: var(--ink-soft);
+  border-top:1px solid var(--border);
+  margin-top:4px;
+  padding-top:7px;
+}
+details.rf .rf-answer b{ color:var(--ink); }
+
+/* ---------- MISC ---------- */
+.icon-note{
+  font-size:0.72rem;
+  color:var(--ink-soft);
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:7px;
+  padding:6px 10px;
+  margin:8px 0;
+}
+#backToTop{
+  position:fixed;
+  bottom:18px;
+  right:18px;
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  background: var(--accent);
+  color:#fff;
+  border:none;
+  font-size:1.1rem;
+  cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,0.25);
+  display:none;
+  z-index:60;
+  align-items:center;
+  justify-content:center;
+}
+#backToTop.show{ display:flex; }
+
+.hidden-by-filter{ display:none !important; }
+.hidden-by-search{ display:none !important; }
+
+footer.foot{
+  text-align:center;
+  font-size:0.72rem;
+  color:var(--ink-soft);
+  padding:26px 10px 40px;
+}
+
+mark{
+  background: #fff2a8;
+  color:inherit;
+  padding:0 2px;
+  border-radius:3px;
+}
+
+/* ---------- MUST-KNOW ONLY FILTER ---------- */
+body.filter-must .blk-should,
+body.filter-must .blk-nice{
+  display:none;
+}
+body.filter-must details.card:not([data-has-must="true"]) summary{
+  opacity:0.55;
+}
+
+@media print{
+  header.top, nav.jump, #backToTop, .controls-row, #searchBox{ display:none !important; }
+  details{ display:block !important; }
+  details > summary::before{ display:none; }
+  .card-body{ display:block !important; }
+  body{ font-size:11px; }
+  .hidden-by-filter, .hidden-by-search{ display:block !important; }
+  a{ color:inherit; text-decoration:none; }
+}
+
+@media (max-width:480px){
+  .title-row h1{ font-size:1.05rem; }
+  table{ font-size:0.72rem; }
+}
+</style>
+</head>
+<body>
+<div class="sticky-wrap">
+<header class="top">
+  <div class="header-inner">
+    <div class="title-row">
+      <h1>Mycology 2 — Systemic Mycoses<span class="cram-label">CRAM REVIEWER</span></h1>
+    </div>
+    <div class="scope-line">Endemic &amp; Opportunistic Mycoses + Antifungals · Source: MCB 2.08, Dr. Mateo-Laxa · 22 slides, Sections I–IV</div>
+    <div class="controls-row">
+      <button class="ctrl" id="expandAllBtn" type="button">Expand all</button>
+      <button class="ctrl" id="collapseAllBtn" type="button">Collapse all</button>
+      <button class="ctrl" id="mustOnlyBtn" type="button">Must-know only</button>
+      <button class="ctrl" id="resetProgressBtn" type="button">Reset progress</button>
+      <input type="text" id="searchBox" placeholder="Search the reviewer…">
+    </div>
+    <div class="progress-wrap">
+      <span>Progress</span>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <span id="progressPct">0%</span>
+    </div>
+  </div>
+</header>
+
+<nav class="jump" id="jumpNav">
+  <a href="#sec-overview">Overview</a>
+  <a href="#sec-cocci">Cocci</a>
+  <a href="#sec-histo">Histo</a>
+  <a href="#sec-blasto">Blasto</a>
+  <a href="#sec-para">Para</a>
+  <a href="#sec-candida">Candida</a>
+  <a href="#sec-crypto">Crypto</a>
+  <a href="#sec-aspergillus">Aspergillus</a>
+  <a href="#sec-mucor">Mucor</a>
+  <a href="#sec-pcp">PCP</a>
+  <a href="#sec-antifungal-class">Antifungal classes</a>
+  <a href="#sec-antifungal-agents">Drug-by-drug</a>
+  <a href="#sec-master-tables">Master tables</a>
+  <a href="#sec-confusion">Confusions</a>
+  <a href="#sec-traps">Exam traps</a>
+  <a href="#cramsheet">Cram sheet</a>
+  <a href="#rapidfire">Rapid fire</a>
+</nav>
+</div>
+
+<main class="wrap">
+<div class="roman" id="sec-overview">I. Systemic Mycoses — Overview</div>
+
+<details class="card" open data-priority-section="must">
+  <summary>
+    <input type="checkbox" class="done-check" data-id="overview">
+    <span class="summary-text">A. Overview — what makes a mycosis "systemic"</span>
+    <span class="page-ref">p.1</span>
+  </summary>
+  <div class="card-body">
+
+    <h3 class="sub">Core idea</h3>
+    <p>Systemic mycoses are fungal infections that affect <b>internal organs</b> and may spread throughout the body, going beyond the initial site of infection. They are caused by two very different groups of fungi.</p>
+
+    <div class="blk blk-must">
+      <span class="badge badge-must">MUST KNOW</span>
+      <ul>
+        <li>Caused by <b>endemic fungi</b> (acquired through inhalation, geographically restricted) <b>or</b> <b>opportunistic fungi</b> (cause disease only in immunocompromised hosts)</li>
+        <li>Unlike superficial/cutaneous mycoses (limited to skin, hair, or nails), systemic mycoses typically <b>begin in the lungs</b> after inhalation of fungal spores → can disseminate to other organs, especially if the host is immunocompromised</li>
+        <li><b>&gt;90%</b> of cases are from <b>inhalation of conidia</b>. The lungs are the primary site of infection, where conidia convert to:
+          <ul>
+            <li><b>Yeast cells</b> — H. capsulatum, B. dermatitidis, P. brasiliensis</li>
+            <li><b>Spherules</b> — Coccidioides spp.</li>
+          </ul>
+        </li>
+        <li>Despite very high infection rates in endemic areas, <b>~90%</b> of infections occur in <b>immunocompetent</b> individuals and are asymptomatic or self-limited</li>
+        <li>Compromised cell-mediated (<b>Th1</b>) immunity → significantly greater risk of <b>disseminated disease</b> <em>(lecturer-flagged 📌)</em></li>
+        <li>Incidence of disseminated disease for <b>all four</b> endemic mycoses is significantly <b>higher in males</b> <em>(lecturer-flagged 📌)</em></li>
+      </ul>
+    </div>
+
+    <div class="blk blk-should">
+      <span class="badge badge-should">SHOULD KNOW</span>
+      <ul>
+        <li>Characterized by distinct geographic areas of distribution and <b>dimorphic environmental molds</b></li>
+        <li>Serologic tests for serum antibodies may have both diagnostic and prognostic value</li>
+      </ul>
+    </div>
+
+    <div class="recall"><b>Recall cue:</b> Two roads into systemic disease — geography (endemic fungi, inhaled) or immune status (opportunistic fungi). Both usually start in the <b>lungs</b>.</div>
+
+    <div class="hysummary">
+      <span class="badge badge-summary">HIGH-YIELD SUMMARY</span>
+      <ul>
+        <li>Systemic mycoses = <b>endemic</b> (geography-driven) or <b>opportunistic</b> (immune-status-driven)</li>
+        <li>Lungs are the <b>primary portal of entry</b> for &gt;90% of cases</li>
+        <li><b>Th1/cell-mediated immunity</b> is the key defense against dissemination</li>
+        <li><b>Males</b> disseminate more often across all 4 endemic mycoses</li>
+      </ul>
+    </div>
+  </div>
+</details>
+
+<div class="roman" id="sec-endemic-intro">II. Endemic Mycoses</div>
+
+<details class="card" open>
+  <summary>
+    <input type="checkbox" class="done-check" data-id="endemic-intro">
+    <span class="summary-text">Endemic mycoses at a glance + Dimorphism</span>
+    <span class="page-ref">p.1–2</span>
+  </summary>
+  <div class="card-body">
+
+    <h3 class="sub">Core idea</h3>
+    <p>Endemic mycoses are geographically restricted infections caused by pathogenic fungi that are consistently present in a particular area. There are <b>4</b>:</p>
+    <ul>
+      <li><b>Coccidioidomycosis</b> — <i>Coccidioides immitis / posadasii</i></li>
+      <li><b>Histoplasmosis</b> — <i>Histoplasma capsulatum</i></li>
+      <li><b>Blastomycosis</b> — <i>Blastomyces dermatitidis</i></li>
+      <li><b>Paracoccidioidomycosis</b> — <i>Paracoccidioides brasiliensis</i></li>
+    </ul>
+
+    <h4 class="subsub">Dimorphism — the shared trait of all 4</h4>
+    <div class="blk blk-must">
+      <span class="badge badge-must">MUST KNOW</span>
+      <ul>
+        <li>Dimorphism = ability of the fungus to <b>change form</b> in response to a stimulus from the host environment — <b>essential for pathogenicity</b> of each organism</li>
+        <li>Temperature-dependent switch:
+          <ul>
+            <li><b>Yeast / single-cell form</b> — in the host, 36–37°C</li>
+            <li><b>Mycelium / filamentous mold form</b> — in the environment, 25°C</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="mech">
+      <span class="badge badge-mech">MECHANISM — Dimorphic switch</span>
+      <div class="mech-chain">
+        <div class="mech-step">Environment, 25°C → Mold / mycelium (hyphae + conidia)</div>
+        <div class="mech-arrow">⇅ temperature shift on inhalation</div>
+        <div class="mech-step">Host tissue, 36–37°C → Yeast (or spherule for Coccidioides)</div>
+      </div>
+      <div class="mech-note">Study aid (not from PDF): "Cold in the ground, hot in the body" — mold in soil, yeast at body temperature.</div>
+    </div>
+
+    <div class="recall"><b>Recall cue:</b> If a question mentions a fungus that looks different in culture at room temperature vs. in tissue/blood at 37°C — think <b>dimorphic endemic fungus</b>.</div>
+
+    <div class="hysummary">
+      <span class="badge badge-summary">HIGH-YIELD SUMMARY</span>
+      <ul>
+        <li>4 endemic mycoses: <b>Cocci, Histo, Blasto, Para</b></li>
+        <li>All are <b>thermally dimorphic</b>: mold at 25°C (environment) → yeast/spherule at 37°C (host)</li>
+        <li>Dimorphism is <b>required for virulence</b></li>
+      </ul>
+    </div>
+  </div>
+</details>
+<details class="card" id="sec-cocci">
+  <summary>
+    <input type="checkbox" class="done-check" data-id="cocci">
+    <span class="summary-text">A. Coccidioidomycosis — <i>Coccidioides immitis / posadasii</i></span>
+    <span class="page-ref">p.2–4</span>
+  </summary>
+  <div class="card-body">
+
+    <h3 class="sub">Core idea</h3>
+    <p>Caused by <b>C. immitis</b> or <b>C. posadasii</b> — "sibling species" that are clinically and structurally almost indistinguishable. First described (wrongly) as a <b>protozoan in 1892</b> in an Argentinian soldier, reclassified as a fungus in the early 1900s.</p>
+
+    <div class="blk blk-must">
+      <span class="badge badge-must">MUST KNOW</span>
+      <ul>
+        <li>Endemic to the <b>Southwestern US, Central America, South America</b> (Lower Sonoran Life Zone — hot desert, high temp, low rainfall)
+          <ul><li><b>C. immitis</b> → more endemic in <b>California</b></li><li><b>C. posadasii</b> → more frequent in <b>Arizona, Texas, South America</b></li></ul>
+        </li>
+        <li>Isolated from soil and indigenous rodents, but <b>no evidence of spread by rodents</b> and <b>not communicable person-to-person</b></li>
+        <li><b>C. immitis is the most infectious systemic fungus</b> — dimorphic: <b>arthroconidia</b> at 25–30°C, <b>spherules</b> at 37°C</li>
+        <li>The <b>presence of spherules is diagnostic</b> for this pathogen <em>(lecturer-flagged 📌)</em> — spherules up to ~80 μm, contain endospores ~2–5 μm each</li>
+        <li>Arthroconidia are <b>highly resistant</b> to adverse environmental conditions and remain viable for <b>years</b> — combined with high infectivity, this makes it suitable for use as a <b>biological weapon</b> <em>(lecturer-flagged 📌)</em></li>
+        <li>Peak infections occur in <b>summer and autumn</b> (dry weather → dust with spores. Arthroconidia produced abundantly)</li>
+        <li>Infection is usually <b>self-limited</b>. Dissemination is <b>rare but always serious and fatal</b> when it occurs</li>
+      </ul>
+    </div>
+
+    <div class="blk blk-should">
+      <span class="badge badge-should">SHOULD KNOW</span>
+      <ul>
+        <li>Environmental conditions favoring spore growth: temperatures of 100°F, little rainfall, alkaline soil</li>
+        <li>C. immitis produces <b>melanin</b> in mold form — possible role in virulence (may protect from host immune response, may increase antifungal resistance). Role in pathogenesis still under investigation</li>
+      </ul>
+    </div>
+
+    <h4 class="subsub">01 | Mold form (environment, 25–30°C)</h4>
+    <ul>
+      <li>White to tan colony</li>
+      <li>Hyphae show <b>alternating barrel-shaped arthroconidia</b> separated by a <b>disjunctor cell</b></li>
+      <li>Hyphae form chains of arthroconidia that fragment into individual, readily airborne arthroconidia that mix with dust and are inhaled</li>
+    </ul>
+
+    <h4 class="subsub">02 | Yeast form — spherule (host, 37°C)</h4>
+    <ul>
+      <li>Arthroconidia transform into a spherical, large, thick, <b>doubly refractile-walled</b> yeast cell called a <b>spherule</b></li>
+      <li>Spherule ≈ up to 80 μm, contains endospores ≈ 2–5 μm each</li>
+    </ul>
+
+    <h4 class="subsub">03 | Life cycle (once inhaled)</h4>
+    <div class="mech">
+      <span class="badge badge-mech">MECHANISM — C. immitis life cycle</span>
+      <div class="mech-chain">
+        <div class="mech-step">Arthroconidia inhaled → settle in terminal bronchioles → neutrophil/eosinophil inflammatory response (primary infection)</div>
+        <div class="mech-arrow">↓ ~Day 3</div>
+        <div class="mech-step">Arthroconidia develop into immature spherules</div>
+        <div class="mech-arrow">↓ Day 4</div>
+        <div class="mech-step">Spherules mature, divide internally → form hundreds–thousands of endospores</div>
+        <div class="mech-arrow">↓ Day 5</div>
+        <div class="mech-step">Spherules rupture → endospores released into host</div>
+        <div class="mech-arrow">↓</div>
+        <div class="mech-step">Each endospore can develop into a new mature spherule. Macrophages engulf some endospores → recruits lymphocytes/histiocytes → granuloma with giant cells if infection not cleared</div>
+      </div>
+    </div>
+
+    <h4 class="subsub">04 | Clinical manifestations</h4>
+    <ul>
+      <li><b>60%</b> of cases asymptomatic. Remaining <b>40%</b> self-limited</li>
+      <li>Self-limiting form = <b>Valley fever / San Joaquin Valley Fever / Desert Rheumatism</b> — influenza-like illness (fever, malaise, cough, arthralgia, headache)</li>
+      <li>Radiographs: hilar adenopathy with pulmonary infiltrates. In 5% — solitary nodules or thin-walled cavity</li>
+      <li>Hypersensitivity reaction in ~15% post-infection: maculopapular rash, <b>erythema nodosum</b>, or erythema multiforme</li>
+      <li><b>Disseminated / Secondary Coccidioidomycosis</b> (&lt;1% of cases, but often debilitating/life-threatening):
+        <ul>
+          <li>If chronic progressive pulmonary disease develops, usually within 1 year of primary infection</li>
+          <li>Spherules/endospores spread hematogenously or by direct extension — most frequent sites: <b>skin, bones/joints, meninges</b></li>
+        </ul>
+      </li>
+    </ul>
+
+    <div class="blk blk-must">
+      <span class="badge badge-must">MUST KNOW — Risk factors for dissemination</span>
+      <ul>
+        <li>Heredity</li>
+        <li>Sex — Males &gt; Females (except during pregnancy, since C. immitis has estrogen-binding proteins. Elevated estradiol/progesterone in pregnancy stimulates fungal growth)</li>
+        <li>Age (young and older individuals)</li>
+        <li>Compromised cell-mediated immunity</li>
+        <li>Race (decreasing order): <b>Filipinos &gt; African American &gt; Native American &gt; Hispanics &gt; Asians</b> — affects Filipinos the most. A genetic component is being studied <em>(lecturer-flagged 📌)</em></li>
+      </ul>
+    </div>
+
+    <h4 class="subsub">05 | Diagnostics</h4>
+    <ul>
+      <li><b>Antigen tests</b> — 2 clinically useful preparations, both can elicit positive delayed-type skin reactions:
+        <ul>
+          <li><b>Coccidioidin</b> — extracted from filtrate of a liquid mycelial culture</li>
+          <li><b>Spherulin</b> — produced from a filtrate of a broth culture of spherules</li>
+        </ul>
+      </li>
+      <li><b>Skin test (Coccidioidin Ag)</b> — for symptomatic and asymptomatic patients. Used for epidemiologic/exposure purposes. <b>Positive = &gt;5 mm induration at 24–48 hr</b></li>
+      <li><b>Microscopy</b> — KOH or Calcofluor stain to find spherules/endospores. H&amp;E, GMS, PAS also usable</li>
+      <li><b>Culture media</b> — Inhibitory mold agar. Brain Heart Infusion blood agar slant (± antibiotics/chlorheximide)</li>
+      <li><b>Serology (ELISA)</b> — <b>IgM</b> = active/early infection, <b>IgG</b> = past infection</li>
+    </ul>
+
+    <div class="trapbox">
+      <span class="badge badge-trap">EXAM TRAP</span>
+      Arthroconidia are HIGHLY INFECTIOUS and remain viable for years — a <b>biosafety cabinet MUST be used</b> when manipulating samples/cultures in the lab. Question-writers love to test this lab-safety point specifically for Coccidioides.
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <caption>Table 1. C. immitis diagnostics summary</caption>
+        <thead><tr><th>Diagnostic method</th><th>Key findings / uses</th></tr></thead>
+        <tbody>
+          <tr><td>Antigen tests</td><td>Coccidioidin (from liquid mycelial culture) and Spherulin (from broth culture of spherules) — both give positive delayed-type skin reactions in infected/exposed persons</td></tr>
+          <tr><td>Skin test (Coccidioidin Ag)</td><td>Identifies prior exposure in symptomatic and asymptomatic patients. Useful for epidemiology. Positive = &gt;5 mm induration at 24–48 hr</td></tr>
+          <tr><td>Microscopy</td><td>KOH/Calcofluor → spherules and endospores. H&amp;E, GMS, PAS may also be used</td></tr>
+          <tr><td>Culture media</td><td>Inhibitory mold agar. Brain Heart Infusion blood agar slant ± antibiotics/chlorheximide</td></tr>
+          <tr><td>ELISA</td><td>IgM → active infection/early disease · IgG → past infection</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4 class="subsub">06 | Treatment and control</h4>
+    <div class="tbl-wrap">
+      <table>
+        <caption>Coccidioidomycosis — treatment by severity</caption>
+        <thead><tr><th>Clinical scenario</th><th>Treatment</th></tr></thead>
+        <tbody>
+          <tr><td>Symptomatic 1° infection</td><td>Supportive therapy (self-limiting). <b>Itraconazole</b> can reduce symptoms</td></tr>
+          <tr><td>Severe disease</td><td><b>Amphotericin B</b> (parenteral) = treatment of choice, followed by oral itraconazole for several months</td></tr>
+          <tr><td>Coccidioidal meningitis</td><td><b>Oral fluconazole</b> = treatment of choice (good CNS penetration). Long-term therapy needed for CNS eradication</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><b>Control:</b> since arthrospores are free in the environment, focus on reducing dust — pave roads/airfields, plant grass or crops.</p>
+
+    <div class="recall"><b>Recall cue:</b> Spherule = diagnostic. Meningitis = fluconazole (CNS penetration). Severe/disseminated = Amphotericin B. Filipino ethnicity + California/Arizona travel + flu-like illness = think Valley Fever.</div>
+
+    <div class="hysummary">
+      <span class="badge badge-summary">HIGH-YIELD SUMMARY</span>
+      <ul>
+        <li>Cause: <b>Coccidioides immitis/posadasii</b>. Endemic SW USA, Mexico, South America</li>
+        <li>Morphology: <b>arthroconidia → spherules with endospores</b> (spherule = diagnostic)</li>
+        <li>Clinical: <b>Valley fever</b> (flu-like, erythema nodosum). Disseminated disease → skin, bones, meninges</li>
+        <li>Risk groups: <b>Filipinos</b>, African Americans, pregnant women, immunocompromised, males</li>
+        <li>Dx: microscopy (spherules), culture (hazardous — biosafety cabinet), serology</li>
+        <li>Tx: <b>Itraconazole</b> (mild) · <b>Amphotericin B</b> (severe) · <b>Fluconazole</b> (CNS/meningitis)</li>
+      </ul>
+    </div>
+  </div>
+</details>
+<details class="card" id="sec-histo">
+  <summary>
+    <input type="checkbox" class="done-check" data-id="histo">
+    <span class="summary-text">B. Histoplasmosis — <i>Histoplasma capsulatum</i></span>
+    <span class="page-ref">p.4–5</span>
+  </summary>
+  <div class="card-body">
+
+    <h3 class="sub">Core idea</h3>
+    <p>Caused by <b>Histoplasma capsulatum</b>, a dimorphic soil saprophyte. Also known as <b>Darling's Disease</b> (1905, Dr. Samuel Darling originally described it as a "protozoan"). The <b>most prevalent pulmonary fungal infection</b> in both animals and humans.</p>
+
+    <div class="blk blk-must">
+      <span class="badge badge-must">MUST KNOW</span>
+      <ul>
+        <li>Natural habitat: <b>soil with excreta of bats, chickens, and starlings</b> — high nitrogen content favors growth <em>(lecturer-flagged 📌)</em></li>
+        <li>Optimal growth temperature: 22–29°C</li>
+        <li>Highest incidence in <b>Central and Eastern US</b> — endemic in <b>Ohio River Valley</b> and parts of the <b>Mississippi River Valley</b></li>
+        <li>Mode of transmission: <b>inhalation of macroconidia</b> (prolonged exposure to dust/soil, disturbance of bird/bat guano) or <b>traumatic implantation</b> of spores (prick from infected plants/thorns) — at risk: spelunkers, agriculturists, outdoor construction workers</li>
+        <li>Facultative <b>intracellular</b> parasite — grows inside macrophages and reticuloendothelial cells</li>
+        <li>95% of cases: subclinical, self-limited flu-like symptoms</li>
+      </ul>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <caption>Table 2. Two serotypes of Histoplasma</caption>
+        <thead><tr><th>Feature</th><th>H. capsulatum var capsulatum</th><th>H. capsulatum var duboisii</th></tr></thead>
+        <tbody>
+          <tr><td>Disease</td><td>Classical histoplasmosis</td><td>African histoplasmosis</td></tr>
+          <tr><td>Geographic distribution</td><td>Prevalent in the US</td><td>Prevalent in Africa</td></tr>
+          <tr><td>Yeast size</td><td>1–5 μm</td><td>5–12 μm</td></tr>
+          <tr><td>Morphology / features</td><td>Thin/narrow bases between mother and daughter cells</td><td>Affects skin, subcutaneous tissues, and bones (can also disseminate)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4 class="subsub">01 | Mold form (environment, &lt;37°C, esp. 25–33°C)</h4>
+    <ul>
+      <li>Brown colony on Sabouraud's dextrose agar after 4 weeks. Slow-growing, needs ~4–12 weeks total</li>
+      <li>Large tuberculate macroconidia: 8–16 μm with peripheral spiny projections</li>
+      <li>Smaller, infectious microconidia: 2–5 μm</li>
+      <li>Exists as mold with aerial hyphae producing tuberculate macroconidia + microconidia spores (aerosolized/dispersed for inhalation)</li>
+    </ul>
+
+    <h4 class="subsub">02 | Yeast form (tissue or 37°C culture)</h4>
+    <ul>
+      <li>Measures 2–4 μm. Single bud separated by a narrow base from mother cell</li>
+    </ul>
+
+    <h4 class="subsub">03 | Pathogenesis</h4>
+    <div class="mech">
+      <span class="badge badge-mech">MECHANISM — H. capsulatum pathogenesis</span>
+      <div class="mech-chain">
+        <div class="mech-step">Inhalation of macroconidia OR traumatic implantation of spores</div>
+        <div class="mech-arrow">↓</div>
+        <div class="mech-step">Body temperature signals transformation to oval, budding <b>yeast</b> form</div>
+        <div class="mech-arrow">↓</div>
+        <div class="mech-step">Yeast phagocytosed by alveolar macrophages → transported via bloodstream to regional lymph nodes and other organs</div>
+        <div class="mech-arrow">↓</div>
+        <div class="mech-step">Inside macrophages: yeast produces HCO₃⁻ and NH₃ → raises phagosomal pH (alkaline)</div>
+        <div class="mech-arrow">↓</div>
+        <div class="mech-step">Prevents phagolysosomal acidification and fusion → inactivates lysosomal enzymes → organism multiplies</div>
+        <div class="mech-arrow">↓</div>
+        <div class="mech-step">Can disseminate to liver, spleen, lymph node, bone marrow</div>
+      </div>
+    </div>
+
+    <h4 class="subsub">04 | Clinical manifestations</h4>
+    <div class="tbl-wrap">
+      <table>
+        <caption>Table 3. H. capsulatum — clinical manifestations</caption>
+        <thead><tr><th>Clinical form</th><th>Typical patient / setting</th><th>Key findings</th></tr></thead>
+        <tbody>
+          <tr><td>Subclinical / mild pulmonary</td><td>Most cases. Immunocompetent</td><td>Flu-like symptoms, often self-limited</td></tr>
+          <tr><td>Acute pulmonary histoplasmosis</td><td>Immunocompetent individuals</td><td>Hilar lymphadenopathy + pulmonary infiltrates/nodules. May resolve spontaneously and heal with calcification</td></tr>
+          <tr><td>Chronic pulmonary histoplasmosis</td><td>More common in men. Underlying pulmonary damage e.g. emphysema</td><td>Reactivation of a dormant lesion. Yeast may be found in sputum. CXR → scattered multiple lesions/granulomas</td></tr>
+          <tr><td>Severe disseminated histoplasmosis</td><td>Infants, elderly, immunosuppressed</td><td>Mucocutaneous ulcers, lymphadenopathy, hepatosplenomegaly, high fever, anemia. Yeast in macrophages of blood/liver/spleen/bone marrow. High mortality without treatment</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Histology of severe disease: focal necrosis within granulomas.</p>
+
+    <h4 class="subsub">05 | Diagnostics</h4>
+    <ul>
+      <li><b>Microscopy</b> — GMS, PAS, Giemsa stains. Small ovoid cells within macrophages, usually positive in disseminated disease</li>
+      <li><b>Culture</b> — Glucose-cysteine-blood agar at 37°C, or SDA/IMA at 25–30°C (requires 4–12 weeks)</li>
+      <li><b>Complement Fixation (CF)</b> — detects Ab to histoplasmin (crude standardized mycelial broth filtrate antigen) or yeast cell. Positive within 2–5 weeks post-infection. Titers rise with progressive disease</li>
+      <li><b>Immunodiffusion (ID)</b> — detects precipitins to 2 specific antigens:
+        <ul>
+          <li><b>H (Hefe/yeast) Ag</b> → active histoplasmosis</li>
+          <li><b>M (Mycelium) Ag</b> → may reflect repeated skin testing or past exposure</li>
+        </ul>
+      </li>
+      <li><b>ELISA</b> — one of the most sensitive tests. Detects circulating polysaccharide antigen</li>
+    </ul>
+
+    <div class="tbl-wrap">
+      <table>
+        <caption>Table 4. H. capsulatum diagnostics summary</caption>
+        <thead><tr><th>Diagnostic method</th><th>Key findings / uses</th></tr></thead>
+        <tbody>
+          <tr><td>Microscopy</td><td>GMS/PAS/Giemsa → small ovoid cells within macrophages, usually + in disseminated disease</td></tr>
+          <tr><td>Culture</td><td>Glucose-cysteine-blood agar at 37°C. SDA or IMA at 25–30°C, needs 4–12 weeks</td></tr>
+          <tr><td>Complement Fixation (CF)</td><td>Detects Ab to histoplasmin or yeast cell. + 2–5 weeks post-infection. Titers rise with progressive disease</td></tr>
+          <tr><td>Immunodiffusion (ID)</td><td>Detects precipitins to H (active disease) and M (past exposure/skin testing) antigens</td></tr>
+          <tr><td>ELISA</td><td>One of the most sensitive tests. Detects circulating polysaccharide antigen</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4 class="subsub">06 | Treatment and control</h4>
+    <ul>
+      <li><b>Acute pulmonary:</b> supportive therapy + rest. Itraconazole for mild–moderate infection</li>
+      <li><b>Disseminated disease:</b> <b>Amphotericin B</b> = systemic treatment of choice, prolonged duration, monitor for relapse. AIDS patients often relapse → maintenance therapy with itraconazole</li>
+      <li><b>Control:</b> not communicable person-to-person (conidia spread by wind/dust) — high-risk individuals should wear face masks while hiking/caving. Poultry/bird workers should wear protective gear. Spraying formaldehyde on infected soil may destroy H. capsulatum</li>
+    </ul>
+
+    <div class="recall"><b>Recall cue:</b> Bird/bat droppings + cave explorer or poultry worker + intracellular yeast in macrophages = Histoplasma. It "hides and hijacks" macrophages by alkalinizing the phagosome.</div>
+
+    <div class="hysummary">
+      <span class="badge badge-summary">HIGH-YIELD SUMMARY</span>
+      <ul>
+        <li>Cause: <b>Histoplasma capsulatum</b>. Reservoir = soil with bird/bat droppings</li>
+        <li>Pathogenesis: <b>intracellular survival in macrophages</b> via phagosome alkalinization</li>
+        <li>Clinical: subclinical/mild (most). Chronic pulmonary (cavitary). Disseminated (mucocutaneous ulcers, hepatosplenomegaly, bone marrow)</li>
+        <li>Dx: microscopy (GMS, PAS), culture (slow), serology (CF, ID, ELISA)</li>
+        <li>Tx: <b>Itraconazole</b> (mild) · <b>Amphotericin B</b> (severe/disseminated)</li>
+      </ul>
+    </div>
+  </div>
+</details>
+<details class="card" id="sec-blasto">
+  <summary>
+    <input type="checkbox" class="done-check" data-id="blasto">
+    <span class="summary-text">C. Blastomycosis — <i>Blastomyces dermatitidis</i></span>
+    <span class="page-ref">p.5–6</span>
+  </summary>
+  <div class="card-body">
+
+    <h3 class="sub">Core idea</h3>
+    <p><b>Blastomyces dermatitidis</b> causes "North American Blastomycosis." Endemic to North and Central America, Canada, North River Valley, plus Africa, South America, and Asia.</p>
+
+    <div class="blk blk-must">
+      <span class="badge badge-must">MUST KNOW</span>
+      <ul>
+        <li>Thermally dimorphic fungus</li>
+        <li>Inhalation is the primary mode of entry. Lungs = primary infection site</li>
+        <li>Often presents as <b>mild, self-limited</b> pulmonary infiltrates — frequently <b>undiagnosed</b></li>
+        <li>Yeast form: <b>large, single budding cell</b>, thick-walled, multinucleated, spherical (8–15 μm), with a <b>broad-based bud</b> between daughter and parent yeast (bud can enlarge to same size as parent before detaching)</li>
+        <li>Distinct <b>pyogranulomatous</b> reaction with neutrophils + non-caseating granuloma on histology</li>
+      </ul>
+    </div>
+
+    <h4 class="subsub">01 | Mold form (25°C in culture)</h4>
+    <ul>
+      <li>Produces hyaline, branching, septate hyphae with "lollipop-shaped" conidia</li>
+      <li>On SDA at room temperature: white or brownish colony (or white on top, brown/tan on bottom)</li>
+      <li>Branching hyphae with spherical/ovoid/conical conidia (3–5 μm). Slender terminal or lateral conidiospores. Large chlamydospores (7–8 μm)</li>
+    </ul>
+
+    <h4 class="subsub">02 | Yeast form (37°C / in host)</h4>
+    <ul>
+      <li>Yeast colonies described as wrinkled, waxy, and soft</li>
+    </ul>
+
+    <h4 class="subsub">03 | Pathogenesis</h4>
+    <div class="mech">
+      <span class="badge badge-mech">MECHANISM — B. dermatitidis pathogenesis</span>
+      <div class="mech-chain">
+        <div class="mech-step">Environment: mold with septate hyphae producing spores</div>
+        <div class="mech-arrow">↓ inhaled or inoculated into skin</div>
+        <div class="mech-step">Warmer host temperature → transformation into broad-based budding yeast</div>
+        <div class="mech-arrow">↓</div>
+        <div class="mech-step">Yeast colonizes lungs OR disseminates via bloodstream (skin, bone, joints, organs, CNS) — just like histoplasmosis</div>
+      </div>
+    </div>
+    <p>Dissemination usually occurs among immunosuppressed individuals, causing skin lesions on exposed surfaces: <b>ulcerated, verrucous granuloma</b> with advancing border, central scarring, microabscesses along sharp sloping edges, plus lesions of bone, genitalia, CNS.</p>
+
+    <h4 class="subsub">04 | Diagnostics</h4>
+    <ul>
+      <li><b>Microscopy</b> — single, broadly attached buds on thick-walled yeast cells</li>
+      <li><b>Culture</b> — colonies develop within 2 weeks on Sabouraud's or enriched blood agar at 30°C</li>
+      <li><b>Identification</b> — confirmed by conversion to yeast form after cultivation on rich medium at 37°C</li>
+      <li><b>Antigen/antibody detection</b> — extraction/detection of B. dermatitidis-specific antigen A. CF and ID measure antibodies</li>
+      <li><b>Blastomycin skin test</b> — lacks specificity and sensitivity. False-positive cross-reactions occur with exposure to other fungi</li>
+    </ul>
+
+    <div class="tbl-wrap">
+      <table>
+        <caption>Table 5. Blastomycosis diagnostics summary</caption>
+        <thead><tr><th>Diagnostic method</th><th>Key findings / uses</th></tr></thead>
+        <tbody>
+          <tr><td>Microscopy</td><td>Single, broadly attached buds on thick-walled yeast cells</td></tr>
+          <tr><td>Culture</td><td>Colonies develop within 2 weeks. Sabouraud's or enriched blood agar at 30°C</td></tr>
+          <tr><td>Identification</td><td>Confirmed by conversion to yeast form after cultivation on rich medium at 37°C</td></tr>
+          <tr><td>Antigen and antibody detection</td><td>Extraction/detection of B. dermatitidis-specific antigen A. CF and ID measure antibodies</td></tr>
+          <tr><td>Blastomycin skin test</td><td>Lacks specificity/sensitivity. False-positive cross-reactions with other fungal exposures</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4 class="subsub">05 | Treatment</h4>
+    <ul>
+      <li><b>Amphotericin B</b> — for severe cases</li>
+      <li><b>Itraconazole</b> — for confined lesions, course of ~6 months</li>
+    </ul>
+
+    <div class="recall"><b>Recall cue:</b> "Broad-based budding, one bud at a time" = Blastomyces. Compare with Paracoccidioides' "many buds at once" below.</div>
+
+    <div class="hysummary">
+      <span class="badge badge-summary">HIGH-YIELD SUMMARY</span>
+      <ul>
+        <li>Cause: <b>Blastomyces dermatitidis</b>. Endemic to North America river valleys, also Africa/Asia</li>
+        <li>Morphology: <b>broad-based, single budding</b> yeast</li>
+        <li>Clinical: pulmonary disease (often subclinical), skin ulcers, bone/CNS disease</li>
+        <li>Dx: microscopy, culture (37°C conversion), antigen/antibody tests</li>
+        <li>Tx: <b>Itraconazole</b> (localized) · <b>Amphotericin B</b> (severe)</li>
+      </ul>
+    </div>
+  </div>
+</details>
+
+<details class="card" id="sec-para">
+  <summary>
+    <input type="checkbox" class="done-check" data-id="para">
+    <span class="summary-text">D. Paracoccidioidomycosis — <i>Paracoccidioides brasiliensis</i></span>
+    <span class="page-ref">p.6–7</span>
+  </summary>
+  <div class="card-body">
+
+    <h3 class="sub">Core idea</h3>
+    <p>Also known as <b>South American blastomycosis</b>. Confined to endemic regions of Central and South America and rural Latin America — <b>common among farmers</b>. No known natural habitat (rarely isolated in nature, like Blastomyces), theorized to be soil-associated.</p>
+
+    <div class="blk blk-must">
+      <span class="badge badge-must">MUST KNOW</span>
+      <ul>
+        <li><b>Males &gt; Females</b> predilection — <b>90%</b> of active-disease patients are males, aged 30–60 years</li>
+        <li>Non-contagious, thermally dimorphic (like the other 3 endemic mycoses)</li>
+        <li>Yeast form (36°C): <b>large, multiple-budding</b> yeast cells (up to 30 μm), thinner walls than B. dermatitidis, buds attached by a <b>narrow connection</b> resembling <b>spokes of a ship's wheel / pilot's wheel</b></li>
+      </ul>
+    </div>
+
+    <h4 class="subsub">01 | Mold form (25°C)</h4>
+    <ul>
+      <li>Grows very slowly. Fine, septate, clear hyphae. Produces chlamydospores or conidia</li>
+    </ul>
+
+    <h4 class="subsub">02 | Yeast form (36°C)</h4>
+    <ul>
+      <li>Culture: white or brownish colony</li>
+    </ul>
+
+    <h4 class="subsub">03 | Pathogenesis</h4>
+    <div class="mech">
+      <span class="badge badge-mech">MECHANISM — P. brasiliensis pathogenesis</span>
+      <div class="mech-chain">
+        <div class="mech-step">Inhalation of conidia (airborne spores) — infects mainly rural workers</div>
+        <div class="mech-arrow">↓</div>
+        <div class="mech-step">Initial lesion lodges in pulmonary alveoli (37°C)</div>
+        <div class="mech-arrow">↓</div>
+        <div class="mech-step">Conidia/hyphae fragments recognized by macrophages, neutrophils, dendritic cells → response determines outcome</div>
+      </div>
+      <div class="mech-branch">
+        <div class="mech-branch-item"><b>Most common:</b> pulmonary granuloma forms → may be dormant for decades → chronic progressive pulmonary disease or dissemination</div>
+        <div class="mech-branch-item"><b>Chronic (90% of cases, males 30–60y):</b> yeast spreads from lungs to skin/mucocutaneous tissue → granulomatous, suppurative lesions of lymph nodes, spleen, adrenal glands, liver. Painful oral mucosal sores</div>
+        <div class="mech-branch-item"><b>Acute/subacute (&lt;10%, &lt;30 years old):</b> shorter incubation, more rapidly progressive</div>
+      </div>
+    </div>
+    <p>Histopathology: granuloma with central caseation or microabscesses. Yeasts seen in giant cells or directly in exudates.</p>
+
+    <h4 class="subsub">04 | Diagnostics</h4>
+    <ul>
+      <li><b>Microscopy</b> — KOH or Calcofluor white for direct exam</li>
+      <li><b>Culture</b> — Sabouraud's or yeast extract agar at room temperature. Conversion to yeast form in vitro at 36°C is confirmatory</li>
+      <li><b>Serologic testing (most useful)</b> — antibody to paracoccidioidin detected by CF and ID</li>
+    </ul>
+
+    <h4 class="subsub">05 | Treatment</h4>
+    <ul>
+      <li><b>Itraconazole</b> — most effective</li>
+      <li>Ketoconazole and TMP-SMX — alternatives</li>
+      <li>Amphotericin B — for severe cases</li>
+    </ul>
+
+    <div class="recall"><b>Recall cue:</b> "Pilot's wheel / ship's wheel / mariner's wheel" yeast = <b>Paracoccidioides</b>. Latin American farmer, painful oral ulcer, multiple budding yeast.</div>
+
+    <div class="hysummary">
+      <span class="badge badge-summary">HIGH-YIELD SUMMARY</span>
+      <ul>
+        <li>Cause: <b>Paracoccidioides brasiliensis</b>. Endemic to rural Latin America (farmers, men &gt;&gt; women)</li>
+        <li>Morphology: <b>multiple-budding yeast</b> ("ship's wheel")</li>
+        <li>Clinical: chronic — pulmonary + mucocutaneous lesions. Acute/subacute — lymph nodes, liver, spleen, skin</li>
+        <li>Dx: microscopy, culture, serology (CF, ID)</li>
+        <li>Tx: <b>Itraconazole</b> (preferred) · Amphotericin B (severe) · alternatives: ketoconazole, TMP-SMX</li>
+      </ul>
+    </div>
+  </div>
+</details>
+<div class="roman" id="sec-opportunistic-intro">III. Opportunistic Mycoses</div>
+<p style="margin:4px 0 14px;color:var(--ink-soft);font-size:0.85rem;">This condition usually occurs in patients with <b>compromised immune systems</b>, making them susceptible to ubiquitous organisms that immunocompetent individuals normally resist. <span class="page-ref">p.7</span></p>
+
+<details class="card" id="sec-candida">
+  <summary>
+    <input type="checkbox" class="done-check" data-id="candida">
+    <span class="summary-text">A. Candidiasis — <i>Candida</i> species</span>
+    <span class="page-ref">p.7–10</span>
+  </summary>
+  <div class="card-body">
+
+    <h3 class="sub">Core idea</h3>
+    <p>Caused by several <i>Candida</i> species that are part of the <b>normal flora</b> of skin, mucous membranes, and GI tract — colonizes mucosal surfaces soon after birth (<b>endogenous opportunist</b>). The <b>most prevalent systemic mycosis</b>.</p>
+
+    <div class="blk blk-must">
+      <span class="badge badge-must">MUST KNOW</span>
+      <ul>
+        <li>Most common etiologic agents: <b>C. albicans</b>, C. parapsilosis, C. glabrata, C. tropicalis, C. guilliermondii, C. dubliniensis</li>
+        <li><b>C. albicans</b> = most common pathogen, dimorphic (yeast + pseudohyphae + true hyphae)</li>
+        <li>Widespread fluconazole use has driven <b>azole-resistant</b> species: <b>C. glabrata, C. krusei, C. lusitaniae</b></li>
+        <li><b>Multi-drug resistant species: C. auris</b></li>
+        <li><b>C. glabrata</b> produces only yeast cells, <b>no pseudohyphae</b> — a classic distinguishing point</li>
+        <li>2 morphologic tests distinguish <b>C. albicans</b> from other Candida:
+          <ul>
+            <li>Incubation in serum at 37°C for 60–90 min → forms <b>true hyphae / germ tubes</b> (thinner, more uniform than pseudohyphae)</li>
+            <li>Nutritionally deficient media → produces large, spherical <b>chlamydospores</b></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <h4 class="subsub">01 | Morphology and identification</h4>
+    <ul>
+      <li>In culture/tissue: oval, budding yeast cells (3–6 μm). Form <b>pseudohyphae</b> when buds continue to grow but fail to detach, forming chains of elongated cells pinched/constricted at the septations</li>
+      <li>Agar media (37°C or room temp): soft, cream-colored colonies with a yeasty odor. Pseudohyphae appear as submerged growth below the agar surface</li>
+      <li>2 serotypes: Serotype A (includes C. tropicalis) and Serotype B</li>
+    </ul>
+
+    <h4 class="subsub">02 | Pathogenesis — virulence factors</h4>
+    <p>The candida <b>cell wall</b> (mannan, glucans, polysaccharides, proteins, glycoproteins) stimulates host defenses and facilitates attachment/invasion.</p>
+    <div class="mech">
+      <span class="badge badge-mech">MECHANISM — Candida virulence factors</span>
+      <div class="mech-branch">
+        <div class="mech-branch-item"><b>Morphogenesis</b> — reversible yeast ⇌ hyphae/pseudohyphae switching. Hard for host defenses to mobilize a response. Pseudohyphae resist phagocytosis. Hyphae/germ tubes express more surface receptors and bind opsonins, aiding invasion</div>
+        <div class="mech-branch-item"><b>Biofilm formation</b> — yeast + pseudohyphae accumulate on biological/prosthetic surfaces, protected by an extracellular matrix that resists host immunity and antifungal drugs</div>
+        <div class="mech-branch-item"><b>Host recognition molecules</b> — Agglutinin-like sequence (ALS) surface glycoprotein (e.g. adhesins) binds host receptors, mediating attachment to epithelial/endothelial cells</div>
+        <div class="mech-branch-item"><b>Invasion enzymes</b> — 10 secreted aspartyl proteinases (SAP) degrade host membranes and destroy IgA. Phospholipase B1 (from yeast/pseudohyphae) degrades host membrane phospholipids → increases permeability</div>
+      </div>
+    </div>
+
+    <h4 class="subsub">03 | Clinical manifestations</h4>
+    <h5 style="font-size:0.8rem;margin:8px 0 3px;">Cutaneous and mucosal candidiasis</h5>
+    <p>Occurs when Candida population increases and the skin/epithelium is damaged, allowing local invasion of yeast/pseudohyphae.</p>
+    <div class="blk blk-should">
+      <span class="badge badge-should">SHOULD KNOW — Risk factors</span>
+      <p>AIDS, pregnancy, diabetes, extreme age groups, birth control pills, trauma, corticosteroid/antibiotic treatment, high glucose, cellular immunodeficiency</p>
+    </div>
+    <ul>
+      <li><b>Thrush / oral candidiasis</b> — patchy-to-confluent whitish pseudomembranous lesions (epithelial cells, yeast, pseudohyphae) on tongue/lips/gums/palate. Can form intractable biofilm. Can pass mother→infant or infant→infant via caregivers in a nursery. Develops in most AIDS patients</li>
+      <li><b>Vulvovaginal candidiasis</b> — vulvovaginitis with irritation, pruritus, discharge. Risk factors: diabetes, pregnancy, antibacterial drugs (alter microbiota), local acidity/secretions</li>
+      <li><b>Other forms:</b>
+        <ul>
+          <li><b>Cutaneous invasion</b> — skin weakened by trauma, burns, laceration</li>
+          <li><b>Intertriginous infection</b> — moist, warm areas (axilla, groin, intragluteal/intramammary folds)</li>
+          <li><b>Diaper rash</b> — common in newborns. Moist red lesion, may vesiculate</li>
+          <li><b>Interdigital involvement</b> — prolonged water immersion. Homemakers, bartenders, cooks, vegetable/fish handlers</li>
+          <li><b>Onychomycosis</b> — nail/nail plate invasion. Painful erythematous swelling resembling paronychia, can destroy the nail</li>
+        </ul>
+      </li>
+      <li><b>Candidal endocarditis</b> — deposition/growth of yeast + pseudohyphae on prosthetic heart valves/vegetations. Recalcitrant biofilm formation. Associated with chronic corticosteroids/immunosuppressants, hematologic disease (leukemia, lymphoma, aplastic anemia), chronic granulomatous disease</li>
+      <li><b>Chronic Mucocutaneous Candidiasis (CMC)</b> — rare. Granulomatous candidal lesions on cutaneous/mucosal surfaces. Classified by age of onset, endocrinopathy, genetic predisposition, immune status. Most common form starts in early childhood, associated with autoimmunity and hypoparathyroidism. Chronic raised crusty disfiguring keratotic lesions on skin, oral mucosa, scalp</li>
+    </ul>
+
+    <h5 style="font-size:0.8rem;margin:10px 0 3px;">Systemic candidiasis</h5>
+    <ul>
+      <li>Caused by broad-spectrum antibiotics that allow overgrowth, or when Candida enters the bloodstream and host defenses can't contain it (e.g. via intestinal mucosa)</li>
+      <li>Can infect kidney, attach to prosthetic heart valves, cause arthritis, meningitis, endophthalmitis</li>
+      <li>Critical host defense: <b>adequate number of functional neutrophils</b> to ingest/kill yeast</li>
+      <li><b>Candidemia</b> — caused by indwelling catheters, surgery, IV drug abuse, aspiration, or skin/GIT damage. Transient if innate immunity/neutrophils are normal. If phagocytic defenses are compromised → occult lesions in kidney, skin (maculonodular), eyes, heart, meninges</li>
+    </ul>
+
+    <h4 class="subsub">04 | Diagnosis</h4>
+    <ul>
+      <li><b>Microscopy</b> — Gram-stained smears or histopathologic slides show pseudohyphae and budding cells. Specimens from tissue biopsies, CSF, others</li>
+      <li><b>KOH and Calcofluor white</b> — for skin/nail scrapings</li>
+      <li><b>Culture</b> — room temp or 37°C on fungal/bacteriological media. Look for pseudohyphae. <b>C. albicans</b> identified by germ tube or chlamydospore production</li>
+      <li><b>CHROMagar</b> — commercial medium, rapid identification (1–4 days) via fungal enzymatic action on chromogenic substrates</li>
+    </ul>
+
+    <div class="tbl-wrap">
+      <table>
+        <caption>Table 6. Species-specific CHROMagar results</caption>
+        <thead><tr><th><i>Candida</i> species</th><th>CHROMagar result</th></tr></thead>
+        <tbody>
+          <tr><td>C. albicans</td><td><b>Green</b></td></tr>
+          <tr><td>C. tropicalis</td><td><b>Blue</b></td></tr>
+          <tr><td>C. glabrata</td><td><b>Dark purple</b></td></tr>
+          <tr><td>C. parapsilosis, C. lusitaniae, C. guilliermondii, C. krusei</td><td><b>Pink</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4 class="subsub">05 | Treatment</h4>
+    <ul>
+      <li><b>Thrush / oral mucocutaneous:</b> Nystatin (topical). Oral ketoconazole or fluconazole. Eliminate contributing factors (excess moisture, antibacterial use) — hastens clearing of cutaneous lesions</li>
+      <li><b>Systemic candidiasis:</b> <b>Amphotericin B</b> = treatment of choice. Can combine with oral flucytosine, fluconazole, or caspofungin</li>
+      <li><b>Chronic mucocutaneous candidiasis:</b> oral ketoconazole and other azoles. If genetic cellular immune defect → lifelong treatment required</li>
+    </ul>
+
+    <h4 class="subsub">06 | Prevention and control</h4>
+    <p>Candidiasis is <b>not considered communicable</b> — all persons normally harbor the organism. The most important preventive measure is avoiding disruption of the normal microbiota and intact host defenses.</p>
+
+    <div class="trapbox">
+      <span class="badge badge-trap">EXAM TRAP</span>
+      Not every Candida in a specimen means disease — Candida commonly colonizes the oropharynx/upper respiratory tract, so its presence in sputum generally has <b>no diagnostic significance</b> for pulmonary candidiasis unless correlated with invasive disease.
+    </div>
+
+    <div class="recall"><b>Recall cue:</b> C. albicans = germ tube (+), chlamydospores, green on CHROMagar. C. glabrata = no pseudohyphae, dark purple, often fluconazole-resistant.</div>
+
+    <div class="hysummary">
+      <span class="badge badge-summary">HIGH-YIELD SUMMARY</span>
+      <ul>
+        <li>Cause: <b>Candida species</b>. Reservoir = normal flora of mouth, gut, skin (endogenous)</li>
+        <li>Virulence: <b>yeast ⇌ hyphae switching</b>, adhesins, biofilms, hydrolytic enzymes (SAPs, phospholipase B1)</li>
+        <li>Clinical: thrush, vulvovaginitis, diaper rash, onychomycosis, systemic candidemia (catheters/surgery/neutropenia), endocarditis (prosthetic valves), meningitis</li>
+        <li>Dx: microscopy (pseudohyphae, budding yeast), <b>germ tube test</b> (C. albicans), CHROMagar (species color)</li>
+        <li>Tx: superficial → Nystatin, azoles · systemic → <b>Amphotericin B</b>, fluconazole, echinocandins</li>
+      </ul>
+    </div>
+  </div>
+</details>
+<details class="card" id="sec-crypto">
+  <summary>
+    <input type="checkbox" class="done-check" data-id="crypto">
+    <span class="summary-text">B. Cryptococcosis — <i>Cryptococcus</i> species</span>
+    <span class="page-ref">p.10–11</span>
+  </summary>
+  <div class="card-body">
+
+    <h3 class="sub">Core idea</h3>
+    <p>Caused by <b>C. neoformans</b> or <b>C. gattii</b> — environmental, <b>basidiomycetous yeasts</b> with large polysaccharide capsules.</p>
+
+    <div class="blk blk-must">
+      <span class="badge badge-must">MUST KNOW</span>
+      <ul>
+        <li><b>C. neoformans</b>: more common (~90% of infections), worldwide. Habitat = <b>dry pigeon droppings</b> (optimal growth, serves as reservoir — birds themselves are not infected), also trees/soil. Hits <b>immunocompromised</b> hosts (HIV/AIDS, hematologic malignancy, immunosuppression)</li>
+        <li><b>C. gattii</b>: less common, mainly found in <b>trees in tropical areas</b>, mainly affects <b>normal (immunocompetent)</b> hosts</li>
+        <li>Transmission: inhalation of desiccated yeast cells or the smaller basidiospore. <b>Lungs</b> = primary organ. Neurotropic yeasts migrate to the <b>CNS</b> (meningoencephalitis)</li>
+        <li>Growth at 37°C, production of <b>laccase (phenol oxidase)</b> → makes melanin from phenolic substrates, and reduces ferric→ferrous iron (aids iron acquisition)</li>
+      </ul>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <caption>Table 7. C. neoformans vs C. gattii</caption>
+        <thead><tr><th>Feature</th><th>C. neoformans</th><th>C. gattii</th></tr></thead>
+        <tbody>
+          <tr><td>Frequency</td><td><b>More common</b></td><td>Less common</td></tr>
+          <tr><td>Distribution</td><td>Worldwide</td><td>Mainly tropical areas</td></tr>
+          <tr><td>Habitat</td><td>Dry pigeon droppings. Trees, soil, other sites</td><td>Mainly trees</td></tr>
+          <tr><td>Typical host</td><td><b>Immunocompromised</b> only</td><td><b>Immunocompetent</b>/normal hosts</td></tr>
+          <tr><td>Capsular serotypes</td><td>A, D, or AD</td><td>B or C</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4 class="subsub">01 | Species overview</h4>
+    <ul>
+      <li>All Cryptococcus are encapsulated and produce <b>urease</b></li>
+      <li>Differentiated by capsular serotypes, genotypes, biochemical reactions, and clinical manifestations</li>
+    </ul>
+
+    <h4 class="subsub">02 | Morphology and identification</h4>
+    <ul>
+      <li><b>Culture:</b> whitish, mucoid colonies within 2–3 days</li>
+      <li><b>Microscopy:</b> spherical, budding yeast cells (5–10 μm) surrounded by a thick, non-staining capsule</li>
+      <li><b>Selective/differential media:</b> avoid cyclohexamide-containing media (inhibits Cryptococcus growth). <b>Bird seed agar</b> (contains caffeic acid) — C. neoformans and C. gattii produce melanin on their cell wall when laccase acts on the diphenolic substrate</li>
+    </ul>
+
+    <h4 class="subsub">Virulence factors</h4>
+    <ul>
+      <li><b>Laccase</b> — melanin/iron acquisition (above)</li>
+      <li><b>Capsular polysaccharide antigen</b> — 5 capsular serotypes (A–D, AD). Polysaccharides are structurally similar regardless of serotype. The major capsular antigen is <b>Glucuronoxylomannan (GXM)</b>, released during infection and detected by enzyme immunoassay or latex particle agglutination (diagnostic of cryptococcal infection)</li>
+    </ul>
+
+    <h4 class="subsub">03 | Pathogenesis</h4>
+    <div class="mech">
+      <span class="badge badge-mech">MECHANISM — Cryptococcus pathogenesis</span>
+      <div class="mech-chain">
+        <div class="mech-step">Entry: inhalation of dry, minimally encapsulated, easily aerosolized yeast cells</div>
+        <div class="mech-arrow">↓</div>
+        <div class="mech-step">Primary pulmonary infection — usually asymptomatic, mimics influenza-like illness, resolves spontaneously</div>
+        <div class="mech-arrow">↓ (in immunocompromised patients)</div>
+        <div class="mech-step">Yeast multiplies and disseminates — preference for the CNS</div>
+      </div>
+    </div>
+
+    <h4 class="subsub">04 | Clinical manifestations</h4>
+    <ul>
+      <li><b>Chronic meningitis</b> = major clinical manifestation — can resemble a brain tumor, brain abscess, degenerative CNS disease, or other mycobacterial/fungal meningitis</li>
+      <li>CSF findings: high pressure, high protein, high cell count. Glucose normal to low</li>
+      <li>Symptoms: headache, neck stiffness, disorientation</li>
+      <li>Other lesions: skin, lungs, other organs</li>
+      <li>Untreated cases are <b>fatal</b>. Course fluctuates with treatment</li>
+      <li><b>Not transmitted person-to-person</b></li>
+    </ul>
+
+    <h4 class="subsub">05 | Diagnosis</h4>
+    <ul>
+      <li><b>Microscopy</b> — wet mount with <b>India ink</b>: delineates the capsule (halo effect), spherical budding yeast surrounded by thick capsule</li>
+      <li><b>Serology</b> — test for GXM via latex slide agglutination or EIA/ELISA. ~90% sensitive, especially with meningitis</li>
+      <li><b>Culture</b> — grows within a few days at room temp or 37°C. Whitish/mucoid colonies, can produce brown/dark pigment (melanin)</li>
+    </ul>
+
+    <h4 class="subsub">06 | Treatment</h4>
+    <div class="blk blk-must">
+      <span class="badge badge-must">MUST KNOW</span>
+      <p>Combination therapy of <b>Amphotericin B + Flucytosine</b> is the <b>standard treatment for cryptococcal meningitis</b> <em>(lecturer-flagged 📌)</em>.</p>
+    </div>
+    <ul>
+      <li>Amphotericin B — curative in most non-AIDS patients, with or without flucytosine</li>
+      <li>AIDS patients: inadequate treatment → relapse when amphotericin B withdrawn → suppressive therapy with <b>fluconazole</b> (excellent CNS penetration, prevents relapse)</li>
+      <li>HAART lowers the incidence of cryptococcosis</li>
+    </ul>
+
+    <div class="recall"><b>Recall cue:</b> Pigeon droppings + HIV/AIDS + chronic meningitis + India ink halo = <b>C. neoformans</b>. Normal host + tropical tree exposure = think <b>C. gattii</b>.</div>
+
+    <div class="hysummary">
+      <span class="badge badge-summary">HIGH-YIELD SUMMARY</span>
+      <ul>
+        <li>Cause: <b>Cryptococcus</b> species. Reservoir = pigeon droppings (neoformans), tropical trees (gattii)</li>
+        <li>Virulence: polysaccharide capsule (GXM), melanin (laccase), urease</li>
+        <li>Clinical: pulmonary infection → <b>cryptococcal meningitis</b> (headache, ↑CSF pressure)</li>
+        <li>Dx: India ink (capsule), antigen test (latex agglutination, EIA), culture (urease +)</li>
+        <li>Tx: <b>Amphotericin B + Flucytosine</b> → fluconazole maintenance (esp. AIDS)</li>
+      </ul>
+    </div>
+  </div>
+</details>
+<details class="card" id="sec-aspergillus">
+  <summary>
+    <input type="checkbox" class="done-check" data-id="aspergillus">
+    <span class="summary-text">C. Aspergillosis — <i>Aspergillus</i> species</span>
+    <span class="page-ref">p.11–12</span>
+  </summary>
+  <div class="card-body">
+
+    <h3 class="sub">Core idea</h3>
+    <p>Caused by <b>Aspergillus</b> species — ubiquitous saprophytes in nature, occurring worldwide.</p>
+
+    <div class="blk blk-must">
+      <span class="badge badge-must">MUST KNOW</span>
+      <ul>
+        <li><b>A. fumigatus</b> = most common human pathogen. A. flavus, A. niger, A. terreus, A. lentulus may also cause disease</li>
+        <li>Grows rapidly, producing aerial hyphae bearing conidial structures: long conidiospores with terminal vesicles. Vesicles bear phialides that produce basipetal chains of conidia</li>
+        <li>Microscopy: <b>hyaline, septate</b> uniform hyphae (~4 μm), branching <b>dichotomously at acute angles (45°)</b> — classic identifying feature</li>
+      </ul>
+    </div>
+
+    <h4 class="subsub">02 | Pathogenesis</h4>
+    <ul>
+      <li>Produces abundant small conidia, easily aerosolized — atopic individuals develop severe allergic reactions to conidial antigens</li>
+      <li><b>Normal host:</b> hyphae engulfed by neutrophils → infection contained</li>
+      <li><b>Susceptible host:</b> conidia may swell and germinate into hyphae → invade lungs/tissues. Macrophages have diminished capacity to contain the inoculum and destroy conidia. Can form an <b>aspergilloma</b> (fungus ball) in pre-existing cavities. Can invade blood vessels</li>
+    </ul>
+
+    <h4 class="subsub">03 | Clinical findings</h4>
+    <h5 style="font-size:0.8rem;margin:8px 0 3px;">Allergic forms</h5>
+    <ul>
+      <li>Immediate asthmatic reactions — IgE Ab to Aspergillus conidia surface antigen</li>
+      <li><b>Allergic bronchopulmonary aspergillosis (ABPA)</b> — conidia germinate, hyphae colonize the bronchial tree without invading lung parenchyma. Asthma, recurrent chest infiltrates, eosinophilia, Type I and Type III (Arthus) hypersensitivity to Aspergillus antigen, difficulty breathing, sputum + for Aspergillus, serum precipitins, permanent lung scarring</li>
+      <li>Extrinsic allergic alveolitis — develops in normal hosts exposed to a massive dose of conidia</li>
+    </ul>
+    <h5 style="font-size:0.8rem;margin:8px 0 3px;">Aspergilloma &amp; extrapulmonary colonization</h5>
+    <ul>
+      <li><b>Aspergilloma (fungus ball)</b> — inhaled conidia enter an existing cavity, germinate, produce abundant hyphae in the abnormal pulmonary space. Previous cavitary disease = risk factor. May be asymptomatic or cause cough, dyspnea, weight loss, fatigue, hemoptysis. Rarely becomes invasive</li>
+      <li>Localized, non-invasive colonization can involve nasal sinuses, ear canal, cornea, and nails</li>
+    </ul>
+    <h5 style="font-size:0.8rem;margin:8px 0 3px;">Invasive aspergillosis</h5>
+    <div class="mech">
+      <span class="badge badge-mech">MECHANISM — Invasive aspergillosis</span>
+      <div class="mech-chain">
+        <div class="mech-step">Inhalation and germination of conidia → invasive disease (± dissemination)</div>
+        <div class="mech-arrow">↓</div>
+        <div class="mech-step">Hyphae invade the lumens and walls of blood vessels → thrombosis, infarction, necrosis</div>
+        <div class="mech-arrow">↓</div>
+        <div class="mech-step">May spread from lungs to GIT, kidney, liver, brain, other organs → abscess/necrotic lesions</div>
+      </div>
+    </div>
+    <div class="blk blk-should">
+      <span class="badge badge-should">SHOULD KNOW — Risk factors for invasive disease</span>
+      <p>Lymphocytic/myelogenous leukemia and lymphoma, stem cell transplant recipients, long-term steroid therapy, AIDS with CD4 &lt;50/μL. Symptoms: fever, cough, dyspnea, hemoptysis.</p>
+    </div>
+
+    <h4 class="subsub">04 | Diagnosis</h4>
+    <ul>
+      <li><b>Microscopy</b> — KOH/calcofluor white or histologic sections: hyaline, septate uniform hyphae (~4 μm), dichotomous branching at acute angles</li>
+      <li><b>Culture</b> — grows within a few days on most media at room temperature. Species identified by conidial structure shape</li>
+      <li><b>A. fumigatus</b> — culture: gray-green colony on potato flakes agar (PFA). Microscopy: uniseriate conidiophore with columnar conidia</li>
+    </ul>
+
+    <h4 class="subsub">05 | Treatment</h4>
+    <div class="tbl-wrap">
+      <table>
+        <caption>Aspergillosis — treatment by form</caption>
+        <thead><tr><th>Clinical form</th><th>Treatment</th></tr></thead>
+        <tbody>
+          <tr><td>Aspergilloma</td><td>Itraconazole or Amphotericin B. Surgery for symptomatic lesions</td></tr>
+          <tr><td>Invasive aspergillosis</td><td><b>Amphotericin B or Voriconazole</b>. Cytokine immunotherapy (e.g. G-CSF, IFN-γ). Amphotericin-resistant species (A. terreus, A. flavus, A. lentulus) → posaconazole may be used</td></tr>
+          <tr><td>Chronic necrotizing pulmonary disease</td><td>Voriconazole or Itraconazole</td></tr>
+          <tr><td>Allergic forms</td><td>Corticosteroid. Disodium cromoglycate</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="recall"><b>Recall cue:</b> "Acute angle, septate, branching" hyphae = Aspergillus (compare to Mucor's wide-angle, non-septate hyphae below). Fungus ball in an old TB cavity = aspergilloma.</div>
+
+    <div class="hysummary">
+      <span class="badge badge-summary">HIGH-YIELD SUMMARY</span>
+      <ul>
+        <li>Cause: <b>Aspergillus</b> species (A. fumigatus most common). Ubiquitous mold, inhaled conidia</li>
+        <li>Forms: Allergic (ABPA — asthma-like + eosinophilia) · fungus ball (aspergilloma in pre-existing cavities) · invasive (angioinvasion → necrosis, dissemination to CNS/kidney/liver)</li>
+        <li>Dx: microscopy (septate hyphae, acute-angle branching), culture</li>
+        <li>Tx: <b>Voriconazole</b> (preferred for invasive) · Amphotericin B · surgery (aspergilloma) · steroids (allergic)</li>
+      </ul>
+    </div>
+  </div>
+</details>
+
+<details class="card" id="sec-mucor">
+  <summary>
+    <input type="checkbox" class="done-check" data-id="mucor">
+    <span class="summary-text">D. Mucormycosis (Zygomycosis)</span>
+    <span class="page-ref">p.12–13</span>
+  </summary>
+  <div class="card-body">
+
+    <h3 class="sub">Core idea</h3>
+    <p>Also known as <b>Zygomycosis</b> — ubiquitous, thermotolerant saprophytes of the order Mucorales (Phylum Glomerulomycota, Subphylum Mucormycotina).</p>
+
+    <div class="blk blk-must">
+      <span class="badge badge-must">MUST KNOW</span>
+      <ul>
+        <li>Leading pathogens: <b>Rhizopus, Rhizomucor, Lichtheimia, Cunninghamella, Absidia, Mucor</b> — <b>Rhizopus oryzae</b> is the most prevalent agent, with abundant cottony colonies</li>
+        <li><b>Angioinvasion</b> is the <b>most characteristic pathogenesis</b> of mucormycosis <em>(lecturer-flagged 📌)</em> → thrombosis of involved vessel → ischemia and necrosis. Lack of blood supply also protects the fungus from antifungal drugs and host inflammatory cells</li>
+        <li>Also called <b>"Black Fungus"</b> — blackened/discolored tissue (especially face, nose, eyes) as the fungus damages blood vessels</li>
+      </ul>
+    </div>
+
+    <h4 class="subsub">01 | Pathogenesis</h4>
+    <div class="mech">
+      <span class="badge badge-mech">MECHANISM — Mucormycosis pathogenesis</span>
+      <div class="mech-branch">
+        <div class="mech-branch-item"><b>Normal host:</b> hyphae engulfed by neutrophils → infection contained</div>
+        <div class="mech-branch-item"><b>Susceptible host:</b> fungal spores bind extracellular matrix proteins in the basement membrane, secreting lipolytic/glycosidic enzymes and proteases that degrade the underlying stroma → invasion</div>
+        <div class="mech-branch-item"><b>Angioinvasion</b> → thrombosis → ischemia and necrosis</div>
+      </div>
+    </div>
+    <div class="blk blk-should">
+      <span class="badge badge-should">SHOULD KNOW — Role of iron</span>
+      <ul>
+        <li>Iron is essential for fungal cell growth/development. Higher free iron availability is linked to severity of infection</li>
+        <li>Conditions that impair transferrin's iron-binding capacity (e.g. acidosis) shift iron from ferric→ferrous form, favoring fungal growth</li>
+        <li>Repeated blood transfusions → iron overload = predisposition to mucormycosis</li>
+      </ul>
+    </div>
+
+    <h4 class="subsub">02 | Clinical manifestations</h4>
+    <ul>
+      <li><b>Rhinocerebral mucormycosis</b> (major clinical form) — germination of sporangiospores in nasal passages → hyphae invade blood vessels → thrombosis, infarction, necrosis → progresses rapidly, invading sinuses, eyes, cranial bones, brain. Damages blood vessels and nerves. Edema of the face, bloody nasal exudate, orbital cellulitis. Survival is high with proper treatment, but residual effects can include partial facial paralysis or loss of an eye</li>
+      <li><b>Thoracic mucormycosis</b> — inhalation of sporangiospores, invasion of lung parenchyma and vasculature ("Black Fungus" — blackening of infected tissue)</li>
+    </ul>
+
+    <div class="blk blk-must">
+      <span class="badge badge-must">MUST KNOW — Classic risk factors</span>
+      <p>Uncontrolled <b>diabetes/ketoacidosis</b> and <b>iron overload</b> are the classic predisposing conditions for mucormycosis.</p>
+    </div>
+
+    <h4 class="subsub">03 | Diagnosis</h4>
+    <ul>
+      <li><b>Microscopy</b> — broad hyphae (10–15 μm) with uneven thickness, irregular branching, and <b>sparse septations</b> (essentially non-septate/pauci-septate — the classic contrast with Aspergillus)</li>
+      <li><b>Culture</b> — rapid growth. Identification based on sporangial structures</li>
+    </ul>
+
+    <h4 class="subsub">04 | Treatment</h4>
+    <ul>
+      <li><b>Surgical debridement</b> (urgent) + <b>Amphotericin B</b></li>
+      <li>Control of underlying disease (e.g. glycemic control)</li>
+    </ul>
+
+    <div class="trapbox">
+      <span class="badge badge-trap">EXAM TRAP</span>
+      Broad, ribbon-like, <b>non-septate</b> hyphae branching at <b>wide angles</b> (Mucor) vs. thin, <b>septate</b> hyphae branching at <b>acute (45°) angles</b> (Aspergillus) — a classic vignette differentiator.
+    </div>
+
+    <div class="recall"><b>Recall cue:</b> Diabetic ketoacidosis + facial swelling/black necrotic eschar + rhinocerebral disease = Mucor. Treatment is urgent — surgery <i>and</i> Amphotericin B, not one or the other.</div>
+
+    <div class="hysummary">
+      <span class="badge badge-summary">HIGH-YIELD SUMMARY</span>
+      <ul>
+        <li>Cause: <b>Rhizopus, Mucor, Lichtheimia</b>. Reservoir = soil, decaying organic matter</li>
+        <li>Pathogenesis: <b>angioinvasion</b> → thrombosis, necrosis ("black fungus"). Risk ↑ with diabetes/ketoacidosis, iron overload</li>
+        <li>Clinical: rhinocerebral (facial swelling, orbital cellulitis), pulmonary, disseminated</li>
+        <li>Dx: broad, ribbon-like, <b>non-septate</b> hyphae. Culture (cottony colonies)</li>
+        <li>Tx: <b>urgent surgical debridement + Amphotericin B</b></li>
+      </ul>
+    </div>
+  </div>
+</details>
+<details class="card" id="sec-pcp">
+  <summary>
+    <input type="checkbox" class="done-check" data-id="pcp">
+    <span class="summary-text">E. Pneumocystis Pneumonia — <i>Pneumocystis jirovecii</i></span>
+    <span class="page-ref">p.13</span>
+  </summary>
+  <div class="card-body">
+
+    <h3 class="sub">Core idea</h3>
+    <p><b>Major cause of death in AIDS patients.</b> Caused by <b>Pneumocystis jirovecii</b> — historically thought to be a protozoan. A human-specific species also found in the lungs of many animals (rats, mice, dogs, cats, ferrets, rabbits). Rarely causes disease except in immunocompromised individuals. An <b>extracellular pathogen</b>.</p>
+
+    <div class="blk blk-must">
+      <span class="badge badge-must">MUST KNOW</span>
+      <ul>
+        <li><b>P. carinii</b> is found <b>only in rats</b> — the human pathogen is specifically <b>P. jirovecii</b> (classic naming trap)</li>
+        <li>Morphology: thin-walled <b>trophozoites</b>. <b>Cysts</b> are thick-walled, spherical to elliptical (4–6 μm), containing <b>4–8 nuclei</b> — stained with silver stain, toluidine blue, calcofluor white. Trophozoites and cysts present in tight masses</li>
+        <li>Growth is limited to the <b>surfactant layer above the alveolar epithelium</b></li>
+      </ul>
+    </div>
+
+    <h4 class="subsub">01 | Pathogenesis</h4>
+    <ul>
+      <li><b>Interstitial plasma pneumonitis</b> — in non-AIDS patients: infiltration of alveolar spaces with plasma cells</li>
+    </ul>
+
+    <h4 class="subsub">02 | Diagnosis</h4>
+    <ul>
+      <li>Specimens stained and examined for trophozoites and cysts</li>
+      <li><b>Cannot be cultured</b> — a key limitation</li>
+      <li>P. jirovecii contains a surface glycoprotein detectable in sera of acutely ill or normal individuals — used to establish prevalence, though not clinically useful for diagnosis</li>
+    </ul>
+
+    <h4 class="subsub">03 | Treatment</h4>
+    <ul>
+      <li><b>Acute cases:</b> <b>Trimethoprim–Sulfamethoxazole (TMP-SMX)</b> or Pentamidine isethionate</li>
+      <li>Pentamidine may also be used as <b>prophylaxis</b> for the immunocompromised</li>
+    </ul>
+
+    <div class="recall"><b>Recall cue:</b> AIDS patient, CD4 &lt;200/μL, diffuse bilateral infiltrates, cannot be cultured → think PCP. Treat and prevent with the same drug class: TMP-SMX.</div>
+
+    <div class="hysummary">
+      <span class="badge badge-summary">HIGH-YIELD SUMMARY</span>
+      <ul>
+        <li>Cause: <b>Pneumocystis jirovecii</b>. Host = AIDS (CD4 &lt;200/μL)</li>
+        <li>Morphology: cysts with 4–8 nuclei (silver stain, toluidine blue)</li>
+        <li>Pathogenesis: interstitial pneumonia, foamy alveolar exudate</li>
+        <li>Dx: microscopy of BAL → cysts/trophozoites. <b>Cannot be cultured</b></li>
+        <li>Tx: <b>TMP-SMX</b> (treatment + prophylaxis) · Pentamidine (alternative)</li>
+      </ul>
+    </div>
+  </div>
+</details>
+<div class="roman" id="sec-antifungals-intro">IV. Antifungals</div>
+
+<details class="card" id="sec-antifungal-class">
+  <summary>
+    <input type="checkbox" class="done-check" data-id="antifungal-class">
+    <span class="summary-text">A. Classification of Antifungals</span>
+    <span class="page-ref">p.14</span>
+  </summary>
+  <div class="card-body">
+
+    <h3 class="sub">Core idea</h3>
+    <p>Fungi are eukaryotes, like humans, sharing many molecular/cellular processes and some homologous genes/proteins — this is <b>why some antifungals are toxic to humans</b> (they hit shared targets), and also why antifungal drug development has historically lagged behind antibacterial development.</p>
+
+    <div class="blk blk-should">
+      <span class="badge badge-should">SHOULD KNOW — Limitations of current antifungals</span>
+      <ul>
+        <li>Narrow antifungal spectrum</li>
+        <li>Poor penetration of certain tissues</li>
+        <li>Development of resistance</li>
+        <li>Significant side effects — the reason some antifungals can only be given topically, not systemically</li>
+      </ul>
+    </div>
+
+    <h4 class="subsub">Classification tree (by mechanism)</h4>
+    <div class="mech">
+      <span class="badge badge-mech">CLASSIFICATION — recreated from the lecture's classification diagram</span>
+      <div class="classtree">
+        <div class="class-branch">
+          <h5>Polyenes</h5>
+          <ul><li>Amphotericin B</li><li>Nystatin</li></ul>
+          <div class="moa">Bind ergosterol → bore holes in membrane → leakage &amp; lysis</div>
+        </div>
+        <div class="class-branch">
+          <h5>Azoles</h5>
+          <ul>
+            <li><b>Imidazoles:</b> Ketoconazole, Miconazole, Clotrimazole</li>
+            <li><b>Triazoles:</b> Fluconazole, Itraconazole, Voriconazole, Posaconazole (broad spectrum)</li>
+          </ul>
+          <div class="moa">(–) ergosterol synthesis (14α-demethylase)</div>
+        </div>
+        <div class="class-branch">
+          <h5>Echinocandins</h5>
+          <ul><li>Caspofungin</li><li>Micafungin</li><li>Anidulafungin</li></ul>
+          <div class="moa">(–) β-1,3-glucan synthase → disrupts cell wall</div>
+        </div>
+        <div class="class-branch">
+          <h5>Flucytosine</h5>
+          <ul><li>Flucytosine (5-FC)</li></ul>
+          <div class="moa">Deaminated → 5-fluorouracil → (–) DNA/RNA/protein synthesis</div>
+        </div>
+        <div class="class-branch">
+          <h5>Griseofulvin</h5>
+          <ul><li>Griseofulvin</li></ul>
+          <div class="moa">(–) fungal mitosis — disrupts microtubules/mitotic spindle</div>
+        </div>
+        <div class="class-branch">
+          <h5>Terbinafine (Allylamine)</h5>
+          <ul><li>Terbinafine</li></ul>
+          <div class="moa">(–) squalene epoxidase → (–) ergosterol synthesis</div>
+        </div>
+      </div>
+      <div class="mech-note">Under investigation (mentioned by lecturer, not yet mainstream): Nikkomycin — (–) chitin synthase (cell wall). Sordarins — (–) protein synthesis via blocking elongation factor 2.</div>
+    </div>
+
+    <h4 class="subsub">By route of use</h4>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Category</th><th>Agents</th></tr></thead>
+        <tbody>
+          <tr><td><b>Systemic agents</b></td><td>Amphotericin B, Flucytosine, Azoles, Echinocandins, Griseofulvin, Terbinafine</td></tr>
+          <tr><td><b>Topical agents</b></td><td>Nystatin, Clotrimazole, Miconazole, and other azoles</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="confuse-pair">
+      <div class="confuse-title">Do not confuse: cell MEMBRANE-targeting vs. cell WALL-targeting antifungals</div>
+      <div class="confuse-cols">
+        <div class="confuse-col">
+          <h6>Membrane (ergosterol) targets</h6>
+          <ul><li>Polyenes — bind ergosterol directly</li><li>Azoles — block ergosterol synthesis</li><li>Terbinafine — blocks an earlier step (squalene epoxidase)</li></ul>
+        </div>
+        <div class="confuse-col">
+          <h6>Cell wall (glucan/chitin) targets</h6>
+          <ul><li>Echinocandins — block β-1,3-glucan synthase</li><li>(Investigational) Nikkomycin — blocks chitin synthase</li></ul>
+        </div>
+      </div>
+      <div class="fast-distinction"><b>Fast distinction:</b> mammalian cells have neither a cell wall nor ergosterol (they use cholesterol) — but echinocandins are especially "human-safe" because humans have <b>no cell wall at all</b>, giving them a wider safety margin than membrane-active agents.</div>
+    </div>
+
+    <div class="hysummary">
+      <span class="badge badge-summary">HIGH-YIELD SUMMARY</span>
+      <ul>
+        <li>6 classes: <b>Polyenes, Azoles, Echinocandins, Flucytosine, Griseofulvin, Terbinafine</b></li>
+        <li>Membrane/ergosterol-targeting: Polyenes (bind ergosterol), Azoles &amp; Terbinafine (block synthesis)</li>
+        <li>Cell wall-targeting: <b>Echinocandins</b> (β-1,3-glucan synthase)</li>
+        <li>Antimetabolite: <b>Flucytosine</b> (→ 5-FU, blocks nucleic acid synthesis)</li>
+        <li>Antimitotic: <b>Griseofulvin</b> (microtubule/spindle disruption)</li>
+      </ul>
+    </div>
+  </div>
+</details>
+<details class="card" id="sec-antifungal-agents">
+  <summary>
+    <input type="checkbox" class="done-check" data-id="antifungal-agents">
+    <span class="summary-text">B–D. Antifungal Agents — drug-by-drug (Systemic + Topical)</span>
+    <span class="page-ref">p.14–18</span>
+  </summary>
+  <div class="card-body">
+
+    <h3 class="sub">Quick-match table (from the lecture's own summary slide)</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Drug</th><th>Go-to indication stated in lecture</th></tr></thead>
+        <tbody>
+          <tr><td><b>Amphotericin B</b></td><td>Severe/systemic infections — Candida, Cryptococcus, Mucor, Aspergillus</td></tr>
+          <tr><td><b>Fluconazole</b></td><td>Cryptococcal meningitis, systemic candidiasis</td></tr>
+          <tr><td><b>Itraconazole</b></td><td>Aspergillosis, oral candida, maintenance therapy</td></tr>
+          <tr><td><b>Voriconazole</b></td><td>Invasive aspergillosis</td></tr>
+          <tr><td><b>Echinocandins</b> (Caspofungin)</td><td>Resistant Candida infections</td></tr>
+          <tr><td><b>TMP-SMX</b></td><td>Pneumocystis jirovecii (PCP)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mech">
+      <span class="badge badge-mech">MECHANISM — Where each drug class hits the ergosterol pathway</span>
+      <div class="mech-chain">
+        <div class="mech-step">Squalene</div>
+        <div class="mech-arrow">↓ squalene epoxidase ← <b>blocked by Terbinafine</b></div>
+        <div class="mech-step">Lanosterol</div>
+        <div class="mech-arrow">↓ cytochrome P450 14α-demethylase ← <b>blocked by Azoles</b></div>
+        <div class="mech-step">Ergosterol (built into fungal membrane)</div>
+        <div class="mech-arrow">⇐ <b>Amphotericin B / Nystatin</b> bind existing ergosterol → pores → leakage</div>
+      </div>
+      <div class="mech-note">Separate targets, not on this pathway: Echinocandins → cell wall β-1,3-glucan synthase. Flucytosine → DNA/RNA/protein synthesis (via 5-FU).</div>
+    </div>
+
+    <h3 class="sub" style="margin-top:20px;">C. Systemic agents</h3>
+
+    <h4 class="subsub">01 | Amphotericin B</h4>
+    <div class="blk blk-must">
+      <span class="badge badge-must">MUST KNOW</span>
+      <ul>
+        <li>Major antifungal agent of the <b>polyene</b> class. A <b>metabolite of Streptomyces</b></li>
+        <li><b>Most effective drug for severe systemic mycoses</b> <em>(lecturer-flagged 📌)</em> — broad spectrum, resistance is rare, fungicidal. At low levels has an immunostimulatory effect</li>
+        <li>MOA: forms complexes with <b>ergosterol</b> → alters membrane fluidity → pores form → leakage of potassium and other small molecules → cell death. Has a <b>stronger affinity for ergosterol than cholesterol</b>. Mammalian cells (which use cholesterol, not ergosterol) are relatively — but not completely — resistant to its effects, since weak binding to cholesterol can still sometimes cause toxicity</li>
+        <li>Given <b>IV</b>. Widely distributed in most tissues but <b>poor CNS penetration</b> (poor penetration of joints and CNS too — intrathecal/intraarticular administration may be recommended for some infections)</li>
+      </ul>
+    </div>
+    <ul>
+      <li>Response depends on: dose/rate of administration, site of infection, immune status, inherent susceptibility of the organism</li>
+    </ul>
+    <div class="blk blk-should">
+      <span class="badge badge-should">SHOULD KNOW — Side effects</span>
+      <ul>
+        <li><b>Acute reactions:</b> fever, chills, dyspnea, hypotension</li>
+        <li><b>Chronic reactions:</b> mainly <b>nephrotoxicity</b> — may be reversible. <b>Azotemia</b> is the most common manifestation. Permanent reduction of glomerular/renal tubular function can occur. Damage correlates with dose</li>
+        <li>Also: hypokalemia, anemia, renal tubular acidosis, headache, nausea, vomiting</li>
+        <li>Book note: adverse reactions are greatly diminished with newer <b>lipid preparations</b> of Amphotericin B</li>
+      </ul>
+    </div>
+
+    <h4 class="subsub">02 | Flucytosine</h4>
+    <ul>
+      <li>Fluorinated derivative of cytosine (<b>5-fluorocytosine</b>). Oral antifungal. Used for cryptococcosis or candidiasis <b>in conjunction with Amphotericin B</b></li>
+      <li>Effective against many <b>dematiaceous</b> fungal infections (dark pigmentation/melanin in cell wall — e.g. chromoblastomycosis, mycetoma, fungal sinusitis)</li>
+      <li>Penetrates well into tissues including CSF</li>
+    </ul>
+    <div class="mech">
+      <span class="badge badge-mech">MECHANISM — Flucytosine</span>
+      <div class="mech-chain">
+        <div class="mech-step">Actively transported into the fungal cell by a permease (synergy with Amphotericin B, which increases membrane permeability → more flucytosine gets in)</div>
+        <div class="mech-arrow">↓ cytosine deaminase (absent in mammalian cells → selective toxicity)</div>
+        <div class="mech-step">Converted to 5-fluorouracil (5-FU)</div>
+        <div class="mech-arrow">↓</div>
+        <div class="mech-step">5-fluorodeoxyuridylic acid monophosphate → inhibits thymidylate synthetase → blocks DNA synthesis (deprives the organism of thymidylic acid)</div>
+      </div>
+      <div class="mech-note">Because mammalian cells lack cytosine deaminase, they cannot convert flucytosine to the toxic 5-FU directly — this is the basis of its selective toxicity. Limited use due to rapid emergence of resistant mutant strains.</div>
+    </div>
+    <ul>
+      <li><b>Indications:</b> combined with Amphotericin B for cryptococcosis/candidiasis (true synergy). Cryptococcal meningitis — good CSF penetration of both drugs together. Delays/limits emergence of flucytosine-resistant strains</li>
+      <li><b>Side effects:</b> little toxicity, well tolerated. When converted to fluorouracil (highly toxic) may cause bone marrow suppression, hair loss, abnormal liver function, colitis</li>
+    </ul>
+    <div class="pearlbox">
+      <span class="badge badge-pearl">CLINICAL PEARL</span>
+      In clinical practice, <b>fluorouracil (5-FU)</b> itself is used directly as a chemotherapy agent (not derived from flucytosine conversion) — and carries its own immunosuppressive side effects. Don't confuse "5-FU as flucytosine's active metabolite" with "5-FU as a standalone chemo drug."
+    </div>
+
+    <h4 class="subsub">03 | Azoles (general)</h4>
+    <ul>
+      <li>Signature 5-membered <b>imidazole</b> ring (2 non-adjacent nitrogen atoms, e.g. ketoconazole) vs. <b>triazole</b> ring (3 nitrogen atoms — fluconazole, itraconazole, voriconazole, posaconazole)</li>
+      <li>Broad spectrum. Used to treat <b>less severe</b> mycoses in place of Amphotericin B — oral administration, less toxic, <b>fungistatic</b> (not fungicidal)</li>
+      <li>MOA: interferes with ergosterol synthesis by blocking the <b>cytochrome P450-dependent 14α-demethylation of lanosterol</b> (lanosterol is the shared precursor of ergosterol in fungi and cholesterol in mammals)</li>
+      <li>Fungal cytochrome P450 is <b>100–1000× more sensitive</b> than the mammalian enzyme, giving azoles a much greater affinity for the fungal target</li>
+      <li>General side effect theme: some ability to inhibit <b>mammalian</b> cytochrome P450 too — degree and consequences vary by specific drug (see below)</li>
+    </ul>
+
+    <div class="tbl-wrap">
+      <table>
+        <caption>Azoles — indications and side effects, drug by drug</caption>
+        <thead><tr><th>Drug</th><th>Key indications</th><th>Key side effects</th></tr></thead>
+        <tbody>
+          <tr><td><b>Ketoconazole</b></td><td>Chronic mucocutaneous candidiasis, dermatophytosis, non-meningeal blastomycosis, coccidioidomycosis, paracoccidioidomycosis, histoplasmosis</td><td><b>Most toxic azole</b> — inhibits testosterone &amp; cortisol synthesis even at therapeutic doses: gynecomastia, ↓libido, impotence, menstrual irregularity, adrenal insufficiency</td></tr>
+          <tr><td><b>Fluconazole</b></td><td><b>Best CNS penetration</b> of the azoles. Maintenance therapy for cryptococcal &amp; coccidioidal meningitis. Oropharyngeal candidiasis in AIDS. Candidemia in immunocompetent patients</td><td>No significant impairment of mammalian steroidogenesis. Asymptomatic LFT elevation. Hepatitis</td></tr>
+          <tr><td><b>Itraconazole</b></td><td><b>First choice</b> for histoplasmosis &amp; blastomycosis, also coccidioidomycosis, paracoccidioidomycosis, aspergillosis, chromomycosis, and dermatophyte/mold onychomycosis</td><td>No significant impairment of mammalian steroidogenesis. Asymptomatic LFT elevation. Hepatitis</td></tr>
+          <tr><td><b>Voriconazole</b></td><td>Oral or IV. Broad spectrum vs. molds and yeasts, particularly <b>aspergillosis</b></td><td><b>Reversible visual disturbance</b> in ~30% of patients</td></tr>
+          <tr><td><b>Posaconazole</b></td><td>Wide spectrum — fluconazole-resistant Candida, aspergillosis, <b>mucormycosis</b>, other invasive molds</td><td>Well tolerated</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4 class="subsub">04 | Echinocandins</h4>
+    <ul>
+      <li>Newer class. Interrupt synthesis of the cell-wall polysaccharide <b>β-glucan</b> by inhibiting <b>1,3-β-glucan synthase</b> → disrupts cell wall integrity</li>
+    </ul>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Drug</th><th>Key facts</th></tr></thead>
+        <tbody>
+          <tr><td><b>Caspofungin</b></td><td><b>First licensed</b> echinocandin. Effective against invasive aspergillosis &amp; systemic candidiasis, specially indicated for <b>refractory aspergillosis</b>. IV route. Well tolerated</td></tr>
+          <tr><td><b>Micafungin &amp; Anidulafungin</b></td><td>Similar spectrum vs. Candida and Aspergillus. Used for <b>esophageal candidiasis</b> and prophylaxis in hematopoietic stem cell transplant patients</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4 class="subsub">05 | Griseofulvin</h4>
+    <ul>
+      <li>Derived from a species of <b>Penicillium</b></li>
+      <li>Treats <b>dermatophytoses</b> only — no effect on other fungi. Treatment must be given for long periods</li>
+      <li>Poorly absorbed. Concentrates in the <b>stratum corneum</b> → inhibits hyphal growth. After oral administration is distributed throughout the body and accumulates in keratinized tissue</li>
+      <li>MOA: within the fungus, interacts with microtubules and disrupts mitotic spindle function by binding tubulin → inhibits growth. Only <b>actively growing hyphae</b> are affected (it targets active mitosis)</li>
+      <li>Long-term therapy required (weeks to months) for skin, hair, and nail dermatophyte infections</li>
+      <li>Side effects: <b>headache</b> (most common, resolves without stopping the drug), GI disturbance, drowsiness, hepatotoxicity</li>
+    </ul>
+
+    <h4 class="subsub">06 | Terbinafine</h4>
+    <ul>
+      <li>An <b>allylamine</b>. Blocks ergosterol synthesis by inhibiting <b>squalene epoxidase</b> (an earlier step than the azoles' target)</li>
+      <li>Oral route. Treats dermatophyte infections, effective for <b>nail infections</b> (e.g. long-term treatment of tinea unguium, sometimes as an intermittent "pulse" protocol)</li>
+      <li>Side effects: uncommon — GI distress, headaches, skin reactions, loss of taste sensation</li>
+    </ul>
+
+    <h3 class="sub" style="margin-top:20px;">D. Topical agents</h3>
+
+    <h4 class="subsub">01 | Nystatin</h4>
+    <ul>
+      <li><b>Polyene antibiotic</b>, structurally related to Amphotericin B with a similar MOA — complexes with ergosterol, creates pores, disrupts the membrane, causes leakage of ions/small molecules, and cell death</li>
+      <li>Used for local candidal infections of the <b>mouth and vagina</b>. May suppress subclinical esophageal candidiasis and GI Candida overgrowth</li>
+      <li><b>No systemic absorption. Essentially no side effects</b>. Given topically because it is too toxic for parenteral administration</li>
+    </ul>
+
+    <h4 class="subsub">02 | Clotrimazole, Miconazole, and other topical azoles</h4>
+    <ul>
+      <li>Too toxic for systemic use, but comparable topical efficacy: Clotrimazole, Miconazole, Econazole, Butoconazole, Tioconazole, Terconazole, Luliconazole</li>
+      <li>Broad spectrum — tinea pedis, tinea corporis, tinea versicolor, tinea cruris, cutaneous candidiasis (creams/powders). Vulvovaginal candidiasis (vaginal suppositories/creams). Oral/esophageal thrush (clotrimazole oral troche)</li>
+      <li>Nail infections — often intractable. <b>Luliconazole</b> has shown dramatic effectiveness</li>
+    </ul>
+
+    <div class="trapbox">
+      <span class="badge badge-trap">EXAM TRAP</span>
+      Ketoconazole is systemic-capable but is the <b>most hormonally toxic</b> azole — if a vignette describes gynecomastia/adrenal insufficiency on an antifungal, think ketoconazole, not fluconazole/itraconazole (which spare steroidogenesis).
+    </div>
+
+    <div class="recall"><b>Recall cue:</b> "-conazole" almost always = ergosterol synthesis blocker (azole). "-fungin" = echinocandin (cell wall). Only two drugs bind ergosterol directly rather than blocking its synthesis: Amphotericin B and Nystatin.</div>
+
+    <div class="hysummary">
+      <span class="badge badge-summary">HIGH-YIELD SUMMARY</span>
+      <ul>
+        <li><b>Amphotericin B</b> — polyene, binds ergosterol, most effective for severe systemic mycoses, nephrotoxic</li>
+        <li><b>Flucytosine</b> — synergy with Amphotericin B, → 5-FU, blocks DNA synthesis, bone marrow suppression</li>
+        <li><b>Azoles</b> — block 14α-demethylase. Ketoconazole = most hormone side effects. Fluconazole = best CNS penetration. Itraconazole = 1st choice for histo/blasto. Voriconazole = aspergillosis + visual SEs. Posaconazole = covers mucormycosis</li>
+        <li><b>Echinocandins</b> — block β-glucan synthase (cell wall). Caspofungin = 1st licensed, refractory aspergillosis</li>
+        <li><b>Griseofulvin</b> — disrupts mitotic spindle, dermatophytes only, long courses</li>
+        <li><b>Terbinafine</b> — blocks squalene epoxidase, great for nail dermatophyte infections</li>
+        <li><b>Nystatin</b> — topical polyene, no systemic absorption, safe</li>
+      </ul>
+    </div>
+  </div>
+</details>
+<div class="roman" id="sec-master-tables">Master Tables (Appendix)</div>
+
+<details class="card" open>
+  <summary>
+    <input type="checkbox" class="done-check" data-id="master-tables">
+    <span class="summary-text">Table 8 &amp; Table 9 — full-lesson summary tables</span>
+    <span class="page-ref">p.21–22 (Appendix)</span>
+  </summary>
+  <div class="card-body">
+    <p style="color:var(--ink-soft);font-size:0.82rem;">These two tables are reproduced from the lecture's own appendix — they are the fastest way to compare across all four endemic mycoses, and across every antifungal class, in one glance.</p>
+
+    <div class="tbl-wrap">
+      <table>
+        <caption>Table 8. Summary of Systemic (Endemic) Mycoses</caption>
+        <thead>
+          <tr><th>Feature</th><th>Coccidioides immitis</th><th>Histoplasma capsulatum</th><th>Blastomyces dermatitidis</th><th>Paracoccidioides brasiliensis</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Disease name(s)</b></td>
+            <td>Valley / San Joaquin Valley / Desert Fever (40% symptomatic. 60% asymptomatic)</td>
+            <td>Darling's disease · Spelunker's disease</td>
+            <td>North American blastomycosis · Chicago disease · Gilchrist disease</td>
+            <td>South American blastomycosis</td>
+          </tr>
+          <tr>
+            <td><b>Endemicity</b></td>
+            <td>Semiarid SW US, Central &amp; South America</td>
+            <td>Ohio, Missouri, Mississippi river valleys</td>
+            <td>Mississippi, Ohio, Southern US river valleys</td>
+            <td>Central and South America</td>
+          </tr>
+          <tr>
+            <td><b>Source</b></td>
+            <td>Soil</td>
+            <td>Bird feces or bat guano</td>
+            <td>River banks</td>
+            <td>Soil</td>
+          </tr>
+          <tr>
+            <td><b>Mold form (25°C)</b></td>
+            <td>Barrel-shaped arthroconidia</td>
+            <td>Tuberculate macroconidia</td>
+            <td>"Lollipop"-shaped conidia</td>
+            <td>Fine, septate clear hyphae → chlamydospores/conidia</td>
+          </tr>
+          <tr>
+            <td><b>Yeast/tissue form (37°C)</b></td>
+            <td><b>Spherules</b> with endospores</td>
+            <td>Intracellular yeasts, narrow base between buds</td>
+            <td>Single-budding yeast, <b>broad base</b></td>
+            <td><b>Multiple-budding</b> yeast ("ship's wheel")</td>
+          </tr>
+          <tr>
+            <td><b>Treatment</b></td>
+            <td>Itraconazole. Amphotericin B for severe cases</td>
+            <td>Itraconazole. Amphotericin B for disseminated disease</td>
+            <td>Itraconazole for confined lesions. Amphotericin B for severe cases</td>
+            <td>Itraconazole</td>
+          </tr>
+          <tr>
+            <td><b>Classic clue</b></td>
+            <td>Filipino, CA/AZ travel, spherule on micro</td>
+            <td>Cave explorer/poultry worker, yeast inside macrophages</td>
+            <td>Broad-based single bud, river valley exposure</td>
+            <td>Latin American farmer, oral ulcer, "pilot's wheel" yeast</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <caption>Table 9. Summary of Antifungal Classes</caption>
+        <thead>
+          <tr><th>Class</th><th>Examples</th><th>Mechanism of action</th><th>Spectrum of activity</th><th>Route</th><th>Clinical use &amp; indications</th><th>Side effects &amp; limitations</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Polyenes</b></td>
+            <td>Amphotericin B, Nystatin</td>
+            <td>Binds ergosterol, forms pores → cell leakage &amp; death</td>
+            <td>Broad spectrum. Severe systemic mycoses</td>
+            <td>Amphotericin B: IV · Nystatin: topical</td>
+            <td>Amphotericin B: serious systemic infections · Nystatin: local candidiasis</td>
+            <td>Amphotericin B: nephrotoxicity, infusion reactions (fever, hypotension), hypokalemia, anemia · Nystatin: no systemic absorption, toxic if given parenterally</td>
+          </tr>
+          <tr>
+            <td><b>Azoles</b></td>
+            <td>Ketoconazole, Fluconazole, Itraconazole, Voriconazole, Posaconazole</td>
+            <td>Inhibits fungal cytochrome P450-demethylase, blocking ergosterol synthesis</td>
+            <td>Broad spectrum, varies by agent</td>
+            <td>IV, oral</td>
+            <td>Mucocutaneous candidiasis, dermatophytosis, systemic mycoses, CNS/coccidioidal meningitis (fluconazole), histo/blasto (itraconazole), aspergillosis (voriconazole), resistant Candida/mucormycosis (posaconazole)</td>
+            <td>Ketoconazole: hormonal side effects · Others: liver toxicity, visual disturbances (voriconazole)</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Clotrimazole, Miconazole</td>
+            <td>—</td>
+            <td>Superficial fungal infections</td>
+            <td>Topical — creams, powders, vaginal suppositories, oral troches</td>
+            <td>Cutaneous candidiasis, vulvovaginal candidiasis</td>
+            <td>Local irritation, rare systemic side effects</td>
+          </tr>
+          <tr>
+            <td><b>Flucytosine</b></td>
+            <td>Flucytosine</td>
+            <td>Converted in fungal cells to 5-fluorouracil, inhibits DNA/RNA synthesis</td>
+            <td>Cryptococcosis, candidiasis</td>
+            <td>Oral</td>
+            <td>Combined with Amphotericin B for cryptococcal meningitis and candidiasis</td>
+            <td>Bone marrow suppression, liver toxicity. Resistance emerges rapidly if used alone</td>
+          </tr>
+          <tr>
+            <td><b>Echinocandins</b></td>
+            <td>Caspofungin, Micafungin, Anidulafungin</td>
+            <td>Inhibit β-1,3-glucan synthase, disrupting fungal cell wall</td>
+            <td>Candida and Aspergillus species</td>
+            <td>IV</td>
+            <td>Systemic candidiasis, aspergillosis, esophageal candidiasis</td>
+            <td>Well tolerated. Minimal toxicity reported</td>
+          </tr>
+          <tr>
+            <td><b>Allylamines</b></td>
+            <td>Terbinafine</td>
+            <td>Inhibits squalene epoxidase, blocking ergosterol synthesis</td>
+            <td>Dermatophytes</td>
+            <td>Oral</td>
+            <td>Dermatophyte infections including nail infections</td>
+            <td>GI upset, headaches, taste disturbances (rare)</td>
+          </tr>
+          <tr>
+            <td><b>Griseofulvin</b></td>
+            <td>Griseofulvin</td>
+            <td>Disrupts microtubules and mitotic spindle, inhibiting growth</td>
+            <td>Dermatophytes</td>
+            <td>Oral</td>
+            <td>Long-term treatment of skin, hair, nail dermatophyte infections</td>
+            <td>Headache, GI disturbance, hepatotoxicity</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="hysummary">
+      <span class="badge badge-summary">HIGH-YIELD SUMMARY</span>
+      <ul>
+        <li>All 4 endemic mycoses = <b>mold at 25°C, yeast/spherule at 37°C</b> — only the tissue-form morphology differs (spherule / narrow-base bud / broad-base bud / multiple buds)</li>
+        <li><b>Itraconazole</b> is the shared oral workhorse for mild–moderate endemic mycoses. <b>Amphotericin B</b> is the shared answer for severe/disseminated disease</li>
+        <li>Each antifungal class has one signature target: <b>ergosterol itself</b> (polyenes), <b>ergosterol synthesis</b> (azoles, terbinafine), <b>cell wall glucan</b> (echinocandins), <b>nucleic acid synthesis</b> (flucytosine), or <b>mitotic spindle</b> (griseofulvin)</li>
+      </ul>
+    </div>
+  </div>
+</details>
+<div class="roman" id="sec-confusion">Commonly Confused Concepts</div>
+
+<details class="card" open>
+  <summary>
+    <input type="checkbox" class="done-check" data-id="confusion">
+    <span class="summary-text">Pairs students mix up on this topic</span>
+    <span class="page-ref">cross-lesson</span>
+  </summary>
+  <div class="card-body">
+
+    <div class="confuse-pair">
+      <div class="confuse-title">Do not confuse: Aspergillus vs. Mucor (Zygomycetes) on microscopy</div>
+      <div class="confuse-cols">
+        <div class="confuse-col">
+          <h6>Aspergillus</h6>
+          <ul><li><b>Septate</b> hyphae</li><li>Branches at <b>acute (45°)</b> angles</li><li>Uniform, ~4 μm width</li><li>Invasive form → CD4 &lt;50, leukemia, transplant</li></ul>
+        </div>
+        <div class="confuse-col">
+          <h6>Mucor / Rhizopus</h6>
+          <ul><li><b>Non-septate</b> (or sparsely septate) hyphae</li><li>Branches at <b>wide (~90°)</b> angles</li><li>Broad, ribbon-like, uneven thickness (10–15 μm)</li><li>Classic setting → diabetic ketoacidosis, iron overload</li></ul>
+        </div>
+      </div>
+      <div class="fast-distinction"><b>Fast distinction:</b> septate + acute angle = Aspergillus. Non-septate + wide angle = Mucor. Both angioinvade, but the risk-factor vignette (DKA vs. leukemia/transplant) is usually the faster clue.</div>
+    </div>
+
+    <div class="confuse-pair">
+      <div class="confuse-title">Do not confuse: Blastomyces vs. Paracoccidioides yeast morphology</div>
+      <div class="confuse-cols">
+        <div class="confuse-col">
+          <h6>Blastomyces dermatitidis</h6>
+          <ul><li><b>Single</b>, broad-based bud</li><li>Bud can grow to same size as parent before detaching</li><li>North America — river valleys</li></ul>
+        </div>
+        <div class="confuse-col">
+          <h6>Paracoccidioides brasiliensis</h6>
+          <ul><li><b>Multiple</b> buds around one cell — "ship's/pilot's wheel"</li><li>Thinner walls than Blastomyces</li><li>Latin America — rural farmers</li></ul>
+        </div>
+      </div>
+      <div class="fast-distinction"><b>Fast distinction:</b> one big bud = Blastomyces. A ring of many small buds = Paracoccidioides.</div>
+    </div>
+
+    <div class="confuse-pair">
+      <div class="confuse-title">Do not confuse: Histoplasma vs. Cryptococcus at the level of the macrophage</div>
+      <div class="confuse-cols">
+        <div class="confuse-col">
+          <h6>Histoplasma capsulatum</h6>
+          <ul><li>Small (2–4 μm), <b>obligate intracellular</b> yeast — actually lives and multiplies inside macrophages</li><li>Survives by alkalinizing the phagosome</li><li>Stains: GMS, PAS, Giemsa</li></ul>
+        </div>
+        <div class="confuse-col">
+          <h6>Cryptococcus neoformans</h6>
+          <ul><li>Larger (5–10 μm), <b>encapsulated</b> yeast — the thick polysaccharide capsule is the defining feature, not intracellular survival</li><li>Identified with <b>India ink</b> (halo effect) or capsular antigen tests</li></ul>
+        </div>
+      </div>
+      <div class="fast-distinction"><b>Fast distinction:</b> if the vignette says "yeast found INSIDE macrophages," think Histoplasma. If it says "halo" or "capsule," think Cryptococcus.</div>
+    </div>
+
+    <div class="confuse-pair">
+      <div class="confuse-title">Do not confuse: Candida albicans vs. Candida glabrata</div>
+      <div class="confuse-cols">
+        <div class="confuse-col">
+          <h6>C. albicans</h6>
+          <ul><li><b>Most common</b> Candida pathogen</li><li>Forms <b>germ tubes</b> (37°C serum) and chlamydospores</li><li>Yeast + pseudohyphae + true hyphae</li><li>CHROMagar: <b>green</b></li></ul>
+        </div>
+        <div class="confuse-col">
+          <h6>C. glabrata</h6>
+          <ul><li>Produces <b>only yeast cells — no pseudohyphae</b></li><li>Frequently <b>fluconazole-resistant</b></li><li>CHROMagar: <b>dark purple</b></li></ul>
+        </div>
+      </div>
+      <div class="fast-distinction"><b>Fast distinction:</b> "no pseudohyphae seen" + azole resistance on a Candida vignette → think C. glabrata, not C. albicans.</div>
+    </div>
+
+    <div class="confuse-pair">
+      <div class="confuse-title">Do not confuse: Nystatin vs. Amphotericin B</div>
+      <div class="confuse-cols">
+        <div class="confuse-col">
+          <h6>Nystatin</h6>
+          <ul><li>Same class (polyene), same MOA as Amphotericin B</li><li><b>Topical only</b> — too toxic to give parenterally</li><li>No systemic absorption, essentially no side effects</li></ul>
+        </div>
+        <div class="confuse-col">
+          <h6>Amphotericin B</h6>
+          <ul><li>Same class, same MOA</li><li><b>IV/systemic</b> — the go-to for severe systemic mycoses</li><li>Significant toxicity: nephrotoxicity, infusion reactions</li></ul>
+        </div>
+      </div>
+      <div class="fast-distinction"><b>Fast distinction:</b> identical mechanism ≠ identical use. The only real difference the lecture emphasizes is <b>route and tolerability</b>, not spectrum.</div>
+    </div>
+
+    <div class="confuse-pair">
+      <div class="confuse-title">Do not confuse: Pneumocystis jirovecii vs. Pneumocystis carinii</div>
+      <div class="confuse-cols">
+        <div class="confuse-col">
+          <h6>P. jirovecii</h6>
+          <ul><li>The species that infects <b>humans</b></li><li>Cause of PCP (Pneumocystis pneumonia) in AIDS</li></ul>
+        </div>
+        <div class="confuse-col">
+          <h6>P. carinii</h6>
+          <ul><li>Found <b>only in rats</b></li><li>Historical/older name still seen in the abbreviation "PCP," but is not the human pathogen</li></ul>
+        </div>
+      </div>
+      <div class="fast-distinction"><b>Fast distinction:</b> if the question is about a human patient, the organism is <i>P. jirovecii</i> even though the abbreviation "PCP" persists from the old name.</div>
+    </div>
+
+  </div>
+</details>
+<div class="roman" id="sec-traps">Exam Traps</div>
+
+<details class="card" open>
+  <summary>
+    <input type="checkbox" class="done-check" data-id="traps">
+    <span class="summary-text">Likely test traps across the whole lesson</span>
+    <span class="page-ref">cross-lesson</span>
+  </summary>
+  <div class="card-body">
+
+    <div class="trapbox"><span class="badge badge-trap">EXAM TRAP</span> C. immitis arthroconidia remain <b>viable for years</b> and are extremely infectious — lab specimens require a <b>biosafety cabinet</b>. A question describing routine bench handling of a suspected Coccidioides culture is testing whether you catch this safety violation.</div>
+
+    <div class="trapbox"><span class="badge badge-trap">EXAM TRAP</span> A <b>spherule</b> containing endospores is diagnostic of <b>Coccidioides</b> — don't confuse it with the thick <b>capsule</b> of Cryptococcus (no internal endospores) or the intracellular yeast of Histoplasma (no spherule stage).</div>
+
+    <div class="trapbox"><span class="badge badge-trap">EXAM TRAP</span> Candida cultured from <b>sputum</b> is usually a colonizer, not a pathogen — it has <b>no diagnostic significance</b> for pulmonary candidiasis on its own.</div>
+
+    <div class="trapbox"><span class="badge badge-trap">EXAM TRAP</span> <b>C. neoformans</b> classically hits <b>immunocompromised</b> hosts. <b>C. gattii</b> classically hits <b>immunocompetent/normal</b> hosts in tropical areas. Exam writers like to swap these.</div>
+
+    <div class="trapbox"><span class="badge badge-trap">EXAM TRAP</span> Among the azoles, <b>ketoconazole</b> is the one with major hormonal side effects (gynecomastia, adrenal insufficiency) — fluconazole and itraconazole specifically do <b>not</b> significantly impair mammalian steroidogenesis.</div>
+
+    <div class="trapbox"><span class="badge badge-trap">EXAM TRAP</span> Hyphae morphology on microscopy: <b>Aspergillus</b> = septate, acute-angle branching. <b>Mucor/Rhizopus</b> = non-septate (or sparse septa), wide-angle branching. Swapping these is one of the most common distractor patterns in mycology questions.</div>
+
+    <div class="trapbox"><span class="badge badge-trap">EXAM TRAP</span> Amphotericin B and Nystatin are the <b>same drug class with the same mechanism</b> — the only reason Nystatin is topical-only is toxicity if given parenterally, <b>not</b> a difference in spectrum or mechanism.</div>
+
+    <div class="trapbox"><span class="badge badge-trap">EXAM TRAP</span> "PCP" pneumonia in a human patient is caused by <b><i>Pneumocystis jirovecii</i></b>, not <i>P. carinii</i> — <i>P. carinii</i> is found only in rats.</div>
+
+    <div class="trapbox"><span class="badge badge-trap">EXAM TRAP</span> Mucormycosis's classic risk factors are <b>diabetic ketoacidosis and iron overload</b> (from repeated transfusions) — the "black fungus" nickname and angioinvasive necrosis both point here, not to Aspergillus.</div>
+
+    <div class="trapbox"><span class="badge badge-trap">EXAM TRAP</span> Amphotericin B + Flucytosine combination therapy is the standard specifically for <b>cryptococcal meningitis</b> — know this pairing precisely, since single-agent flucytosine resistance emerges rapidly.</div>
+
+    <div class="trapbox"><span class="badge badge-trap">EXAM TRAP</span> Griseofulvin (disrupts the <b>mitotic spindle</b>) and Terbinafine (inhibits <b>squalene epoxidase</b>) both treat dermatophytes but by entirely different mechanisms — don't merge their MOAs on a mechanism-matching question.</div>
+
+    <div class="trapbox"><span class="badge badge-trap">EXAM TRAP</span> Only ~<b>1%</b> of Coccidioidomycosis cases disseminate, but when they do it is often <b>fatal</b> — don't read "rare" as "not dangerous."</div>
+
+  </div>
+</details>
+<div id="cramsheet">
+  <h2>🧠 Cram Sheet — 5 to 10 Minute Full Run-Through</h2>
+  <p style="font-size:0.82rem;color:var(--ink-soft);margin-top:-6px;">Everything below is already covered in detail above. This is the condensed, stand-alone version — read it top to bottom right before your exam.</p>
+
+  <div class="cram-item">
+    <div class="cram-item-head"><span class="cram-num">1</span> Systemic mycoses = <b>endemic</b> (geography/inhalation-driven) or <b>opportunistic</b> (immune-status-driven)</div>
+    <p>&gt;90% enter via the lungs. Intact <b>Th1/cell-mediated immunity</b> prevents dissemination. Males disseminate more than females for all 4 endemic mycoses.</p>
+  </div>
+
+  <div class="cram-item">
+    <div class="cram-item-head"><span class="cram-num">2</span> All 4 endemic mycoses are <b>thermally dimorphic</b></div>
+    <p>Mold/mycelium at 25°C (environment) ⇌ yeast or spherule at 36–37°C (host). Dimorphism is required for virulence.</p>
+  </div>
+
+  <div class="cram-item">
+    <div class="cram-item-head"><span class="cram-num">3</span> <i>Coccidioides</i> — spherule is diagnostic</div>
+    <p>SW USA/Latin America. Arthroconidia inhaled → spherules with endospores in tissue. Highly infectious — needs a biosafety cabinet. Highest disseminated-disease risk in <b>Filipinos</b>. Tx: itraconazole (mild) → Amphotericin B (severe) → fluconazole (meningitis, best CNS penetration).</p>
+  </div>
+
+  <div class="cram-item">
+    <div class="cram-item-head"><span class="cram-num">4</span> <i>Histoplasma</i> — obligate intracellular yeast</div>
+    <p>Soil with bird/bat droppings. Ohio/Mississippi river valleys. Survives inside macrophages by alkalinizing the phagosome. Tx: itraconazole (mild) → Amphotericin B (disseminated).</p>
+  </div>
+
+  <div class="cram-item">
+    <div class="cram-item-head"><span class="cram-num">5</span> <i>Blastomyces</i> — single, broad-based budding yeast</div>
+    <p>North America river valleys. Tx: itraconazole (localized, ~6 months) → Amphotericin B (severe).</p>
+  </div>
+
+  <div class="cram-item">
+    <div class="cram-item-head"><span class="cram-num">6</span> <i>Paracoccidioides</i> — multiple-budding "ship's wheel" yeast</div>
+    <p>Latin American farmers, 90% male. Tx: itraconazole = most effective.</p>
+  </div>
+
+  <div class="cram-item">
+    <div class="cram-item-head"><span class="cram-num">7</span> <i>Candida</i> — endogenous opportunist</div>
+    <p><b>C. albicans</b>: germ tube (+), chlamydospores, green on CHROMagar. <b>C. glabrata</b>: no pseudohyphae, dark purple, often fluconazole-resistant. Systemic disease → Amphotericin B ± flucytosine/fluconazole/caspofungin.</p>
+  </div>
+
+  <div class="cram-item">
+    <div class="cram-item-head"><span class="cram-num">8</span> <i>Cryptococcus</i> — encapsulated yeast, India ink halo</div>
+    <p><b>C. neoformans</b>: pigeon droppings, worldwide, immunocompromised hosts. <b>C. gattii</b>: tropical trees, immunocompetent hosts. Cryptococcal meningitis → <b>Amphotericin B + Flucytosine</b>, then fluconazole maintenance (esp. AIDS).</p>
+  </div>
+
+  <div class="cram-item">
+    <div class="cram-item-head"><span class="cram-num">9</span> <i>Aspergillus</i> — septate hyphae, acute-angle branching</div>
+    <p>A. fumigatus = most common. Forms: allergic (ABPA), aspergilloma (fungus ball in old cavities), invasive (angioinvasive, CD4&lt;50/leukemia/transplant). Tx: voriconazole preferred for invasive disease.</p>
+  </div>
+
+  <div class="cram-item">
+    <div class="cram-item-head"><span class="cram-num">10</span> Mucormycosis — non-septate, wide-angle hyphae</div>
+    <p><b>Angioinvasion</b> is the hallmark → thrombosis/necrosis ("black fungus"). Classic risk factors: diabetic ketoacidosis, iron overload. Rhinocerebral disease → urgent surgical debridement + Amphotericin B.</p>
+  </div>
+
+  <div class="cram-item">
+    <div class="cram-item-head"><span class="cram-num">11</span> <i>Pneumocystis jirovecii</i> — AIDS-defining pneumonia</div>
+    <p>CD4 &lt;200/μL. Cysts (4–8 nuclei) on silver stain/toluidine blue. <b>Cannot be cultured.</b> TMP-SMX for both treatment and prophylaxis.</p>
+  </div>
+
+  <div class="cram-item">
+    <div class="cram-item-head"><span class="cram-num">12</span> Antifungal target map</div>
+    <p><b>Polyenes</b> (Amphotericin B, Nystatin) bind ergosterol directly → pores. <b>Azoles</b> and <b>Terbinafine</b> block ergosterol synthesis (14α-demethylase / squalene epoxidase). <b>Echinocandins</b> block cell-wall β-1,3-glucan synthase. <b>Flucytosine</b> → 5-FU → blocks DNA/RNA synthesis. <b>Griseofulvin</b> disrupts the mitotic spindle.</p>
+  </div>
+
+  <div class="cram-item">
+    <div class="cram-item-head"><span class="cram-num">13</span> Amphotericin B = most effective drug for severe systemic mycoses</div>
+    <p>Nephrotoxic (azotemia most common). Poor CNS/joint penetration. Newer lipid formulations reduce toxicity.</p>
+  </div>
+
+  <div class="cram-item">
+    <div class="cram-item-head"><span class="cram-num">14</span> Fluconazole = best CNS penetration among the azoles</div>
+    <p>Drug of choice for cryptococcal and coccidioidal meningitis maintenance. Does not impair steroidogenesis.</p>
+  </div>
+
+  <div class="cram-item">
+    <div class="cram-item-head"><span class="cram-num">15</span> Itraconazole = first choice for histoplasmosis and blastomycosis</div>
+    <p>Also covers coccidioidomycosis, paracoccidioidomycosis, aspergillosis, and dermatophyte/mold onychomycosis.</p>
+  </div>
+
+  <div class="cram-item">
+    <div class="cram-item-head"><span class="cram-num">16</span> Voriconazole = preferred for invasive aspergillosis</div>
+    <p>Side effect: reversible visual disturbances in ~30% of patients.</p>
+  </div>
+
+  <div class="cram-item">
+    <div class="cram-item-head"><span class="cram-num">17</span> Ketoconazole = most hormonally toxic azole</div>
+    <p>Inhibits testosterone/cortisol synthesis even at therapeutic doses → gynecomastia, impotence, adrenal insufficiency.</p>
+  </div>
+
+  <div class="cram-item">
+    <div class="cram-item-head"><span class="cram-num">18</span> Nystatin = topical-only cousin of Amphotericin B</div>
+    <p>Identical polyene mechanism, but too toxic to give systemically — used only for local mouth/vaginal candidiasis, essentially no side effects.</p>
+  </div>
+
+</div>
+<div id="rapidfire">
+  <h2>⚡ Rapid-Fire Final Recall</h2>
+  <p style="font-size:0.82rem;color:var(--ink-soft);margin-top:-6px;">Answer in a few words before you tap to reveal. Covers the entire lesson, front to back.</p>
+  <div class="rf-grid">
+
+    <details class="rf"><summary>Two broad causes of systemic mycoses?</summary><div class="rf-answer"><b>Endemic fungi</b> (inhaled, geographic) and <b>opportunistic fungi</b> (immunocompromised hosts).</div></details>
+
+    <details class="rf"><summary>Shared temperature-dependent property of the 4 endemic mycoses?</summary><div class="rf-answer"><b>Thermal dimorphism</b> — mold at 25°C, yeast/spherule at 37°C.</div></details>
+
+    <details class="rf"><summary>Tissue form that is diagnostic of Coccidioides?</summary><div class="rf-answer">The <b>spherule</b> containing endospores.</div></details>
+
+    <details class="rf"><summary>Why must Coccidioides cultures be handled in a biosafety cabinet?</summary><div class="rf-answer">Arthroconidia are <b>highly infectious</b> and remain viable for years.</div></details>
+
+    <details class="rf"><summary>Ethnicity with the highest risk of disseminated coccidioidomycosis?</summary><div class="rf-answer"><b>Filipinos</b> (then African American &gt; Native American &gt; Hispanic &gt; Asian).</div></details>
+
+    <details class="rf"><summary>Drug of choice for coccidioidal meningitis?</summary><div class="rf-answer"><b>Fluconazole</b> (oral, good CNS penetration).</div></details>
+
+    <details class="rf"><summary>Natural habitat of Histoplasma capsulatum?</summary><div class="rf-answer">Soil with <b>bird/bat droppings</b> (high nitrogen content).</div></details>
+
+    <details class="rf"><summary>How does Histoplasma survive inside macrophages?</summary><div class="rf-answer">Raises the <b>phagosomal pH</b> (alkalinizes it), blocking phagolysosome fusion/acidification.</div></details>
+
+    <details class="rf"><summary>First-choice drug for histoplasmosis and blastomycosis?</summary><div class="rf-answer"><b>Itraconazole</b>.</div></details>
+
+    <details class="rf"><summary>Yeast form of Blastomyces dermatitidis?</summary><div class="rf-answer">Large, thick-walled, single cell with a <b>broad-based bud</b>.</div></details>
+
+    <details class="rf"><summary>Classic yeast morphology of Paracoccidioides brasiliensis?</summary><div class="rf-answer">Multiple budding cells — <b>"ship's / pilot's wheel."</b></div></details>
+
+    <details class="rf"><summary>Two morphologic tests that identify C. albicans?</summary><div class="rf-answer"><b>Germ tube test</b> (serum, 37°C, 60–90 min) and <b>chlamydospore formation</b> on nutrient-deficient media.</div></details>
+
+    <details class="rf"><summary>Which Candida species produces no pseudohyphae?</summary><div class="rf-answer"><b>C. glabrata</b>.</div></details>
+
+    <details class="rf"><summary>Color of C. albicans on CHROMagar?</summary><div class="rf-answer"><b>Green</b>.</div></details>
+
+    <details class="rf"><summary>What stains the Cryptococcus capsule for microscopy?</summary><div class="rf-answer"><b>India ink</b> (halo effect).</div></details>
+
+    <details class="rf"><summary>Which Cryptococcus species typically affects immunocompetent hosts?</summary><div class="rf-answer"><b>C. gattii</b>.</div></details>
+
+    <details class="rf"><summary>Major capsular antigen of Cryptococcus detected by latex agglutination?</summary><div class="rf-answer"><b>Glucuronoxylomannan (GXM)</b>.</div></details>
+
+    <details class="rf"><summary>Standard treatment for cryptococcal meningitis?</summary><div class="rf-answer"><b>Amphotericin B + Flucytosine</b>, then fluconazole maintenance.</div></details>
+
+    <details class="rf"><summary>Most common pathogenic Aspergillus species?</summary><div class="rf-answer"><b>A. fumigatus</b>.</div></details>
+
+    <details class="rf"><summary>Describe Aspergillus hyphae on microscopy.</summary><div class="rf-answer">Hyaline, <b>septate</b>, ~4 μm, branching dichotomously at <b>acute (45°)</b> angles.</div></details>
+
+    <details class="rf"><summary>What is an aspergilloma?</summary><div class="rf-answer">A <b>fungus ball</b> forming in a pre-existing lung cavity.</div></details>
+
+    <details class="rf"><summary>Preferred treatment for invasive aspergillosis?</summary><div class="rf-answer"><b>Voriconazole</b> (or Amphotericin B).</div></details>
+
+    <details class="rf"><summary>Most characteristic pathogenic mechanism of mucormycosis?</summary><div class="rf-answer"><b>Angioinvasion</b> → thrombosis and necrosis.</div></details>
+
+    <details class="rf"><summary>Two classic risk factors for mucormycosis?</summary><div class="rf-answer"><b>Diabetic ketoacidosis</b> and <b>iron overload</b>.</div></details>
+
+    <details class="rf"><summary>Describe Mucor hyphae on microscopy.</summary><div class="rf-answer">Broad, ribbon-like, <b>non-septate</b>, irregular <b>wide-angle</b> branching.</div></details>
+
+    <details class="rf"><summary>Treatment approach for rhinocerebral mucormycosis?</summary><div class="rf-answer"><b>Urgent surgical debridement + Amphotericin B</b>.</div></details>
+
+    <details class="rf"><summary>Which Pneumocystis species actually infects humans?</summary><div class="rf-answer"><b>P. jirovecii</b> (P. carinii is found only in rats).</div></details>
+
+    <details class="rf"><summary>Can Pneumocystis be cultured?</summary><div class="rf-answer"><b>No</b> — diagnosis relies on staining cysts/trophozoites (silver stain, toluidine blue, calcofluor white).</div></details>
+
+    <details class="rf"><summary>Drug of choice for PCP treatment and prophylaxis?</summary><div class="rf-answer"><b>TMP-SMX</b> (Pentamidine is the alternative).</div></details>
+
+    <details class="rf"><summary>Mechanism of action of Amphotericin B?</summary><div class="rf-answer">Binds <b>ergosterol</b> in the fungal membrane → pores → ion leakage → cell death.</div></details>
+
+    <details class="rf"><summary>Mechanism of action of azoles?</summary><div class="rf-answer">Inhibit fungal cytochrome P450 <b>14α-demethylase</b>, blocking lanosterol → ergosterol conversion.</div></details>
+
+    <details class="rf"><summary>Most hormonally toxic azole?</summary><div class="rf-answer"><b>Ketoconazole</b> (gynecomastia, adrenal insufficiency).</div></details>
+
+    <details class="rf"><summary>Which azole has the best CNS penetration?</summary><div class="rf-answer"><b>Fluconazole</b>.</div></details>
+
+    <details class="rf"><summary>Mechanism of action of echinocandins?</summary><div class="rf-answer">Inhibit <b>β-1,3-glucan synthase</b>, disrupting the fungal cell wall.</div></details>
+
+    <details class="rf"><summary>Which echinocandin was the first licensed?</summary><div class="rf-answer"><b>Caspofungin</b>.</div></details>
+
+    <details class="rf"><summary>Mechanism of action of flucytosine?</summary><div class="rf-answer">Converted to <b>5-fluorouracil</b> intracellularly → inhibits thymidylate synthetase → blocks DNA synthesis.</div></details>
+
+    <details class="rf"><summary>Mechanism of action of griseofulvin?</summary><div class="rf-answer">Binds tubulin, disrupting the <b>mitotic spindle</b> — inhibits fungal mitosis.</div></details>
+
+    <details class="rf"><summary>Mechanism of action of terbinafine?</summary><div class="rf-answer">Inhibits <b>squalene epoxidase</b>, an early step of ergosterol synthesis.</div></details>
+
+    <details class="rf"><summary>Why is Nystatin used only topically?</summary><div class="rf-answer">Same mechanism as Amphotericin B, but <b>too toxic for parenteral use</b>.</div></details>
+
+  </div>
+</div>
+</main>
+
+<footer class="foot">
+  Cram Reviewer generated from MCB 2.08 — Mycology 2 (Dr. Mateo-Laxa) · For personal exam review · Facts are traceable to the source lecture. Nothing here should replace the original slides or your professor's guidance.
+</footer>
+
+<button id="backToTop" type="button" title="Back to top">↑</button>
+
+<script>
+(function(){
+  "use strict";
+  var STORAGE_PREFIX = "mycoCram_v1_";
+
+  function $all(sel, ctx){ return Array.prototype.slice.call((ctx||document).querySelectorAll(sel)); }
+  function $one(sel, ctx){ return (ctx||document).querySelector(sel); }
+
+  var allCards = $all("details.card");
+  var checks = $all(".done-check");
+  var progressFill = $one("#progressFill");
+  var progressPct = $one("#progressPct");
+
+  /* ---------- mark cards that contain must-know content (for filter dimming) ---------- */
+  allCards.forEach(function(card){
+    var hasMust = card.querySelector(".blk-must, .badge-must");
+    card.setAttribute("data-has-must", hasMust ? "true" : "false");
+  });
+
+  /* ---------- PROGRESS TRACKING ---------- */
+  function loadProgress(){
+    checks.forEach(function(cb){
+      var id = cb.getAttribute("data-id");
+      var val = null;
+      try{ val = localStorage.getItem(STORAGE_PREFIX + id); }catch(e){}
+      cb.checked = (val === "1");
+    });
+    updateProgress();
+  }
+
+  function updateProgress(){
+    var total = checks.length;
+    var done = checks.filter(function(cb){ return cb.checked; }).length;
+    var pct = total ? Math.round((done/total)*100) : 0;
+    if(progressFill) progressFill.style.width = pct + "%";
+    if(progressPct) progressPct.textContent = pct + "%";
+  }
+
+  checks.forEach(function(cb){
+    cb.addEventListener("click", function(e){ e.stopPropagation(); });
+    cb.addEventListener("change", function(){
+      var id = cb.getAttribute("data-id");
+      try{ localStorage.setItem(STORAGE_PREFIX + id, cb.checked ? "1" : "0"); }catch(e){}
+      updateProgress();
+    });
+  });
+
+  loadProgress();
+
+  /* ---------- EXPAND / COLLAPSE ALL ---------- */
+  var expandAllBtn = $one("#expandAllBtn");
+  var collapseAllBtn = $one("#collapseAllBtn");
+
+  if(expandAllBtn){
+    expandAllBtn.addEventListener("click", function(){
+      allCards.forEach(function(c){ c.open = true; });
+    });
+  }
+  if(collapseAllBtn){
+    collapseAllBtn.addEventListener("click", function(){
+      allCards.forEach(function(c){ c.open = false; });
+    });
+  }
+
+  /* ---------- MUST-KNOW ONLY FILTER ---------- */
+  var mustOnlyBtn = $one("#mustOnlyBtn");
+  var mustOnlyActive = false;
+  if(mustOnlyBtn){
+    mustOnlyBtn.addEventListener("click", function(){
+      mustOnlyActive = !mustOnlyActive;
+      document.body.classList.toggle("filter-must", mustOnlyActive);
+      mustOnlyBtn.classList.toggle("active", mustOnlyActive);
+      mustOnlyBtn.textContent = mustOnlyActive ? "Show all content" : "Must-know only";
+    });
+  }
+
+  /* ---------- RESET PROGRESS ---------- */
+  var resetBtn = $one("#resetProgressBtn");
+  if(resetBtn){
+    resetBtn.addEventListener("click", function(){
+      if(!confirm("Reset all progress checkmarks? This cannot be undone.")) return;
+      checks.forEach(function(cb){
+        cb.checked = false;
+        var id = cb.getAttribute("data-id");
+        try{ localStorage.removeItem(STORAGE_PREFIX + id); }catch(e){}
+      });
+      updateProgress();
+    });
+  }
+
+  /* ---------- SEARCH ---------- */
+  var searchBox = $one("#searchBox");
+  var searchableBlocks = $all("details.card, .cram-item, details.rf");
+
+  function clearHighlights(root){
+    $all("mark", root).forEach(function(m){
+      var text = document.createTextNode(m.textContent);
+      m.parentNode.replaceChild(text, m);
+    });
+  }
+
+  function highlightText(root, query){
+    if(!query) return;
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+    var nodes = [];
+    var n;
+    while((n = walker.nextNode())){
+      if(n.nodeValue.toLowerCase().indexOf(query) !== -1 && n.parentNode.tagName !== "MARK"){
+        nodes.push(n);
+      }
+    }
+    nodes.forEach(function(node){
+      var lower = node.nodeValue.toLowerCase();
+      var idx = lower.indexOf(query);
+      if(idx === -1) return;
+      var before = node.nodeValue.slice(0, idx);
+      var match = node.nodeValue.slice(idx, idx + query.length);
+      var after = node.nodeValue.slice(idx + query.length);
+      var frag = document.createDocumentFragment();
+      frag.appendChild(document.createTextNode(before));
+      var mark = document.createElement("mark");
+      mark.textContent = match;
+      frag.appendChild(mark);
+      frag.appendChild(document.createTextNode(after));
+      node.parentNode.replaceChild(frag, node);
+    });
+  }
+
+  var searchTimer = null;
+  if(searchBox){
+    searchBox.addEventListener("input", function(){
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(runSearch, 120);
+    });
+  }
+
+  function runSearch(){
+    var q = searchBox.value.trim().toLowerCase();
+
+    searchableBlocks.forEach(function(block){ clearHighlights(block); });
+
+    if(!q){
+      searchableBlocks.forEach(function(block){ block.classList.remove("hidden-by-search"); });
+      return;
+    }
+
+    searchableBlocks.forEach(function(block){
+      var text = block.textContent.toLowerCase();
+      var match = text.indexOf(q) !== -1;
+      block.classList.toggle("hidden-by-search", !match);
+      if(match){
+        if(block.tagName === "DETAILS") block.open = true;
+        highlightText(block, q);
+      }
+    });
+  }
+
+  /* ---------- BACK TO TOP ---------- */
+  var backBtn = $one("#backToTop");
+  window.addEventListener("scroll", function(){
+    if(window.scrollY > 500){ backBtn.classList.add("show"); }
+    else{ backBtn.classList.remove("show"); }
+  });
+  if(backBtn){
+    backBtn.addEventListener("click", function(){
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
+})();
+</script>
+</body>
+</html>
