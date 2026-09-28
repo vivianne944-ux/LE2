@@ -1,1 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rx Writing Cram</title>
+<style>
+:root{
+  --bg:#f5f6f2; --paper:#ffffff; --ink:#1c2320; --muted:#5d6862; --line:#dde2dc;
+  --accent:#1f6f5c; --accent-soft:#e2efe9; --no:#a8322a; --no-soft:#fbeceb;
+  --yes:#1f6f3a; --yes-soft:#e5f2e8; --note:#855600; --note-soft:#fff3d9; --hl:#fff0a0;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#121614; --paper:#1a201d; --ink:#e4ebe7; --muted:#9ba9a2; --line:#2f3934;
+    --accent:#6cc4a8; --accent-soft:#1d3029; --no:#f08a80; --no-soft:#2e1c1a;
+    --yes:#7fd39a; --yes-soft:#17291d; --note:#e8b45a; --note-soft:#2c2413; --hl:#4a4212;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#121614; --paper:#1a201d; --ink:#e4ebe7; --muted:#9ba9a2; --line:#2f3934;
+  --accent:#6cc4a8; --accent-soft:#1d3029; --no:#f08a80; --no-soft:#2e1c1a;
+  --yes:#7fd39a; --yes-soft:#17291d; --note:#e8b45a; --note-soft:#2c2413; --hl:#4a4212;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:"Segoe UI",Arial,Helvetica,sans-serif;font-size:16px;line-height:1.65;padding-inline:16px;padding-block:0 70px}
+.wrap{max-width:920px;margin:0 auto}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding-block:10px 8px}
+h1{font-size:1.25rem;margin:0}
+nav{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+nav a{font-size:.82rem;text-decoration:none;color:var(--accent);background:var(--accent-soft);border-radius:4px;padding:3px 9px}
+nav a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section{margin-top:40px;scroll-margin-top:95px}
+h2{font-size:1.4rem;color:var(--accent);margin:0 0 6px;padding-bottom:4px;border-bottom:2px solid var(--accent-soft);text-wrap:balance}
+h3{font-size:1.1rem;margin:28px 0 8px}
+h4{font-size:1rem;margin:0 0 6px}
+p{margin:8px 0}
+ul{margin:6px 0 10px;padding-left:22px}
+ul ul{margin:2px 0 4px}
+li{margin:4px 0}
+b.d{background:var(--hl);padding:0 4px;border-radius:3px}
+.lead{color:var(--muted);margin-top:0}
+.src{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.04em;color:var(--muted);border:1px solid var(--line);border-radius:3px;padding:0 4px;vertical-align:1px;background:var(--paper)}
+.rx{font-family:Consolas,"Courier New",monospace;font-size:.9rem;line-height:1.55;background:var(--paper);border:1px dashed var(--accent);border-radius:6px;padding:12px 14px;white-space:pre-wrap;margin:10px 0}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin:14px 0}
+.card h4{font-size:1.08rem;color:var(--accent);margin-bottom:2px}
+.card .cls{color:var(--muted);font-size:.86rem;margin-bottom:10px}
+.rows{display:grid;grid-template-columns:130px 1fr;gap:6px 14px;margin:0}
+.rows dt{font-weight:600;color:var(--muted);font-size:.9rem}
+.rows dd{margin:0}
+@media (max-width:520px){.rows{grid-template-columns:1fr}.rows dt{margin-top:6px}}
+.ok,.bad{margin:4px 0;padding-left:22px;position:relative}
+.ok::before{content:"✓";position:absolute;left:4px;color:var(--yes);font-weight:700}
+.bad::before{content:"✗";position:absolute;left:4px;color:var(--no);font-weight:700}
+.if{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:0 8px 8px 0;padding:10px 14px;margin:12px 0}
+.if .q{font-weight:700;margin-bottom:4px}
+.if ul{margin:4px 0 0}
+.note{background:var(--note-soft);border-left:4px solid var(--note);padding:10px 14px;border-radius:0 8px 8px 0;margin:12px 0}
+.no{background:var(--no-soft);border-left:4px solid var(--no);padding:10px 14px;border-radius:0 8px 8px 0;margin:12px 0}
+.tbl{overflow-x:auto;margin:10px 0}
+table{border-collapse:collapse;width:100%;min-width:560px;background:var(--paper);font-size:.93rem}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--accent-soft)}
+td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+.totop{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));background:var(--accent);color:var(--paper);border:0;border-radius:50%;width:42px;height:42px;font-size:1.1rem;cursor:pointer}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+.mx td{text-align:center;font-weight:700}
+.mx td:first-child{text-align:left;font-weight:400}
+.mx td.y{color:var(--yes);background:var(--yes-soft)}
+.mx td.x{color:var(--no);background:var(--no-soft)}
+.mx td.c{color:var(--note);background:var(--note-soft)}
+.mx small,td small{font-weight:400;color:var(--muted)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+.grid2 .rx{margin:0}
+tr:nth-child(even) td:not(.y):not(.x):not(.c){background:color-mix(in srgb,var(--paper) 94%,var(--accent))}
+</style>
+</head>
+<body>
 
+<div class="wrap">
+<header class="top">
+  <h1>Rx Writing Cram · LE2 items 101–105</h1>
+  <nav aria-label="Sections">
+    <a href="#how">1 Format</a>
+    <a href="#rules">2 Cross-out rules</a>
+    <a href="#drugs">3 Drug tables</a>
+    <a href="#c3">4 Case 3 UTI</a>
+    <a href="#c2">5 Case 2 Impetigo</a>
+    <a href="#throat">6 Throat</a>
+    <a href="#trans">7 Trans cases</a>
+    <a href="#keys">8 Past keys</a>
+  </nav>
+</header>
+
+<div class="note">
+<b>Source tags</b>
+<ul>
+<li><span class="src">SGD</span> written in your SGD files</li>
+<li><span class="src">KEY</span> from a past LE2 answer key</li>
+<li><span class="src">TRANS</span> from your transes 2.08 to 2.10</li>
+<li><span class="src">OUTSIDE</span> standard dose not written in your files → confirm with your group</li>
+</ul>
+</div>
+
+<!-- ================= 1 ================= -->
+<section id="how">
+<h2>1 · How to write the prescription</h2>
+
+<h3>The 4 steps</h3>
+<ul>
+<li><b>Step 1: Where is the infection?</b>
+  <ul><li>Bladder only (cystitis)</li><li>Kidney (pyelonephritis)</li><li>Skin (impetigo)</li><li>Throat (tonsillopharyngitis)</li></ul></li>
+<li><b>Step 2: Find the trap clue</b>
+  <ul><li>Pregnant · child · elderly</li><li>G6PD</li><li>Allergy, and how bad it was (mild rash vs anaphylaxis)</li><li>Arrhythmia · tendon tear · kidney disease</li><li>Vomiting (cannot take oral)</li></ul></li>
+<li><b>Step 3: Cross out forbidden drug groups</b> (section 2)</li>
+<li><b>Step 4: Pick the drug and write every part</b> (section 3)</li>
+</ul>
+
+<h3>The template</h3>
+<div class="rx">Name: ____________________     Age/Sex: ______
+Address: _________________      Date: _________
+
+℞
+   [Generic name] [dosage form]        [strength]
+   Dispense No. ___
+
+   Label: Take ___ [tablet/capsule/mL] by mouth
+   every ___ hours for ___ days.
+   [food instruction if any]
+
+                     (Signature)
+                     ______________, M.D.
+                     Clinic address
+                     License No. ________
+                     PTR No. ________</div>
+
+<h3>Parts they check</h3>
+<ul>
+<li><b>Superscription:</b> name, age, sex, address, date</li>
+<li><b>℞</b> symbol</li>
+<li><b>Inscription:</b> generic name + form + strength
+  <ul><li>Example: "Cefuroxime tablet 500 mg"</li></ul></li>
+<li><b>Subscription:</b> Dispense No. = total units for the whole course</li>
+<li><b>Signa (Label):</b> how many, route, how often, how long, food rule</li>
+<li><b>Prescriber:</b> signature, name + M.D., address, License No., PTR No.</li>
+</ul>
+
+<h3>Counting (Dispense No.)</h3>
+<ul>
+<li><b>Formula:</b> doses per day × number of days</li>
+<li>Every 12 h × 7 days = <b>14</b></li>
+<li>Every 12 h × 10 days = <b>20</b></li>
+<li>Once daily × 10 days = <b>10</b></li>
+<li>Once daily × 3 days = <b>3</b></li>
+<li>Every 6 h × 7 days = <b>28</b></li>
+<li>Every 6 h × 2 days = <b>8</b></li>
+</ul>
+
+<h3>Syrup math</h3>
+<ul>
+<li><b>mL per dose</b> = mg per dose ÷ mg per mL</li>
+<li>250 mg/5 mL = <b>50 mg per mL</b></li>
+<li>125 mg/5 mL = <b>25 mg per mL</b> (double the mL)</li>
+<li><b>Shortcut:</b> at 50 mg/kg/day with 250 mg/5 mL
+  <ul><li>mL per day = weight in kg</li><li>mL per dose = weight ÷ doses per day</li></ul></li>
+<li><b>Bottles</b> = total mL ÷ bottle size → always round <b>up</b></li>
+</ul>
+</section>
+
+<!-- ================= 2 ================= -->
+<section id="rules">
+<h2>2 · Cross-out rules (who can't take what)</h2>
+<p class="lead">✓ safe · ✗ avoid · ⚠ caution. Read across a row to see where a drug fails.</p>
+<div class="tbl"><table class="mx">
+<tr><th>Drug</th><th>Pregnant</th><th>G6PD</th><th>Mild penicillin rash</th><th>Penicillin anaphylaxis</th><th>Arrhythmia / QT</th><th>Tendon tear, over 60</th><th>Child</th><th>Kidney disease</th></tr>
+<tr><td><b>Cipro / levofloxacin</b></td><td class="x">✗</td><td class="c">⚠<br><small>keys: ✗</small></td><td class="y">✓</td><td class="y">✓</td><td class="x">✗</td><td class="x">✗</td><td class="x">✗<br><small>under 18</small></td><td class="c">⚠<br><small>lower dose</small></td></tr>
+<tr><td><b>Cefuroxime / cefixime</b></td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="x">✗</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
+<tr><td><b>Ceftriaxone</b> (IV)</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="x">✗</td><td class="y">✓</td><td class="y">✓</td><td class="c">✗<br><small>newborn</small></td><td class="y">✓<br><small>no dose change</small></td></tr>
+<tr><td><b>Amoxicillin / cloxacillin</b></td><td class="y">✓</td><td class="y">✓</td><td class="x">✗</td><td class="x">✗</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
+<tr><td><b>Co-amoxiclav</b></td><td class="y">✓</td><td class="y">✓</td><td class="x">✗</td><td class="x">✗</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
+<tr><td><b>Co-trimoxazole</b></td><td class="x">✗<br><small>near term</small></td><td class="x">✗</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="c">✗<br><small>under 2 months</small></td><td class="c">⚠</td></tr>
+<tr><td><b>Nitrofurantoin</b><br><small>bladder only</small></td><td class="c">⚠</td><td class="x">✗</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="c">✗<br><small>febrile UTI</small></td><td class="x">✗</td></tr>
+<tr><td><b>Fosfomycin</b><br><small>bladder only</small></td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">—</td><td class="y">—</td></tr>
+<tr><td><b>Azithromycin</b></td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="x">✗</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
+<tr><td><b>Clindamycin</b></td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
+<tr><td><b>Doxycycline</b></td><td class="x">✗</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="x">✗<br><small>under 8</small></td><td class="y">✓<br><small>leaves via feces</small></td></tr>
+<tr><td><b>Gentamicin</b> (IV)</td><td class="x">✗</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="c">⚠</td><td class="x">✗</td></tr>
+</table></div>
+
+<h3>Why each ✗ happens</h3>
+<div class="tbl"><table>
+<tr><th>Drug group</th><th>Avoided in</th><th>Because</th></tr>
+<tr><td>Quinolones</td><td>Pregnant, under 18</td><td>Damage growing cartilage</td></tr>
+<tr><td>Quinolones</td><td>Arrhythmia, QT</td><td>Block heart potassium channel<br>→ torsades de pointes</td></tr>
+<tr><td>Quinolones</td><td>Tendon tear, over 60, steroids</td><td>Chelate magnesium → collagen damage<br>→ Achilles rupture</td></tr>
+<tr><td>Quinolones</td><td>Myasthenia gravis</td><td>Worsen muscle weakness</td></tr>
+<tr><td>Cephalosporins</td><td>Penicillin anaphylaxis</td><td>Trans: contraindicated after severe immediate penicillin reaction<br>(mild rash is OK, cross-allergy only 5–10%)</td></tr>
+<tr><td>Co-trimoxazole, nitrofurantoin, primaquine</td><td>G6PD</td><td>Oxidant stress → red cells burst (hemolysis)</td></tr>
+<tr><td>Co-trimoxazole, ceftriaxone</td><td>Newborns, late pregnancy</td><td>Push bilirubin off albumin → kernicterus</td></tr>
+<tr><td>Doxycycline</td><td>Pregnant, under 8</td><td>Stains teeth, stunts bone</td></tr>
+<tr><td>Gentamicin</td><td>Pregnant, kidney disease, myasthenia</td><td>Fetal hearing loss · kidney toxic · blocks nerve-muscle signal</td></tr>
+<tr><td>Azithromycin</td><td>QT risk</td><td>QT prolongation</td></tr>
+</table></div>
+
+<div class="note"><b>Also remember</b>
+<ul>
+<li><b>Vomiting / can't take oral</b> → admit, IV first (ceftriaxone)</li>
+<li><b>Antacids, iron, calcium, milk</b> → don't take together with cipro or doxycycline (chelation)</li>
+<li><b>Liver disease</b> → no oral terbinafine</li>
+</ul></div>
+</section>
+
+<!-- ================= 3 ================= -->
+<section id="drugs">
+<h2>3 · Drug comparison tables</h2>
+<p class="lead">Each row is ready to copy onto the Rx pad.</p>
+
+<h3>A. UTI and kidney infection (adult)</h3>
+<div class="tbl"><table>
+<tr><th>Drug · form</th><th>Dose · route · how often</th><th>Days</th><th>Disp. No.</th><th>Use when</th><th>Don't use when</th></tr>
+<tr><td><b class="d">Ciprofloxacin</b><br>500 mg tablet</td><td>500 mg by mouth<br>every 12 h <span class="src">SGD</span></td><td>7</td><td><b>14</b></td><td>Kidney infection, adult<br>β-lactams blocked</td><td>Pregnant, under 18<br>QT, tendon, over 60<br>Myasthenia</td></tr>
+<tr><td><b class="d">Levofloxacin</b><br>750 mg tablet</td><td>750 mg by mouth<br>once daily <span class="src">SGD</span></td><td>5</td><td><b>5</b></td><td>Same as cipro<br>once-daily</td><td>Same as cipro<br>more QT risk</td></tr>
+<tr><td><b class="d">Cefixime</b><br>400 mg tablet</td><td>400 mg by mouth<br>once daily <span class="src">KEY</span><br><small>or 200 mg every 12 h</small></td><td>10</td><td><b>10</b><br><small>(20 if 200 mg)</small></td><td>Oral step-down<br>Quinolone blocked<br>Arrhythmia</td><td>Penicillin anaphylaxis</td></tr>
+<tr><td><b class="d">Cefuroxime</b><br>500 mg tablet</td><td>500 mg by mouth<br>every 12 h <span class="src">KEY</span><br><small>after meals</small></td><td>7 or 10</td><td><b>14</b> or <b>20</b></td><td>Pregnant, G6PD<br>Mild amoxicillin allergy<br>Tendon tear</td><td>Penicillin anaphylaxis</td></tr>
+<tr><td><b class="d">Co-amoxiclav</b><br>625 mg tablet<br><small>or 875/125 mg</small></td><td>625 mg every 8 h<br><small>or 875 mg every 12 h</small> <span class="src">KEY</span></td><td>7–14</td><td>30 (625, 10 d)<br>20 (875, 10 d)</td><td>No penicillin allergy</td><td>Any amoxicillin allergy</td></tr>
+<tr><td><b class="d">Fosfomycin</b><br>3 g sachet</td><td>3 g by mouth<br>once, dissolved in water <span class="src">TRANS</span></td><td>1 dose</td><td><b>1</b></td><td>Bladder only<br>Pregnant OK</td><td>Kidney infection</td></tr>
+<tr><td><b class="d">Nitrofurantoin</b><br>100 mg capsule</td><td>100 mg by mouth<br>every 12 h, with food <span class="src">OUTSIDE</span></td><td>5</td><td><b>10</b></td><td>Bladder only</td><td>Kidney infection<br>G6PD, kidney disease</td></tr>
+<tr><td><b class="d">Co-trimoxazole</b><br>800/160 mg tablet</td><td>1 tablet by mouth<br>every 12 h <span class="src">OUTSIDE</span></td><td>3</td><td><b>6</b></td><td>Bladder only, if sensitive</td><td>G6PD, sulfa allergy<br>late pregnancy</td></tr>
+</table></div>
+
+<h3>B. IV options (admitted patients)</h3>
+<div class="tbl"><table>
+<tr><th>Drug</th><th>Dose</th><th>Use when</th><th>Don't use when</th></tr>
+<tr><td><b class="d">Ceftriaxone</b><br>1 g vial</td><td>1 g IV every 12 h <span class="src">KEY case</span><br><small>(1–2 g once daily also used)</small><br>→ oral when afebrile and eating</td><td>Vomiting, septic<br>Pregnant pyelonephritis<br>Kidney disease (no dose change)</td><td>Newborns<br>Penicillin anaphylaxis</td></tr>
+<tr><td><b class="d">Aztreonam</b></td><td>IV, inpatient</td><td>Penicillin anaphylaxis<br>+ quinolone not allowed</td><td>Ceftazidime allergy</td></tr>
+<tr><td><b class="d">Gentamicin</b></td><td>5–7 mg/kg IV once daily<br><small>or 3–5 mg/kg/day every 8 h</small> <span class="src">TRANS</span></td><td>Serious Gram-negative, normal kidneys</td><td>Pregnant, kidney disease, myasthenia</td></tr>
+</table></div>
+
+<h3>C. Skin (impetigo)</h3>
+<div class="tbl"><table>
+<tr><th>Drug · form</th><th>Child dose</th><th>Adult dose</th><th>Days</th><th>Food</th><th>Use when</th><th>Don't use when</th></tr>
+<tr><td><b class="d">Cloxacillin</b><br>250 mg/5 mL, 60 mL<br><small>500 mg capsule</small></td><td>50 mg/kg/day<br>÷ every 6 h <span class="src">SGD</span></td><td>500 mg every 6 h<br><span class="src">OUTSIDE</span></td><td>7</td><td><b>Empty stomach</b><br>1 h before / 2 h after meals</td><td>MSSA, no allergy<br><b>SGD P-drug</b></td><td>Penicillin allergy<br>MRSA</td></tr>
+<tr><td><b class="d">Cephalexin</b><br>250 mg/5 mL, 60 mL<br><small>250 mg cap · 500 mg tab</small></td><td>25–100 mg/kg/day<br>÷ every 6–8 h<br>max 4 g <span class="src">SGD</span></td><td>500 mg every 6 h<br><span class="src">OUTSIDE</span></td><td>10</td><td>With or without food</td><td>Can't do 4 doses<br>Mild penicillin rash</td><td>Penicillin anaphylaxis</td></tr>
+<tr><td><b class="d">Cefuroxime</b><br>250 mg/5 mL, 50 mL</td><td>30 mg/kg/day<br>÷ every 12 h<br>max 1 g <span class="src">SGD</span></td><td>250–500 mg every 12 h</td><td>10</td><td>After meals</td><td>Twice-daily option</td><td>Penicillin anaphylaxis</td></tr>
+<tr><td><b class="d">Co-amoxiclav</b><br>312.5 mg/5 mL, 60 mL</td><td>30–90 mg/kg/day<br>÷ every 8–12 h <span class="src">SGD</span></td><td>625 mg every 8 h</td><td>10</td><td>With meals</td><td>MSSA, no allergy</td><td>Penicillin allergy</td></tr>
+<tr><td><b class="d">Clindamycin</b><br>150 · 300 mg capsule</td><td>10–20 mg/kg/day<br>÷ every 8 h <span class="src">OUTSIDE</span></td><td>300 mg every 8 h<br><span class="src">OUTSIDE</span></td><td>7</td><td>—</td><td>Penicillin anaphylaxis<br>MRSA</td><td>Plain MSSA (too broad)<br>Watch for diarrhea</td></tr>
+<tr><td><b class="d">Co-trimoxazole</b><br>400/80 mg per 5 mL, 60 mL</td><td>Trimethoprim<br>8–12 mg/kg/day<br>÷ every 12 h <span class="src">OUTSIDE</span></td><td>800/160 mg every 12 h</td><td>7</td><td>Lots of water</td><td>MRSA, over 2 months</td><td>G6PD, under 2 months<br>strep alone</td></tr>
+<tr><td><b class="d">Doxycycline</b><br>100 mg capsule</td><td>Only 8 and older</td><td>100 mg every 12 h<br><span class="src">OUTSIDE</span></td><td>7</td><td>Water, stay upright<br>no milk/antacid</td><td>MRSA, 8 and older</td><td>Under 8, pregnant</td></tr>
+<tr><td><b class="d">Mupirocin</b><br>2% ointment</td><td colspan="2">Apply twice daily <span class="src">OUTSIDE</span></td><td>5</td><td>Topical</td><td>Few small lesions</td><td>Widespread lesions</td></tr>
+</table></div>
+
+<h3>D. Throat and fever</h3>
+<div class="tbl"><table>
+<tr><th>Drug · form</th><th>Adult dose</th><th>Child dose</th><th>Days</th><th>Disp. No.</th><th>Use when</th></tr>
+<tr><td><b class="d">Amoxicillin</b><br>500 mg capsule</td><td>500 mg twice a day <span class="src">KEY</span></td><td>50 mg/kg/day, max 1 g <span class="src">OUTSIDE</span></td><td>10</td><td><b>20</b></td><td>Throat, no penicillin allergy</td></tr>
+<tr><td><b class="d">Azithromycin</b><br>500 mg tablet</td><td>500 mg once a day <span class="src">KEY</span></td><td>12 mg/kg once a day × 5 days <span class="src">OUTSIDE</span></td><td>3</td><td><b>3</b></td><td>Throat + penicillin allergy</td></tr>
+<tr><td><b class="d">Paracetamol</b><br>500 mg tablet</td><td>500 mg every 6 h as needed<br>max 4 g/day <span class="src">SGD</span></td><td>10–15 mg/kg per dose<br>every 4–6 h <span class="src">OUTSIDE</span></td><td>2</td><td><b>8</b></td><td>Fever ≥ 37.8 °C</td></tr>
+</table></div>
+
+<h3>Sample Rx boxes</h3>
+<div class="grid2">
+<div class="rx">Ciprofloxacin tablet 500 mg
+Dispense No. 14
+Label: Take 1 tablet by mouth every
+12 hours, round the clock, for 7 days.</div>
+<div class="rx">Cefuroxime tablet 500 mg
+Dispense No. 14
+Label: Take 1 tablet by mouth every
+12 hours for 7 days, after meals.</div>
+<div class="rx">Cefixime tablet 400 mg
+Dispense No. 10
+Label: Take 1 tablet by mouth once
+a day for 10 days.</div>
+<div class="rx">Paracetamol tablet 500 mg
+Dispense No. 8
+Label: Take 1 tablet by mouth every
+6 hours as needed for fever (≥ 37.8 °C)
+for up to 2 days. Max 4,000 mg/day.</div>
+</div>
+</section>
+
+<!-- ================= 4 ================= -->
+<section id="c3">
+<h2>4 · Case 3 "Burning Pee" and its what-ifs</h2>
+
+<div class="card"><h4>The original case</h4>
+<ul>
+<li><b>Patient:</b> Maria S., 24/F, 54 kg</li>
+<li><b>Diagnosis:</b> acute uncomplicated pyelonephritis
+  <ul><li>Fever 39.1 °C, right flank pain, positive CVA tenderness</li><li>Vomiting, poor oral intake, heart rate 108</li></ul></li>
+<li><b>Traps:</b>
+  <ul><li>G6PD deficiency</li><li>Amoxicillin → generalized hives + shortness of breath (anaphylaxis-type)</li></ul></li>
+<li><b>Organism:</b> <i>E. coli</i> (80–90%) · others <i>Klebsiella pneumoniae</i>, <i>Proteus mirabilis</i></li>
+</ul>
+</div>
+
+<div class="rx">SGD answer
+℞
+1. Ciprofloxacin tablet 500 mg
+   Disp: No. 14
+   Label: Take 1 tablet by mouth every 12 hours,
+   round the clock, for 7 days.
+
+2. Paracetamol tablet 500 mg
+   Disp: No. 8
+   Label: Take 1 tablet by mouth every 6 hours as needed
+   for fever (≥ 37.8 °C) for up to 2 days.
+   Do not exceed 4,000 mg in 24 hours.</div>
+
+<h3>Why ciprofloxacin: the ESSC comparison</h3>
+<div class="tbl"><table>
+<tr><th></th><th>Fluoroquinolones<br>(cipro)</th><th>Cephalosporins<br>(3rd gen)</th><th>Co-amoxiclav</th></tr>
+<tr><td><b>Efficacy</b></td><td>DNA gyrase + topo IV<br>High oral absorption<br>Good kidney levels</td><td>Cell wall (PBP)<br>Good tissue levels</td><td>Cell wall + β-lactamase blocker</td></tr>
+<tr><td><b>Safety for Maria</b></td><td>G6PD = <b>caution only</b> <span class="src">SGD</span></td><td><b>✗</b> after anaphylaxis-type penicillin reaction <span class="src">TRANS</span></td><td><b>✗</b> contains amoxicillin</td></tr>
+<tr><td><b>Suitability</b></td><td>Oral, twice daily</td><td>Ceftriaxone IV once daily</td><td>—</td></tr>
+<tr><td><b>Cost</b></td><td>Cyfrox ₱13</td><td>Cefixime ₱90 · ceftriaxone vial ₱22+</td><td>₱41–80</td></tr>
+<tr><td><b>"(1)" file score</b></td><td>Cipro <b>15</b> · Levo 11</td><td>—</td><td>—</td></tr>
+</table></div>
+
+<h3>Guide-question answers</h3>
+<div class="tbl"><table>
+<tr><th>Question</th><th>Answer</th></tr>
+<tr><td>Goals</td><td>• Eradicate the pathogen<br>• Relieve pain, fever, vomiting, restore fluids<br>• Avoid drugs causing G6PD hemolysis or allergy<br>• Prevent sepsis, kidney damage, recurrence, superinfection</td></tr>
+<tr><td>Non-drug</td><td>• Oral rehydration, drink plenty<br>• Don't hold urine<br>• Wipe front to back<br>• Tepid sponge bath, cooling pads<br>• Warm compress on flank</td></tr>
+<tr><td>Route / disposition</td><td>• Main SGD: <b>IV + admit</b> → oral when afebrile and eating<br>• "(1)" file: outpatient oral, re-check in 48 h</td></tr>
+<tr><td>Admit if</td><td>• Can't keep oral fluids or pills (Maria)<br>• Sepsis, marked debility<br>• Unsure diagnosis, poor adherence, poor social situation<br>• Failed outpatient after 48–72 h<br>• Pregnant, major illness, immunocompromised, urinary abnormality<br>• Obstruction, kidney abscess, acute kidney injury</td></tr>
+</table></div>
+
+<h3>What if they change the allergy or G6PD?</h3>
+<div class="tbl"><table>
+<tr><th>What changed</th><th>Give (write this)</th><th>Why</th></tr>
+<tr><td>No G6PD, same allergy</td><td><b>Ciprofloxacin</b> 500 mg tab<br>every 12 h × 7 days · No. 14<br><small>or Levofloxacin 750 mg once daily × 5 days · No. 5</small></td><td>Quinolone now has no problem</td></tr>
+<tr><td>No allergy, still G6PD</td><td><b>Cefixime</b> 400 mg tab<br>once daily × 10 days · No. 10<br><small>vomiting → ceftriaxone IV first</small></td><td>SGD's "best group" = 3rd-gen cephalosporin<br>Safe in G6PD</td></tr>
+<tr><td>Allergy was only a mild rash</td><td><b>Cefuroxime</b> 500 mg tab<br>every 12 h × 10 days · No. 20</td><td>Mild allergy allows cephalosporins</td></tr>
+<tr><td>No allergy, no G6PD</td><td><b>Ciprofloxacin</b> 500 mg every 12 h × 7 days · No. 14<br><small>or Co-amoxiclav 625 mg every 8 h × 10 days · No. 30</small></td><td>Cheapest, effective</td></tr>
+<tr><td>Allergic to cephalosporins</td><td><b>Ciprofloxacin</b> or <b>levofloxacin</b></td><td>If not pregnant</td></tr>
+<tr><td>Allergic to quinolones<br>+ penicillin anaphylaxis</td><td>Admit → <b>Aztreonam</b> IV</td><td>No cross-allergy</td></tr>
+</table></div>
+
+<h3>What if they change who she is?</h3>
+<div class="tbl"><table>
+<tr><th>What changed</th><th>Give (write this)</th><th>Why / avoid</th></tr>
+<tr><td>Pregnant, bladder infection</td><td><b>Cefuroxime</b> 500 mg tab<br>every 12 h × 7 days · No. 14<br><small>or Fosfomycin 3 g once · No. 1</small></td><td>✗ quinolones, doxycycline, sulfa near term</td></tr>
+<tr><td>Pregnant, kidney infection</td><td>Admit → <b>Ceftriaxone</b> 1 g IV<br>→ Cefuroxime 500 mg every 12 h to finish 10 days</td><td>Pregnancy = admission criterion</td></tr>
+<tr><td>Pregnant + G6PD<br>+ amoxicillin allergy<br><small>(2026 exam)</small></td><td><b>Cefuroxime</b> 500 mg tab<br>every 12 h × 7 days · No. 14</td><td>Only safe class left</td></tr>
+<tr><td>Pregnant<br>+ penicillin anaphylaxis</td><td>Bladder: <b>Fosfomycin</b> 3 g once<br>Kidney: admit → <b>Aztreonam</b> IV</td><td>✗ β-lactams, ✗ quinolones</td></tr>
+<tr><td>Child, 6 y/o, 20 kg<br>febrile UTI</td><td><b>Cefuroxime</b> 250 mg/5 mL<br>30 mg/kg/day → 600 mg/day<br>→ <b>6 mL every 12 h × 10 days</b><br>→ 120 mL = <b>3 bottles</b> (50 mL)</td><td>✗ quinolones (under 18)<br>✗ nitrofurantoin (fever)</td></tr>
+<tr><td>Newborn / under 2 months</td><td>Admit, IV</td><td>✗ ceftriaxone, ✗ sulfa</td></tr>
+<tr><td>Elderly, 72 y/o</td><td><b>Cefuroxime</b> or <b>cefixime</b><br>(dose for kidneys)</td><td>Over 60 → tendon, QT, confusion with quinolones</td></tr>
+<tr><td>Arrhythmia / amiodarone<br><small>(2028 Set A)</small></td><td><b>Cefixime</b> 400 mg tab<br>once daily × 10 days · No. 10</td><td>Quinolone = minus 2</td></tr>
+<tr><td>Tendon tear / athlete / steroids<br><small>(2028 Set B)</small></td><td><b>Cefuroxime</b> 500 mg tab<br>every 12 h × 10 days · No. 20</td><td>Quinolone = minus 2</td></tr>
+<tr><td>Diabetic · myasthenia · seizures</td><td><b>Cefuroxime</b> or <b>cefixime</b></td><td>Quinolones: sugar swings · weakness · seizures</td></tr>
+<tr><td>Kidney disease</td><td><b>Ceftriaxone</b> (no dose change)</td><td>✗ gentamicin, nitrofurantoin<br>Cipro: lower dose if clearance &lt; 50</td></tr>
+<tr><td>Male patient</td><td>Culture first · 7–14 days<br>Cipro or co-trimoxazole</td><td>= complicated UTI<br>both reach the prostate</td></tr>
+</table></div>
+
+<h3>What if they change the diagnosis or setting?</h3>
+<div class="tbl"><table>
+<tr><th>What changed</th><th>Give (write this)</th><th>Why / avoid</th></tr>
+<tr><td>Bladder only<br><small>(burning, frequency, no fever, no flank pain)</small></td><td><b>Fosfomycin</b> 3 g once · No. 1<br><small>or Nitrofurantoin 100 mg every 12 h × 5 days · No. 10</small></td><td>Save quinolones for serious infections<br>Nitrofurantoin ✗ G6PD</td></tr>
+<tr><td>No vomiting, stable</td><td>Outpatient <b>cipro</b> or <b>levo</b><br>re-check in 48 h</td><td>Can take oral</td></tr>
+<tr><td>Afebrile after 3 days IV<br>"take-home drug"</td><td><b>Cefixime</b> 400 mg once daily<br>or <b>Cefuroxime</b> 500 mg every 12 h<br>to complete 10 days</td><td>✗ any IV drug in the answer</td></tr>
+<tr><td>Culture: resistant to cipro</td><td>Cephalosporin on the sensitivity list</td><td>—</td></tr>
+<tr><td>Culture: ESBL</td><td>Ertapenem or meropenem</td><td>Carbapenem for serious ESBL</td></tr>
+<tr><td>Culture: Pseudomonas</td><td>Cipro, ceftazidime, cefepime,<br>piperacillin-tazobactam</td><td>✗ ceftriaxone</td></tr>
+<tr><td>Fever Rx changed</td><td>Every 6 h × 3 days → No. 12<br>Every 4 h × 2 days → No. 12<br>Child 15 kg → 150 mg = 3 mL of 250 mg/5 mL</td><td>—</td></tr>
+</table></div>
+</section>
+
+<!-- ================= 5 ================= -->
+<section id="c2">
+<h2>5 · Case 2 "Clear and Fluffy" and its what-ifs</h2>
+
+<div class="card"><h4>The original case</h4>
+<ul>
+<li><b>Patient:</b> Makateo, 4/M, 15 kg, San Juan</li>
+<li><b>Diagnosis:</b> bullous impetigo, right posterior thigh and leg
+  <ul><li>Clear-yellow fluid-filled bullae, crusted borders</li><li>No fever, active, no allergies</li></ul></li>
+<li><b>Gram stain:</b> Gram-positive clusters → <i>S. aureus</i> (MSSA)</li>
+<li><b>Why bullae:</b> exfoliative toxin splits skin at desmoglein-1</li>
+</ul>
+</div>
+
+<div class="rx">SGD answer
+Name: Makateo S. Obra       Age: 4 y/o, M
+Address: San Juan, Metro Manila    Date: Sep. 7, 2026
+
+℞
+   Cloxacillin powder for oral suspension   250 mg/5 mL
+   Dispense No. 2 bottles (60 mL)
+   Label: Shake bottle well before use.
+   Give 3.75 mL orally every 6 hrs, 1 hr before
+   meals or 2 hrs after meals, for 7 days.
+
+Math: 50 mg/kg/day × 15 kg = 750 mg ÷ 4 = 187.5 mg
+      187.5 mg × 5 mL / 250 mg = 3.75 mL
+      3.75 mL × 4 × 7 = 105 mL → 2 bottles</div>
+
+<h3>The 5 drug groups compared (SGD ESSC)</h3>
+<div class="tbl"><table>
+<tr><th>Group (drug)</th><th>Covers</th><th>Safety in a 4 y/o</th><th>Suitability</th><th>Verdict</th></tr>
+<tr><td>1st-gen cephalosporin<br>(<b>cephalexin</b>)</td><td>MSSA + strep</td><td>Favorable</td><td>Syrup, with/without food, every 6–8 h</td><td><b>Highly favorable</b><br>E+++ S++++ C++++</td></tr>
+<tr><td>Anti-staph penicillin<br>(<b>cloxacillin</b>)</td><td>MSSA, narrow</td><td>Favorable</td><td>Every 6 h, empty stomach</td><td><b>P-drug</b><br>E++++ S++++ C+++</td></tr>
+<tr><td>Lincosamide<br>(clindamycin)</td><td>MSSA + MRSA</td><td><i>C. difficile</i> risk</td><td>Broader than needed</td><td>Moderate</td></tr>
+<tr><td>Sulfonamide<br>(co-trimoxazole)</td><td>MRSA, weak on strep</td><td>OK over 2 months</td><td>Convenient</td><td>Acceptable</td></tr>
+<tr><td>Tetracycline<br>(doxycycline)</td><td>MRSA</td><td>✗ under 8</td><td>Capsule</td><td><b>Least favorable</b></td></tr>
+</table></div>
+
+<h3>Guide-question answers</h3>
+<div class="tbl"><table>
+<tr><th>Question</th><th>Answer</th></tr>
+<tr><td>Goals</td><td>• Eradicate S. aureus, clinical cure<br>• Heal lesions, stop new ones<br>• Prevent spread to other skin and people<br>• Prevent complications, minimize side effects</td></tr>
+<tr><td>Non-drug</td><td>• Clean wounds, good hygiene<br>• Stop scratching (trim nails)<br>• Isolate towels, clothes, belongings</td></tr>
+<tr><td>Organisms</td><td>• Bullous → S. aureus<br>• Non-bullous (honey crusts) → Group A Strep ± S. aureus</td></tr>
+<tr><td>First-line</td><td>• MSSA → cephalexin, cloxacillin<br>• MRSA → clindamycin, co-trimoxazole, doxycycline</td></tr>
+<tr><td>Culture only if</td><td>Treatment failure · suspected MRSA · outbreak · severe case</td></tr>
+</table></div>
+
+<h3>What if they change the weight?</h3>
+<p>Cloxacillin 250 mg/5 mL · 50 mg/kg/day · every 6 h · 60 mL bottles</p>
+<div class="tbl"><table>
+<tr><th>Weight</th><th>Per dose</th><th>7 days</th><th>10 days</th></tr>
+<tr><td class="n">10 kg</td><td>125 mg<br><b>2.5 mL</b></td><td>70 mL<br>2 bottles</td><td>100 mL<br>2 bottles</td></tr>
+<tr><td class="n">12 kg</td><td>150 mg<br><b>3 mL</b></td><td>84 mL<br>2 bottles</td><td>120 mL<br>2 bottles</td></tr>
+<tr><td class="n"><b>15 kg</b></td><td>187.5 mg<br><b>3.75 mL</b></td><td><b>105 mL<br>2 bottles</b></td><td>150 mL<br>3 bottles</td></tr>
+<tr><td class="n">18 kg</td><td>225 mg<br><b>4.5 mL</b></td><td>126 mL<br>3 bottles</td><td>180 mL<br>3 bottles</td></tr>
+<tr><td class="n">20 kg</td><td>250 mg<br><b>5 mL</b></td><td>140 mL<br>3 bottles</td><td>200 mL<br>4 bottles</td></tr>
+<tr><td class="n">25 kg</td><td>312.5 mg<br><b>6.25 mL</b></td><td>175 mL<br>3 bottles</td><td>250 mL<br>5 bottles</td></tr>
+</table></div>
+
+<h3>Same 15 kg child, different drugs</h3>
+<div class="tbl"><table>
+<tr><th>Drug (syrup)</th><th>Dose used</th><th>Per dose</th><th>Course</th><th>Dispense</th></tr>
+<tr><td><b>Cloxacillin</b> 250 mg/5 mL</td><td>50 mg/kg/day ÷ 4</td><td><b>3.75 mL</b> every 6 h</td><td>7 days = 105 mL</td><td>2 bottles (60 mL)</td></tr>
+<tr><td><b>Cephalexin</b> 250 mg/5 mL</td><td>50 mg/kg/day ÷ 3</td><td><b>5 mL</b> every 8 h</td><td>10 days = 150 mL</td><td>3 bottles (60 mL)</td></tr>
+<tr><td><b>Cefuroxime</b> 250 mg/5 mL</td><td>30 mg/kg/day ÷ 2</td><td><b>4.5 mL</b> every 12 h</td><td>10 days = 90 mL</td><td>2 bottles (50 mL)</td></tr>
+<tr><td><b>Cloxacillin</b> 125 mg/5 mL</td><td>50 mg/kg/day ÷ 4</td><td><b>7.5 mL</b> every 6 h</td><td>7 days = 210 mL</td><td>4 bottles (60 mL)</td></tr>
+</table></div>
+
+<h3>What if they change the allergy, child, or picture?</h3>
+<div class="tbl"><table>
+<tr><th>What changed</th><th>Give</th><th>Why / avoid</th></tr>
+<tr><td>Mild penicillin rash</td><td><b>Cephalexin</b> 5 mL every 8 h × 10 days<br>3 bottles</td><td>Low cross-allergy</td></tr>
+<tr><td>Penicillin anaphylaxis</td><td><b>Clindamycin</b><br>10–20 mg/kg/day every 8 h</td><td>✗ all β-lactams</td></tr>
+<tr><td>Allergic to cephalosporins only</td><td><b>Cloxacillin</b> (unchanged)</td><td>—</td></tr>
+<tr><td>Can't give 4 doses / can't time meals</td><td><b>Cephalexin</b> every 8 h (any food)<br>or <b>Cefuroxime</b> every 12 h</td><td>Better adherence</td></tr>
+<tr><td>Under 2 months</td><td>β-lactam · newborn with blisters → refer/admit</td><td>✗ co-trimoxazole</td></tr>
+<tr><td>G6PD</td><td><b>Cloxacillin</b> or <b>cephalexin</b></td><td>✗ co-trimoxazole</td></tr>
+<tr><td>Older child / adult (capsules)</td><td><b>Cloxacillin</b> 500 mg capsule<br>every 6 h × 7 days · No. 28</td><td>—</td></tr>
+<tr><td>Pregnant adult</td><td><b>Cloxacillin</b> or <b>cephalexin</b> 500 mg every 6 h</td><td>✗ doxycycline, sulfa near term</td></tr>
+<tr><td>Poor family</td><td>Generic cephalexin ₱152.75 / 60 mL<br>or Cloxipen ₱181 / 60 mL</td><td>✗ branded Cefalin ₱413.25</td></tr>
+<tr><td>Honey crusts, no blisters</td><td>Still <b>cloxacillin</b> or <b>cephalexin</b></td><td>Group A Strep ± S. aureus<br>✗ co-trimoxazole alone</td></tr>
+<tr><td>Few small lesions</td><td><b>Mupirocin</b> 2% ointment twice daily × 5 days</td><td>Topical enough</td></tr>
+<tr><td>MRSA (failure, outbreak, culture)</td><td><b>Clindamycin</b> or <b>co-trimoxazole</b><br>doxycycline if 8 or older</td><td>✗ cloxacillin, cephalexin</td></tr>
+<tr><td>Fever, spreading redness, abscess</td><td>Refer / admit, IV</td><td>Deeper infection</td></tr>
+</table></div>
+</section>
+
+<!-- ================= 6 ================= -->
+<section id="throat">
+<h2>6 · Throat (tonsillopharyngitis) what-ifs</h2>
+<p class="lead">Used in the 2027 exam: fever, sore throat, tonsil exudates, Gram-positive cocci.</p>
+<div class="tbl"><table>
+<tr><th>What changed</th><th>Give (write this)</th><th>Score / why</th></tr>
+<tr><td>No penicillin allergy<br><small>(even pregnant or sulfa-allergic)</small></td><td><b>Amoxicillin</b> 500 mg capsule<br>twice a day × 10 days · No. 20</td><td>Best answer <span class="src">KEY 2027 A</span></td></tr>
+<tr><td>Penicillin allergy</td><td><b>Azithromycin</b> 500 mg tablet<br>once a day × 3 days · No. 3</td><td>Best answer <span class="src">KEY 2027 B</span></td></tr>
+<tr><td>Penicillin allergy + QT risk</td><td><b>Clindamycin</b></td><td>Macrolide prolongs QT</td></tr>
+<tr><td>Child, no allergy</td><td><b>Amoxicillin</b> 50 mg/kg/day × 10 days, max 1 g</td><td><span class="src">OUTSIDE</span></td></tr>
+<tr><td>Child, penicillin allergy</td><td><b>Azithromycin</b> 12 mg/kg once daily × 5 days</td><td><span class="src">OUTSIDE</span></td></tr>
+</table></div>
+<div class="tbl"><table>
+<tr><th>Choice</th><th>No allergy (Set A)</th><th>Penicillin allergy (Set B)</th></tr>
+<tr><td>Amoxicillin</td><td><b>Best</b></td><td>✗</td></tr>
+<tr><td>Macrolide (azithromycin)</td><td>minus 0.5</td><td><b>Best</b></td></tr>
+<tr><td>Clindamycin</td><td>minus 1</td><td>minus 0.5</td></tr>
+<tr><td>1st-gen cephalosporin</td><td>—</td><td>minus 1</td></tr>
+<tr><td>Co-amoxiclav</td><td>no credit</td><td>no credit</td></tr>
+<tr><td>Ciprofloxacin</td><td>no credit (Gram-negative drug)</td><td>no credit</td></tr>
+</table></div>
+</section>
+
+<!-- ================= 7 ================= -->
+<section id="trans">
+<h2>7 · Other Rx cases your transes can support</h2>
+<div class="note">Past LE2 Rx items were all antibacterial. These are backup cases from 2.09 and 2.10. Doses not in the trans are tagged <span class="src">OUTSIDE</span>.</div>
+
+<h3>A. Fungal (trans 2.09)</h3>
+<div class="tbl"><table>
+<tr><th>Case</th><th>Give</th><th>Dose · route · duration</th><th>Avoid / note</th></tr>
+<tr><td>Ringworm of body, groin, feet<br><small>(ring-shaped scaly itchy lesion, KOH: septate hyphae)</small></td><td>Topical <b>clotrimazole 1%</b>, <b>miconazole 2%</b>, or <b>terbinafine 1%</b> cream</td><td>Apply twice daily <span class="src">OUTSIDE</span><br>for <b>2–4 weeks</b> <span class="src">TRANS</span></td><td>Keep dry, don't share towels<br>Oral not needed if localized</td></tr>
+<tr><td>Toenail / fingernail fungus</td><td><b>Terbinafine</b> 250 mg tablet</td><td>1 tab by mouth once daily <span class="src">TRANS</span><br>Toenail 12 weeks → No. 84<br>Fingernail 6 weeks → No. 42</td><td>✗ liver disease → use ciclopirox or amorolfine 5% nail lacquer</td></tr>
+<tr><td>Scalp ringworm (tinea capitis), child</td><td><b>Griseofulvin</b></td><td>With a <b>fatty meal</b> <span class="src">TRANS</span><br>20–25 mg/kg/day × 6–8 weeks <span class="src">OUTSIDE</span></td><td>No alcohol<br>Lowers warfarin and pill effect</td></tr>
+<tr><td>Pregnant, vaginal yeast</td><td>Vaginal <b>clotrimazole</b> or <b>miconazole</b></td><td><b>7 days</b> <span class="src">TRANS</span><br>e.g. 100 mg vaginal tablet at bedtime <span class="src">OUTSIDE</span></td><td>✗ oral fluconazole, oteseconazole, ibrexafungerp</td></tr>
+<tr><td>Oral thrush</td><td><b>Nystatin</b> oral suspension</td><td>100,000 units/mL, 4–6 mL swish and swallow 4× daily × 7–14 days <span class="src">OUTSIDE</span></td><td>Not absorbed → local only</td></tr>
+<tr><td>Dandruff (Malassezia)</td><td><b>Ketoconazole</b> shampoo</td><td>Topical <span class="src">TRANS</span></td><td>—</td></tr>
+</table></div>
+
+<h3>B. Malaria prophylaxis (trans 2.10)</h3>
+<div class="tbl"><table>
+<tr><th>Drug</th><th>Dose</th><th>How often</th><th>Start before</th><th>Stop after</th><th>2-week trip Disp.</th><th>Avoid in</th></tr>
+<tr><td><b>Atovaquone-proguanil</b><br>(Malarone)</td><td>250/100 mg tablet</td><td>Daily</td><td>1 day</td><td><b>7 days</b></td><td>1 + 14 + 7 = <b>No. 22</b></td><td>1st trimester</td></tr>
+<tr><td><b>Mefloquine</b></td><td>250 mg tablet</td><td><b>Weekly</b></td><td>1 week</td><td>4 weeks</td><td>1 + 2 + 4 = <b>No. 7</b></td><td>Epilepsy, psychiatric illness, arrhythmia</td></tr>
+<tr><td><b>Doxycycline</b></td><td>100 mg</td><td>Daily</td><td>1–2 days</td><td>4 weeks</td><td>2 + 14 + 28 = No. 44</td><td>Pregnant, under 8</td></tr>
+<tr><td><b>Primaquine</b></td><td>30 mg base (2 tablets)</td><td>Daily</td><td>1 day</td><td>3–7 days</td><td>—</td><td>G6PD (test first), pregnant</td></tr>
+<tr><td><b>Chloroquine</b></td><td>500 mg salt (300 mg base)</td><td>Weekly</td><td>1 week</td><td>4 weeks</td><td>1 + 2 + 4 = No. 7</td><td>Resistant areas</td></tr>
+</table></div>
+
+<h3>C. Malaria treatment (trans 2.10)</h3>
+<div class="tbl"><table>
+<tr><th>Situation</th><th>Give</th><th>Dose details</th><th>Pregnant?</th></tr>
+<tr><td>Chloroquine-sensitive<br><i>P. falciparum</i>, <i>P. malariae</i></td><td><b>Chloroquine</b> oral</td><td>1 g salt, then 500 mg at 6, 24, 48 h <span class="src">OUTSIDE</span></td><td>✓ chloroquine</td></tr>
+<tr><td>Chloroquine-sensitive<br><i>P. vivax</i>, <i>P. ovale</i></td><td><b>Chloroquine + primaquine</b></td><td>Primaquine 30 mg base daily × 14 days after normal G6PD <span class="src">OUTSIDE</span></td><td>Chloroquine only<br>✗ primaquine</td></tr>
+<tr><td>Uncomplicated, chloroquine-resistant <i>P. falciparum</i></td><td><b>Artemether-lumefantrine</b> (Coartem)</td><td>20/120 mg: 4 tabs at 0 h, 8 h, then twice daily × 2 days, No. 24, with fatty food <span class="src">OUTSIDE</span></td><td>ACT 2nd/3rd trimester<br>or quinine + <b>clindamycin</b></td></tr>
+<tr><td>Severe / cerebral</td><td><b>IV artesunate</b> → oral ACT</td><td>Child alternative: quinine 20 mg/kg load → 7.5 mg/kg every 8 h → oral 8 mg/kg every 8 h <span class="src">TRANS</span></td><td>✓ IV artesunate all trimesters</td></tr>
+</table></div>
+<div class="no"><b>Never in pregnancy:</b> primaquine, doxycycline, halofantrine, lumefantrine (1st trimester), Malarone (1st trimester), antifolates · "Pregnancy Hates Ludicrous PriMa DonA"</div>
+
+<h3>D. Amoebiasis and worms (trans 2.10)</h3>
+<div class="tbl"><table>
+<tr><th>Case</th><th>Give</th><th>Dose <span class="src">OUTSIDE</span></th><th>Note</th></tr>
+<tr><td>Amoebic dysentery / liver abscess</td><td><b>Metronidazole</b> + luminal agent <span class="src">TRANS</span></td><td>Metronidazole 750 mg 3× daily × 7–10 days<br>→ diloxanide 500 mg 3× daily × 10 days</td><td>No alcohol · metallic taste<br>Can't use metronidazole → dehydroemetine or nitazoxanide</td></tr>
+<tr><td>Asymptomatic cyst passer</td><td>Luminal only: <b>diloxanide</b>, iodoquinol, or paromomycin <span class="src">TRANS</span></td><td>Diloxanide 500 mg 3× daily × 10 days</td><td>Metronidazole alone misses cysts</td></tr>
+<tr><td>Roundworm, hookworm, pinworm</td><td><b>Pyrantel pamoate</b> (drug of choice) <span class="src">TRANS</span></td><td>11 mg/kg once, max 1 g<br>Pinworm: repeat in 2 weeks</td><td>Or albendazole 400 mg once<br>or mebendazole 100 mg twice daily × 3 days</td></tr>
+<tr><td>Tapeworm, flukes, schistosomes</td><td><b>Praziquantel</b> (drug of choice) <span class="src">TRANS</span></td><td>Schisto 40 mg/kg one day<br>Tapeworm 5–10 mg/kg once</td><td>✗ eye cysticercosis</td></tr>
+<tr><td>Strongyloides, onchocerciasis</td><td><b>Ivermectin</b> (1st line) <span class="src">TRANS</span></td><td>200 mcg/kg once</td><td>Fever, rash ~1 week later from dying worms</td></tr>
+<tr><td>Cysticercosis, hydatid cyst</td><td><b>Albendazole</b> <span class="src">TRANS</span></td><td>—</td><td>Take with fatty meal · ✗ cirrhosis</td></tr>
+</table></div>
+</section>
+
+<!-- ================= 8 ================= -->
+<section id="keys">
+<h2>8 · Past answer keys</h2>
+<div class="tbl"><table>
+<tr><th>Year</th><th>Case + trap</th><th>Answer</th></tr>
+<tr><td>2026</td><td>Pregnant UTI<br>+ amoxicillin allergy<br>+ G6PD</td><td>Cefuroxime 500 mg tablet<br>every 12 h × 7 days<br>No. 14</td></tr>
+<tr><td>2027 A</td><td>Pregnant throat<br>+ co-trimoxazole allergy</td><td>Amoxicillin 500 mg capsule<br>twice a day × 10 days<br>No. 20</td></tr>
+<tr><td>2027 B</td><td>Throat<br>+ penicillin allergy</td><td>Azithromycin 500 mg tablet<br>once a day × 3 days<br>No. 3</td></tr>
+<tr><td>2028 A</td><td>Pyelonephritis step-down<br>+ arrhythmia</td><td>Cefixime 400 mg tablet<br>once daily × 10 days<br>No. 10</td></tr>
+<tr><td>2028 B</td><td>Pyelonephritis step-down<br>+ amoxicillin allergy<br>+ tendon tear</td><td>Cefuroxime 500 mg tablet<br>every 12 h × 10 days<br>No. 20</td></tr>
+</table></div>
+
+<div class="note"><b>The pattern they repeat</b>
+<ul>
+<li>Quinolone blocked → <b>cephalosporin</b> (cefuroxime or cefixime)</li>
+<li>β-lactams blocked → <b>quinolone</b> for UTI</li>
+<li>Throat → <b>amoxicillin</b></li>
+<li>Throat + penicillin allergy → <b>azithromycin</b></li>
+</ul></div>
+</section>
+</div>
+<button type="button" class="totop" id="toTop" aria-label="Back to top">↑</button>
+<script>
+document.getElementById('toTop').addEventListener('click',function(){window.scrollTo({top:0});});
+</script>
+
+</body>
+</html>
