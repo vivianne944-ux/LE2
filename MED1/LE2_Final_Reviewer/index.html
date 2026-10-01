@@ -50,7 +50,7 @@ a{color:var(--accent)}
 .btn{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:6px 10px;font-size:13px;cursor:pointer;white-space:nowrap}
 .btn:hover{border-color:var(--accent)}
 .btn.on{background:var(--accent);color:#fff;border-color:var(--accent)}
-.tabs{display:flex;gap:4px;overflow-x:auto;padding:0 16px 8px;max-width:1100px;margin:0 auto;scrollbar-width:thin}
+.tabs{position:relative;display:flex;gap:4px;overflow-x:auto;padding:0 16px 8px;max-width:1100px;margin:0 auto;scrollbar-width:thin}
 .tabs a{flex:0 0 auto;text-decoration:none;color:var(--muted);font-size:13px;padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:var(--bg);white-space:nowrap}
 .tabs a.active{color:#fff;background:var(--accent);border-color:var(--accent)}
 .tabs a .pct{font-size:11px;opacity:.85;margin-left:4px}
@@ -3570,7 +3570,7 @@ body.hide-done .card.done{display:none}
   function onScroll(){
     var y=window.scrollY+140, cur=all[0];
     all.forEach(function(s){ if(s.offsetTop<=y) cur=s; });
-    links.forEach(function(a){ var on=a.dataset.sec===cur.id; if(on!==a.classList.contains('active')){ a.classList.toggle('active',on); if(on) a.scrollIntoView({block:'nearest',inline:'nearest'}); } });
+    links.forEach(function(a){ var on=a.dataset.sec===cur.id; if(on!==a.classList.contains('active')){ a.classList.toggle('active',on); if(on){ var l=a.offsetLeft, r=l+a.offsetWidth; if(l<tabs.scrollLeft||r>tabs.scrollLeft+tabs.clientWidth) tabs.scrollLeft=l-16; } } });
   }
   window.addEventListener('scroll',function(){ if(!onScroll.t){ onScroll.t=requestAnimationFrame(function(){onScroll.t=0;onScroll();}); } },{passive:true});
   onScroll();
