@@ -72,7 +72,11 @@ main{max-width:1100px;margin:0 auto;padding:16px}
 .card.done .done-toggle{color:var(--ok);border-color:var(--ok)}
 .rule{font-weight:650;font-size:16px;margin:4px 0 8px;padding:8px 12px;background:var(--accent-soft);border-radius:8px}
 ul,ol{padding-left:22px;margin:6px 0}
-li{margin:2px 0}
+li{margin:3px 0}
+li > ul,li > ol{margin:3px 0 4px;padding-left:20px}
+li > ul > li{margin:2px 0}
+.box ul{margin:4px 0}
+.mcq .rat{line-height:1.55}
 .why li::marker{color:var(--accent)}
 .tag,.pe,.src,.ext{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.02em;border-radius:6px;padding:1px 7px;vertical-align:middle;margin-left:3px;line-height:1.6}
 .tag.hy{background:var(--hy);color:#fff}
@@ -845,183 +849,435 @@ body.hide-done .card.done{display:none}
   <!-- ============ CARD 7 ============ -->
   <article class="card" id="hy-hsmx" data-yield="hy">
     <h3>Heat stroke management: cool first, avoid the wrong drugs <span class="tag must">MUST KNOW</span></h3>
-    <p class="rule">Cool rapidly even while the workup is ongoing; evaporative cooling for everyone, immersion only for young EHS, stop at 38–39°C.</p>
+    <p class="rule">Start cooling right away, even while you are still working up the cause. Evaporative cooling works for every heat stroke patient. Ice-water immersion is only for young patients with exertional heat stroke (EHS). Stop active cooling once the core reaches 38–39°C.</p>
     <ul class="why">
-      <li><b>Evaporative</b> (15°C water spray + fan, ice packs to neck/axilla/groin): most practical, works for CHS and EHS <span class="src">p. 6</span>.</li>
-      <li><b>Immersion</b>: fast but causes vasoconstriction/shivering; stop at <b>38–39°C</b> to avoid hypothermic afterdrop.</li>
-      <li>Continuous <b>core</b> temp monitoring; check <b>glucose</b>; intubate if AMS. Hypotension → <b>crystalloid boluses</b>.</li>
-      <li>📌 AVOID: <b>α-agonist inotropes</b> (norepinephrine → vasoconstriction blocks cooling), <b>depolarizing agents</b>, <b>chlorpromazine</b>, barbiturates (liver dysfunction), atropine/anticholinergics, <b>antipyretics</b> (no pyrogens; acetaminophen hurts liver, salicylates worsen coagulopathy).</li>
-      <li>Arrhythmias and seizures usually settle with cooling + hydration; defer cardioversion until cooled; shivering/agitation → short-acting benzo. All heat stroke → monitored setting/ICU.</li>
+      <li><b>Evaporative cooling</b> is the go-to method <span class="src">p. 6</span>.
+        <ul>
+          <li>How: spray cool water (about 15°C) on exposed skin and keep a fan blowing over the moist skin. Ice packs on the neck, armpits (axillae) and groin are an add-on.</li>
+          <li>Why it is preferred: it is the most practical method, it still lets you monitor and treat the patient, and it works for both classic heat stroke (CHS, the elderly or sick person in a heat wave) and exertional heat stroke (EHS, the young person exercising hard).</li>
+          <li>Rapid cooling matters because many heat stroke patients already meet SIRS (systemic inflammatory response syndrome) criteria.</li>
+        </ul>
+      </li>
+      <li><b>Immersion cooling</b> (ice-cold water bath) is fast, but has drawbacks.
+        <ul>
+          <li>It can first cause peripheral vasoconstriction and shivering, which work against heat loss.</li>
+          <li>It is best for young, healthy EHS patients and is not recommended for CHS.</li>
+          <li>Stop active cooling at <b>38–39°C</b>. If you keep going, the temperature can overshoot downward (hypothermic afterdrop).</li>
+        </ul>
+      </li>
+      <li><b>Supportive care</b>
+        <ul>
+          <li>Monitor the <b>core</b> temperature continuously and check the <b>glucose</b>.</li>
+          <li>Intubate if there is altered mental status (AMS), since aspiration is common.</li>
+          <li>For low blood pressure, give repeated isotonic <b>crystalloid boluses</b>. CHS patients often need only modest fluid, while EHS patients need more.</li>
+        </ul>
+      </li>
+      <li>📌 <b>Drugs to AVOID</b>, and why
+        <ul>
+          <li><b>α-agonist inotropes</b> such as norepinephrine: they cause vasoconstriction, which blocks heat loss and slows cooling.</li>
+          <li><b>Depolarizing agents</b> (for airway management).</li>
+          <li><b>Chlorpromazine</b>: it lowers the seizure threshold and has anticholinergic effects.</li>
+          <li>Barbiturates when there is liver dysfunction.</li>
+          <li>Atropine and other anticholinergics: they block sweating.</li>
+          <li><b>Antipyretics</b>: they work by blocking pyrogens at the hypothalamus, and in heat stroke there are no pyrogens to block. Acetaminophen also stresses the liver, and salicylates can worsen coagulopathy.</li>
+        </ul>
+      </li>
+      <li><b>Complications</b>
+        <ul>
+          <li>Arrhythmias and seizures usually settle once the patient is cooled and hydrated.</li>
+          <li>Delay electrical cardioversion until the heart muscle has been cooled.</li>
+          <li>Shivering or agitation is treated with a short-acting benzodiazepine.</li>
+          <li>Every heat stroke patient belongs in a monitored setting or ICU.</li>
+        </ul>
+      </li>
     </ul>
     <div class="mcq" data-answer="C">
       <p class="q">A 78/F with heart failure is brought in during a heat wave: disoriented, hot dry skin, core temperature 41.0°C, BP 82/50. Which order is INCORRECT?</p>
       <ol class="ch"><li>Spray with cool water under a fan and apply ice packs to the axillae and groin</li><li>Give isotonic crystalloid boluses for the hypotension</li><li>Immerse in ice water and continue until core temperature reaches 37°C</li><li>Give a short-acting benzodiazepine for shivering-related agitation</li></ol>
-      <p class="rat"><b>C.</b> Immersion is not recommended for classic heat stroke, and active cooling stops at 38–39°C to avoid afterdrop.</p>
+      <p class="rat"><b>C.</b> This elderly woman in a heat wave has classic heat stroke, and immersion is not recommended for classic heat stroke. On top of that, active cooling should stop at 38–39°C, not 37°C, to avoid hypothermic afterdrop.<br>The other orders are all correct: evaporative cooling with ice packs works for everyone, crystalloid boluses are the right fix for hypotension (not norepinephrine), and a short-acting benzodiazepine is the recommended drug for shivering or agitation.</p>
     </div>
   </article>
 
   <!-- ============ CARD 8 ============ -->
   <article class="card" id="hy-hypo" data-yield="hy">
     <h3>Hypothermia: definition, stages, primary vs secondary <span class="tag hy">HIGH-YIELD</span> <span class="pe">2028 #47</span> <span class="pe">2027 #44–45</span></h3>
-    <p class="rule">Accidental hypothermia = core &lt;35°C. Mild stage still compensates (vasoconstriction + shivering); below 32°C the body can no longer hold its temperature (poikilothermia).</p>
+    <p class="rule">Accidental hypothermia means a core temperature below 35°C. In the mild stage the body is still fighting back with vasoconstriction and shivering. Below 32°C the body can no longer hold a steady temperature, and its temperature simply follows the surroundings (poikilothermia).</p>
     <table class="tbl cmp">
       <tr><th>Stage <span class="ext">Harrison's</span></th><th>Core temp</th><th>Hallmarks</th><th>Trans thresholds / rewarming</th></tr>
-      <tr><td>Mild</td><td>32–35°C</td><td><b>Shivering, vasoconstriction</b>, tachycardia, tachypnea, cold diuresis, ataxia, apathy</td><td>&lt;35 = definition. Healthy, acute, primary → <b>passive external</b> (0.5–2°C/h)</td></tr>
-      <tr><td>Moderate</td><td>28–32°C</td><td>Shivering stops, ↓LOC, hyporeflexia, AF/bradycardia, <b>Osborn J wave</b>, paradoxical undressing</td><td>&lt;32 = poikilothermia → <b>active</b> rewarming. &lt;30: drugs withheld, VF only 1 shock</td></tr>
-      <tr><td>Severe</td><td>&lt;28°C</td><td>Coma, areflexia, VF/asystole, apnea</td><td>&lt;28: intermittent CPR acceptable in field. Advanced core / ECLS</td></tr>
+      <tr><td>Mild</td><td>32–35°C</td><td>The body is still compensating: <b>shivering and vasoconstriction</b>.<br>Also fast heart rate, fast breathing, cold diuresis, ataxia and apathy.</td><td>Below 35°C is the definition.<br>A healthy patient with an acute, primary case gets <b>passive external</b> rewarming (0.5–2°C per hour).</td></tr>
+      <tr><td>Moderate</td><td>28–32°C</td><td>Shivering stops.<br>Lower level of consciousness, weak reflexes, atrial fibrillation or slow heart rate, <b>Osborn J wave</b>, paradoxical undressing.</td><td>Below 32°C is poikilothermia, so <b>active</b> rewarming is needed.<br>Below 30°C, drugs are generally withheld and VF gets only one shock.</td></tr>
+      <tr><td>Severe</td><td>Below 28°C</td><td>Coma, no reflexes, VF or asystole, no breathing.</td><td>Below 28°C, intermittent CPR is acceptable in the field.<br>Needs advanced core rewarming or ECLS (extracorporeal life support).</td></tr>
     </table>
     <ul class="why">
-      <li><b>Primary</b> = healthy person, cold exposure → remove from cold. <b>Secondary</b> = complication of disease (sepsis, hypoglycemia, myxedema, adrenal insufficiency, spinal cord injury, overdose) → <b>much higher mortality</b>; treat the cause.</li>
-      <li>Risk: neonates (surface/mass, no shivering), elderly, malnutrition, <b>ethanol</b> (vasodilation), psych drugs (↓central vasoconstriction), anesthesia (blocks shivering).</li>
-      <li><b>Red flags for secondary cause:</b> tachycardia out of proportion (hypoglycemia, hypovolemia, overdose), persistent hyperventilation (CNS lesion, acidosis), deep coma with only mild hypothermia (overdose, CNS) <span class="src">p. 7</span>.</li>
+      <li><b>Primary vs secondary hypothermia</b>
+        <ul>
+          <li><b>Primary</b>: a healthy person who simply got too cold. The fix is removing them from the cold and rewarming.</li>
+          <li><b>Secondary</b>: hypothermia as a complication of another disease, such as sepsis, hypoglycemia, myxedema (severe hypothyroidism), adrenal insufficiency, spinal cord injury or a drug overdose.</li>
+          <li>Secondary hypothermia has a <b>much higher mortality</b>, so you must find and treat the underlying cause, not just warm the patient.</li>
+        </ul>
+      </li>
+      <li><b>Who is at risk</b>, and why
+        <ul>
+          <li>Neonates: they have a large surface area for their mass and cannot shiver effectively.</li>
+          <li>The elderly and the malnourished (less fat and fewer energy stores for making heat).</li>
+          <li><b>Ethanol</b>: it causes vasodilation, so heat is lost even though the person feels warm.</li>
+          <li>Psychiatric drugs (antipsychotics, antidepressants, anxiolytics): they reduce the brain-driven vasoconstriction that normally conserves heat.</li>
+          <li>Anesthesia: it blocks shivering.</li>
+        </ul>
+      </li>
+      <li><b>Red flags for a secondary cause</b> <span class="src">p. 7</span>. These are findings that do not fit the temperature:
+        <ul>
+          <li>Heart rate too fast for how cold the patient is. Think of hypoglycemia, low volume (hypovolemia) or overdose.</li>
+          <li>Persistent fast breathing. Normally the breathing rate falls as CO2 production drops, so think of a brain lesion or metabolic acidosis.</li>
+          <li>Deep coma with only mild hypothermia. Think of overdose or a CNS problem (infection, trauma).</li>
+        </ul>
+      </li>
     </ul>
-    <div class="box trap"><b>TRAP</b> Stage cut-offs (32/28) come from Harrison's; the trans gives the functional thresholds (35, 32, 30, 28, 33). In a stage question, mild = "body still fighting" (shivering, vasoconstriction), not AMS/VF (2028 #47 key).</div>
+    <div class="box trap"><b>TRAP</b> The stage cut-offs (32°C and 28°C) come from Harrison's. The trans instead lists functional thresholds: 35, 32, 30, 28 and 33°C.
+      <ul>
+        <li>In a staging question, "mild" means the body is still fighting: shivering and vasoconstriction.</li>
+        <li>Altered mental status or VF does not describe the mild stage (this was the 2028 #47 key).</li>
+      </ul>
+    </div>
     <div class="mcq" data-answer="B">
       <p class="q">A 58/M is found in a wet alley at dawn. Core temperature is 33.6°C, HR 134, RR 14, GCS 7. He is not shivering much. Which is the most appropriate next step?</p>
       <ol class="ch"><li>Passive external rewarming only, as for mild primary hypothermia</li><li>Check capillary glucose and search for a secondary cause (toxins, sepsis, hypovolemia)</li><li>Amiodarone for the sinus tachycardia</li><li>Temperature-corrected ABG to guide bicarbonate</li></ol>
-      <p class="rat"><b>B.</b> Disproportionate tachycardia and deep coma at only mild hypothermia point to secondary hypothermia (hypoglycemia, overdose). ABG is NOT temperature-corrected; antiarrhythmics only with extreme caution.</p>
+      <p class="rat"><b>B.</b> At 33.6°C he only has mild hypothermia, yet his heart rate is very fast and he is in deep coma (GCS 7). Those findings are out of proportion to the temperature, so they point to secondary hypothermia, for example hypoglycemia or an overdose. Check the glucose and look for the cause.<br>A is tempting because the temperature is in the mild range, but passive rewarming alone is only for healthy, primary cases. The ABG should NOT be temperature-corrected, and antiarrhythmics are used only with extreme caution in hypothermia.</p>
     </div>
   </article>
 
   <!-- ============ CARD 9 ============ -->
   <article class="card" id="hy-rewarm" data-yield="hy">
     <h3>Rewarming: who needs active warming, afterdrop, rewarming arrhythmias <span class="tag hy">HIGH-YIELD</span> <span class="pe">2028 #44, #46</span></h3>
-    <p class="rule">Warm the TRUNK, not the limbs. Heat to the extremities dilates cold peripheral vessels → cold, acidotic blood returns to the core → afterdrop and arrhythmia.</p>
+    <p class="rule">Warm the TRUNK, not the limbs. Putting heat on the arms and legs opens up (dilates) the cold vessels there. Cold, acidotic blood from the limbs then flows back to the core, and the core temperature keeps dropping (afterdrop), which can trigger arrhythmias.</p>
     <ul class="why">
-      <li><b>Active rewarming indications</b>: core &lt;32°C, CV instability, age extremes, CNS dysfunction, hormone deficiency, suspected secondary hypothermia <span class="src">p. 9</span>. Passive = healthy, mild, acute primary with enough glycogen.</li>
-      <li><b>Active external</b>: forced-air blankets (most effective), water pads, radiant heat. Avoid heated tub, electric blankets (burn vasoconstricted skin).</li>
-      <li><b>Active core</b>: heated humidified O2 40–45°C, IV fluids 40–42°C, cavity lavage (arrest); thoracic lavage (not LEFT chest if perfusing), hemodialysis, peritoneal lavage, ECLS/bypass for non-perfusing or frozen.</li>
-      <li><b>Arrhythmia mechanism</b> (2028 #44): abrupt membrane changes → depolarization/repolarization abnormalities; reperfusion; old ectopy reappears on rewarming; cold right atrium irritated by deep CVC/pacing wires.</li>
-      <li>📌 No evidence that extremely rapid rewarming improves survival in perfusing patients. 📌 Antiarrhythmics with extreme caution. Rewarming toxicity: digoxin, insulin accumulate while cold.</li>
+      <li><b>Who needs ACTIVE rewarming</b> <span class="src">p. 9</span>. Think of it as "below 32°C, or anything that means the patient cannot rewarm alone":
+        <ul>
+          <li>Core temperature below 32°C (poikilothermia).</li>
+          <li>Cardiovascular instability (low blood pressure, arrhythmia, arrest).</li>
+          <li>Age extremes (elderly, neonates).</li>
+          <li>CNS dysfunction.</li>
+          <li>Hormone deficiency (thyroid, adrenal, pituitary).</li>
+          <li>Suspected secondary hypothermia.</li>
+        </ul>
+      </li>
+      <li><b>Passive rewarming</b> (cover, insulate, warm room) is enough for a previously healthy person with mild, acute, primary hypothermia. The patient needs enough glycogen to make their own heat.</li>
+      <li><b>Active external rewarming</b>
+        <ul>
+          <li>Use forced-air heating blankets (the most effective), circulating-water pads or radiant heat.</li>
+          <li>Avoid a heated tub, because monitoring the patient becomes extremely difficult.</li>
+          <li>Avoid electric blankets, because they burn the cold, vasoconstricted skin.</li>
+        </ul>
+      </li>
+      <li><b>Active core rewarming</b> (heat delivered inside the body)
+        <ul>
+          <li>Heated, humidified oxygen at 40–45°C.</li>
+          <li>Warmed IV fluids at 40–42°C.</li>
+          <li>Warm irrigation of body cavities (GI tract or bladder) adds little heat and is reserved for cardiac arrest.</li>
+          <li>Closed thoracic lavage is very efficient in arrest, but is not done in the LEFT chest of a patient who still has a perfusing rhythm.</li>
+          <li>Hemodialysis and peritoneal lavage are other options.</li>
+          <li>ECLS (extracorporeal life support) or bypass is for non-perfusing patients or those with frozen limbs.</li>
+        </ul>
+      </li>
+      <li><b>Why arrhythmias happen during rewarming</b> (2028 #44)
+        <ul>
+          <li>Abrupt changes in the cell membranes cause abnormal depolarization and repolarization.</li>
+          <li>Reperfusion of tissues adds to this.</li>
+          <li>Old ectopic beats can reappear as the heart warms up.</li>
+          <li>The cold right atrium is easily irritated by a deeply placed central line or pacing wire.</li>
+        </ul>
+      </li>
+      <li>📌 There is no evidence that extremely rapid rewarming improves survival in patients who still have a perfusing rhythm.</li>
+      <li>📌 Use antiarrhythmics only with extreme caution.</li>
+      <li><b>Rewarming toxicity</b>: drugs like digoxin and insulin can build up while the patient is cold and then act all at once on rewarming.</li>
     </ul>
-    <div class="box trap"><b>TRAP</b> Afterdrop is circulatory, not a hypothalamic set-point change and not cold diuresis. Two afterdrops: rewarming hypothermia (limb vasodilation) and over-cooling heat stroke (stop at 38–39°C).</div>
+    <div class="box trap"><b>TRAP</b> Afterdrop is a circulation problem (cold blood returning to the core). It is not a change in the hypothalamic set point, and it is not caused by cold diuresis.
+      <ul>
+        <li>Afterdrop shows up in two settings:
+          <ul>
+            <li>Rewarming hypothermia, when the limbs are heated and their vessels dilate.</li>
+            <li>Over-cooling heat stroke, which is why you stop at 38–39°C.</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
     <div class="mcq" data-answer="A">
-      <p class="q">A 66/M rescued after a night outdoors has a core temperature of 30.5°C with a perfusing rhythm. Staff wrap hot packs around his arms and legs; 20 minutes later his core temperature falls to 29.6°C and he develops ventricular ectopy. Which change would best have prevented this?</p>
+      <p class="q">A 66/M rescued after a night outdoors has a core temperature of 30.5°C with a perfusing rhythm. Staff wrap hot packs around his arms and legs, and 20 minutes later his core temperature falls to 29.6°C and he develops ventricular ectopy. Which change would best have prevented this?</p>
       <ol class="ch"><li>Forced-air warming of the trunk with heated humidified O2 and warmed IV fluids</li><li>Passive blankets only, since he is still perfusing</li><li>Immersion of the limbs in a hot tub to speed rewarming</li><li>Prophylactic class I antiarrhythmic before rewarming</li></ol>
-      <p class="rat"><b>A.</b> &lt;32°C needs active rewarming aimed at the core/trunk. Heat to limbs → afterdrop. Heated tub is avoided; no class I antiarrhythmic is proven safe.</p>
+      <p class="rat"><b>A.</b> At 30.5°C he is below 32°C, so he needs active rewarming aimed at the core and trunk. Heating his limbs dilated the cold vessels there, so cold blood returned to the core and caused the afterdrop and ectopy.<br>B is wrong because passive warming is not enough below 32°C, even with a pulse. A heated tub is avoided, and no class I antiarrhythmic has been proven safe in hypothermia.</p>
     </div>
   </article>
 
   <!-- ============ CARD 10 ============ -->
   <article class="card" id="hy-arrest" data-yield="core">
     <h3>Hypothermic arrest and lab pitfalls <span class="tag must">MUST KNOW</span></h3>
-    <p class="rule">"Not dead until warm and dead": don't stop CPR before rewarming past 33°C. One shock for VF below 30°C, then rewarm 1–2°C before shocking again.</p>
+    <p class="rule">"Not dead until warm and dead": do not stop CPR until the patient has been rewarmed past 33°C. For VF below 30°C, give one shock, then rewarm by 1–2°C before shocking again.</p>
     <ul class="why">
-      <li>CPR unless DNR, obviously lethal injury, or frozen chest wall. Survival after &gt;7 h arrest reported <span class="src">p. 8</span>.</li>
-      <li>Poor prognosis: K &gt;10–12 mmol/L, core &lt;10–12°C, pH &lt;6.5, fibrinogen &lt;0.5 g/L; worst mechanism = <b>asphyxia then cooling</b> (avalanche).</li>
-      <li>ECG: <b>Osborn J wave</b> (machines misread as injury current).</li>
-      <li>Fluids: <b>NSS over LR</b> (cold liver can't clear lactate). O2 curve shifts LEFT; pulse ox unreliable.</li>
-      <li>Labs: ABG <b>not</b> temperature-corrected; Hct ↑2% per 1°C drop (anemia underestimated); WBC may mask infection; coags look normal (run at 37°C) and platelets/FFP don't work until rewarmed.</li>
-      <li>No levothyroxine in euthyroid hypothermia (look for real myxedema clues: slow Achilles relaxation). Hypothermia masks fever/leukocytosis → cultures; empiric antibiotics in elderly, neonates, immunocompromised.</li>
+      <li><b>When to do CPR</b>
+        <ul>
+          <li>Start CPR unless there is a DNR order, an obviously lethal injury, or a chest wall too frozen to compress.</li>
+          <li>Survival has been reported after more than 7 hours of arrest <span class="src">p. 8</span>, which is why you keep going.</li>
+        </ul>
+      </li>
+      <li><b>Signs of a poor prognosis</b>
+        <ul>
+          <li>Potassium above 10–12 mmol/L.</li>
+          <li>Core temperature below 10–12°C.</li>
+          <li>pH below 6.5.</li>
+          <li>Fibrinogen below 0.5 g/L.</li>
+          <li>The worst mechanism is <b>asphyxia first, then cooling</b>, as in avalanche victims.</li>
+        </ul>
+      </li>
+      <li><b>ECG</b>: the <b>Osborn J wave</b> (at the QRS–ST junction) suggests hypothermia. Automated machines often misread it as an injury current.</li>
+      <li><b>Fluids and oxygen</b>
+        <ul>
+          <li>Use <b>normal saline (NSS) instead of lactated Ringer's (LR)</b>, because the cold liver cannot clear lactate well.</li>
+          <li>The oxygen–hemoglobin curve shifts LEFT, so hemoglobin holds on to oxygen and tissues get less.</li>
+          <li>Pulse oximetry is often unreliable because of vasoconstriction.</li>
+        </ul>
+      </li>
+      <li><b>Lab pitfalls</b>
+        <ul>
+          <li>ABG (arterial blood gas): do <b>not</b> correct it for temperature.</li>
+          <li>Hematocrit rises about 2% for every 1°C drop, so anemia is underestimated.</li>
+          <li>WBC (white cell count) may stay low and hide an infection.</li>
+          <li>Clotting tests look normal because the lab runs them at 37°C, which rewarms the clotting enzymes. In the patient, the cold still blocks those enzymes and the platelets.</li>
+          <li>Platelets and FFP (fresh frozen plasma) will not work until the patient is rewarmed.</li>
+        </ul>
+      </li>
+      <li><b>Hormones and infection</b>
+        <ul>
+          <li>Do not give levothyroxine to a hypothermic patient with normal thyroid function. Give it only if there are real clues to myxedema, such as slow relaxation of the Achilles reflex.</li>
+          <li>Hypothermia can hide fever and a high WBC, so take cultures.</li>
+          <li>Give empiric antibiotics to the elderly, neonates and immunocompromised patients.</li>
+        </ul>
+      </li>
     </ul>
     <div class="mcq" data-answer="D">
       <p class="q">A 40/M hiker in cardiac arrest has a core temperature of 26°C. VF persists after one biphasic shock at 2 J/kg. ECLS is being prepared. What is the best course now?</p>
-      <ol class="ch"><li>Repeat shocks every 2 minutes with IV amiodarone</li><li>Terminate resuscitation, since VF persists below 28°C</li><li>Give lactated Ringer's boluses and atropine</li><li>Continue CPR and core rewarming; defer further shocks until warmed by 1–2°C</li></ol>
-      <p class="rat"><b>D.</b> Below 30°C: one shock, then rewarm before retrying; antiarrhythmics avoided; don't stop before &gt;33°C; NSS over LR.</p>
+      <ol class="ch"><li>Repeat shocks every 2 minutes with IV amiodarone</li><li>Terminate resuscitation, since VF persists below 28°C</li><li>Give lactated Ringer's boluses and atropine</li><li>Continue CPR and core rewarming, defer further shocks until warmed by 1–2°C</li></ol>
+      <p class="rat"><b>D.</b> Below 30°C, the rule is one shock, then rewarm by 1–2°C before trying again, while CPR and core rewarming continue.<br>A is wrong because repeated shocks are deferred and antiarrhythmics are generally avoided. B is wrong because you do not stop until the patient is warmer than 33°C ("not dead until warm and dead"). C is wrong because normal saline is preferred over lactated Ringer's.</p>
     </div>
   </article>
 
   <!-- ============ CARD 11 ============ -->
   <article class="card" id="hy-cold" data-yield="hy">
     <h3>Frostbite vs immersion (trench) foot vs chilblain (pernio) <span class="tag hy">HIGH-YIELD</span> <span class="pe">2028 #45</span> <span class="pe">2027 #46–47</span></h3>
-    <p class="rule">Below 0°C (tissue freezes) = frostbite. Above freezing: WET cold → trench foot; DAMP cold, itchy blue nodules, Raynaud's → chilblain.</p>
+    <p class="rule">If the tissue actually froze (below 0°C), it is frostbite. If the cold stayed above freezing, look at the type of exposure: WET cold points to trench foot, while DAMP cold with itchy blue nodules and a Raynaud's history points to chilblain.</p>
     <table class="tbl cmp">
       <tr><th></th><th>Frostbite</th><th>Immersion (trench) foot</th><th>Chilblain (pernio)</th></tr>
-      <tr><td>Temp</td><td>Tissue &lt;0°C</td><td>Repetitive WET cold &gt;0°C</td><td>Repetitive DAMP cold &gt;0°C</td></tr>
-      <tr><td>Mechanism</td><td>Ice crystals → thaw → dermal ischemia, microvascular collapse, edema → thrombosis</td><td>Prolonged wet cold</td><td>Neuronal + endothelial damage; vasospasm, vasculitis</td></tr>
-      <tr><td>Look</td><td>Numb "chunk of wood"; waxy, mottled, violaceous-white; vesicles (<b>hemorrhagic = severe</b>)</td><td>Cyanotic, cold, <b>edematous feet</b> → bullae → ulcer, <b>liquefaction gangrene</b></td><td><b>Pruritic</b> erythema, plaques, <b>blue nodules on dorsa of hands/feet</b></td></tr>
-      <tr><td>Who</td><td>Metal contact, wind, tight boots, prior injury</td><td>Soldiers, fishermen, wet boots</td><td>Young women, family hx of Raynaud's</td></tr>
-      <tr><td>Rx</td><td>Treat hypothermia first → 37–40°C circulating water 30–60 min (no hot air) → parenteral narcotics → iloprost &lt;48 h, tPA+heparin &lt;24 h → <b>defer amputation</b> until demarcation</td><td>Supportive</td><td>Supportive; refractory: nifedipine, steroids, limaprost</td></tr>
+      <tr><td>Temp</td><td>Tissue below 0°C (it freezes)</td><td>Repeated WET cold above 0°C</td><td>Repeated DAMP cold above 0°C</td></tr>
+      <tr><td>Mechanism</td><td>Ice crystals destroy cells.<br>After thawing, the dermis becomes ischemic, small vessels collapse and edema forms.<br>Damaged vessels then clot (thrombosis).</td><td>Prolonged wet cold</td><td>Damage to nerves and vessel lining.<br>Vasospasm and vasculitis.</td></tr>
+      <tr><td>Look</td><td>Numb, like a "chunk of wood".<br>Waxy, mottled, violet-white skin.<br>Blisters (<b>blood-filled blisters mean severe injury</b>).</td><td>Feet start cyanotic, cold and <b>swollen</b>.<br>Later bullae and ulcers, which can progress to <b>liquefaction gangrene</b>.</td><td><b>Itchy</b> redness and plaques.<br><b>Blue nodules on the backs of the hands and feet</b>.</td></tr>
+      <tr><td>Who</td><td>Contact with metal, high wind, tight boots, previous cold injury</td><td>Soldiers, fishermen, people in wet boots</td><td>Young women, families with a history of Raynaud's</td></tr>
+      <tr><td>Rx</td><td>See the steps below the table</td><td>Supportive</td><td>Supportive.<br>If refractory: nifedipine, steroids, limaprost.</td></tr>
     </table>
+    <ul class="why">
+      <li><b>Frostbite treatment, in order</b>
+        <ul>
+          <li>Treat the hypothermia first.</li>
+          <li>Thaw the tissue quickly and completely in circulating water at 37–40°C for 30–60 minutes. Do not use hot air.</li>
+          <li>Give parenteral narcotics (opioids), because reperfusion is intensely painful.</li>
+          <li>Iloprost (a prostacyclin analogue) within 48 hours after rewarming.</li>
+          <li>tPA with heparin within 24 hours for severe, deep frostbite. This can reduce amputations.</li>
+          <li><b>Delay amputation</b> until the dead tissue clearly separates from living tissue (demarcation), which can take weeks to months. Operate early only if infection develops.</li>
+        </ul>
+      </li>
+    </ul>
     <div class="box app"><b>EXAM APPLICATION</b><ul>
-      <li><b>Asked as:</b> exposure + appearance → which injury; "which pathophysiologic event is NOT consistent"; next step.</li>
-      <li><b>Trap:</b> trench foot bullae look like frostbite → <b>how to tell:</b> was the tissue frozen (below 0°C) or just wet?</li>
+      <li><b>Asked as:</b> a type of cold exposure plus how the skin looks, then "which injury is this?", "which pathophysiologic event is NOT consistent?", or "what is the next step?"</li>
+      <li><b>Trap:</b> the bullae of trench foot can look just like frostbite.
+        <ul><li>How to tell them apart: ask whether the tissue was actually frozen (below 0°C) or only wet and cold above freezing.</li></ul>
+      </li>
     </ul></div>
     <div class="mcq" data-answer="C">
       <p class="q">A 35/M mountaineer has white, waxy, numb toes after a night at −15°C. After he is rewarmed and his core temperature is normal, the toes develop hemorrhagic blisters and remain dusky. Which step is INAPPROPRIATE?</p>
       <ol class="ch"><li>Parenteral opioids for reperfusion pain</li><li>tPA with heparin if within 24 hours of severe injury</li><li>Early amputation of the dusky toes within the first 48 hours</li><li>Iloprost within 48 hours after rewarming</li></ol>
-      <p class="rat"><b>C.</b> Allow natural demarcation (weeks to months); debride or amputate early only if infected.</p>
+      <p class="rat"><b>C.</b> In frostbite you let the dead tissue declare itself (natural demarcation), which takes weeks to months. Early amputation can remove tissue that would have survived, so debridement or amputation is done early only if infection develops.<br>The other choices are all correct steps: opioids for reperfusion pain, tPA with heparin within 24 hours for severe injury, and iloprost within 48 hours.</p>
     </div>
   </article>
 
   <!-- ============ CARD 12 ============ -->
   <article class="card" id="hy-fuodef" data-yield="hy">
     <h3>FUO definitions: classic vs revised, IUO, recurrent fever <span class="tag hy">HIGH-YIELD</span> <span class="tag must">MUST KNOW</span> <span class="pe">2028 #53, #55</span> <span class="pe">2027 #53</span></h3>
-    <p class="rule">FUO = &gt;3 weeks + ≥38.3°C on ≥2 occasions + NOT immunocompromised + no diagnosis after thorough history, PE and obligatory tests. The revision replaced "1 week in hospital" with "obligatory investigations" (outpatient OK).</p>
+    <p class="rule">FUO (fever of unknown origin) needs all of the following: fever lasting more than 3 weeks, temperature of at least 38.3°C on at least 2 occasions, a patient who is NOT immunocompromised, and no diagnosis after a thorough history, physical exam and the obligatory tests. The revised definition replaced "1 week of inpatient evaluation" with "obligatory investigations", so the workup can be done as an outpatient.</p>
     <table class="tbl cmp">
       <tr><th></th><th>Classic (original)</th><th>Revised (current)</th></tr>
-      <tr><td>Temp</td><td>≥38.3°C on several occasions</td><td>≥38.3°C on ≥2 occasions</td></tr>
-      <tr><td>Duration</td><td>&gt;3 weeks</td><td>&gt;3 weeks</td></tr>
-      <tr><td>Workup needed</td><td>No diagnosis after <b>1 week inpatient</b> evaluation</td><td>No diagnosis after thorough H&amp;P + <b>obligatory investigations</b>; hospitalization not required</td></tr>
-      <tr><td>Immune status</td><td>—</td><td><b>Known immunocompromised EXCLUDED</b></td></tr>
+      <tr><td>Temp</td><td>≥38.3°C on several occasions</td><td>≥38.3°C on at least 2 occasions</td></tr>
+      <tr><td>Duration</td><td>More than 3 weeks</td><td>More than 3 weeks</td></tr>
+      <tr><td>Workup needed</td><td>No diagnosis after <b>1 week of inpatient</b> evaluation</td><td>No diagnosis after a thorough history and PE plus the <b>obligatory investigations</b>.<br>Hospitalization is not required.</td></tr>
+      <tr><td>Immune status</td><td>—</td><td><b>Known immunocompromised patients are EXCLUDED</b></td></tr>
     </table>
     <table class="tbl cmp">
       <tr><th>Look-alike</th><th>Definition</th></tr>
-      <tr><td><b>IUO</b></td><td>Same as FUO but <b>normal temperature with ↑ESR/CRP</b>; same workup. ESR/CRP are NOT infection markers <span class="src">p. 11</span></td></tr>
-      <tr><td><b>Recurrent fever</b> 📌</td><td>Episodes with <b>fever-free intervals ≥2 weeks</b> and apparent remission; diagnosis found in &lt;50% (malaria, Hodgkin) <span class="src">p. 12</span></td></tr>
-      <tr><td>Durack–Street subtypes <span class="ext">Harrison's</span></td><td>Classic, nosocomial, neutropenic, HIV-associated (low yield; not in current trans)</td></tr>
+      <tr><td><b>IUO</b> (inflammation of unknown origin)</td><td>Same as FUO, except the temperature is <b>normal while ESR and CRP are high</b>. The workup is the same.<br>ESR and CRP are NOT infection markers, because inflammation can happen without infection <span class="src">p. 11</span>.</td></tr>
+      <tr><td><b>Recurrent fever</b> 📌</td><td>Repeated fever episodes separated by <b>fever-free gaps of at least 2 weeks</b>, with the disease seeming to go into remission in between.<br>A cause is found in fewer than half of cases. Examples are malaria and Hodgkin lymphoma <span class="src">p. 12</span>.</td></tr>
+      <tr><td>Durack–Street subtypes <span class="ext">Harrison's</span></td><td>Classic, nosocomial, neutropenic and HIV-associated.<br>Low yield, and not in the current trans.</td></tr>
     </table>
-    <div class="box note">Two thresholds: <b>&gt;37.7°C</b> = fever (99th percentile); <b>≥38.3°C</b> = FUO criterion. The trans's "original definition" list already includes "no immunocompromised state" with "~1 week inpatient"; so when a past item asks which is NOT part of the revised definition, the answer is "known immunocompromised patients": they are excluded from FUO, not included in it <span class="pe">2028 #53</span> <span class="pe">2027 #53</span>.</div>
+    <div class="box note">Do not mix up the two thresholds.
+      <ul>
+        <li><b>Above 37.7°C</b> is the definition of fever (the 99th percentile of healthy people).</li>
+        <li><b>38.3°C or higher</b> is the FUO criterion.</li>
+        <li>The trans's "original definition" list already includes "no immunocompromised state" together with "about 1 week inpatient".
+          <ul><li>So when a past item asks which is NOT part of the revised definition, the answer is "known immunocompromised patients". They are excluded from FUO, not included in it <span class="pe">2028 #53</span> <span class="pe">2027 #53</span>.</li></ul>
+        </li>
+      </ul>
+    </div>
     <div class="mcq" data-answer="C">
       <p class="q">Which patient meets the revised definition of FUO?</p>
       <ol class="ch"><li>A 30/F with 2 weeks of fever up to 39°C and negative initial labs</li><li>A 55/M kidney transplant recipient on tacrolimus with 5 weeks of fever ≥38.3°C</li><li>A 42/M with 4 weeks of fever ≥38.3°C on several days, unrevealing outpatient history, PE, CXR, abdominal ultrasound and basic labs</li><li>A 60/F afebrile for 4 weeks with persistently high ESR and CRP and no diagnosis</li></ol>
-      <p class="rat"><b>C.</b> Hospitalization is no longer required. A = too short; B = immunocompromised; D = inflammation of unknown origin (IUO).</p>
+      <p class="rat"><b>C.</b> He has more than 3 weeks of fever at 38.3°C or higher, he is not immunocompromised, and the obligatory tests were unrevealing. Under the revised definition, an outpatient workup is enough, so hospitalization is not needed.<br>A is too short (only 2 weeks). B is immunocompromised (transplant on tacrolimus), so he is excluded. D has no fever, so she has inflammation of unknown origin (IUO), not FUO.</p>
     </div>
   </article>
 
   <!-- ============ CARD 13 ============ -->
   <article class="card" id="hy-fuocause" data-yield="hy">
-    <h3>FUO causes: infection (TB) here, NIIDs in the West; NIID clues <span class="tag hy">HIGH-YIELD</span> <span class="pe">2028 #50, #54</span> <span class="pe">2027 #56</span></h3>
-    <p class="rule">Non-Western (Philippines): INFECTION is the most common cause, up to half of them TB. Western cohorts: NIIDs (&gt;1/3) and "unexplained" (&gt;1/3).</p>
+    <h3>FUO causes: infection (TB) here, NIIDs in the West, NIID clues <span class="tag hy">HIGH-YIELD</span> <span class="pe">2028 #50, #54</span> <span class="pe">2027 #56</span></h3>
+    <p class="rule">In non-Western countries like the Philippines, INFECTION is the most common cause of FUO, and up to half of those infections are TB. In Western cohorts, the top causes are non-infectious inflammatory diseases (NIIDs, more than 1/3) and "unexplained" (more than 1/3).</p>
     <ul class="why">
-      <li>Categories <span class="src">p. 11</span>: infections (TB, endocarditis, abscess), <b>NIIDs</b> (autoimmune, autoinflammatory, granulomatous, vasculitis), malignancy (lymphoma), psychosomatic, unexplained.</li>
-      <li>More cases now "unexplained": better CT/MRI/PET catch easy ones early; abscesses, tumors, endocarditis diagnosed sooner.</li>
-      <li><b>Clues to NIID</b>: very high ESR (&gt;100 mm/h, 2028 #50 key; <span class="ext">Harrison's</span>), temporal artery tenderness (GCA), retinal vasculitis on fundoscopy, palpable petechiae/purpura on legs (vasculitis, 2027 #56 key), fever that resolves with <b>naproxen</b> challenge, recurrent fever &gt;2 years (infection/malignancy very unlikely).</li>
-      <li>Clues to infection instead: chills/rigors, high procalcitonin, evening rise (TB).</li>
+      <li><b>The five categories of FUO causes</b> <span class="src">p. 11</span>
+        <ul>
+          <li>Infections: TB, endocarditis, abscesses.</li>
+          <li><b>NIIDs</b> (non-infectious inflammatory diseases): autoimmune and autoinflammatory diseases, granulomatous diseases, and vasculitis.</li>
+          <li>Malignancy, especially lymphoma.</li>
+          <li>Psychosomatic.</li>
+          <li>Unexplained.</li>
+        </ul>
+      </li>
+      <li><b>Why more cases are now "unexplained"</b>
+        <ul>
+          <li>Better imaging (CT, MRI, PET/CT) catches the easier causes early, before they ever meet FUO criteria.</li>
+          <li>Abscesses, tumors and endocarditis are now diagnosed sooner.</li>
+          <li>So only the hardest cases are left to be called FUO.</li>
+        </ul>
+      </li>
+      <li><b>Clues that point to an NIID</b>
+        <ul>
+          <li>Very high ESR, above 100 mm/h (2028 #50 key, <span class="ext">Harrison's</span>).</li>
+          <li>Tender temporal artery, suggesting giant cell arteritis (GCA).</li>
+          <li>Retinal vasculitis seen on fundoscopy.</li>
+          <li>Palpable petechiae or purpura on the legs, suggesting vasculitis (2027 #56 key).</li>
+          <li>Fever that goes away with a <b>naproxen</b> challenge.</li>
+          <li>Recurrent fever lasting more than 2 years. Infection or malignancy is very unlikely after that long.</li>
+        </ul>
+      </li>
+      <li><b>Clues that point to infection instead</b>: chills or rigors, a high procalcitonin, and a fever that rises in the evening (TB).</li>
     </ul>
-    <div class="box trap"><b>TRAP</b> "Worldwide/most common" without a region: 2028 #54 keyed <b>infection</b>. If the stem says Western/European cohort → NIID.</div>
+    <div class="box trap"><b>TRAP</b> If the question says "worldwide" or "most common" without naming a region, 2028 #54 keyed <b>infection</b>.
+      <ul><li>If the stem says Western or European cohort, the answer is NIID.</li></ul>
+    </div>
     <div class="mcq" data-answer="A">
-      <p class="q">A 38/F from Batangas has had fever ≥38.3°C for 5 weeks; obligatory tests are unrevealing and she is not immunocompromised. Which single cause is statistically most likely?</p>
+      <p class="q">A 38/F from Batangas has had fever ≥38.3°C for 5 weeks. Obligatory tests are unrevealing and she is not immunocompromised. Which single cause is statistically most likely?</p>
       <ol class="ch"><li><i>Mycobacterium tuberculosis</i></li><li>Epstein-Barr virus</li><li>Sarcoidosis</li><li>Hodgkin lymphoma</li></ol>
-      <p class="rat"><b>A.</b> In non-Western cohorts infection dominates and up to half are TB. Sarcoidosis is uncommon in the Philippines (lecturer).</p>
+      <p class="rat"><b>A.</b> She is from the Philippines, a non-Western setting, where infection is the most common cause of FUO and up to half of those infections are TB.<br>Sarcoidosis (C) is a classic FUO cause in Western textbooks, but the lecturer noted it is uncommon in the Philippines. Hodgkin lymphoma is a possible cause but much less likely statistically.</p>
     </div>
   </article>
 
   <!-- ============ CARD 14 ============ -->
   <article class="card" id="hy-fuowork" data-yield="hy">
     <h3>FUO workup: PDCs first, stop drugs, obligatory tests, then PET/CT <span class="tag hy">HIGH-YIELD</span> <span class="tag must">MUST KNOW</span> <span class="pe">2028 #49, #51, #52, #56</span> <span class="pe">2027 #54, #55, #58</span></h3>
-    <p class="rule">Most important step = search for Potentially Diagnostic Clues (PDCs) by REPEATED history and PE. Before more tests, STOP antibiotics and glucocorticoids. Before invasive tests, repeat the history and PE.</p>
+    <p class="rule">The most important step is searching for Potentially Diagnostic Clues (PDCs), which are any localizing signs, symptoms or abnormalities that point toward a diagnosis. You find them by taking the history and doing the exam REPEATEDLY. Before ordering more tests, STOP antibiotics and glucocorticoids. Before any invasive test, repeat the history and exam.</p>
     <ol class="steps">
-      <li>Complete history (travel, animals, sex, drugs, family) + focused PE (fundi, deep axillary nodes, temporal arteries, liver/spleen, whole skin, mucosa, old surgical sites) + <b>obligatory tests</b>.</li>
-      <li>📌 <b>Stop antibiotics and steroids</b> (false-negative cultures; steroids shrink nodes, mask inflammation). Repeat cultures only if prior ones were drawn on antibiotics or &lt;1 week after stopping.</li>
-      <li>Obligatory: <b>CXR</b> (all), <b>abdominal ultrasound</b> (preferred over CT: cheap, no radiation), TST/IGRA, 2–3 blood culture sets (&gt;3 useless without PDCs), cryoglobulins as screen.</li>
-      <li>PDCs present → targeted tests (e.g. FUO + headache → CSF; miliary TB → <b>liver biopsy</b>, highest yield).</li>
-      <li>No PDCs → exclude <b>drug fever</b> (stop all drugs, 72 h) → repeat H&amp;P → <b>fundoscopy</b> by ophthalmologist → <b>¹⁸F-FDG PET/CT</b> (first choice, esp. ↑ESR/CRP) → leukocyte scintigraphy only if PET unavailable.</li>
+      <li><b>Take a complete history and do a focused exam</b>, plus the <b>obligatory tests</b>.
+        <ul>
+          <li>History: travel, animal contacts, sexual history, drugs and family history.</li>
+          <li>Exam: eye grounds (fundi), deep axillary lymph nodes, temporal arteries, liver and spleen, the whole skin, mucous membranes and old surgical sites.</li>
+        </ul>
+      </li>
+      <li>📌 <b>Stop antibiotics and steroids.</b>
+        <ul>
+          <li>Antibiotics make cultures falsely negative.</li>
+          <li>Steroids shrink lymph nodes and hide inflammation, whatever the cause.</li>
+          <li>Repeat blood cultures only if the earlier ones were drawn while on antibiotics or within 1 week after stopping them.</li>
+        </ul>
+      </li>
+      <li><b>Obligatory tests</b>
+        <ul>
+          <li><b>Chest X-ray (CXR)</b> for everyone.</li>
+          <li><b>Abdominal ultrasound</b>, preferred over CT because it is cheap and has no radiation.</li>
+          <li>TST or IGRA for TB.</li>
+          <li>2–3 sets of blood cultures. More than 3 sets is useless without PDCs.</li>
+          <li>Cryoglobulins as a screening test.</li>
+        </ul>
+      </li>
+      <li><b>If PDCs are present</b>, follow them with targeted tests.
+        <ul>
+          <li>Example: FUO with headache calls for a CSF (spinal fluid) exam.</li>
+          <li>Example: suspected miliary TB calls for a <b>liver biopsy</b>, which has the highest yield.</li>
+        </ul>
+      </li>
+      <li><b>If there are no PDCs</b>, go step by step:
+        <ul>
+          <li>Rule out <b>drug fever</b>: stop all drugs and watch for 72 hours.</li>
+          <li>Repeat the history and physical exam.</li>
+          <li>Have an ophthalmologist do <b>fundoscopy</b> (looking for retinal vasculitis).</li>
+          <li>Then <b>¹⁸F-FDG PET/CT</b>, the first choice, especially when ESR or CRP is high.</li>
+          <li>Leukocyte scintigraphy only if PET/CT is not available.</li>
+        </ul>
+      </li>
     </ol>
-    <div class="box trap"><b>TRAP</b> 2028 #49 keyed "chest and abdominal CT" as first-line imaging (Harrison's). Current trans: CXR + <b>abdominal ultrasound</b> are obligatory; US preferred over CT. If US is a choice, choose US; if only CT vs echo/gallium/MRI is offered, CT. PET/CT = high sensitivity, low specificity, localizes the process; it is done after first-stage tests fail, <b>not</b> after invasive biopsies fail (2028 #51).</div>
+    <div class="box trap"><b>TRAP</b> 2028 #49 keyed "chest and abdominal CT" as the first-line imaging (from Harrison's). The current trans says CXR plus <b>abdominal ultrasound</b> are obligatory, and ultrasound is preferred over CT.
+      <ul>
+        <li>If ultrasound is among the choices, choose ultrasound.</li>
+        <li>If the only options are CT versus echo, gallium scan or MRI, choose CT.</li>
+        <li>PET/CT has high sensitivity but low specificity. It tells you where the process is.
+          <ul><li>It is done after the first-stage tests fail, <b>not</b> after invasive biopsies fail (2028 #51).</li></ul>
+        </li>
+      </ul>
+    </div>
     <div class="mcq" data-answer="B">
       <p class="q">A 47/M with 4 weeks of fever ≥38.3°C has been on co-amoxiclav and prednisone 20 mg/day from a private clinic for 10 days. Two blood cultures drawn this week are negative. What is the best next step?</p>
       <ol class="ch"><li>FDG PET/CT now, since cultures are negative</li><li>Stop the antibiotic and steroid, then repeat cultures at least a week later</li><li>Add empiric anti-TB drugs</li><li>Bone marrow biopsy</li></ol>
-      <p class="rat"><b>B.</b> Antibiotics make cultures falsely negative and steroids mask disease; cultures drawn on antibiotics should be repeated after stopping. Imaging and invasive tests come later.</p>
+      <p class="rat"><b>B.</b> His cultures were drawn while he was taking an antibiotic, so they may be falsely negative. The prednisone can also hide the disease. Stop both drugs first, then repeat the cultures at least a week later.<br>A is tempting, but the negative cultures cannot be trusted yet, and imaging comes after the first-stage tests are done properly. Empiric anti-TB drugs and bone marrow biopsy come much later.</p>
     </div>
   </article>
 
   <!-- ============ CARD 15 ============ -->
   <article class="card" id="hy-fuotx" data-yield="core">
     <h3>FUO special cases, treatment and prognosis <span class="tag must">MUST KNOW</span></h3>
-    <p class="rule">Avoid empiric antibiotics, steroids or anti-TB drugs UNLESS the patient is rapidly deteriorating after tests fail. Prognosis of unexplained FUO is FAVORABLE.</p>
+    <p class="rule">Avoid empiric antibiotics, steroids or anti-TB drugs UNLESS the patient is rapidly getting worse after the tests have failed to give a diagnosis. If the FUO stays unexplained, the prognosis is FAVORABLE.</p>
     <ul class="why">
-      <li>Empiric antibiotics/anti-TB OK in: hemodynamic instability, <b>neutropenia</b>, positive TST/IGRA with granulomas and sarcoid unlikely. No response after <b>6 weeks</b> of anti-TB → rethink.</li>
-      <li>📌 <b>NSAID (naproxen) challenge</b>: fever resolves → likely inflammatory cause. NSAIDs dramatic in <b>adult-onset Still's</b>.</li>
-      <li>Colchicine → FMF (prevents attacks). Steroids → GCA/PMR only after infection and lymphoma largely excluded. <b>Anakinra</b> (IL-1Ra, blocks IL-1α/β) → still undiagnosed after later-stage tests.</li>
-      <li>FUO + headache → CSF for HSV-2, <i>Cryptococcus</i> (India ink), TB (AFB smear); get all samples in one tap.</li>
-      <li>TST/IGRA: false negative in miliary TB, malnutrition, immunosuppression; IGRA = latent TB, negative ≠ no TB.</li>
-      <li>Recurrent fever: image only <b>during an episode</b> with abnormal inflammatory markers.</li>
+      <li><b>Why avoid empiric treatment?</b>
+        <ul>
+          <li>Antibiotics can permanently ruin your chance of culturing fastidious bacteria or mycobacteria, and they add risks of resistance and blood-count complications.</li>
+          <li>Early steroids lower the chance of reaching a diagnosis that may have a specific, life-saving treatment.</li>
+        </ul>
+      </li>
+      <li><b>When empiric antibiotics or anti-TB drugs ARE acceptable</b>
+        <ul>
+          <li>Hemodynamic instability.</li>
+          <li><b>Neutropenia</b>.</li>
+          <li>Positive TST or IGRA plus granulomas, when sarcoidosis is unlikely.</li>
+          <li>If there is no response after <b>6 weeks</b> of anti-TB drugs, rethink the diagnosis.</li>
+        </ul>
+      </li>
+      <li>📌 <b>NSAID (naproxen) challenge</b>
+        <ul>
+          <li>If the fever goes away with naproxen, the cause is most likely inflammatory rather than infectious.</li>
+          <li>NSAIDs can work dramatically in <b>adult-onset Still's disease</b>.</li>
+        </ul>
+      </li>
+      <li><b>Other targeted treatments</b>
+        <ul>
+          <li>Colchicine for suspected FMF (familial Mediterranean fever). It is very good at preventing attacks.</li>
+          <li>Steroids for GCA (giant cell arteritis) or PMR (polymyalgia rheumatica), but only after infection and lymphoma have been largely ruled out.</li>
+          <li><b>Anakinra</b> for FUO that is still undiagnosed after the later-stage tests. It is an IL-1 receptor antagonist that blocks both IL-1α and IL-1β.</li>
+        </ul>
+      </li>
+      <li><b>FUO with headache</b>: check the CSF for HSV-2, <i>Cryptococcus</i> (India ink stain) and TB (AFB smear). Collect all samples in a single tap.</li>
+      <li><b>TB tests (TST and IGRA)</b>
+        <ul>
+          <li>They can be falsely negative in miliary TB, malnutrition and immunosuppression.</li>
+          <li>IGRA detects latent TB and does not help diagnose active TB.</li>
+          <li>A negative result does not rule out TB.</li>
+        </ul>
+      </li>
+      <li><b>Recurrent fever</b>: do imaging only <b>during an episode</b> and only when inflammatory markers are abnormal, because the findings may disappear between episodes.</li>
     </ul>
     <div class="mcq" data-answer="D">
-      <p class="q">A 50/M with FUO has a positive IGRA; liver biopsy shows non-caseating-looking granulomas but sarcoidosis is considered unlikely. AFB smear and PCR are negative and he is stable. What is the most appropriate plan?</p>
-      <ol class="ch"><li>High-dose prednisone for granulomatous hepatitis</li><li>Anakinra, since the work-up is complete</li><li>Observe only; positive IGRA means latent TB</li><li>Empiric anti-TB therapy, reassessing the diagnosis if no response after 6 weeks</li></ol>
-      <p class="rat"><b>D.</b> Positive TST/IGRA + granulomas with sarcoid unlikely is a listed indication for empiric anti-TB; reconsider at 6 weeks. Steroids before TB is excluded would be harmful.</p>
+      <p class="q">A 50/M with FUO has a positive IGRA, and liver biopsy shows non-caseating-looking granulomas but sarcoidosis is considered unlikely. AFB smear and PCR are negative and he is stable. What is the most appropriate plan?</p>
+      <ol class="ch"><li>High-dose prednisone for granulomatous hepatitis</li><li>Anakinra, since the work-up is complete</li><li>Observe only, positive IGRA means latent TB</li><li>Empiric anti-TB therapy, reassessing the diagnosis if no response after 6 weeks</li></ol>
+      <p class="rat"><b>D.</b> A positive TST or IGRA plus granulomas, with sarcoidosis unlikely, is one of the listed exceptions where empiric anti-TB treatment is allowed. If he has not responded after 6 weeks, reconsider the diagnosis.<br>A is harmful because giving steroids before TB is excluded can let it spread. B is for FUO still undiagnosed after later-stage tests, not when there is a treatable lead. C ignores the granulomas, and a negative smear or PCR does not rule out TB.</p>
     </div>
   </article>
 
@@ -1031,116 +1287,131 @@ body.hide-done .card.done{display:none}
     <div class="mcq" data-answer="C">
       <p class="q">A patient with adult-onset Still's disease refractory to NSAIDs is started on anakinra and his fever settles. The drug blocks the cytokine that is a key endogenous pyrogen. Which cytokine is it?</p>
       <ol class="ch"><li>IL-2</li><li>IL-10</li><li>IL-1</li><li>IL-4</li></ol>
-      <p class="rat"><b>C.</b> Anakinra = recombinant IL-1 receptor antagonist (blocks IL-1α and IL-1β). IL-10 is anti-inflammatory; IL-2 drives T cells; IL-4 drives IgE switching.</p>
+      <p class="rat"><b>C.</b> Anakinra is a recombinant IL-1 receptor antagonist that blocks both IL-1α and IL-1β. IL-1 is a key cytokine in inflammation and the fever response.<br>The others do not fit: IL-10 is anti-inflammatory, IL-2 drives T-cell growth, and IL-4 drives the switch to IgE.</p>
     </div>
 
     <div class="mcq" data-answer="A">
       <p class="q">A 76/F on chlorpromazine and benztropine is found confused at home during a heat wave. Core temperature 41.2°C, skin hot and DRY, no rigidity, CK normal. What best explains her loss of heat dissipation?</p>
       <ol class="ch"><li>Muscarinic blockade impairing sweating and evaporative heat loss</li><li>Dopamine blockade causing lead-pipe rigidity and muscle heat production</li><li>Cytokine-induced elevation of the hypothalamic set point</li><li>β-adrenergic blockade preventing tachycardia</li></ol>
-      <p class="rat"><b>A.</b> Classic heat stroke enabled by anticholinergic drugs (block sweating, interfere with the preoptic nucleus). No rigidity/normal CK argues against NMS; no pyrogen, so set point is normal.</p>
+      <p class="rat"><b>A.</b> This is classic heat stroke made worse by anticholinergic drugs. Blocking muscarinic receptors stops sweating, so she cannot lose heat by evaporation, and these drugs also interfere with the preoptic nucleus of the hypothalamus.<br>B describes NMS (neuroleptic malignant syndrome), but she has no rigidity and a normal CK. C describes fever, but there is no pyrogen here, so the set point is normal.</p>
     </div>
 
     <div class="mcq" data-answer="D">
       <p class="q">A 28/M develops agitation, tremor, diarrhea, profuse sweating, inducible ankle clonus and hyperreflexia 6 hours after tramadol was added to his sertraline. Temperature is 39.8°C. Most likely diagnosis?</p>
       <ol class="ch"><li>Neuroleptic malignant syndrome</li><li>Malignant hyperthermia</li><li>Exertional heat stroke</li><li>Serotonin syndrome</li></ol>
-      <p class="rat"><b>D.</b> <span class="ext">Harrison's</span> Rapid onset after a serotonergic combination + clonus/hyperreflexia. NMS: antipsychotic, days, lead-pipe rigidity with ↓ reflexes.</p>
+      <p class="rat"><b>D.</b> <span class="ext">Harrison's</span> Symptoms came on within hours of combining two serotonergic drugs (sertraline and tramadol), and he has clonus and brisk reflexes. That is serotonin syndrome.<br>NMS (neuroleptic malignant syndrome) is the main distractor. It follows an antipsychotic, develops over days, and causes lead-pipe rigidity with decreased reflexes.</p>
     </div>
 
     <div class="mcq" data-answer="B">
       <p class="q">A daughter gave her 80/M father paracetamol every 4 hours for a temperature of 41°C after he was found in a hot attic, confused with dry skin. Why is this inappropriate?</p>
       <ol class="ch"><li>Paracetamol raises the hypothalamic set point in the elderly</li><li>There are no pyrogens to block in heat stroke, and acetaminophen adds hepatic stress</li><li>Paracetamol causes rhabdomyolysis</li><li>It is appropriate, but should be combined with aspirin</li></ol>
-      <p class="rat"><b>B.</b> Antipyretics have no role in environment-induced hyperthermia; acetaminophen stresses the liver and salicylates worsen coagulopathy/uncouple oxidative phosphorylation.</p>
+      <p class="rat"><b>B.</b> Antipyretics work by blocking pyrogens at the hypothalamus. In heat stroke caused by the environment there are no pyrogens, so they do nothing, and acetaminophen adds stress to the liver.<br>D is wrong because salicylates (aspirin) are also avoided: they further uncouple oxidative phosphorylation and can worsen coagulopathy.</p>
     </div>
 
     <div class="mcq" data-answer="C">
       <p class="q">A 68/F tourist arrives from Canada and, on her 2nd day in Manila, notices swollen ankles and feet. Vitals and heart, liver and kidney exams are normal. What is the best management?</p>
-      <ol class="ch"><li>Furosemide for 3 days</li><li>Admit for IV fluids and electrolyte monitoring</li><li>Leg elevation or compression stockings; expect resolution in several days</li><li>Oral salt tablets taken whole</li></ol>
-      <p class="rat"><b>C.</b> Heat edema: diuretics are not effective and may cause volume depletion.</p>
+      <ol class="ch"><li>Furosemide for 3 days</li><li>Admit for IV fluids and electrolyte monitoring</li><li>Leg elevation or compression stockings, expect resolution in several days</li><li>Oral salt tablets taken whole</li></ol>
+      <p class="rat"><b>C.</b> This is heat edema: mild swelling of the feet and ankles in someone not yet used to the heat, with a normal heart, liver and kidney exam. It settles on its own in several days with leg elevation or compression stockings.<br>A is wrong because diuretics do not work for heat edema and can cause volume depletion.</p>
     </div>
 
     <div class="mcq" data-answer="B">
       <p class="q">Which patient can be managed with PASSIVE external rewarming alone?</p>
       <ol class="ch"><li>An 82/F with core temperature 34.2°C found on her bathroom floor</li><li>A healthy 24/M hiker, core temperature 34.0°C, shivering, after 3 hours in cold rain</li><li>A 30/M with core temperature 31.5°C after falling into a river</li><li>A 45/F with known hypothyroidism off levothyroxine, core temperature 34.5°C</li></ol>
-      <p class="rat"><b>B.</b> Healthy, acute, mild, primary, still shivering (has glycogen). A = age extreme; C = &lt;32°C; D = hormone insufficiency → all need active rewarming.</p>
+      <p class="rat"><b>B.</b> He is healthy, the exposure was acute, the hypothermia is mild and primary, and he is still shivering, which shows he has enough glycogen to make his own heat.<br>The others all need active rewarming. A is at an age extreme (elderly). C is below 32°C. D has a hormone deficiency (hypothyroidism).</p>
     </div>
 
     <div class="mcq" data-answer="A">
       <p class="q">A 61/M with core temperature 29°C is oozing from IV sites. His PT/aPTT come back normal and platelets are adequate. What best explains the discrepancy?</p>
       <ol class="ch"><li>Coagulation tests are run at 37°C, which rewarms the cold-inhibited clotting enzymes</li><li>Hypothermia causes hemoconcentration that falsely shortens PT</li><li>He has DIC from heat-shock proteins</li><li>The bleeding is from hyperkalemia</li></ol>
-      <p class="rat"><b>A.</b> Cold inhibits clotting enzymes and platelets in vivo, but labs warm the sample; platelets/FFP won't work until the patient is rewarmed.</p>
+      <p class="rat"><b>A.</b> Inside the cold patient, the clotting enzymes and platelets are slowed down, so he bleeds. The lab warms the blood sample to 37°C, which brings the enzymes back to normal, so the tests look normal.<br>This is also why platelets and FFP (fresh frozen plasma) will not work until the patient is rewarmed.</p>
     </div>
 
     <div class="mcq" data-answer="D">
       <p class="q">Which pairing in the management of severe hypothermia is INCORRECT?</p>
       <ol class="ch"><li>IV fluid — normal saline rather than lactated Ringer's</li><li>ABG — interpret without temperature correction</li><li>Central line — avoid deep insertion into the right atrium</li><li>Euthyroid patient — empiric IV levothyroxine to speed rewarming</li></ol>
-      <p class="rat"><b>D.</b> Levothyroxine in euthyroid hypothermic patients is potentially hazardous; give only with real clues of hypothyroidism.</p>
+      <p class="rat"><b>D.</b> Giving levothyroxine to a hypothermic patient whose thyroid is normal is potentially hazardous. Give it only when there are real clues of hypothyroidism.<br>The other pairings are correct: normal saline is used because the cold liver cannot clear lactate, the ABG is not temperature-corrected, and a deep central line can irritate the cold right atrium and trigger arrhythmias.</p>
     </div>
 
     <div class="mcq" data-answer="A">
       <p class="q">A 26/F call-center agent who commutes in cold, damp weather in Baguio has itchy, burning, reddish-blue nodules on the backs of her fingers and toes every rainy season. Her mother has Raynaud's. What is the most likely diagnosis?</p>
       <ol class="ch"><li>Chilblain (pernio)</li><li>Immersion foot</li><li>Superficial frostbite</li><li>Heat edema</li></ol>
-      <p class="rat"><b>A.</b> Damp cold above freezing, pruritic blue nodules on dorsa, Raynaud's family. Immersion foot = wet, edematous cyanotic feet; frostbite needs freezing.</p>
+      <p class="rat"><b>A.</b> Damp cold above freezing, itchy blue nodules on the backs of the hands and feet, and a family history of Raynaud's together point to chilblain.<br>Immersion foot comes from wet cold and causes swollen, cyanotic feet. Frostbite requires the tissue to actually freeze, which does not happen in Baguio weather.</p>
     </div>
 
     <div class="mcq" data-answer="D">
       <p class="q">A 33/M with 4 weeks of fever now has headache. CSF is being collected in a single tap. Which test–organism pair is INCORRECT?</p>
       <ol class="ch"><li>AFB smear — <i>M. tuberculosis</i></li><li>India ink — <i>Cryptococcus neoformans</i></li><li>Gram stain and culture — meningococcus</li><li>India ink — herpes simplex virus 2</li></ol>
-      <p class="rat"><b>D.</b> India ink is for <i>Cryptococcus</i>. HSV is detected by PCR, not India ink.</p>
+      <p class="rat"><b>D.</b> India ink stains the capsule of <i>Cryptococcus</i>, so it is not a test for a virus. HSV is detected by PCR.<br>The other pairs are correct: AFB smear for TB, India ink for <i>Cryptococcus</i>, and Gram stain with culture for bacteria like meningococcus.</p>
     </div>
 
     <div class="mcq" data-answer="C">
       <p class="q">A 29/F has had 1-week fever episodes about every 5 weeks for 18 months, completely well in between. Exam and tests done between episodes are normal. What is the best next step?</p>
-      <ol class="ch"><li>PET/CT now while she is well, to avoid inflammation artifacts</li><li>Empiric glucocorticoid trial</li><li>Have her return during an episode to repeat history, exam and tests (with imaging if inflammatory markers are abnormal)</li><li>Reassure; recurrent fever is never diagnosable</li></ol>
-      <p class="rat"><b>C.</b> Recurrent fever: examine during an episode; advanced imaging only during fever with abnormal markers (abnormalities may vanish between episodes). Diagnosis is &lt;50%, not never.</p>
+      <ol class="ch"><li>PET/CT now while she is well, to avoid inflammation artifacts</li><li>Empiric glucocorticoid trial</li><li>Have her return during an episode to repeat history, exam and tests (with imaging if inflammatory markers are abnormal)</li><li>Reassure, recurrent fever is never diagnosable</li></ol>
+      <p class="rat"><b>C.</b> In recurrent fever, the findings may only be present during an episode and can vanish in between. So examine and test her while she is febrile, and do advanced imaging only during fever with abnormal inflammatory markers.<br>A gets the timing backwards. D is wrong because a cause is found in fewer than half of cases, which is not the same as never.</p>
     </div>
 
     <div class="mcq" data-answer="B">
       <p class="q">A 73/F with 5 weeks of fever has new temporal headache, jaw claudication, a tender cord-like temporal artery and ESR 112 mm/h. Blood cultures and CXR are negative. Which FUO category is most likely, and what is the treatment role?</p>
-      <ol class="ch"><li>Infection; empiric antibiotics</li><li>Non-infectious inflammatory disease (vasculitis); glucocorticoids once infection and lymphoma are reasonably excluded</li><li>Malignancy; empiric chemotherapy</li><li>Drug fever; stop all drugs for 72 hours</li></ol>
-      <p class="rat"><b>B.</b> Giant cell arteritis is a vasculitis (NIID) and very high ESR favors NIID; steroids are supportive for GCA/PMR only after infection and lymphoma are largely ruled out.</p>
+      <ol class="ch"><li>Infection, empiric antibiotics</li><li>Non-infectious inflammatory disease (vasculitis), glucocorticoids once infection and lymphoma are reasonably excluded</li><li>Malignancy, empiric chemotherapy</li><li>Drug fever, stop all drugs for 72 hours</li></ol>
+      <p class="rat"><b>B.</b> Temporal headache, jaw claudication and a tender temporal artery point to giant cell arteritis, which is a vasculitis and so an NIID. An ESR above 100 also favors an NIID.<br>Steroids are the supportive treatment for GCA and PMR, but only after infection and lymphoma are largely ruled out, so that a treatable cause is not hidden.</p>
     </div>
 
     <div class="mcq" data-answer="A">
       <p class="q">A 52/M with FUO has elevated CRP. Obligatory tests, repeat history and PE, drug-fever exclusion and fundoscopy reveal no PDCs. Which is the best next investigation?</p>
       <ol class="ch"><li>¹⁸F-FDG PET/CT</li><li>Radiolabeled leukocyte scintigraphy</li><li>Exploratory laparotomy</li><li>Empiric anakinra trial</li></ol>
-      <p class="rat"><b>A.</b> FDG PET/CT is the first-choice advanced imaging (esp. with ↑ESR/CRP); scintigraphy only if PET/CT is unavailable; surgery and drug trials come much later.</p>
+      <p class="rat"><b>A.</b> After the first-stage steps find no clues, FDG PET/CT is the first-choice advanced imaging, especially when ESR or CRP is high.<br>Leukocyte scintigraphy (B) is only the backup if PET/CT is not available. Surgery and drug trials come much later.</p>
     </div>
 
     <div class="mcq" data-answer="C">
       <p class="q">A patient with suspected drug fever stops all medications, including supplements. His temperature is still 38.6°C at 96 hours. How should this be interpreted?</p>
-      <ol class="ch"><li>Drug fever is confirmed; restart one drug at a time</li><li>Observe for another 2 weeks before deciding</li><li>Drug fever is unlikely; continue the search for PDCs</li><li>This is IUO</li></ol>
-      <p class="rat"><b>C.</b> Fever persisting beyond the 72-hour wash-off makes drug fever unlikely.</p>
+      <ol class="ch"><li>Drug fever is confirmed, restart one drug at a time</li><li>Observe for another 2 weeks before deciding</li><li>Drug fever is unlikely, continue the search for PDCs</li><li>This is IUO</li></ol>
+      <p class="rat"><b>C.</b> Drug fever should clear within the 72-hour wash-off period after all drugs are stopped. A fever still present at 96 hours makes drug fever unlikely, so go back to searching for PDCs.<br>D is wrong because IUO means a normal temperature with high ESR and CRP, and this patient is febrile.</p>
     </div>
 
     <div class="mcq" data-answer="D">
       <p class="q">The family of a stable 44/M whose FUO is still unexplained after complete workup asks for "strong antibiotics just in case." Which statement is CORRECT?</p>
-      <ol class="ch"><li>Empiric antibiotics are standard after 3 weeks of fever</li><li>Unexplained FUO carries a high mortality, so treat empirically</li><li>Empiric steroids are preferred because they shrink lymph nodes</li><li>Avoid empiric therapy unless he deteriorates rapidly; the prognosis of unexplained FUO is generally favorable</li></ol>
-      <p class="rat"><b>D.</b> Empiric antibiotics ruin cultures and add resistance/hematologic risks; steroids mask disease. Mortality depends on the underlying disease and is low when unexplained.</p>
+      <ol class="ch"><li>Empiric antibiotics are standard after 3 weeks of fever</li><li>Unexplained FUO carries a high mortality, so treat empirically</li><li>Empiric steroids are preferred because they shrink lymph nodes</li><li>Avoid empiric therapy unless he deteriorates rapidly, the prognosis of unexplained FUO is generally favorable</li></ol>
+      <p class="rat"><b>D.</b> He is stable, so empiric therapy should be avoided. Empiric antibiotics spoil future cultures and add risks of resistance and blood-count problems.<br>C is wrong because steroids shrinking the nodes is exactly the problem: they hide the disease. B is wrong because the risk of death depends on the underlying disease, and it is low when the FUO stays unexplained.</p>
     </div>
   </div>
 
   <!-- ============ CRAM ============ -->
   <div class="cram" id="hy-cram"><h3>Last-look cram sheet</h3><ul>
-    <li>Center = <b>preoptic anterior hypothalamus</b>; negative feedback; hypothalamic damage → usually <b>subnormal</b> temp.</li>
-    <li>Conduction minimal · convection most common · <b>radiation major at rest</b> · <b>evaporation major when hot</b>.</li>
-    <li>Esophageal most accurate; rectal highest; oral −0.4; unadjusted tympanic −0.8. Fever &gt;37.7; FUO ≥38.3.</li>
-    <li>Pyrogen → IL-1/IL-6/TNF → COX-2 → <b>PGE2</b> → set point ↑ (→ cAMP). Fever = set point ↑; hyperthermia = set point normal, hot dry skin, antipyretics fail.</li>
-    <li>Hyperpyrexia &gt;41.5°C, most often CNS injury.</li>
-    <li>Antipsychotic + rigidity + ↑CK → NMS. Anesthesia (succinylcholine/-flurane) → MH (dantrolene). SSRI combo + clonus → serotonin syndrome <span class="ext">Harrison's</span>.</li>
-    <li>Anticholinergic = no sweat; CCB = ↓ peripheral flow; β-blocker = no vasodilation.</li>
-    <li>Heat edema: no diuretics. Heat cramps: dissolved salt/ORS. Exhaustion: CNS intact, &lt;40.5. Water-depletion = drank too little; salt-depletion = plain water, hyponatremia.</li>
-    <li>Heat stroke triad: heat + CNS dysfunction + &gt;40.5°C. CHS = old, dry, liver, hyperNa. EHS = young, sweaty, rhabdo/ARF, hypoglycemia. &gt;42°C = bad.</li>
-    <li>Cooling: evaporative for all; immersion only young EHS, stop 38–39°C. Hypotension → crystalloid, NOT norepinephrine. No antipyretics, chlorpromazine, depolarizers.</li>
-    <li>Hypothermia &lt;35°C. Mild 32–35 shivering + vasoconstriction; &lt;32 poikilothermia/active rewarming; &lt;30 one VF shock, hold drugs; &lt;28 intermittent CPR OK.</li>
-    <li>Disproportionate tachycardia / deep coma in mild hypothermia → secondary cause (glucose, toxins, sepsis).</li>
-    <li>Warm the trunk; limb heat → <b>afterdrop</b> (cold blood returns to core). Rewarming arrhythmia = depol/repol abnormalities; antiarrhythmics with extreme caution.</li>
-    <li>NSS not LR; ABG uncorrected; coags falsely normal; Hct ↑2%/°C; Osborn J wave; not dead until warm (&gt;33°C).</li>
-    <li>Frostbite &lt;0°C → treat hypothermia, 37–40°C water 30–60 min, iloprost &lt;48 h, tPA &lt;24 h, defer amputation. Wet cold → trench foot (liquefaction gangrene). Damp cold + itchy blue nodules + Raynaud's → chilblain.</li>
-    <li>Revised FUO: &gt;3 wk, ≥38.3 ×2, not immunocompromised, no dx after H&amp;P + obligatory tests (no hospitalization needed). Classic: 1 week inpatient.</li>
-    <li>IUO = afebrile + ↑ESR/CRP. Recurrent fever = ≥2-week fever-free gaps, dx &lt;50%, test during episode.</li>
-    <li>Philippines FUO → infection (TB). West → NIID. NIID clues: ESR &gt;100, temporal artery, retinal vasculitis, naproxen response.</li>
-    <li>Most important step = PDCs. Stop antibiotics + steroids first. Repeat H&amp;P before invasive tests. CXR + abdominal US (over CT). Miliary TB → liver biopsy. Then fundoscopy → FDG PET/CT → scintigraphy.</li>
-    <li>No empiric therapy unless deteriorating (exceptions: instability, neutropenia, IGRA+ granulomas → anti-TB, recheck at 6 wk). Prognosis favorable.</li>
+    <li>The temperature control center is the <b>preoptic anterior hypothalamus</b>, which works by negative feedback. Damage to the hypothalamus usually causes a <b>subnormal</b> temperature.</li>
+    <li>Heat loss: conduction is minimal, convection is the most common, <b>radiation is the major route at rest</b>, and <b>evaporation is the major route when hot</b>.</li>
+    <li>Esophageal temperature is the most accurate, and rectal reads the highest. Oral reads about 0.4°C lower and unadjusted tympanic about 0.8°C lower. Fever is above 37.7°C, and the FUO criterion is 38.3°C or higher.</li>
+    <li>Fever pathway: a pyrogen triggers IL-1, IL-6 and TNF, which induce COX-2 to make <b>PGE2</b>. PGE2 raises the set point (through cAMP).</li>
+    <li>Fever means a raised set point. Hyperthermia means a normal set point with hot, dry skin, and antipyretics do not work.</li>
+    <li>Hyperpyrexia is above 41.5°C and is most often from CNS injury.</li>
+    <li>Antipsychotic plus rigidity plus high CK means NMS (neuroleptic malignant syndrome).</li>
+    <li>Anesthesia (succinylcholine or the "-flurane" gases) means malignant hyperthermia, treated with dantrolene.</li>
+    <li>An SSRI combination plus clonus means serotonin syndrome <span class="ext">Harrison's</span>.</li>
+    <li>Anticholinergics stop sweating. Calcium channel blockers reduce blood flow to the skin. Beta-blockers prevent vasodilation.</li>
+    <li>Heat edema: no diuretics. Heat cramps: salt dissolved in water or ORS. Heat exhaustion: the brain is intact and the temperature is below 40.5°C.</li>
+    <li>Water-depletion heat exhaustion comes from drinking too little. Salt-depletion comes from drinking plain water and causes hyponatremia.</li>
+    <li>Heat stroke triad: heat exposure, CNS dysfunction and a temperature above 40.5°C. Above 42°C is a bad sign.</li>
+    <li>Classic heat stroke: elderly, dry skin, liver injury, high sodium. Exertional heat stroke: young, sweaty, rhabdomyolysis with kidney failure, low glucose.</li>
+    <li>Cooling: evaporative for everyone. Immersion only for young EHS patients, stopping at 38–39°C.</li>
+    <li>Heat stroke hypotension gets crystalloid, NOT norepinephrine. No antipyretics, no chlorpromazine and no depolarizing agents.</li>
+    <li>Hypothermia is a core temperature below 35°C. Mild (32–35°C) still has shivering and vasoconstriction.</li>
+    <li>Below 32°C means poikilothermia and active rewarming. Below 30°C, give one VF shock and hold drugs. Below 28°C, intermittent CPR is acceptable.</li>
+    <li>A heart rate too fast or a coma too deep for mild hypothermia means a secondary cause. Check glucose, toxins and sepsis.</li>
+    <li>Warm the trunk. Heating the limbs causes <b>afterdrop</b>, because cold blood returns to the core.</li>
+    <li>Rewarming arrhythmias come from abnormal depolarization and repolarization. Use antiarrhythmics only with extreme caution.</li>
+    <li>In hypothermia, use normal saline instead of lactated Ringer's, do not temperature-correct the ABG, and remember that clotting tests look falsely normal.</li>
+    <li>Hematocrit rises 2% per 1°C drop. Look for the Osborn J wave. The patient is not dead until warm (above 33°C) and dead.</li>
+    <li>Frostbite (tissue below 0°C): treat the hypothermia first, thaw in 37–40°C water for 30–60 minutes, give iloprost within 48 hours and tPA within 24 hours, and delay amputation.</li>
+    <li>Wet cold above freezing means trench foot, which can lead to liquefaction gangrene. Damp cold with itchy blue nodules and a Raynaud's family history means chilblain.</li>
+    <li>Revised FUO: more than 3 weeks, 38.3°C or higher at least twice, not immunocompromised, and no diagnosis after history, exam and obligatory tests. No hospitalization needed. The classic definition required 1 week as an inpatient.</li>
+    <li>IUO is a normal temperature with high ESR and CRP.</li>
+    <li>Recurrent fever has fever-free gaps of at least 2 weeks. A diagnosis is found in fewer than half, and testing is done during an episode.</li>
+    <li>In the Philippines, the top FUO cause is infection (TB). In the West it is NIID.</li>
+    <li>NIID clues: ESR above 100, temporal artery findings, retinal vasculitis and a response to naproxen.</li>
+    <li>The most important step is the search for PDCs. Stop antibiotics and steroids first. Repeat the history and exam before invasive tests.</li>
+    <li>Obligatory tests include CXR and abdominal ultrasound (preferred over CT). For miliary TB, liver biopsy has the highest yield.</li>
+    <li>With no PDCs, the order is fundoscopy, then FDG PET/CT, then leukocyte scintigraphy only if PET/CT is unavailable.</li>
+    <li>No empiric therapy unless the patient is deteriorating. Exceptions are instability, neutropenia, and a positive IGRA with granulomas (give anti-TB drugs and reassess at 6 weeks).</li>
+    <li>The prognosis of unexplained FUO is favorable.</li>
   </ul></div>
 </section>
 
@@ -3001,159 +3272,275 @@ body.hide-done .card.done{display:none}
   </div>
 
   <div class="box prof"><b>How Dr. Carlos-Depaynos asks</b><ul>
-    <li>One-line recall stems: "How does X appear on Y?", "Which modality…?", "What do you call…?" No cases.</li>
-    <li>Her favorites: <b>density words</b> (radiolucent vs radiopaque vs hyperdense), <b>radiation</b> (which one is high dose, which have none), <b>best modality for</b> (soft tissue, fracture, meniscus), <b>fluoroscopy</b>, <b>marker / teleroentgenogram</b>.</li>
-    <li>Distractors are always the <b>same idea in another modality's word</b> (hyperdense vs radiopaque vs hyperintense vs hyperechoic). Match the word to the modality first.</li>
-    <li>Teleroentgenogram came up both years, even though it isn't in the 2026 2.06 trans. Learn the 4 criteria.</li>
+    <li>Her stems are short, one-line recall questions. There are no patient cases.
+      <ul>
+        <li>Typical forms: "How does X appear on Y?", "Which modality…?", "What do you call…?"</li>
+      </ul>
+    </li>
+    <li>Her favorite topics:
+      <ul>
+        <li><b>Density words</b>: radiolucent vs radiopaque vs hyperdense.</li>
+        <li><b>Radiation</b>: which modality is high dose, and which ones have no radiation at all.</li>
+        <li><b>Best modality for</b> a given job (soft tissue, fracture, meniscus).</li>
+        <li><b>Fluoroscopy</b>.</li>
+        <li>The <b>marker</b> and the <b>teleroentgenogram</b>.</li>
+      </ul>
+    </li>
+    <li>Her distractors are usually <b>the same idea written in another modality's vocabulary</b>.
+      <ul>
+        <li>Example: hyperdense, radiopaque, hyperintense and hyperechoic all mean "white", but each belongs to a different modality.</li>
+        <li>Strategy: first identify the modality in the stem, then pick the word that belongs to it.</li>
+      </ul>
+    </li>
+    <li>The teleroentgenogram came up in both years, even though it is not in the 2026 2.06 trans. Learn its 4 criteria.</li>
   </ul></div>
   <details class="map"><summary>Past-exam concept map (2027 / 2028)</summary>
     <table class="tbl"><tr><th>Concept</th><th>2028</th><th>2027</th><th>Covered in</th></tr>
-      <tr><td>Air / calcium appearance on X-ray (radiolucent / radiopaque)</td><td>#95</td><td>#98</td><td><a href="#ra-dens">Densities</a></td></tr>
-      <tr><td>White on MRI = hyperintense (terms per modality)</td><td>#98</td><td>—</td><td><a href="#ra-terms">Black/white terms</a></td></tr>
-      <tr><td>High-dose ionizing = CT</td><td>—</td><td>#97</td><td><a href="#ra-mod">Modality summary</a></td></tr>
-      <tr><td>Superior soft tissue = MRI; fracture = CT; meniscus = MRI</td><td>#99, #100</td><td>#96</td><td><a href="#ra-best">Best modality</a></td></tr>
-      <tr><td>Fluoroscopy = continuous beam, real time</td><td>#96</td><td>—</td><td><a href="#ra-fluoro">X-ray types</a></td></tr>
-      <tr><td>Marker on patient's right</td><td>—</td><td>#99</td><td><a href="#ra-orient">Orientation</a></td></tr>
-      <tr><td>Teleroentgenogram (PA view, criteria)</td><td>#97</td><td>#100</td><td><a href="#ra-orient">Orientation</a></td></tr>
+      <tr><td>How air and calcium look on X-ray (radiolucent vs radiopaque)</td><td>#95</td><td>#98</td><td><a href="#ra-dens">Densities</a></td></tr>
+      <tr><td>White on MRI is called hyperintense (each modality has its own term)</td><td>#98</td><td>—</td><td><a href="#ra-terms">Black/white terms</a></td></tr>
+      <tr><td>The high-dose ionizing modality is CT</td><td>—</td><td>#97</td><td><a href="#ra-mod">Modality summary</a></td></tr>
+      <tr><td>Superior soft tissue means MRI<br>Fracture means CT<br>Meniscus means MRI</td><td>#99, #100</td><td>#96</td><td><a href="#ra-best">Best modality</a></td></tr>
+      <tr><td>Fluoroscopy is a continuous beam in real time</td><td>#96</td><td>—</td><td><a href="#ra-fluoro">X-ray types</a></td></tr>
+      <tr><td>The marker goes on the patient's right</td><td>—</td><td>#99</td><td><a href="#ra-orient">Orientation</a></td></tr>
+      <tr><td>Teleroentgenogram (PA view and its criteria)</td><td>#97</td><td>#100</td><td><a href="#ra-orient">Orientation</a></td></tr>
     </table>
   </details>
 
   <!-- 1. Densities -->
   <article class="card" id="ra-dens" data-yield="hy">
     <h3>The 5 X-ray densities <span class="tag hy">HIGH-YIELD</span> <span class="pe">2028 #95</span> <span class="pe">2027 #98</span></h3>
-    <p class="rule">Whitest → blackest: <b>bone/calcium → soft tissue → water → fat → air</b>. Metal is whiter than all of them.</p>
+    <p class="rule">From whitest to blackest, the order is <b>bone/calcium, then soft tissue, then water, then fat, then air</b>. Metal is whiter than all five.</p>
     <table class="tbl">
-      <tr><th>Rank (white → black)</th><th>Density</th><th>On X-ray</th></tr>
-      <tr><td>0 (brightest)</td><td>Metal (coin, orthopedic device)</td><td>Bright white, most opaque</td></tr>
-      <tr><td>1</td><td>Bone / calcium</td><td>White, <b>most radiopaque</b> of the 5</td></tr>
+      <tr><th>Rank (white to black)</th><th>Density</th><th>On X-ray</th></tr>
+      <tr><td>0 (brightest)</td><td>Metal (coin, orthopedic device)</td><td>Bright white, the most opaque of all</td></tr>
+      <tr><td>1</td><td>Bone / calcium</td><td>White, the <b>most radiopaque</b> of the 5</td></tr>
       <tr><td>2</td><td>Soft tissue</td><td>Light gray</td></tr>
       <tr><td>3</td><td>Water / fluid</td><td>Gray</td></tr>
       <tr><td>4</td><td>Fat</td><td>Dark gray</td></tr>
-      <tr><td>5 (darkest)</td><td>Air (lungs, trachea, bowel gas)</td><td>Black, <b>most radiolucent</b> (lets the most X-rays through)</td></tr>
+      <tr><td>5 (darkest)</td><td>Air (lungs, trachea, bowel gas)</td><td>Black, the <b>most radiolucent</b><br>It lets the most X-rays through.</td></tr>
     </table>
     <ul class="why">
-      <li>Dense tissue <b>absorbs</b> X-rays and looks white. Thin tissue lets X-rays <b>pass through</b> to the film and looks black.</li>
-      <li>Mnemonic, black → white: <b>A</b>ndrew <b>F</b>elt <b>S</b>orry <b>F</b>or <b>C</b>ursing <b>M</b>ammography = Air, Fat, Soft tissue/Fluid, Calcium, Metal. <span class="src">p. 4</span></li>
-      <li>"Density" means how black or white something looks. The word is used especially for CT. <span class="src">p. 4</span></li>
+      <li>Why things look white or black:
+        <ul>
+          <li>Dense tissue <b>absorbs</b> X-rays, so fewer X-rays reach the film. That area looks white.</li>
+          <li>Thin tissue like air lets X-rays <b>pass through</b> to the film. That area looks black.</li>
+          <li>This is why air is the darkest: it absorbs (attenuates) the fewest X-rays.</li>
+        </ul>
+      </li>
+      <li>Mnemonic, read from black to white: <b>A</b>ndrew <b>F</b>elt <b>S</b>orry <b>F</b>or <b>C</b>ursing <b>M</b>ammography. <span class="src">p. 4</span>
+        <ul>
+          <li>Air, Fat, Soft tissue/Fluid, Calcium, Metal.</li>
+          <li>Note that this mnemonic groups soft tissue and fluid together, while the trans figure lists them as separate steps.</li>
+        </ul>
+      </li>
+      <li>"Density" simply means how black or white something looks on the image. The word is used especially for CT. <span class="src">p. 4</span></li>
     </ul>
     <div class="box app"><b>EXAM APPLICATION</b><ul>
       <li><b>Asked as:</b> "How does [air / calcium / bone] appear on a conventional radiograph?"</li>
-      <li><b>Trap:</b> <i>hyperdense</i> or <i>hypodense</i> are offered as choices. Those are CT words. On a plain X-ray the answer is always radio<b>lucent</b> (black) or radio<b>paque</b> (white). Also watch the direction: the mnemonic runs black → white, but the trans figure runs white → black.</li></ul></div>
+      <li><b>Trap:</b> <i>hyperdense</i> or <i>hypodense</i> appear among the choices.
+        <ul>
+          <li>How to tell them apart: those are CT words. On a plain X-ray the answer is always radio<b>lucent</b> (black) or radio<b>paque</b> (white).</li>
+        </ul>
+      </li>
+      <li><b>Trap:</b> the direction of the order.
+        <ul>
+          <li>The mnemonic runs from black to white, but the trans figure runs from white to black. Read which direction the question asks for.</li>
+        </ul>
+      </li></ul></div>
     <div class="mcq" data-answer="B">
       <p class="q">On a plain abdominal radiograph, which structure is expected to be <b>more radiolucent than fat</b>?</p>
       <ol class="ch"><li>Urine in the bladder</li><li>Gas in the colon</li><li>Liver</li><li>Calcified gallstone</li></ol>
-      <p class="rat"><b>B.</b> Only air is blacker than fat. Urine (water) and liver (soft tissue) are whiter than fat, and calcium is radiopaque.</p>
+      <p class="rat"><b>B.</b> "More radiolucent" means blacker. In the density order, air is the only thing blacker than fat, and colon gas is air.<br>Urine is water and the liver is soft tissue. Both sit on the whiter side of fat.<br>A calcified gallstone contains calcium, which is radiopaque (white), the opposite of what was asked.</p>
     </div>
   </article>
 
   <!-- 2. Terminology -->
   <article class="card" id="ra-terms" data-yield="hy">
     <h3>Black vs white: each modality has its own word <span class="tag must">MUST KNOW</span> <span class="pe">2028 #98</span></h3>
-    <p class="rule"><b>Hypo = black, hyper = white</b>. X-ray is the exception: radio<b>lucent</b> = black, radio<b>paque</b> = white.</p>
+    <p class="rule"><b>"Hypo" means black and "hyper" means white</b>. X-ray is the exception: radio<b>lucent</b> means black and radio<b>paque</b> means white.</p>
     <table class="tbl cmp">
       <tr><th>Modality</th><th>Black (dark)</th><th>White (bright)</th><th>Root word</th></tr>
-      <tr><td>X-ray</td><td>Radiolucent ("lucency")</td><td>Radiopaque ("opacity")</td><td>lucent / opaque</td></tr>
+      <tr><td>X-ray</td><td>Radiolucent ("a lucency")</td><td>Radiopaque ("an opacity")</td><td>lucent / opaque</td></tr>
       <tr><td>CT</td><td>Hypodense</td><td>Hyperdense</td><td>density</td></tr>
       <tr><td>Ultrasound</td><td>Hypoechoic</td><td>Hyperechoic (echogenic)</td><td>echo</td></tr>
       <tr><td>MRI</td><td>Hypointense</td><td>Hyperintense</td><td>signal intensity</td></tr>
     </table>
     <ul class="why">
-      <li>Link the word to the physics: CT measures <b>dens</b>ity, ultrasound records <b>echo</b>es, MRI reads signal <b>intens</b>ity. <span class="src">p. 3</span></li>
-      <li>"Echogenic" means the same as hyperechoic. It is a common ultrasound word but isn't in the trans table.</li>
-      <li>"Isodense" (same as the surrounding tissue) is a distractor. It is not in the trans.</li>
+      <li>Link each word to what the machine measures. <span class="src">p. 3</span>
+        <ul>
+          <li>CT measures <b>dens</b>ity, so it uses hypo<b>dense</b> and hyper<b>dense</b>.</li>
+          <li>Ultrasound records <b>echo</b>es, so it uses hypo<b>echoic</b> and hyper<b>echoic</b>.</li>
+          <li>MRI reads signal <b>intens</b>ity, so it uses hypo<b>intense</b> and hyper<b>intense</b>.</li>
+          <li>X-ray is the odd one out with lucent and opaque.</li>
+        </ul>
+      </li>
+      <li>How a radiologist writes it in a report: "There is a lucency noted in the right lower lung field" (black area) or "There is a hazy opacity" (white area).</li>
+      <li>"Echogenic" means the same thing as hyperechoic. It is a common ultrasound word, but it is not in the trans table.</li>
+      <li>"Isodense" (the same shade as the surrounding tissue) can show up as a distractor. It is not in the trans.</li>
     </ul>
     <div class="box app"><b>EXAM APPLICATION</b><ul>
       <li><b>Asked as:</b> "What do you call a structure that is white / dark on [modality]?" or "Which pairing is INCORRECT?"</li>
-      <li><b>Trap:</b> all 4 choices mean the same color. Pick the one whose root word matches the modality in the stem.</li></ul></div>
+      <li><b>Trap:</b> all 4 choices describe the same color.
+        <ul>
+          <li>How to tell them apart: ignore the color and look at the root word. Pick the one that matches the modality named in the stem.</li>
+        </ul>
+      </li></ul></div>
     <div class="mcq" data-answer="A">
       <p class="q">A renal cyst looks dark on ultrasound. In the sonologist's report, the cyst is described as:</p>
       <ol class="ch"><li>Hypoechoic</li><li>Hypodense</li><li>Radiolucent</li><li>Hypointense</li></ol>
-      <p class="rat"><b>A.</b> Dark on ultrasound is hypoechoic. Hypodense is the CT word, radiolucent is the X-ray word, and hypointense is the MRI word.</p>
+      <p class="rat"><b>A.</b> Ultrasound describes brightness by echoes, so a dark structure is hypoechoic.<br>All the other choices also mean "dark", but in a different modality's language. Hypodense is the CT word, radiolucent is the X-ray word, and hypointense is the MRI word.</p>
     </div>
     <details class="more"><summary>Not in the 2026 trans: MRI T1 vs T2, CT Hounsfield units (skim only)</summary>
-      <p>The trans says MRI physics <b>won't be tested</b> (p. 3). This is only here in case a distractor uses these words. <span class="ext">Standard radiology, not trans</span></p>
+      <p>The trans says MRI physics <b>will not be tested</b> (p. 3). This is here only in case a distractor uses these words. <span class="ext">Standard radiology, not trans</span></p>
       <table class="tbl"><tr><th></th><th>T1</th><th>T2</th></tr>
-        <tr><td>Fat</td><td>Bright (hyperintense)</td><td>Bright / intermediate</td></tr>
+        <tr><td>Fat</td><td>Bright (hyperintense)</td><td>Bright to intermediate</td></tr>
         <tr><td>Water / fluid (CSF, edema)</td><td>Dark (hypointense)</td><td><b>Bright</b> ("T2 = water white")</td></tr>
         <tr><td>Cortical bone, air</td><td>Dark</td><td>Dark</td></tr></table>
-      <p>CT Hounsfield units: air about −1000, fat about −100, water 0, soft tissue +20 to +80, bone +400 to +1000 or more. The order is the same as the 5 densities.</p>
-      <p>Gadolinium (the MRI contrast agent) makes protons realign faster, so the tissue looks <b>brighter</b>. This part <b>is</b> in the trans. <span class="src">p. 3</span></p>
+      <p>CT Hounsfield units: air is about −1000, fat about −100, water 0, soft tissue +20 to +80, and bone +400 to +1000 or more. This follows the same order as the 5 densities.</p>
+      <p>Gadolinium (the MRI contrast agent) makes protons realign with the magnetic field faster. Faster realignment makes the tissue look <b>brighter</b>. This part <b>is</b> in the trans. <span class="src">p. 3</span></p>
     </details>
   </article>
 
   <!-- 3. Modality summary / radiation -->
   <article class="card" id="ra-mod" data-yield="hy">
     <h3>Modality summary: radiation, strengths, weaknesses <span class="tag lect">LECTURER</span> <span class="pe">2027 #97</span></h3>
-    <p class="rule"><b>Ionizing: X-ray (low dose) and CT (high dose).</b> <b>No ionizing radiation: MRI and ultrasound</b> (the lecturer emphasized this).</p>
+    <p class="rule"><b>Ionizing: X-ray (low dose) and CT (high dose).</b> <b>No ionizing radiation: MRI and ultrasound.</b> The lecturer emphasized this point.</p>
     <table class="tbl">
       <tr><th>Modality</th><th>Radiation?</th><th>Best for</th><th>Poor for / problem</th><th>Contrast</th></tr>
-      <tr><td>X-ray</td><td>Yes, <b>low dose</b></td><td>Bones, metal (orthopedic devices), calcium. Cheap and available.</td><td>Cartilage and soft tissue, intra-abdominal organs. <b>2D only</b>.</td><td>None (angiography uses iodinated)</td></tr>
-      <tr><td>CT</td><td>Yes, <b>high dose</b></td><td>Good soft tissue, <b>detailed bone</b>, calcification (better than X-ray)</td><td>Cartilage and ligaments. <b>Metal causes streak artifact</b>. Quite expensive.</td><td>Iodinated</td></tr>
-      <tr><td>MRI</td><td><b>None</b> (magnetic fields + radio waves + field gradients)</td><td><b>Superior soft tissue</b>: ligaments, bone marrow, spinal cord. Images in any plane.</td><td><b>Motion artifact</b> (slow scan). Unsafe with non-MRI-compatible metal or electronic devices and shrapnel. Claustrophobia. Most expensive, not in all hospitals.</td><td>Gadolinium</td></tr>
-      <tr><td>Ultrasound</td><td><b>None</b> (high-frequency sound, pulse-echo)</td><td>Solid organs, fluid-filled organs, superficial small parts, <b>real time</b>, vessels (Doppler)</td><td><b>Air</b> (lungs), <b>bone</b> and anything behind bone. <b>Operator dependent</b>.</td><td>None</td></tr>
+      <tr><td>X-ray</td><td>Yes, <b>low dose</b></td><td>Bones<br>Metal (orthopedic devices)<br>Calcium<br>Cheap and readily available</td><td>Cartilage and soft tissue (they contain no calcium)<br>Intra-abdominal organs<br><b>2D images only</b></td><td>None<br>(angiography uses iodinated contrast)</td></tr>
+      <tr><td>CT</td><td>Yes, <b>high dose</b></td><td>Good soft tissue contrast<br><b>Detailed bone</b> evaluation<br>Calcification (better than X-ray)</td><td>Cartilage and ligaments<br><b>Metal causes streak artifact</b><br>Quite expensive</td><td>Iodinated</td></tr>
+      <tr><td>MRI</td><td><b>None</b><br>(uses magnetic fields, radio waves and field gradients)</td><td><b>Superior soft tissue</b> contrast: ligaments, bone marrow, spinal cord<br>Images in any plane</td><td><b>Motion artifact</b> because the scan is slow<br>Unsafe with non-MRI-compatible metal or electronic devices and shrapnel<br>Claustrophobia and anxiety (narrow tunnel)<br>Most expensive, not in all hospitals</td><td>Gadolinium</td></tr>
+      <tr><td>Ultrasound</td><td><b>None</b><br>(uses high-frequency sound by the pulse-echo technique)</td><td>Solid organs<br>Fluid-filled organs<br>Superficial small parts<br><b>Real time</b><br>Vessels (by Doppler)</td><td><b>Air</b> (lungs)<br><b>Bone</b> and anything behind bone<br><b>Operator dependent</b></td><td>None</td></tr>
     </table>
-    <div class="box trap"><b>TRAP</b> Fluoroscopy is an X-ray, but its <b>continuous beam increases radiation exposure</b>, so don't call it low dose. Metal is a <i>strength</i> on X-ray, causes <i>streak artifact</i> on CT, and is a <i>safety problem</i> on MRI. <span class="src">p. 2–3</span></div>
+    <ul class="why">
+      <li>How to remember the radiation split:
+        <ul>
+          <li>X-ray and CT both use X-rays, so both are ionizing. CT is the high-dose one.</li>
+          <li>MRI uses magnets and radio waves, and ultrasound uses sound. Sound and magnets do not ionize.</li>
+        </ul>
+      </li>
+      <li>Why each weakness happens:
+        <ul>
+          <li>X-ray shows soft tissue poorly because cartilage and soft tissue contain no calcium, so they absorb few X-rays.</li>
+          <li>MRI gets motion artifact because image acquisition is slow, so the patient must stay very still.</li>
+          <li>Ultrasound needs sound to travel through tissue. Air and bone block it, so lungs and organs encased in bone are poorly seen.</li>
+        </ul>
+      </li>
+    </ul>
+    <div class="box trap"><b>TRAP</b><ul>
+      <li>Fluoroscopy is an X-ray study, but its <b>continuous beam increases radiation exposure</b>. Do not call it low dose just because it is "an X-ray".</li>
+      <li>Metal changes the answer depending on the modality.
+        <ul>
+          <li>On X-ray, metal is a <i>strength</i> (good for orthopedic devices).</li>
+          <li>On CT, metal causes <i>streak artifact</i>.</li>
+          <li>On MRI, metal is a <i>safety problem</i>.</li>
+        </ul>
+      </li></ul><span class="src">p. 2–3</span></div>
     <div class="mcq" data-answer="D">
       <p class="q">A 24-year-old pregnant woman needs abdominal imaging. Which pair of modalities avoids ionizing radiation completely?</p>
       <ol class="ch"><li>CT scan and fluoroscopy</li><li>X-ray and ultrasound</li><li>CT scan and MRI</li><li>Ultrasound and MRI</li></ol>
-      <p class="rat"><b>D.</b> Only ultrasound (sound waves) and MRI (magnets and radio waves) are non-ionizing. Each of the other pairs includes an X-ray–based modality.</p>
+      <p class="rat"><b>D.</b> Ultrasound uses sound waves and MRI uses magnets and radio waves, so neither is ionizing.<br>Every other pair contains at least one X-ray–based modality. B looks tempting because ultrasound is safe, but it is paired with plain X-ray, which is ionizing. C pairs MRI with CT, which is the high-dose one.</p>
     </div>
   </article>
 
   <!-- 4. Best modality -->
   <article class="card" id="ra-best" data-yield="hy">
     <h3>Pick the modality <span class="tag hy">HIGH-YIELD</span> <span class="pe">2027 #96</span> <span class="pe">2028 #99</span> <span class="pe">2028 #100</span></h3>
-    <p class="rule">Soft tissue gets <b>better</b> as you go X-ray (poor) → CT (good) → MRI (<b>superior</b>). Fine bone detail and calcification → CT.</p>
+    <p class="rule">Soft tissue contrast gets <b>better</b> as you move from X-ray (poor) to CT (good) to MRI (<b>superior</b>). For fine bone detail and calcification, choose CT.</p>
     <table class="tbl">
       <tr><th>Stem says…</th><th>Answer</th></tr>
-      <tr><td>Superior soft tissue contrast. Ligament, <b>meniscus/cartilage</b>, spinal cord, bone marrow.</td><td><b>MRI</b></td></tr>
-      <tr><td>Fracture or detailed bone evaluation (when plain X-ray isn't a choice). Calcified lesion in a patient with a non-MRI-compatible device.</td><td><b>CT</b></td></tr>
-      <tr><td>Bones, metal implants, calcium. Cheap first look.</td><td><b>X-ray</b></td></tr>
-      <tr><td>Solid or fluid organ, superficial part, vessels by Doppler, real time</td><td><b>Ultrasound</b></td></tr>
-      <tr><td>Moving structures: peristalsis, diaphragm, heart, barium, catheter placement</td><td><b>Fluoroscopy</b></td></tr>
+      <tr><td>Superior soft tissue contrast<br>Ligament, <b>meniscus or cartilage</b>, spinal cord, bone marrow</td><td><b>MRI</b></td></tr>
+      <tr><td>Fracture or detailed bone evaluation (when plain X-ray is not a choice)<br>Calcified lesion in a patient with a non-MRI-compatible device</td><td><b>CT</b></td></tr>
+      <tr><td>Bones, metal implants, calcium<br>A cheap first look</td><td><b>X-ray</b></td></tr>
+      <tr><td>Solid or fluid-filled organ, superficial part<br>Vessels by Doppler, real-time imaging</td><td><b>Ultrasound</b></td></tr>
+      <tr><td>Moving structures: peristalsis, diaphragm, heart, barium studies, catheter placement</td><td><b>Fluoroscopy</b></td></tr>
       <tr><td>Contrast flowing through vessels in real time</td><td><b>Conventional angiography</b></td></tr>
-      <tr><td>Operating room, patient can't be moved (ORIF, intraoperative cholangiogram)</td><td><b>C-arm</b> X-ray</td></tr>
+      <tr><td>Operating room, patient cannot be moved to radiology (ORIF, intraoperative cholangiogram)</td><td><b>C-arm</b> X-ray</td></tr>
     </table>
-    <div class="box trap"><b>TRAP</b> In 2028 #99 the key for "best for bone fractures" was <b>CT</b>, because plain X-ray wasn't among the choices (CT = "detailed bone evaluation", p. 3). If both X-ray and CT are offered, read the stem: "cheap, initial" points to X-ray; "detailed or complex" points to CT. A <b>meniscus is cartilage</b>, and cartilage is a CT <i>weakness</i>, so the answer is MRI.</div>
+    <div class="box trap"><b>TRAP</b><ul>
+      <li>In 2028 #99, the key for "best for bone fractures" was <b>CT</b>.
+        <ul>
+          <li>Why: plain X-ray was not among the choices, and the trans lists "detailed bone evaluation" as a CT strength (p. 3).</li>
+          <li>If both X-ray and CT are offered, read the stem. "Cheap" or "initial" points to X-ray. "Detailed" or "complex" points to CT.</li>
+        </ul>
+      </li>
+      <li>A <b>meniscus is cartilage</b>.
+        <ul>
+          <li>Cartilage is listed as a CT <i>weakness</i>, so the answer for a meniscus is MRI.</li>
+        </ul>
+      </li></ul></div>
     <div class="mcq" data-answer="C">
       <p class="q">A 19-year-old basketball player twisted his knee and now has instability. An anterior cruciate ligament tear is suspected. Which imaging best shows it?</p>
       <ol class="ch"><li>Plain radiograph</li><li>CT scan</li><li>MRI</li><li>Fluoroscopy</li></ol>
-      <p class="rat"><b>C.</b> Ligaments need MRI's superior soft tissue contrast. On CT, cartilage and ligaments are listed as weaknesses, and X-ray soft tissue contrast is poor.</p>
+      <p class="rat"><b>C.</b> A ligament is soft tissue, and MRI has the superior soft tissue contrast. The trans names ligaments specifically as an MRI strength.<br>CT is tempting because it has "good" soft tissue contrast, but cartilage and ligaments are listed as CT weaknesses. Plain X-ray has poor soft tissue contrast, and fluoroscopy is for watching motion.</p>
     </div>
   </article>
 
   <!-- 5. X-ray types / fluoroscopy -->
   <article class="card" id="ra-fluoro" data-yield="core">
     <h3>Fluoroscopy and the other X-ray types <span class="pe">2028 #96</span></h3>
-    <p class="rule"><b>Fluoroscopy = "real-time X-ray"</b>: a continuous beam passes through the patient onto a fluorescing screen or monitor.</p>
+    <p class="rule"><b>Fluoroscopy is "real-time X-ray"</b>. A continuous beam passes through the patient onto a fluorescing screen or monitor, so you can watch structures move.</p>
     <table class="tbl cmp">
       <tr><th>Type</th><th>Key feature</th></tr>
-      <tr><td>Fluoroscopy</td><td>Continuous beam, moving structures (GI peristalsis, diaphragm, cardiac action, barium, catheters). <b>More radiation.</b></td></tr>
-      <tr><td>Conventional angiography</td><td>Fluoroscopy plus <b>iodinated contrast injected into vessels</b>. Used to study blood vessels.</td></tr>
-      <tr><td>CR vs DR</td><td>CR uses a <b>phosphor plate</b> that is read manually (slower). DR uses a <b>fixed electronic detector/CCD</b>, is cassette-less, and gives an immediate image.</td></tr>
-      <tr><td>C-arm</td><td>X-ray machine brought into the OR</td></tr>
-      <tr><td>CT types</td><td>Conventional = one slice at a time (15–30 min for a cranial study). Helical = continuous. MDCT = multiple detector rows, one breath hold.</td></tr>
+      <tr><td>Fluoroscopy</td><td>Continuous beam<br>Shows moving structures: GI peristalsis, diaphragm, cardiac action, barium studies, catheters<br><b>More radiation</b></td></tr>
+      <tr><td>Conventional angiography</td><td>Fluoroscopy plus <b>iodinated contrast injected into the vessels</b><br>Used to study blood vessels as the contrast passes through</td></tr>
+      <tr><td>CR vs DR</td><td>CR (computed radiography) uses a <b>phosphor plate</b> that must be read manually, so it is slower.<br>DR (digital radiography) uses a <b>fixed electronic detector or CCD</b> (charge-coupled device). It is cassette-less and gives an immediate image.</td></tr>
+      <tr><td>C-arm</td><td>An X-ray machine brought into the operating room</td></tr>
+      <tr><td>CT types</td><td>Conventional: one slice at a time (about 15–30 min for a plain cranial study)<br>Helical: continuous scanning, faster<br>MDCT (multi-detector CT): multiple rows of detectors, so a cranial CT fits in one breath hold</td></tr>
     </table>
+    <ul class="why">
+      <li>Fluoroscopy vs angiography:
+        <ul>
+          <li>Both are real time. The difference is contrast in the vessels.</li>
+          <li>If the stem mentions iodinated contrast passing through vessels, it is angiography. If it only mentions watching something move, it is fluoroscopy.</li>
+        </ul>
+      </li>
+      <li>CR vs DR: think "plate means CR, detector means DR".</li>
+    </ul>
     <div class="mcq" data-answer="B">
       <p class="q">A patient with suspected left phrenic nerve palsy is asked to sniff while the radiologist watches the hemidiaphragms move on a monitor. This study is:</p>
       <ol class="ch"><li>Conventional angiography</li><li>Fluoroscopy</li><li>Digital radiography</li><li>Helical CT</li></ol>
-      <p class="rat"><b>B.</b> Watching motion in real time with a continuous beam is fluoroscopy. Angiography would need contrast injected into vessels.</p>
+      <p class="rat"><b>B.</b> Watching the diaphragm move in real time needs a continuous beam, which is fluoroscopy. Diaphragm movement is one of its listed uses.<br>Angiography is also real time, but it requires contrast injected into vessels, which is not described here. Digital radiography and helical CT do not show live motion.</p>
     </div>
   </article>
 
   <!-- 6. Orientation + teleroentgenogram -->
   <article class="card" id="ra-orient" data-yield="hy">
     <h3>Marker, orientation and teleroentgenogram <span class="tag hy">HIGH-YIELD</span> <span class="pe">2027 #99</span> <span class="pe">2027 #100</span> <span class="pe">2028 #97</span></h3>
-    <p class="rule">The marker always goes on the <b>patient's right</b>, and you view the film as if facing the patient (patient's right = viewer's left). A teleroentgenogram is taken in the <b>PA view</b>.</p>
+    <p class="rule">The marker always goes on the <b>patient's right</b>. You view the film as if you are facing the patient, so the patient's right appears on the viewer's left. A teleroentgenogram is taken in the <b>PA view</b>.</p>
     <ul class="why">
-      <li><b>Position</b> = the patient's posture (upright, supine, prone, lateral decubitus). <b>Projection</b> = the beam direction from source to surface (AP, PA, lateral). <span class="src">p. 4</span></li>
-      <li>Axial CT follows the same rule: patient's right on the viewer's left, anterior at the top. <span class="src">p. 5</span></li>
-      <li>Swallowed coin: an AP film can't tell trachea from esophagus. On the <b>lateral</b> view, a coin behind the tracheal air lucency is in the <b>upper esophagus</b>. <span class="src">p. 4</span></li>
+      <li>Position and projection are different things. <span class="src">p. 4</span>
+        <ul>
+          <li><b>Position</b> is the patient's posture: upright, supine, prone or lateral decubitus.</li>
+          <li><b>Projection</b> is the direction the beam travels from source to surface: AP (anteroposterior), PA (posteroanterior) or lateral.</li>
+        </ul>
+      </li>
+      <li>Axial CT follows the same left-right rule. The patient's right is on the viewer's left, anterior is at the top, and posterior is at the bottom. <span class="src">p. 5</span></li>
+      <li>Swallowed coin in the neck: <span class="src">p. 4</span>
+        <ul>
+          <li>On an AP film, you can see the coin but cannot tell whether it is in the trachea or the esophagus.</li>
+          <li>On the <b>lateral</b> view, the air-filled trachea shows as a dark tube. If the coin sits behind it, it is in the <b>upper esophagus</b>, because the esophagus lies behind the trachea.</li>
+        </ul>
+      </li>
     </ul>
-    <div class="box must"><b>TELEROENTGENOGRAM criteria</b> (not in the 2026 2.06 trans. Source: 2028 #97 rationale and the 2027 Radiology III trans.)<br>
-      <b>PA</b> projection · patient <b>upright</b> · <b>arms akimbo</b> (hands on waist or behind head, so the scapulae move off the lung fields) · taken at <b>mid or full inspiration</b>.<br>
-      The usual 6-ft (72 in) tube-to-film distance reduces heart magnification. <span class="ext">Standard radiology, not trans</span></div>
-    <div class="box trap"><b>TRAP</b> "Supine", "AP" and "hands at the sides" are all wrong for a teleroentgenogram. In 2028 #97 the key was "PA view" over "chest in full expansion", so when only one choice is accepted, <b>PA</b> is the defining criterion.</div>
+    <div class="box must"><b>TELEROENTGENOGRAM criteria</b> (not in the 2026 2.06 trans. Source: the 2028 #97 rationale and the 2027 Radiology III trans.)<ul>
+      <li><b>PA</b> projection.</li>
+      <li>Patient <b>upright</b>.</li>
+      <li><b>Arms akimbo</b>: hands on the waist or behind the head.
+        <ul>
+          <li>Why: this moves the scapulae off the lung fields.</li>
+        </ul>
+      </li>
+      <li>Taken at <b>mid or full inspiration</b>.</li>
+      <li>The usual 6-ft (72 in) tube-to-film distance reduces magnification of the heart. <span class="ext">Standard radiology, not trans</span></li>
+    </ul></div>
+    <div class="box trap"><b>TRAP</b><ul>
+      <li>"Supine", "AP" and "hands at the sides" are all wrong for a teleroentgenogram.</li>
+      <li>In 2028 #97 the key was "PA view" rather than "chest in full expansion".
+        <ul>
+          <li>So when only one choice is accepted, <b>PA</b> is the defining criterion.</li>
+        </ul>
+      </li></ul></div>
     <div class="gal">
       <figure class="fig"><img src="data:image/jpeg;base64,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" alt="Chest X-ray with marker at the viewer's left"><figcaption><b>Clue</b> The marker sits on the viewer's left, which is the patient's right. <span class="src">p. 4</span></figcaption></figure>
       <figure class="fig"><img src="data:image/jpeg;base64,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" alt="AP and lateral neck X-rays of a swallowed coin"><figcaption><b>Clue</b> The lateral view shows the coin behind the tracheal air, so it is in the upper esophagus. <span class="src">p. 4</span></figcaption></figure>
@@ -3161,61 +3548,68 @@ body.hide-done .card.done{display:none}
     <div class="mcq" data-answer="A">
       <p class="q">Which radiographic technique is NOT appropriate when taking a teleroentgenogram?</p>
       <ol class="ch"><li>Patient supine with the beam entering anteriorly</li><li>Patient upright</li><li>Arms akimbo</li><li>Film taken at full inspiration</li></ol>
-      <p class="rat"><b>A.</b> A supine film with the beam entering from the front is an AP film. A teleroentgenogram is an upright PA film.</p>
+      <p class="rat"><b>A.</b> A supine patient with the beam entering from the front gives an AP film. A teleroentgenogram must be an upright PA film, so this choice breaks two criteria at once.<br>Upright position, arms akimbo and full inspiration are all correct teleroentgenogram criteria.</p>
     </div>
   </article>
 
   <div class="drill" id="ra-drill"><h3>Practice drill — Dr. Carlos-Depaynos style</h3>
     <div class="mcq" data-answer="C">
       <p class="q">On a plain radiograph, which order goes correctly from <b>most radiolucent to most radiopaque</b>?</p>
-      <ol class="ch"><li>Fat → air → water → soft tissue → bone</li><li>Air → water → fat → soft tissue → bone</li><li>Air → fat → water → soft tissue → bone</li><li>Bone → soft tissue → water → fat → air</li></ol>
-      <p class="rat"><b>C.</b> Black → white is air, fat, water, soft tissue, bone. D is the correct order but in the opposite direction from what was asked.</p>
+      <ol class="ch"><li>Fat, air, water, soft tissue, bone</li><li>Air, water, fat, soft tissue, bone</li><li>Air, fat, water, soft tissue, bone</li><li>Bone, soft tissue, water, fat, air</li></ol>
+      <p class="rat"><b>C.</b> Most radiolucent means blackest, so start with air and end with bone: air, fat, water, soft tissue, bone.<br>D lists the correct sequence but runs from white to black, the opposite of what was asked. B swaps fat and water. A puts fat before air, but air is always the blackest.</p>
     </div>
     <div class="mcq" data-answer="D">
       <p class="q">Which modality–term pair for a <b>bright/white</b> structure is INCORRECT?</p>
       <ol class="ch"><li>CT – hyperdense</li><li>Ultrasound – hyperechoic</li><li>MRI – hyperintense</li><li>Plain radiograph – radiolucent</li></ol>
-      <p class="rat"><b>D.</b> Radiolucent means black. White on X-ray is radiopaque.</p>
+      <p class="rat"><b>D.</b> Radiolucent means black on X-ray. The X-ray word for white is radiopaque, so this pair is wrong.<br>The other three correctly match a "hyper" (white) word to its own modality.</p>
     </div>
     <div class="mcq" data-answer="B">
       <p class="q">A 68-year-old man with a hip prosthesis is followed up to check where the metal hardware sits. Which modality images the metal well at the lowest cost?</p>
       <ol class="ch"><li>CT scan</li><li>Plain radiograph</li><li>MRI</li><li>Ultrasound</li></ol>
-      <p class="rat"><b>B.</b> X-ray is good for metals (orthopedic devices) and is cheap. On CT, metal causes streak artifact. On MRI, metal is a safety problem.</p>
+      <p class="rat"><b>B.</b> X-ray is listed as good for metals such as orthopedic devices, and it is cheap and readily available.<br>CT is more expensive and metal causes streak artifact on it. On MRI, metal is a safety problem. Ultrasound cannot see through bone, and the prosthesis sits in bone.</p>
     </div>
     <div class="mcq" data-answer="A">
       <p class="q">Which of the following is a limitation of <b>ultrasound</b>?</p>
       <ol class="ch"><li>Poor visualization of air-filled lungs</li><li>High dose of ionizing radiation</li><li>Unsafe with metallic shrapnel</li><li>Cannot image in real time</li></ol>
-      <p class="rat"><b>A.</b> Ultrasound can't see through air or bone. It is non-ionizing and real time. The shrapnel problem belongs to MRI.</p>
+      <p class="rat"><b>A.</b> Sound waves cannot travel well through air or bone, so air-filled lungs are poorly seen.<br>Ultrasound is non-ionizing (B is the CT description) and is a real-time study (D is wrong). The shrapnel problem in C belongs to MRI.</p>
     </div>
     <div class="mcq" data-answer="C">
       <p class="q">A patient with a non-MRI-compatible cardiac pacemaker has a suspected <b>calcified</b> intracranial lesion. Best modality?</p>
       <ol class="ch"><li>MRI with gadolinium</li><li>Ultrasound</li><li>CT scan</li><li>Fluoroscopy</li></ol>
-      <p class="rat"><b>C.</b> CT evaluates calcification better than X-ray, and MRI is unsafe with the device. Ultrasound can't see through the skull.</p>
+      <p class="rat"><b>C.</b> CT evaluates calcification better than X-ray does, and it is safe with the pacemaker.<br>MRI is tempting for brain imaging, but it is unsafe with a non-MRI-compatible device. Ultrasound cannot see through the skull. Fluoroscopy is for moving structures.</p>
     </div>
     <div class="mcq" data-answer="D">
       <p class="q">Which statement about MRI is TRUE?</p>
       <ol class="ch"><li>It uses low-dose ionizing radiation</li><li>Its contrast agent is iodinated</li><li>Its main artifact is the streak artifact from metal</li><li>It gives superior soft tissue contrast, such as for the spinal cord</li></ol>
-      <p class="rat"><b>D.</b> MRI is non-ionizing, its contrast is gadolinium, and its typical artifact is motion. Streak artifact from metal is a CT problem.</p>
+      <p class="rat"><b>D.</b> Superior soft tissue contrast, including the spinal cord, is MRI's main strength.<br>The others describe the X-ray family: MRI is non-ionizing (A is X-ray), its contrast is gadolinium (iodinated in B is for CT), and its typical artifact is motion. Streak artifact from metal (C) is a CT problem.</p>
     </div>
     <div class="mcq" data-answer="B">
       <p class="q">Which X-ray–based study exposes the patient to <b>more radiation</b> because of its continuous beam?</p>
       <ol class="ch"><li>Computed radiography</li><li>Fluoroscopy</li><li>Digital radiography</li><li>Film radiography</li></ol>
-      <p class="rat"><b>B.</b> Fluoroscopy uses a continuous beam to show real-time motion, which increases exposure. The others are single exposures.</p>
+      <p class="rat"><b>B.</b> Fluoroscopy keeps the beam on continuously so motion can be watched in real time, and that increases exposure.<br>Computed, digital and film radiography each take a single exposure. They differ only in the detector used (phosphor plate, electronic detector, or film).</p>
     </div>
   </div>
 
   <div class="cram" id="ra-cram"><h3>Last-look cram sheet</h3><ul>
-    <li>Whitest → blackest: <b>bone → soft tissue → water → fat → air</b>. Metal is the brightest of all. Air = most radiolucent.</li>
-    <li>Black/white words: X-ray <b>radiolucent/radiopaque</b> · CT <b>hypo/hyperdense</b> · US <b>hypo/hyperechoic</b> · MRI <b>hypo/hyperintense</b>.</li>
-    <li>Ionizing: <b>X-ray (low dose), CT (high dose)</b>, fluoroscopy (more exposure). Non-ionizing: <b>MRI, US</b>.</li>
-    <li>Superior soft tissue, ligament, meniscus, spinal cord, marrow → <b>MRI</b>.</li>
-    <li>Detailed bone, fracture (no X-ray choice), calcification → <b>CT</b>. Metal on CT → streak artifact.</li>
-    <li>Metal implants, bones, cheap → <b>X-ray</b> (2D only, poor soft tissue).</li>
-    <li>US: solid, fluid and superficial organs, Doppler, real time. Poor for air and bone. Operator dependent.</li>
-    <li>Continuous beam, real-time motion → <b>fluoroscopy</b>. Plus iodinated contrast in vessels → <b>angiography</b>.</li>
-    <li>Contrast: CT and angiography = <b>iodinated</b>. MRI = <b>gadolinium</b> (makes tissue brighter).</li>
-    <li>Marker on the <b>patient's right</b> (appears on the viewer's left).</li>
-    <li>Teleroentgenogram: <b>PA, upright, arms akimbo, inspiration</b>.</li>
-    <li>Coin behind the tracheal air on the lateral view → <b>upper esophagus</b>.</li>
+    <li>From whitest to blackest: <b>bone, soft tissue, water, fat, air</b>. Metal is brighter than all of them. Air is the most radiolucent.</li>
+    <li>Words for black and white:
+      <ul>
+        <li>X-ray uses <b>radiolucent / radiopaque</b>.</li>
+        <li>CT uses <b>hypodense / hyperdense</b>.</li>
+        <li>Ultrasound uses <b>hypoechoic / hyperechoic</b>.</li>
+        <li>MRI uses <b>hypointense / hyperintense</b>.</li>
+      </ul>
+    </li>
+    <li>Ionizing modalities are <b>X-ray (low dose) and CT (high dose)</b>. Fluoroscopy gives more exposure. <b>MRI and ultrasound</b> are non-ionizing.</li>
+    <li>Superior soft tissue, ligament, meniscus, spinal cord or bone marrow means <b>MRI</b>.</li>
+    <li>Detailed bone, fracture (when X-ray is not a choice) or calcification means <b>CT</b>. Metal on CT causes streak artifact.</li>
+    <li>Metal implants, bones and a cheap first look mean <b>X-ray</b>. It gives only 2D images and has poor soft tissue contrast.</li>
+    <li>Ultrasound is good for solid, fluid-filled and superficial organs, Doppler and real time. It is poor for air and bone, and it is operator dependent.</li>
+    <li>A continuous beam showing real-time motion is <b>fluoroscopy</b>. Add iodinated contrast in the vessels and it becomes <b>angiography</b>.</li>
+    <li>Contrast: CT and angiography use <b>iodinated</b> contrast. MRI uses <b>gadolinium</b>, which makes tissue brighter.</li>
+    <li>The marker goes on the <b>patient's right</b>, which appears on the viewer's left.</li>
+    <li>Teleroentgenogram: <b>PA, upright, arms akimbo, taken at inspiration</b>.</li>
+    <li>A coin behind the tracheal air on the lateral view is in the <b>upper esophagus</b>.</li>
   </ul></div>
 </section>
 
